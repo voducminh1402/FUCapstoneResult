@@ -5,6 +5,8 @@
 - Đặt tên chuẩn BEM (anh em lưu ý đọc phần này nha)
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&family=Roboto:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -16,4 +18,101 @@
     --main-white: #ffffff;
     --main-text-header: #121212;
     --main-text: #545454;
+    --main-yellow: #F4D60B;
+    --size-text: 16px;
+    --size-header: 35px;
 }
+
+html {
+    font-family: 'Mulish', sans-serif;
+}
+
+/* START PROJECT PAGE AND PROJECT WITH MAJOR PAGE */
+.projects {
+    margin: 100px 0px;
+}
+
+.projects-header {
+    margin-bottom: 100px;
+}
+
+.projects-header__content {
+    font-weight: bold;
+    font-size: var(--size-header);
+}
+
+.project-detail {
+    padding: 10px 10px;
+}
+
+.project-content-img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.project-content-overlay {
+    position: relative;
+}
+
+.project-content-overlay::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0, 0.3);
+    transition: ease-out 0.3s;
+}
+
+.project-detail:hover .project-content-overlay::before {
+    transition: ease-in 0.3s;
+    background: rgba(0,0,0, 0.7);
+}
+
+.project-content-text {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    color: white;
+    transition: ease-out 0.3s;
+}
+
+.project-content-text span {
+    display: inline-block;
+    font-size: 14px;
+}
+
+.project-content-text span:first-of-type {
+    margin-bottom: 10px;
+}
+
+.project-content-text h5 {
+    max-width: 200px;
+}
+
+.project-content-text span:last-of-type {
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--main-yellow);
+    opacity: 0;
+    
+}
+
+.project-detail:hover .project-content-text span:last-of-type {
+    opacity: 1;
+    transition: ease-in 0.1s;
+}
+
+.project-detail:hover .project-content-text{
+    transform: translateY(-15px);
+    transition: ease-in 0.2s;
+}
+
+
+
