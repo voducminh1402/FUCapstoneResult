@@ -232,5 +232,19 @@ html {
     }
 }
 
+/* END PRE LOADING */
+
+.project-content-major {
+    height: 460px;
+}
+
+.project-content-major-img {
+    height: 460px;
+}
+
+.projects-major {
+    margin: 100px 0px;
+}
+
 
 
