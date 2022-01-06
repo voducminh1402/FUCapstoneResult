@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fucapstoneresult.posts;
+package com.fucapstoneresult.models;
 
 /**
  *
@@ -86,11 +86,6 @@ public class PostsDTO {
 
     public void setLastEditedUser(String LastEditedUser) {
         this.LastEditedUser = LastEditedUser;
-    }
-
-    @Override
-    public String toString() {
-        return "PostID : " + PostID + " | PostTitle : "+ PostTitle + " | PostDate : "+ PostDate + "| PostAuthor : "+PostAuthor+ " | PostDescription : "+PostDescription+" | PostImage : "+PostImage+" | LastEditedUser : "+LastEditedUser; //To change body of generated methods, choose Tools | Templates.
     }
     
     
