@@ -18,7 +18,7 @@ public class DBUtils {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String url = "jdbc:sqlserver://localhost:1433;databaseName=FUCapstoneResult";
-        conn = DriverManager.getConnection(url, "sa", "Minh1402");
+        conn = DriverManager.getConnection(url, "sa", "Vitamin123!@#");
         return conn;
     }
 }
