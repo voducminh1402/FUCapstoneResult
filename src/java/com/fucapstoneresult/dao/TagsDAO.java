@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fucapstoneresult.posts;
+package com.fucapstoneresult.dao;
 
+import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,11 +18,10 @@ import java.util.List;
  *
  * @author PhongVu
  */
-public class PostsDAO {
+public class TagsDAO {
     
-    
-   public List<PostsDTO> getListPost(String search) throws SQLException{
-        List<PostsDTO> listpost = new ArrayList<>();
+    public List<TagsDTO> getListTag(String search) throws SQLException{
+        List<TagsDTO> listtag = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -29,22 +29,17 @@ public class PostsDAO {
         try {
            conn=com.fucapstoneresult.utils.DBUtils.getConnection();
            if(conn!=null){
-                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser "
-                            +" FROM Posts "
+                String sql = " SELECT PostID, TagDetailID "
+                            +" FROM Tags "
                             +" WHERE PostID like ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%"+search+"%");
                 rs = stm.executeQuery();
                 while(rs.next()){
                     String PostID = rs.getString("PostID");
-                    String PostTitle = rs.getString("PostTitle");
-                    String PostDate = rs.getString("PostDate");
-                    String PostAuthor = rs.getString("PostAuthor");
-                    String PostDescription = rs.getString("PostDescription");
-                    String PostImage = rs.getString("PostImage");
-                    String LastEditedUser = rs.getString("LastEditedUser");
-
-                    listpost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser));
+                    String TagdetailID = rs.getString("TagDetailID");
+                    
+                    listtag.add(new TagsDTO(PostID, TagdetailID));
                 }
             } 
        } catch (Exception e) {
@@ -56,27 +51,22 @@ public class PostsDAO {
         }
         
         
-        return listpost;
+        return listtag;
    }
     
    
-    public boolean update(PostsDTO post) throws SQLException{
+    public boolean update(TagsDTO tag) throws SQLException{
         boolean check = false;
         Connection conn =null;
         PreparedStatement stm = null;
         try {
             conn=com.fucapstoneresult.utils.DBUtils.getConnection();
             if(conn!=null){
-                String sql = " UPDATE Posts SET PostTitle=?, PostDate=?, PostAuthor=?, PostDescription=?, PostImage=?, LastEditedUser=? "
+                String sql = " UPDATE Tags SET TagDetaildID=? "
                             +" WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, post.getPostTitle());
-                stm.setString(2, post.getPostDate());
-                stm.setString(3, post.getPostAuthor());
-                stm.setString(4, post.getPostDescription());
-                stm.setString(5, post.getPostImage());
-                stm.setString(6, post.getLastEditedUser());
-                stm.setString(7, post.getPostID());
+                stm.setString(1, tag.getTagdetailID());
+                stm.setString(2, tag.getPostID());
                 check=stm.executeUpdate()>0?true:false;
             }
         } catch (Exception e) {
@@ -88,23 +78,18 @@ public class PostsDAO {
     }
    
     
-    public boolean insert(PostsDTO post) throws SQLException{
+    public boolean insert(TagsDTO tag ) throws SQLException{
         boolean check = false;
         Connection conn =null;
         PreparedStatement stm = null;
         try {
             conn=DBUtils.getConnection();
             if(conn!=null){
-                String sql = " INSERT INTO Posts(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser) "
-                            +" VALUES(?,?,?,?,?,?,?) ";
+                String sql = " INSERT INTO Tags(PostID, TagDetailID) "
+                            +" VALUES(?,?) ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, post.getPostID());
-                stm.setString(2, post.getPostTitle());
-                stm.setString(3, post.getPostDate());
-                stm.setString(4, post.getPostAuthor());
-                stm.setString(5, post.getPostDescription());
-                stm.setString(6, post.getPostImage());
-                stm.setString(7, post.getLastEditedUser());
+                stm.setString(1, tag.getPostID());
+                stm.setString(2, tag.getTagdetailID());
                 check=stm.executeUpdate()>0?true:false;
             }
         } catch (Exception e) {
@@ -125,7 +110,7 @@ public class PostsDAO {
         try {
             conn=DBUtils.getConnection();
             if(conn!=null){
-                String sql = " DELETE Posts "
+                String sql = " DELETE Tags "
                             +" WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, PostID);
@@ -140,5 +125,7 @@ public class PostsDAO {
         
         return check;
     }
-   
+    
+  
+    
 }
