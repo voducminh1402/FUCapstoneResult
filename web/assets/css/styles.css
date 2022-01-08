@@ -5,6 +5,8 @@
 - Đặt tên chuẩn BEM (anh em lưu ý đọc phần này nha)
 */
 
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&family=Roboto:wght@300&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -16,4 +18,233 @@
     --main-white: #ffffff;
     --main-text-header: #121212;
     --main-text: #545454;
+    --main-yellow: #F4D60B;
+    --main-shadow: rgb(148, 147, 147);
+    --size-text: 16px;
+    --size-header: 35px;
 }
+
+html {
+    font-family: 'Mulish', sans-serif;
+}
+
+/* START PROJECT PAGE AND PROJECT WITH MAJOR PAGE */
+.projects {
+    margin: 100px 0px;
+}
+
+.projects-header {
+    margin-bottom: 100px;
+}
+
+.projects-header__content {
+    font-weight: bold;
+    font-size: var(--size-header);
+}
+
+.project-detail {
+    padding: 10px 10px;
+}
+
+.project-content-img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.project-content-overlay {
+    position: relative;
+}
+
+.project-content-overlay::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0, 0.3);
+    transition: ease-out 0.3s;
+}
+
+.project-detail:hover .project-content-overlay::before {
+    transition: ease-in 0.3s;
+    background: rgba(0,0,0, 0.7);
+}
+
+.project-content-text {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    color: white;
+    transition: ease-out 0.3s;
+}
+
+.project-content-text span {
+    display: inline-block;
+    font-size: 14px;
+}
+
+.project-content-text span:first-of-type {
+    margin-bottom: 10px;
+}
+
+.project-content-text h5 {
+    max-width: 200px;
+}
+
+.project-content-text span:last-of-type {
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--main-yellow);
+    opacity: 0;
+}
+
+.project-detail:hover .project-content-text span:last-of-type {
+    opacity: 1;
+    transition: ease-in 0.1s;
+}
+
+.project-detail:hover .project-content-text{
+    transform: translateY(-15px);
+    transition: ease-in 0.2s;
+}
+
+.projects-loading {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.projects-loading a {
+    background-color: var(--main-orange);
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 2px 2px 30px var(--main-shadow);
+}
+
+.projects-loading a:hover {
+    cursor: pointer;
+}
+
+/* PRE LOADING */
+.loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: var(--main-orange);
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loading {
+    display: flex;
+    flex-direction: row;
+}
+
+.loading__letter {
+    font-size: 44px;
+    font-weight: normal;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--main-white);
+    animation-name: bounce;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+.loading__letter:nth-child(2) {
+    animation-delay: .1s;	
+}
+
+.loading__letter:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.loading__letter:nth-child(4) {
+    animation-delay: .3s;	
+}
+
+.loading__letter:nth-child(5) {
+    animation-delay: .4s;
+}
+
+.loading__letter:nth-child(6) {
+    animation-delay: .5s;	
+}
+
+.loading__letter:nth-child(7) {
+    animation-delay: .6s;
+}
+
+.loading__letter:nth-child(8) {
+    animation-delay: .8s;
+}
+
+.loading__letter:nth-child(9) {
+    animation-delay: 1s;
+}
+
+.loading__letter:nth-child(10) {
+    animation-delay: 1.2s;
+}
+
+.loading__letter:nth-child(11) {
+    animation-delay: 1.4s;
+}
+
+.loading__letter:nth-child(12) {
+    animation-delay: 1.6s;
+}
+
+@keyframes bounce {
+0% {
+    transform: translateY(0px)
+}
+40% {
+    transform: translateY(-40px);
+}
+80%,
+100% {
+    transform: translateY(0px);
+}
+}
+
+
+@media (max-width: 700px) {
+    .loading__letter {
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 340px) {
+    .loading__letter {
+        font-size: 40px;
+    }
+}
+
+/* END PRE LOADING */
+
+.project-content-major {
+    height: 460px;
+}
+
+.project-content-major-img {
+    height: 460px;
+}
+
+.projects-major {
+    margin: 100px 0px;
+}
+
+
+
