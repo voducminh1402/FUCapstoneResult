@@ -1,0 +1,15 @@
+@media (max-width: 445px) {
+    .menu-detail {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-detail {
+        margin: 5px 0px;
+    }
+
+    .footer-content-detail {
+        margin: 20px 0px;
+    }
+}
