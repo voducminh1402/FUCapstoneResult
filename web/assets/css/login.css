@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans";
+  font-size: 1rem;
+}
+
+.container {
+  position: relative;
+}
+
+.container .picture {
+  position: relative;
+}
+
+.container .picture .logo {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.container .picture .background {
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.container .content {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 85%;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0 10px #7e7c7c;
+  box-shadow: 0 0 10px #7e7c7c;
+}
+
+.container .content .content-header {
+  padding-bottom: 2rem;
+}
+
+.container .content .content-header h1 {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.container .content .content-header h1 span {
+  font-size: 2rem;
+  color: orange;
+}
+
+.container .content .content-main input.width-100 {
+  width: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  background-color: #eeeded;
+  border-radius: 0.5rem;
+}
+
+.container .content .content-main .relative {
+  position: relative;
+}
+
+.container .content .content-main .relative i {
+  position: absolute;
+  left: 0.5rem;
+  top: 43%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+.container .content .content-main .more-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 0 1rem 0.2rem;
+}
+
+.container .content .content-main .more-detail .checkbox {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.container .content .content-main #login {
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.container .content .content-main .line-break {
+  position: relative;
+  text-align: center;
+}
+
+.container .content .content-main .line-break::before {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 2px;
+  background-color: black;
+  left: 5%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+.container .content .content-main .line-break::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 2px;
+  background-color: black;
+  right: 5%;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+
+.container .content .content-main .anotherway-login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  padding: 1rem 0;
+}
+
+.container .content .content-main .anotherway-login i {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    position: relative;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1.3fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
+    margin: 5%;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0 0 10px #7e7c7c;
+    box-shadow: 0 0 10px #7e7c7c;
+  }
+  .container .picture {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .container .picture .background {
+    height: 100%;
+    border-radius: 1rem 0 0 1rem;
+  }
+  .container .content {
+    position: static;
+    top: 0;
+    left: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 100%;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-top: 0.5rem;
+    border-radius: 0 1rem 1rem 0;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    -ms-grid-columns: 1.5fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
+    margin: 5% 10%;
+  }
+  .container .content {
+    position: static;
+    top: 0;
+    left: 0;
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+    width: 100%;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 5rem 2rem 0 2rem;
+    border-radius: 0 1rem 1rem 0;
+  }
+  .container .content .content-main #login {
+    margin-bottom: 2rem;
+  }
+  .container .content .content-main .anotherway-login {
+    padding: 3rem 0 8rem 0;
+  }
+}
+/*# sourceMappingURL=login.css.map */
