@@ -54,3 +54,32 @@ window.onscroll = () => {
     const nav = document.querySelector('.header-part');
     if(this.scrollY <= 10) nav.className = 'header-part'; else nav.className = 'header-part scroll';
 };
+
+// Mod menu add
+$(document).ready(function(){
+	$('.add-project').click(function(){
+        $('.add-project-menu').addClass('display-block');
+        $('.overlay-page-mod').addClass('display-block');
+        setTimeout(function() {
+            animationBar();
+        },300);
+	});
+});
+
+$(document).ready(function(){
+	$('.overlay-page-mod').click(function(){
+		$('.overlay-page-mod').removeClass('display-block');
+		$('.overlay-page-mod').addClass('display-none');
+        $('.add-project-menu').removeClass('display-block');
+		$('.add-project-menu').addClass('display-none');
+	});
+});
+
+$(document).ready(function(){
+	$('.cancel-add-btn').click(function(){
+		$('.overlay-page-mod').removeClass('display-block');
+		$('.overlay-page-mod').addClass('display-none');
+        $('.add-project-menu').removeClass('display-block');
+		$('.add-project-menu').addClass('display-none');
+	});
+});
