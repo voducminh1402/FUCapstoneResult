@@ -17,10 +17,22 @@
     --main-orange: #F26F21;
     --main-bold-orange: #a33c00;
     --main-white: #ffffff;
+    --main-light-grey: #8697A8;
+    --main-mod-input: #F8FAFB;
+    --main-mod-header: #44566C;
+    --main-light-white: #e2e2e2;
     --main-bold-white: #b4b2b2;
+    --main-bold-white-text: #e9e8e8;
+    --main-bold-white-shadow: #d4d3d3;
     --main-text-header: #121212;
+    --main-mod-background: rgb(248,250,251);
+    --main-mod-border: #EAEDF0;
+    --main-mod-border-bold: #c0c1c4;
     --main-text: #545454;
     --main-yellow: #F4D60B;
+    --main-blue: #0DCAF0;
+    --main-blue-shadow: #adedfa;
+    --main-blue-bold: #0da1be;
     --main-shadow: rgb(148, 147, 147);
     --size-text: 16px;
     --size-header: 35px;
@@ -28,6 +40,14 @@
 
 .no-pd {
     padding: 0 !important;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.display-block {
+    display: block !important;
 }
 
 html {
@@ -71,6 +91,10 @@ body {
     z-index: 999;
 }
 
+.home-page-header__logo {
+    text-decoration: none;
+}
+
 .home-page-header__logo img {
     width: 120px;
 }
@@ -94,7 +118,13 @@ header {
     box-shadow: 0px 0px 30px 1px rgb(41, 39, 39);
 }
 
-.scroll header .home-page-header__logo {
+.school-intro {
+    color: var(--main-white);
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.scroll header a img {
     background-color: white;
     transition: ease-in 0.3s;
 }
@@ -282,13 +312,17 @@ header {
     transform-origin: 8px;
 }
 
+.content-intro {
+    margin-top: 100px;
+}
+
 .content-intro-img {
     display: flex;
     height: 100%;
 }
 
 .content-intro-img img {
-    width: 400px;
+    width: 600px;
     height: 550px;
     object-fit: cover;
     text-align: center;
@@ -526,6 +560,19 @@ header {
     margin-top: 20px;
 }
 
+.follow-social {
+    margin-top: 20px;
+}
+
+.footer-content-detail span {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.social {
+    margin-top: 10px;
+}
+
 .social a{
     padding: 5px 9px;
     background-color: var(--main-white);
@@ -561,7 +608,8 @@ header {
 }
 
 .projects-header {
-    margin-bottom: 100px;
+    margin-top: 100px;
+    margin-bottom: 50px;
 }
 
 .projects-header__content {
@@ -774,6 +822,7 @@ header {
 .projects-major {
     margin: 100px 0px;
 }
+
 
 
 

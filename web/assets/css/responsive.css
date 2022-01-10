@@ -2,6 +2,43 @@
     .menu-detail {
         max-width: 100%;
     }
+
+    .content-intro {
+        margin-top: 70px;
+    }
+
+    .content-good {
+        margin-top: 70px;
+    }
+
+    .content-near-project {
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 568px) {
+    .filter {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filter select, .filter button {
+        margin: 10px 0px !important;
+    }
+
+    .manage-project {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .manage-project button {
+        float: right;
+    }
+
+    .menu-search {
+        margin-left: 0px !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -12,4 +49,48 @@
     .footer-content-detail {
         margin: 20px 0px;
     }
+
+    .school-intro {
+        display: none;
+    }
+
+    .content-project-pagination {
+        justify-content: center;
+    }
+
 }
+
+@media (max-width: 860px) {
+    .mod-header .row {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .right-side-info {
+        float: left;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 1180px) {
+   .content-filter .row {
+       flex-direction: column;
+   }
+
+   .filter span {
+       display: none;
+   }
+
+   .manage-project {
+       float: left;
+       margin-top: 30px;
+   }
+
+   .menu-search-project {
+       margin-left: 10px;
+   }
+}
+
+
+
+
