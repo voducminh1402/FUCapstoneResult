@@ -2,14 +2,26 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/SemesterDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/MajorDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectDTO.java</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/web/assets/css/styles.css</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/web/index.html</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/nbproject/private/private.properties</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/web/assets/css/slide.css</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/nbproject/private/private.xml</file>
+            <file>file:/D:/FUCapstoneResult/FUCapstoneResult/web/projects.html</file>
         </group>
+=======
+<<<<<<< HEAD
+        <group>
+            <file>file:/C:/Users/Asus/Desktop/SWP391_Project/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserDTO.java</file>
+            <file>file:/C:/Users/Asus/Desktop/SWP391_Project/FUCapstoneResult/src/java/com/fucapstoneresult/models/TagsDTO.java</file>
+            <file>file:/C:/Users/Asus/Desktop/SWP391_Project/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/C:/Users/Asus/Desktop/SWP391_Project/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
+        </group>
+=======
+        <group/>
+>>>>>>> 5e8195c461746749ea1bc7a145f83f0788a45a81
+>>>>>>> 65865d78cbced71bb33a339ede8847828de598b6
     </open-files>
 </project-private>

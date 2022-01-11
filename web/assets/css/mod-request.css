@@ -1,0 +1,84 @@
+.content-table2 {
+    background-color: var(--main-white);
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: -2px -2px 40px var(--main-bold-white-shadow);
+
+}
+
+.content-table2 table {
+    overflow-x: scroll;
+}
+
+.content-table2 table thead tr th {
+    padding-left: 0;
+    padding-right: 0;
+    border-bottom: 0.5px solid var(--main-mod-border-bold) !important;
+}
+
+.content-table2 table tbody tr:last-of-type .content-table table tbody tr td {
+    border-bottom: none;
+}
+
+.content-table2 table tbody tr td {
+    padding: 15px 0px;
+    border-bottom: 0.5px solid var(--main-mod-border) !important;
+    vertical-align: middle;
+}
+
+
+.button_btn {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.button_btn:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.button-accept {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #14c03f;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 20px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    padding-right: 15px;
+}
+
+.button-denied {
+    background-color: #c01414;
+}
+
+.button-accept span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button-accept span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button-accept:hover span {
+    padding-right: 25px;
+}
+
+.button-accept:hover span:after {
+    opacity: 1;
+    right: 0;
+}
