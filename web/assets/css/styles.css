@@ -59,6 +59,18 @@ body {
     overflow-x: hidden !important;
 }
 
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 50px !important;
+}
+
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-light-grey);
+}
+  
+
 /* Custom Boostrap */
 .container-fluid {
     padding: 0;
@@ -709,6 +721,14 @@ header {
     cursor: pointer;
 }
 
+/* ACCOUNT MANAGEMENT */
+
+.account-avatar img {
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 /* PRE LOADING */
 .loader {
 	position: fixed;
@@ -822,7 +842,3 @@ header {
 .projects-major {
     margin: 100px 0px;
 }
-
-
-
-
