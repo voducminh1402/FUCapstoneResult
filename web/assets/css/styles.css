@@ -848,6 +848,7 @@ header {
     .left-column{
         flex: 0 0 66.666667%;
         max-width: 66.666667%;
+        padding-right: 40px;
     }
     .right-column{
         flex: 0 0 33.333333%;
@@ -936,10 +937,7 @@ aside{
     position: relative;
     margin-bottom: 40px;
 }
-.container{
-    padding: 60px 0;
-}
-.row{
+.tip-row{
     padding: 0 5%;
     max-width: 1600px;
     margin: 0 auto !important;
@@ -1022,61 +1020,55 @@ aside{
 }
 .team-member img{
    border-radius: 100%;
-   width: 140px;
-   height: 140px;
+   width: 70px;
+   height: 70px;
    object-fit: cover;
-}
-.team-member__info h1{
-    font-size: .75rem;
-    font-weight: 800;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    color: black ;
-    position: absolute;
-    top:60%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-    display: block;
-}
-.team-member__info span{
-    font-size: .65rem;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    color: black;
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
 }
 .team-member{
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
 }
-.team-member:hover .overlay{
-    opacity: 0.7;
-}
-.overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: whitesmoke;
-    border-radius: 100%;
-   width: 140px;
-   height: 140px;
-  }
 article{
     margin-bottom: 40px;
+}
+
+/*START OF CONTACT PAGE*/
+.map-location{
+    width: 100%;
+    padding-top: 30px;
+    margin: 0 auto;
+}
+@media (min-width: 768px){
+    .c-column--right{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .c-column--left{
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+.contact-email-icon{
+    color: orange;
+    margin-right: 5px;
+}
+.contact-location-icon{
+    color: orange;
+    margin-right: 5px;
+}
+.contact-phone-icon{
+    color: orange;
+    margin-right: 5px;
+}
+.contact-name-icon{
+    background: url(https://cdn-icons-png.flaticon.com/512/1077/1077114.png);
+    background-size: 20px;
+    background-position: 3px 3px;
+    padding-right: 20px;
+    background-repeat: no-repeat;   
+}
+.me-re-name input{
+    height: 200px;
+    width: 100%;
 }
