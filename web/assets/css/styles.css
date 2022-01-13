@@ -64,6 +64,10 @@ body {
     height: 50px !important;
 }
 
+input {
+    outline: none !important;
+}
+
    
   /* Handle */
 ::-webkit-scrollbar-thumb {
