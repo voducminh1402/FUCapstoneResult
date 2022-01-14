@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/mod-request.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="assets/css/mod-request-content.css">
 
 </head>
 
@@ -80,10 +81,6 @@
                                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                                         <i class="fas fa-align-left"></i>
                                     </button>
-                                    <div class="menu-search">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -103,110 +100,97 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Xét Duyệt</h2>
+                            <h2>Nội Dung Xét Duyệt</h2>
                             <div class="direct-link">
                                 <i class="fas fa-home"></i>
                                 <i class="fas fa-chevron-right"></i>
-                                <span>Xét Duyệt</span>
+                                <span>Phạm Đức Huy</span>
+                                <i class="fas fa-chevron-right"></i>
+                                <span>Nội Dung</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="content-filter">
-                        <div class="row">
-                            <div class="col-md-8 col-sm-12">
-                                <div class="filter">
-                                    <span>Hiển Thị</span>
-                                    <select name="" id="">
-                                        <option value="">Tất Cả Trạng Thái</option>
-                                        <option value="">Đã Duyệt</option>
-                                        <option value="">Đang Chờ Xét Duyệt</option>
-                                        <option value="">Đã Xóa</option>
-                                    </select>
-                                    <button>Tìm Kiếm</button>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-12">
-                                <div class="manage-project">
-                                    <div class="menu-search menu-search-project">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Bài Đăng...">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-table2">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tên Người Dùng</th>
-                                        <th>Nội dung</th>
-                                        <th>Ngày yêu cầu</th>
-                                        <th></th>
-                                        <th>Trạng Thái</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Phạm Đức Huy</td>
-                                        <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button " class="btn button_btn" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                <a href="mod-request-contents.html">Xem Nội Dung</a>
-                                            </button>
-                                        </td>
-                                        <td>1-10-2021</td>
-                                        <td></td>
-                                        <td>Đang chờ</td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button onclick="myFunction()" class="dropbtn">
-                                                    ...
-                                                </button>
-
-
-                                                <div class="dropdown-box">
-                                                    <div id="myDropdown" class="dropdown-content">
-                                                        <a href="#home">Home</a>
-                                                        <a href="#about">About</a>
-                                                        <a href="#contact">Contact</a>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="content-project-pagination">
-                        <div class="pagination">
-                            <span><i class="fas fa-chevron-left"></i></span>
-                            <span class="active-pagination">1</span>
-                            <span>2</span>
-                            <span>3</span>
-                            <span>...</span>
-                            <span>10</span>
-                            <span><i class="fas fa-chevron-right"></i></span>
                         </div>
                     </div>
                 </div>
             </div>
+            <textarea name="" id="ckeditor1" cols="30" rows="10"></textarea>
+            <section class="blog-single2">
+                <div class="container container-fluid">
+                    <div class="tip-header">
+                        <div class="row tip-row">
+                            <div class="col-md-12" style="padding-bottom: 50px; padding-top: 50px;">
+                                <h1 class="projects-header_content" style="font-weight:700">Những mẹo khi làm đồ
+                                    án tốt nghiệp
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row tip-row">
+                        <div class="left-column col-md-8 pr-md-4">
+                            <article class="tip-content">
+                                <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
+                                    <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_1.jpg"
+                                        alt="thumbnail">
+                                </div>
+                                <div class="tip-content__title">
+                                    <h1 style="font-weight:700">Chọn nhóm để làm đồ án như thế nào thì ổn?</h1>
+                                </div>
+                                <div class="tip-content__info" style="padding-bottom: 15px;">
+                                    <div class="tip-author" style="display: inline-block; padding-right: 20px">
+                                        <i class="bi bi-person">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                            </svg>
+                                        </i>
+                                        <span>Pham Duc Huy</span>
+                                    </div>
+                                </div>
+                                <div class="tip-content__sapo">
+
+                                    <p>
+                                        Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr
+                                        saperet,
+                                        ocurreret
+                                        pertinacia pri an.
+                                        No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum
+                                        nulla argumentum ei.
+                                        Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo
+                                        malis, pri quando
+                                        everti electram ei,
+                                        ex homero omittam salutatus sed. Lorem ipsum dolor sit amet, consectetur
+                                        adipisicing
+                                        elit,
+                                        sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud
+                                        exercitation ullamco laboris
+                                        nisi ut aliquip ex ea commodo consequat
+                                    </p>
+                                    <p>
+                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                        dolore eu fugiat
+                                        nulla
+                                        pariatur. Excepteur
+                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                        mollit anim id
+                                        est
+                                        laborum. Lorem ipsum
+                                        dolor sit amet, consectetur
+                                    </p>
+                                </div>
+                            </article>
+                            <div class="content-button">
+                                <a href="mod-request.html" class="previous">&laquo; Quay về</a>
+                                <a href="#" class="next">Xét Duyệt &raquo;</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
-    <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
-
     <script src="https://cdn.tiny.cloud/1/m862mtwmvofelufcxf6kpr7rr30u4mh13bb09ks2g0xg8gdf/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -222,7 +206,6 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
     <script src="./assets/js/app.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -230,36 +213,10 @@
             });
         });
     </script>
-
+    <script src="https://cdn.ckeditor.com/4.17.1/full/ckeditor.js"></script>
     <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            toolbar_mode: 'floating',
-            content_css: "./assets/css/mod-project.css"
-        });
-    </script>
-    <!-- dropdown  -->
-    <script>
-        /* When the user clicks on the button, 
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
+        CKEDITOR.replace('ckeditor');
+        CKEDITOR.replace('ckeditor1');
     </script>
 
 </body>
