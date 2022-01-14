@@ -58,6 +58,11 @@
         justify-content: center;
     }
 
+    .footer-copyright {
+        margin-top: 10px;
+        float: left;
+    }
+
 }
 
 @media (max-width: 860px) {
@@ -88,6 +93,10 @@
 
    .menu-search-project {
        margin-left: 10px;
+   }
+
+   .scroll-page {
+       display: none !important;
    }
 }
 
