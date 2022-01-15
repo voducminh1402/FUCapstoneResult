@@ -5,36 +5,43 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String INDEX = "index.jsp";
-    
+@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
+public class LoginController extends HttpServlet {
+private static final String SUCCESS = "index.html";
+private static final String FAIL = "login.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = FAIL;
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            UserDAO dao = new UserDAO();
+            UserDTO user = dao.checkLoginUser(email, password);
+            if(user!=null){
+                HttpSession session = request.getSession();
+                session.setAttribute("USER", user);
+                url = SUCCESS;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect(url);
         }
     }
 
