@@ -30,7 +30,7 @@ public class PostsDAO {
         try {
            conn=com.fucapstoneresult.utils.DBUtils.getConnection();
            if(conn!=null){
-                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser "
+                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser, Upvote, POPostID, PostStatusID "
                             +" FROM Posts "
                             +" WHERE PostID like ? ";
                 stm = conn.prepareStatement(sql);
@@ -44,8 +44,11 @@ public class PostsDAO {
                     String PostDescription = rs.getString("PostDescription");
                     String PostImage = rs.getString("PostImage");
                     String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    String POPostID = rs.getString("POPostID");
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
 
-                    listpost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser));
+                    listpost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser, Upvote, POPostID, PostStatusID));
                 }
             } 
        } catch (Exception e) {
@@ -96,7 +99,7 @@ public class PostsDAO {
         try {
             conn=DBUtils.getConnection();
             if(conn!=null){
-                String sql = " INSERT INTO Posts(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser) "
+                String sql = " INSERT INTO Posts(PostID, PostTitle, PostDate, PostAuthor, PostDescription, PostImage, LastEditedUser, Upvote, POPostID, PostStatusID) "
                             +" VALUES(?,?,?,?,?,?,?) ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostID());

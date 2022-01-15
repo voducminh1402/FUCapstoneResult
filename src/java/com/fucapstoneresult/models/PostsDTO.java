@@ -11,84 +11,111 @@ package com.fucapstoneresult.models;
  */
 public class PostsDTO {
     
-    private String PostID;
-    private String PostTitle;
-    private String PostDate;
-    private String PostAuthor;
-    private String PostDescription;
-    private String PostImage;
-    private String LastEditedUser;
+    private String postID;
+    private String postTitle;
+    private String postDate;
+    private String postAuthor;
+    private String postDescription;
+    private String postImage;
+    private String lastEditedUser;
+    private int upvote;
+    private String poPostID;
+    private int postStatusID;
 
     public PostsDTO() {
     }
 
-    public PostsDTO(String PostID, String PostTitle, String PostDate, String PostAuthor, String PostDescription, String PostImage, String LastEditedUser) {
-        this.PostID = PostID;
-        this.PostTitle = PostTitle;
-        this.PostDate = PostDate;
-        this.PostAuthor = PostAuthor;
-        this.PostDescription = PostDescription;
-        this.PostImage = PostImage;
-        this.LastEditedUser = LastEditedUser;
+    public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postDescription, String postImage, String lastEditedUser, int upvote, String poPostID, int postStatusID) {
+        this.postID = postID;
+        this.postTitle = postTitle;
+        this.postDate = postDate;
+        this.postAuthor = postAuthor;
+        this.postDescription = postDescription;
+        this.postImage = postImage;
+        this.lastEditedUser = lastEditedUser;
+        this.upvote = upvote;
+        this.poPostID = poPostID;
+        this.postStatusID = postStatusID;
     }
 
     public String getPostID() {
-        return PostID;
+        return postID;
     }
 
-    public void setPostID(String PostID) {
-        this.PostID = PostID;
+    public void setPostID(String postID) {
+        this.postID = postID;
     }
 
     public String getPostTitle() {
-        return PostTitle;
+        return postTitle;
     }
 
-    public void setPostTitle(String PostTitle) {
-        this.PostTitle = PostTitle;
+    public void setPostTitle(String postTitle) {
+        this.postTitle = postTitle;
     }
 
     public String getPostDate() {
-        return PostDate;
+        return postDate;
     }
 
-    public void setPostDate(String PostDate) {
-        this.PostDate = PostDate;
+    public void setPostDate(String postDate) {
+        this.postDate = postDate;
     }
 
     public String getPostAuthor() {
-        return PostAuthor;
+        return postAuthor;
     }
 
-    public void setPostAuthor(String PostAuthor) {
-        this.PostAuthor = PostAuthor;
+    public void setPostAuthor(String postAuthor) {
+        this.postAuthor = postAuthor;
     }
 
     public String getPostDescription() {
-        return PostDescription;
+        return postDescription;
     }
 
-    public void setPostDescription(String PostDescription) {
-        this.PostDescription = PostDescription;
+    public void setPostDescription(String postDescription) {
+        this.postDescription = postDescription;
     }
 
     public String getPostImage() {
-        return PostImage;
+        return postImage;
     }
 
-    public void setPostImage(String PostImage) {
-        this.PostImage = PostImage;
+    public void setPostImage(String postImage) {
+        this.postImage = postImage;
     }
 
     public String getLastEditedUser() {
-        return LastEditedUser;
+        return lastEditedUser;
     }
 
-    public void setLastEditedUser(String LastEditedUser) {
-        this.LastEditedUser = LastEditedUser;
+    public void setLastEditedUser(String lastEditedUser) {
+        this.lastEditedUser = lastEditedUser;
     }
-    
-    
-    
+
+    public int getUpvote() {
+        return upvote;
+    }
+
+    public void setUpvote(int upvote) {
+        this.upvote = upvote;
+    }
+
+    public String getPoPostID() {
+        return poPostID;
+    }
+
+    public void setPoPostID(String poPostID) {
+        this.poPostID = poPostID;
+    }
+
+    public int getPostStatusID() {
+        return postStatusID;
+    }
+
+    public void setPostStatusID(int postStatusID) {
+        this.postStatusID = postStatusID;
+    }
     
 }
