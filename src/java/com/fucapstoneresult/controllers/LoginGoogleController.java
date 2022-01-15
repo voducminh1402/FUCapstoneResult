@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -45,15 +46,17 @@ public class LoginGoogleController extends HttpServlet {
                 String accessToken = GoogleUtils.getToken(code);
                 GooglePojo user = GoogleUtils.getUserInfo(accessToken);
                 UserDAO dao = new UserDAO();
-                boolean duplicate = dao.searchUserByEmail(user.getEmail());
-                if (!duplicate) {
+                UserDTO userDTO = dao.searchUserByEmail(user.getEmail());
+                if (userDTO==null) {
                     UUID id = UUID.randomUUID();
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                     LocalDateTime now = LocalDateTime.now();
                     String createDate = dtf.format(now);
-                    UserDTO u = new UserDTO(id.toString(), user.getName(), createDate, 2, "", user.getEmail(), "", "", 1);
-                    dao.createUser(u);
+                    userDTO = new UserDTO(id.toString(), user.getName(), createDate, 2, "", user.getEmail(), "", "", 1);
+                    dao.createUser(userDTO);
                 }
+                HttpSession session = request.getSession();
+                session.setAttribute("USER", userDTO);
             }
         } catch (Exception e) {
             e.printStackTrace();
