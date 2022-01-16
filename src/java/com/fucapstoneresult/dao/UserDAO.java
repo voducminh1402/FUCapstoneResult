@@ -294,9 +294,9 @@ public class UserDAO {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDAO dao = new UserDAO();
-        String email = "honganhle01@gmail.com";
+        String email = "honganhle@gmail.com";
         String password = "anh";
-        UserDTO user = dao.checkLoginUser(email, password);
+        UserDTO user = dao.searchUserByEmail(email);
         System.out.println(user);
     }
 }
