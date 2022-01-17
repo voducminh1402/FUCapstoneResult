@@ -5,39 +5,48 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String SIGNUP = "SignUpController";
-    private static final String INDEX = "index.jsp";
-    
+@WebServlet(name = "CheckDuplicateUserController", urlPatterns = {"/CheckDuplicateUserController"})
+public class CheckDuplicateUserController extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
-            }else if("Create account".equals(action)){
-                url = SIGNUP;
+            String email = request.getParameter("email");
+            UserDAO dao = new UserDAO();
+            UserDTO user = dao.searchUserByEmail(email);
+            PrintWriter out = response.getWriter();
+            if (user != null) {
+                out.println("Xin lỗi, email: " + email + ", đã bị trùng!");
+            } else {
+                out.println("");
             }
+            response.setContentType("application/json");
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
         }
     }
 

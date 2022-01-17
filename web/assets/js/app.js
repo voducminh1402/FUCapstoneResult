@@ -43,10 +43,10 @@ $(document).ready(function(){
 	});
 });
 
-animationBar = () => {
-    let sidebar = document.getElementsByClassName('menu-detail')[0];
-    sidebar.style.transition = 'ease-out 0.3s';
-}
+// animationBar = () => {
+//     let sidebar = document.getElementsByClassName('menu-detail')[0];
+//     sidebar.style.transition = 'ease-out 0.3s';
+// }
 
 
 // Scroll navbar
@@ -71,11 +71,14 @@ window.onscroll = () => {
 // Mod menu add
 $(document).ready(function(){
 	$('.add-project').click(function(){
+        $('.overlay-page-mod').removeClass('display-none');
+        $('.overlay-page-mod').addClass('display-block');
+        $('.add-project-menu').removeClass('display-none');
         $('.add-project-menu').addClass('display-block');
         $('.overlay-page-mod').addClass('display-block');
-        setTimeout(function() {
-            animationBar();
-        },300);
+        // setTimeout(function() {
+        //     animationBar();
+        // },300);
 	});
 });
 
