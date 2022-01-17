@@ -318,7 +318,19 @@ a.article:hover {
     transition: ease-in 0.1s;
 }
 
-.add-project:hover {
+.link-add-project {
+    padding: 8px 13px;
+    margin-left: 20px;
+    background-color: var(--main-blue);
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    color: white;
+    box-shadow: -2px -2px 40px var(--main-blue-shadow);
+    transition: ease-in 0.1s;
+}
+
+.add-project:hover, .link-add-project:hover {
     transition: ease-in 0.1s;
     transform: scale(1.2);
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="./assets/css/responsive.css">
 
-
+<!-- 
     <style>
         .home-page-header {
             position: fixed;
@@ -21,13 +21,13 @@
         .home-page-header__logo img {
             background-color: var(--main-white);
         }
-    </style>
+    </style> -->
 </head>
 <body>
     <div class="header-all">
         <div class="header-part">
             <header class="home-page-header">
-                <a href="/" class="home-page-header__logo">
+                <a href="./index.html" class="home-page-header__logo">
                     <img src="./assets/images/logo.png" alt="">
                     <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
                 </a>
@@ -57,19 +57,19 @@
                     <div class="menu-items">
                         <ul>
                             <li>
-                                <a href="">Trang chủ</a>
+                                <a href="./index.html">Trang chủ</a>
                             </li>
                             <li>
                                 <a href="projects.html">Đồ án tốt nghiệp</a>
                             </li>
                             <li>
-                                <a href="">Đồ án chuyên ngành</a>
+                                <a href="./project-major.html">Đồ án chuyên ngành</a>
                             </li>
                             <li>
-                                <a href="">Bài viết</a>
+                                <a href="./blog-single.html">Bài viết</a>
                             </li>
                             <li>
-                                <a href="">Liên hệ</a>
+                                <a href="./contact.html">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -96,12 +96,36 @@
             </div>
         </div>
     </div>
+    <div class="project-background">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="project-background__img" style="background-image: url(https://hcmuni.fpt.edu.vn/Data/Sites/1/Banner/123.png);">
+                        <div class="project-background__img-overlay">
+                            <div class="background-content">
+                                NHỮNG ĐỒ ÁN TIÊU BIỂU
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section class="projects">
         <div class="container">
             <div class="projects-header">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="projects-header__content">Những đồ án tiêu biểu</h1>
+                        <span class="filter-semester-title">Lọc Theo: </span>
+                        <select class="filter-semester" name="" id="">
+                            <option selected value="Học Kì">Tất Cả Học Kì</option>
+                            <option value="Spring 2019">Spring 2019</option>
+                            <option value="Summer 2019">Summer 2019</option>
+                            <option value="Fall 2019">Fall 2019</option>
+                            <option value="Spring 2020">Spring 2020</option>
+                            <option value="Summer 2020">Summer 2020</option>
+                            <option value="Fall 2020">Fall 2020</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -232,15 +256,15 @@
                 </div>
                 <div class="footer-content-detail col-md-2">
                     <span>Liên Kết Hỗ Trợ</span>
-                    <div><a href="">Trang Chủ</a></div>
-                    <div><a href="">Đồ Án Tốt Nghiệp</a></div>
-                    <div><a href="">Bài Viết</a></div>
+                    <div><a href="./index.html">Trang chủ</a></div>
+                    <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                    <div><a href="./blog-single.html">Bài viết</a></div>
                 </div>
                 <div class="footer-content-detail col-md-2">
                     <span>Tính Năng</span>
                     <div><a href="">Đăng Ký</a></div>
                     <div><a href="">Đăng Nhập</a></div>
-                    <div><a href="">Liên Hệ</a></div>
+                    <div><a href="./contact.html">Liên hệ</a></div>
                 </div>
                 <div class="col-md-4">
                     <span>Theo Dõi Trường Đại Học FPT Tại: </span>

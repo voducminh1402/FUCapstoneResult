@@ -1,0 +1,46 @@
+.content-post h2 {
+    margin-bottom: 50px;
+}
+
+.cke_top {
+    background-color: var(--main-white) !important;
+}
+
+.cke_contents {
+    height: 500px !important;
+}
+
+.cke_bottom {
+    display: none !important;
+}
+
+.sceditor-container {
+    width: 100% !important;
+}
+
+.add-post-submit {
+    margin-top: 30px;
+}
+
+.add-post-submit button i {
+    margin-right: 5px;
+}
+
+.add-post-submit button:first-of-type {
+    margin-right: 10px;
+}
+
+.add-post label {
+    color: var(--main-light-grey);
+    margin: 15px 0px;
+}
+
+.add-post input {
+    outline: none;
+    border: none;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: var(--main-white);
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
