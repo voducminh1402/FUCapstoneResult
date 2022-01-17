@@ -29,3 +29,18 @@
 .add-post-submit button:first-of-type {
     margin-right: 10px;
 }
+
+.add-post label {
+    color: var(--main-light-grey);
+    margin: 15px 0px;
+}
+
+.add-post input {
+    outline: none;
+    border: none;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: var(--main-white);
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
