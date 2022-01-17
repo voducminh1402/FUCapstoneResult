@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginGoogleController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CheckDuplicateUserController.java</file>
@@ -11,5 +14,6 @@
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SignUpController.java</file>
         </group>
+>>>>>>> 708ac3aa6e0d4ce8cf34e2704f2a3470d3897315
     </open-files>
 </project-private>
