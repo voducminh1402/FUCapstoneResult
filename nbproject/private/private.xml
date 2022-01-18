@@ -7,13 +7,12 @@
 =======
         <group>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginGoogleController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CheckDuplicateUserController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserDTO.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/signup.html</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/build-impl.xml</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/login.html</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SignUpController.java</file>
         </group>
 >>>>>>> 708ac3aa6e0d4ce8cf34e2704f2a3470d3897315
     </open-files>
