@@ -454,7 +454,6 @@ a.article:hover {
 .project-add-upload__image {
     outline: none;
     border: none;
-    padding: 10px 10px;
     width: 100%;
     background-color: var(--main-mod-input);
     margin-bottom: 30px;
