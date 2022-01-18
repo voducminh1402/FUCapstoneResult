@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.fucapstoneresult.filters.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>MainController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.MainController</servlet-class>
@@ -8,6 +16,14 @@
         <servlet-name>LoginGoogleController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.LoginGoogleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetListProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetListProjectController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -15,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>LoginGoogleController</servlet-name>
         <url-pattern>/login-google</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPostController</servlet-name>
+        <url-pattern>/AddPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetListProjectController</servlet-name>
+        <url-pattern>/GetListProjectController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

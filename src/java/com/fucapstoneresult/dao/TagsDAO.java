@@ -50,7 +50,6 @@ public class TagsDAO {
             if(conn!=null) conn.close();  
         }
         
-        
         return listtag;
    }
     
@@ -86,7 +85,7 @@ public class TagsDAO {
             conn=DBUtils.getConnection();
             if(conn!=null){
                 String sql = " INSERT INTO Tags(PostID, TagDetailID) "
-                            +" VALUES(?,?) ";
+                            +" VALUES (?,?) ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, tag.getPostID());
                 stm.setString(2, tag.getTagdetailID());
@@ -98,7 +97,6 @@ public class TagsDAO {
             if(stm!=null) stm.close();
             if(conn!=null) conn.close();
         }
-        
         
         return check;
     }
