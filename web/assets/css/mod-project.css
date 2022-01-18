@@ -496,6 +496,48 @@ a.article:hover {
     padding: 8px 18px;
 }
 
+.more-choice__dot {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.more-choice__menu {
+    z-index: 10;
+    display: none;
+    position: absolute;
+    text-align: right;
+    right: 40px;
+    background-color: var(--main-white);
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    border: 0.2px solid var(--main-bold-white-shadow);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+tr:nth-last-of-type(-n+3) .last-type__menu .more-choice__menu {
+    margin-top: -190px;
+}
+
+.more-choice__item {
+    margin: 10px 0px;
+}
+
+.more-choice__item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.more-choice__item i {
+    margin-left: 10px;
+}
+
+.more-choice__menu a {
+    line-height: 30px;
+}
+
 @media (max-width: 768px) {
     #sidebar {
         min-width: 80px;
