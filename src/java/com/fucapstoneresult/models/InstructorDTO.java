@@ -13,14 +13,16 @@ public class InstructorDTO {
     private String instructorID;
     private String instructorName;
     private String instructorImage;
-
+    private String projectID;
+    
     public InstructorDTO() {
     }
 
-    public InstructorDTO(String instructorID, String instructorName, String instructorImage) {
+    public InstructorDTO(String instructorID, String instructorName, String instructorImage, String projectID) {
         this.instructorID = instructorID;
         this.instructorName = instructorName;
         this.instructorImage = instructorImage;
+        this.projectID = projectID;
     }
 
     public String getInstructorID() {
@@ -46,6 +48,16 @@ public class InstructorDTO {
     public void setInstructorImage(String instructorImage) {
         this.instructorImage = instructorImage;
     }
+
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+
+    
     
     
 }
