@@ -17,17 +17,16 @@ public class ProjectDTO {
     private float projectScore;
     private String majorID;
     private String semesterID;
-    private String postID;
-
-    public ProjectDTO() {
-    }
 
     public ProjectDTO(String projectID, String projectName) {
         this.projectID = projectID;
         this.projectName = projectName;
     }
 
-    public ProjectDTO(String projectID, String projectName, String projectDescription, String projectImage, float projectScore, String majorID, String semesterID, String postID) {
+    public ProjectDTO() {
+    }
+
+    public ProjectDTO(String projectID, String projectName, String projectDescription, String projectImage, float projectScore, String majorID, String semesterID) {
         this.projectID = projectID;
         this.projectName = projectName;
         this.projectDescription = projectDescription;
@@ -35,7 +34,6 @@ public class ProjectDTO {
         this.projectScore = projectScore;
         this.majorID = majorID;
         this.semesterID = semesterID;
-        this.postID = postID;
     }
 
     public String getProjectID() {
@@ -94,12 +92,6 @@ public class ProjectDTO {
         this.semesterID = semesterID;
     }
 
-    public String getPostID() {
-        return postID;
-    }
-
-    public void setPostID(String postID) {
-        this.postID = postID;
-    }
+    
     
 }
