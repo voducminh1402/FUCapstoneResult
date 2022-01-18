@@ -29,11 +29,7 @@ public class ProjectDAO {
             
             if (conn != null) {
                 String sql = "INSERT INTO Projects(ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID) "
-<<<<<<< HEAD
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?)";
-=======
                             + " VALUES (?,?,?,?,?,?,?,?)";
->>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, project.getProjectID());
                 stm.setString(2, project.getProjectName());
@@ -88,7 +84,6 @@ public class ProjectDAO {
                     String postID = rs.getString("PostID");
                     
                     projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
-<<<<<<< HEAD
                 }
             }
         } 
@@ -137,8 +132,6 @@ public class ProjectDAO {
                     String postID = rs.getString("PostID");
                     
                     projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
-=======
->>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
                 }
             }
         } 
@@ -232,8 +225,6 @@ public class ProjectDAO {
         return check;
     }
     
-<<<<<<< HEAD
-=======
     public List<ProjectDTO> getProjectForSelect() throws SQLException {
         List<ProjectDTO> projectList = new ArrayList<>();
         Connection conn = null;
@@ -276,8 +267,6 @@ public class ProjectDAO {
         return projectList;
     }
     
-    
->>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
 }
 
 
