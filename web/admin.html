@@ -274,36 +274,43 @@
 
     <div class="add-project-menu">
       <h2>Thêm Người Dùng</h2>
-      <form action="">
-        <label for="">Mã Số</label><br />
-        <input type="text" />
-        <label for="">Họ Và Tên</label><br />
-        <input type="text" />
-        <label for="">Email</label><br />
-        <input type="text" />
+      <form action="MainController">
+        <label for="name">Họ Và Tên</label><br />
+        <p class="name-message"></p>
+        <input name="name" type="text" id="name" />
 
-        <label for="">Phân Loại</label><br />
-        <select name="" id="">
-          <option value="">Admin</option>
-          <option value="">Moderator</option>
-          <option value="">User</option>
+        <label for="password">Mật Khẩu</label><br />
+        <p class="password-message"></p>
+        <input name="password" type="text" id="password" />
+
+        <label for="email">Email</label><br />
+        <p class="email-message"></p>
+        <input name="email" type="email" id="email" />
+
+        <label for="role">Phân Loại</label><br />
+        <select name="role" id="role">
+          <option value="3">Admin</option>
+          <option value="2">Moderator</option>
+          <option value="1">User</option>
         </select>
-        <label for="">Trạng Thái</label><br />
-        <select name="" id="">
-          <option value="">Enable</option>
-          <option value="">Disable</option>
+        <label for="status">Trạng Thái</label><br />
+        <select name="status" id="status">
+          <option value="2">Enable</option>
+          <option value="3">Disable</option>
         </select>
 
-        <label for="">Ảnh</label>
+        <label for="image">Ảnh</label>
         <div class="project-add-upload__image">
           <label style="margin: 0" for="file"
             ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
           >
-          <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" />
+          <input type="file" name="image" id="file" placeholder="Tải Ảnh Lên" />
         </div>
 
         <div class="add-project-submit">
-          <button type="submit">Lưu Lại</button>
+          <button type="submit" name="action" value="Add a user">
+            Lưu Lại
+          </button>
           <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
         </div>
       </form>
@@ -355,5 +362,6 @@
         content_css: "./assets/css/mod-project.css",
       });
     </script>
+    <script src="./assets/js/signup.js"></script>
   </body>
 </html>

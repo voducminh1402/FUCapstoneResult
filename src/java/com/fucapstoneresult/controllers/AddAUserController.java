@@ -5,42 +5,53 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String SIGNUP = "SignUpController";
-    private static final String ADD_A_USER = "AddAUserController";
-    private static final String INDEX = "index.jsp";
-    
+@WebServlet(name = "AddAUserController", urlPatterns = {"/AddAUserController"})
+public class AddAUserController extends HttpServlet {
+
+    private static final String SUCCESS = "admin.html";
+    private static final String FAIL = "error.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = SUCCESS;
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
-            }else if("Create account".equals(action)){
-                url = SIGNUP;
-            }else if("Add a user".equals(action)){
-                url = ADD_A_USER;
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            int role = Integer.parseInt(request.getParameter("role"));
+            int status = Integer.parseInt(request.getParameter("status"));
+            String image = request.getParameter("image");
+            UUID id = UUID.randomUUID();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String createDate = dtf.format(now);
+            UserDTO user = new UserDTO(id.toString(), name, createDate, status, image, email, password, "", role);
+            UserDAO dao = new UserDAO();
+            boolean check = dao.addUser(user);
+            if(!check){
+                url = FAIL;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

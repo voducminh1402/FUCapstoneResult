@@ -53,7 +53,7 @@ public class LoginGoogleController extends HttpServlet {
                     LocalDateTime now = LocalDateTime.now();
                     String createDate = dtf.format(now);
                     userDTO = new UserDTO(id.toString(), user.getName(), createDate, 2, "", user.getEmail(), "", "", 1);
-                    dao.createUser(userDTO);
+                    dao.addUser(userDTO);
                 }
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", userDTO);

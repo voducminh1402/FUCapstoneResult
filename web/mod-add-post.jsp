@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +79,7 @@
                                     </button>
                                     <div class="menu-search">
                                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
+                                        <input class="mod-menu-input" type="text" placeholder="TÃ¬m Kiáº¿m...">
                                     </div>
                                 </div>   
                             </div>
@@ -86,7 +87,7 @@
                                 <div class="right-side-info">
                                     <div class="info-login">
                                         <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
-                                        <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                        <span>Xin ChÃ o, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -95,19 +96,19 @@
                 </div>
             </nav>
             <div class="content-detail content-post add-post">
-                <h2>Thêm Bài Đăng Đồ Án</h2>
+                <h2>ThÃªm BÃ i ÄÄng Äá» Ãn</h2>
                 <form action="">
-                    <label for="">Tên Đồ Án</label><br>
+                    <label for="">TÃªn Äá» Ãn</label><br>
                     <input type="text">
-                    <label for="">Tên Tác Giả</label><br>
+                    <label for="">TÃªn TÃ¡c Giáº£</label><br>
                     <input type="text">
-                    <label for="">Hình Ảnh Thumbnail</label><br>
+                    <label for="">HÃ¬nh áº¢nh Thumbnail</label><br>
                     <input type="text">
-                    <label for="">Nội Dung</label><br>
+                    <label for="">Ná»i Dung</label><br>
                     <textarea name="" id="editor" cols="30" rows="50"></textarea>
                     <div class="add-project-submit add-post-submit">
-                        <button type="submit"><i class="fas fa-eye"></i>Xem Trước</button>
-                        <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
+                        <button type="submit"><i class="fas fa-eye"></i>Xem TrÆ°á»c</button>
+                        <button class="cancel-add-btn" type="button">Há»§y Bá»</button>
                     </div>
                 </form>
             </div>

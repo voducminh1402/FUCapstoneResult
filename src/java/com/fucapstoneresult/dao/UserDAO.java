@@ -20,39 +20,75 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public boolean createUser(UserDTO User) throws SQLException, ClassNotFoundException {
+    public boolean addUser(UserDTO user) throws SQLException{
         boolean check = false;
-        Connection conn = null;
+        Connection con = null;
         PreparedStatement stm = null;
+        int rs = 0;
         try {
-            conn = DBUtils.getConnection();
-            if (conn != null) {
-                String sql = "INSERT INTO Users(UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID)"
-                        + " VALUES(?,?,?,?,?,?,?,?,?)";
-                stm = conn.prepareCall(sql);
-                stm.setString(1, User.getUserID());
-                stm.setString(2, User.getUserName());
-                stm.setString(3, User.getDateCreated());
-                stm.setInt(4, User.getUserStatus());
-                stm.setString(5, User.getUserImage());
-                stm.setString(6, User.getEmail());
-                stm.setString(7, User.getPassword());
-                stm.setString(8, User.getOTP());
-                stm.setInt(9, User.getRoleID());
-                check = stm.executeUpdate() > 0 ? true : false;
+            con = DBUtils.getConnection();
+            if(con!=null){
+                String sql = "INSERT INTO Users(UserID, UserName, DateCreated, UserStatusID, UserImage, Email, Password, OTP, RoleID) "
+                        + " VALUES (?,?,?,?,?,?,?,?,?)";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, user.getUserID());
+                stm.setString(2, user.getUserName());
+                stm.setString(3, user.getDateCreated());
+                stm.setInt(4, user.getUserStatus());
+                stm.setString(5, user.getUserImage());
+                stm.setString(6, user.getEmail());
+                stm.setString(7, user.getPassword());
+                stm.setString(8, user.getOTP());
+                stm.setInt(9, user.getRoleID());
+                rs = stm.executeUpdate();
+                if(rs>0){
+                    check = true;
+                }
             }
-
-        } finally {
-
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(stm!=null)stm.close();
+            if(con!=null)con.close();
         }
         return check;
     }
+//    public boolean createUser(UserDTO User) throws SQLException, ClassNotFoundException {
+//        boolean check = false;
+//        Connection conn = null;
+//        PreparedStatement stm = null;
+//        try {
+//            conn = DBUtils.getConnection();
+//            if (conn != null) {
+//                String sql = "INSERT INTO Users(UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID)"
+//                        + " VALUES(?,?,?,?,?,?,?,?,?)";
+//                stm = conn.prepareCall(sql);
+//                stm.setString(1, User.getUserID());
+//                stm.setString(2, User.getUserName());
+//                stm.setString(3, User.getDateCreated());
+//                stm.setInt(4, User.getUserStatus());
+//                stm.setString(5, User.getUserImage());
+//                stm.setString(6, User.getEmail());
+//                stm.setString(7, User.getPassword());
+//                stm.setString(8, User.getOTP());
+//                stm.setInt(9, User.getRoleID());
+//                check = stm.executeUpdate() > 0 ? true : false;
+//            }
+//
+//        } catch(Exception e){
+//            e.printStackTrace();
+//        }
+//        finally {
+//
+//            if (stm != null) {
+//                stm.close();
+//            }
+//            if (conn != null) {
+//                conn.close();
+//            }
+//        }
+//        return check;
+//    }
 
     public List<UserDTO> getListUser(String search) throws SQLException {
         List<UserDTO> listUser = new ArrayList<>();
@@ -296,7 +332,9 @@ public class UserDAO {
         UserDAO dao = new UserDAO();
         String email = "honganhle@gmail.com";
         String password = "anh";
-        UserDTO user = dao.searchUserByEmail(email);
+        UserDTO user = new UserDTO("3", "anh", "", 2, "", email, "anh", "", 2);
+        boolean a = dao.addUser(user);
+        System.out.println(a);
         System.out.println(user);
     }
 }
