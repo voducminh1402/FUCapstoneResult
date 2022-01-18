@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectInstructorDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/web/projects.html</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectDTO.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/InstructorDTO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/SemesterDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectInstructorDTO.java</file>
         </group>
     </open-files>
 </project-private>
