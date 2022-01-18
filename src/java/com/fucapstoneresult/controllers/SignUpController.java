@@ -41,7 +41,7 @@ public class SignUpController extends HttpServlet {
             String createDate = dtf.format(now);
             UserDTO user = new UserDTO(id.toString(), name, createDate, 2, "", email, password, "", 1);
             UserDAO dao = new UserDAO();
-            if(!dao.createUser(user)){
+            if(!dao.addUser(user)){
                 url = FAIL;
             }
         } catch (Exception e) {
