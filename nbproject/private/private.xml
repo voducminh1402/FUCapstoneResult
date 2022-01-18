@@ -3,20 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectDTO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/InstructorDTO.java</file>
-=======
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-post.jsp</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
->>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
         </group>
     </open-files>
 </project-private>
