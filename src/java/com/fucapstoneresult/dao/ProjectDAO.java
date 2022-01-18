@@ -28,8 +28,8 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "INSERT INTO Projects(ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID) "
-                            + " VALUES (?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO Projects(ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID) "
+                            + " VALUES (?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, project.getProjectID());
                 stm.setString(2, project.getProjectName());
@@ -38,7 +38,6 @@ public class ProjectDAO {
                 stm.setFloat(5, project.getProjectScore());
                 stm.setString(6, project.getMajorID());
                 stm.setString(7, project.getSemesterID());
-                stm.setString(8, project.getPostID());
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -68,7 +67,7 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID "
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID "
                             + " FROM Projects ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
@@ -81,9 +80,8 @@ public class ProjectDAO {
                     float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
                     String majorID = rs.getString("MajorID");
                     String semesterID = rs.getString("SemesterID");
-                    String postID = rs.getString("PostID");
                     
-                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID));
                 }
             }
         } 
@@ -115,7 +113,7 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID "
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID "
                             + " FROM Projects "
                             + " WHERE SemesterID=? ";
                 stm = conn.prepareStatement(sql);
@@ -129,9 +127,8 @@ public class ProjectDAO {
                     String projectImage = rs.getString("ProjectImage");
                     float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
                     String majorID = rs.getString("MajorID");
-                    String postID = rs.getString("PostID");
                     
-                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID));
                 }
             }
         } 
@@ -162,7 +159,7 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Projects "
-                            + " SET ProjectName=?, ProjectDescription=?, ProjectImage=?, ProjectScore=?, MajorID=?, SemesterID=?, PostID=? "
+                            + " SET ProjectName=?, ProjectDescription=?, ProjectImage=?, ProjectScore=?, MajorID=?, SemesterID=? "
                             + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
                 
@@ -172,8 +169,7 @@ public class ProjectDAO {
                 stm.setFloat(4, project.getProjectScore());
                 stm.setString(5, project.getMajorID());
                 stm.setString(6, project.getSemesterID());
-                stm.setString(7, project.getPostID());
-                stm.setString(8, project.getProjectID());
+                stm.setString(7, project.getProjectID());
                 
                 check = stm.executeUpdate() > 0;
                 
