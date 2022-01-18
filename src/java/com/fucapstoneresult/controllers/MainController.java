@@ -7,6 +7,7 @@ package com.fucapstoneresult.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,21 +19,33 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MainController extends HttpServlet {
     
+    private static final String LOGIN = "LoginController";
+    private static final String SIGNUP = "SignUpController";
+    private static final String INDEX = "index.jsp";
+    private static final String ADD_POST = "AddPostController";
+    private static final String GET_LIST_PROJECT = "GetListProjectController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MainController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MainController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = "";
+        String action = request.getParameter("action");
+        try {
+            if("Login".equals(action)){
+                url = LOGIN;
+            }else if("Create account".equals(action)){
+                url = SIGNUP;
+            }
+            else if ("AddPost".equals(action)) {
+                url = ADD_POST;
+            }
+            else if ("GetListProject".equals(action)) {
+                url = GET_LIST_PROJECT;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

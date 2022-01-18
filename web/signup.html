@@ -32,7 +32,8 @@
           <h1>Create Account</h1>
         </div>
         <div class="content-main">
-          <form action="">
+          <form action="MainController" id="form">
+            <p class="name-message"></p>
             <div class="relative">
               <i class="fas fa-user-circle"></i>
               <input
@@ -41,40 +42,50 @@
                 name="name"
                 id="name"
                 placeholder="Nguyen Van A"
+                required
               />
             </div>
+            <p class="email-message"></p>
             <div class="relative">
               <i class="fas fa-envelope"></i>
+
               <input
                 class="width-100"
                 type="email"
                 name="email"
                 id="email"
                 placeholder="example@gmail.com"
+                required
               />
             </div>
-            <div class="relative">
+            <p class="password-message"></p>
+            <div class="relative password">
               <i class="fas fa-key"></i>
+
               <input
                 class="width-100"
                 type="password"
                 name="password"
                 id="password"
                 placeholder="password"
+                required
               />
             </div>
-            <div class="relative">
+            <p class="password-confirm-message"></p>
+            <div class="relative password-confirm">
               <i class="fas fa-key"></i>
               <input
                 class="width-100"
                 type="password"
-                name="password"
-                id="password"
+                name="password-confirm"
+                id="password-confirm"
+                required
                 placeholder="password confirm"
               />
             </div>
 
             <div class="accept">
+              <p class="accept-checkbox"></p>
               <input
                 type="checkbox"
                 name="checkbox"
@@ -91,6 +102,7 @@
               id="login"
               class="width-100 login-btn"
               type="submit"
+              name="action"
               value="Create account"
             />
           </form>
@@ -100,5 +112,10 @@
         </div>
       </div>
     </div>
+    <script
+      src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="./assets/js/signup.js"></script>
   </body>
 </html>
