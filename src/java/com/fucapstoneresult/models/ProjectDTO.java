@@ -22,11 +22,14 @@ public class ProjectDTO {
     public ProjectDTO() {
     }
 
+<<<<<<< HEAD
+=======
     public ProjectDTO(String projectID, String projectName) {
         this.projectID = projectID;
         this.projectName = projectName;
     }
 
+>>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
     public ProjectDTO(String projectID, String projectName, String projectDescription, String projectImage, float projectScore, String majorID, String semesterID, String postID) {
         this.projectID = projectID;
         this.projectName = projectName;
@@ -101,8 +104,12 @@ public class ProjectDTO {
     public void setPostID(String postID) {
         this.postID = postID;
     }
+<<<<<<< HEAD
+
+=======
     
 
     
+>>>>>>> 2e9da87a3d044613dc7fb8304affdc60daf8fa9e
     
 }

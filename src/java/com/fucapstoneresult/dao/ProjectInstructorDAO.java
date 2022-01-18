@@ -5,7 +5,7 @@
  */
 package com.fucapstoneresult.dao;
 
-import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.ProjectInstructorDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,10 +14,10 @@ import java.sql.SQLException;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class InstructorDAO {
-    public boolean insertInstructor(InstructorDTO instructor) throws SQLException {
+public class ProjectInstructorDAO {
+    public boolean insertProjectInstructor(ProjectInstructorDTO ProIns) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -26,13 +26,11 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "INSERT INTO Instructors(InstructorID, InstructorName, InstructorImage, ProjectID) "
-                            + " VALUES (?,?,?,?)";
+                String sql = "INSERT INTO ProjectInstructor(ProjectID, InstructorID) "
+                            + " VALUES (?,?)";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, instructor.getInstructorID());
-                stm.setString(2, instructor.getInstructorName());
-                stm.setString(3, instructor.getInstructorImage());
-                stm.setString(4, instructor.getProjectID());
+                stm.setString(1, ProIns.getProjectID());
+                stm.setString(2, ProIns.getInstructorID());
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -52,8 +50,8 @@ public class InstructorDAO {
         return check;
     }
     
-    public InstructorDTO getInstructor(String instructorID) throws SQLException {
-        InstructorDTO instructor = null;
+    public ProjectInstructorDTO getProjectInstructor(String projectID) throws SQLException {
+        ProjectInstructorDTO proins = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -62,15 +60,15 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT InstructorName, InstructorImage, ProjectID "
-                            + " FROM Instructors "
-                            + " WHERE InstructorID=?";
+                String sql = "SELECT InstructorID "
+                            + " FROM ProjectInstructor "
+                            + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, instructorID);
+                stm.setString(1, projectID);
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"), rs.getString("ProjectID"));
+                    proins = new ProjectInstructorDTO(projectID, rs.getString("InstructorID"));
                 }
             }
         } 
@@ -89,10 +87,10 @@ public class InstructorDAO {
             }
         }
         
-        return instructor;
+        return proins;
     }
     
-    public boolean updateInstructor(InstructorDTO instructor) throws SQLException {
+    public boolean udpateProjectInstructor(ProjectInstructorDTO proins) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -100,15 +98,13 @@ public class InstructorDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "UPDATE Instructors "
-                            + " SET InstructorName=?, InstructorImage=?, ProjectID=? "
-                            + " WHERE InstructorID=?";
+                String sql = "UPDATE ProjectInstructor "
+                            + " SET InstructorID=? "
+                            + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
                 
-                stm.setString(1, instructor.getInstructorName());
-                stm.setString(2, instructor.getInstructorImage());
-                stm.setString(3, instructor.getProjectID());
-                stm.setString(4, instructor.getInstructorID());
+                stm.setString(1, proins.getInstructorID());
+                stm.setString(2, proins.getProjectID());
                 
                 check = stm.executeUpdate() > 0;
                 
@@ -129,7 +125,7 @@ public class InstructorDAO {
         return check;
     }
     
-    public boolean deleteInstructor(String instructorID) throws SQLException {
+    public boolean deleteProjectInstructor(String projectID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -138,9 +134,9 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "DELETE Instructors WHERE InstructorID=?";
+                String sql = "DELETE ProjectInstructor WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, instructorID);
+                stm.setString(1, projectID);
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -159,5 +155,4 @@ public class InstructorDAO {
         
         return check;
     }
-    
 }
