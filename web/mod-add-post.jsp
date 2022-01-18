@@ -1,4 +1,3 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -83,7 +82,7 @@
                                     </button>
                                     <div class="menu-search">
                                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="TÃ¬m Kiáº¿m...">
+                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
                                     </div>
                                 </div>   
                             </div>
@@ -91,7 +90,7 @@
                                 <div class="right-side-info">
                                     <div class="info-login">
                                         <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
-                                        <span>Xin ChÃ o, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                        <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -100,21 +99,6 @@
                 </div>
             </nav>
             <div class="content-detail content-post add-post">
-<<<<<<< HEAD
-                <h2>ThÃªm BÃ i ÄÄng Äá» Ãn</h2>
-                <form action="">
-                    <label for="">TÃªn Äá» Ãn</label><br>
-                    <input type="text">
-                    <label for="">TÃªn TÃ¡c Giáº£</label><br>
-                    <input type="text">
-                    <label for="">HÃ¬nh áº¢nh Thumbnail</label><br>
-                    <input type="text">
-                    <label for="">Ná»i Dung</label><br>
-                    <textarea name="" id="editor" cols="30" rows="50"></textarea>
-                    <div class="add-project-submit add-post-submit">
-                        <button type="submit"><i class="fas fa-eye"></i>Xem TrÆ°á»c</button>
-                        <button class="cancel-add-btn" type="button">Há»§y Bá»</button>
-=======
                 <h2>Thêm Bài Đăng Đồ Án</h2>
                 <form action="MainController" method="POST">
                     <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Tạo Bài Đăng</label><br>
@@ -149,7 +133,6 @@
                     <div class="add-project-submit add-post-submit">
                         <button type="submit" name="action" value="AddPost">Lưu</button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
->>>>>>> e0b7973992b97eb39ebf99fc669fdca8cf5feb46
                     </div>
                 </form>
             </div>

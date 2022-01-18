@@ -8,6 +8,10 @@
   font-size: 1rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   position: relative;
 }
@@ -18,8 +22,12 @@
 
 .container .picture .logo {
   position: absolute;
-  top: 5%;
-  left: 5%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .picture .logo img {
+  width: 250px;
 }
 
 .container .picture .background {
@@ -201,7 +209,7 @@
     margin-bottom: 2rem;
   }
   .container .content .content-main .anotherway-login {
-    padding: 3rem 0 8rem 0;
+    padding: 3rem 0 3rem 0;
   }
 }
 .google-btn {

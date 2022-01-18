@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AddAUserController", urlPatterns = {"/AddAUserController"})
 public class AddAUserController extends HttpServlet {
 
-    private static final String SUCCESS = "admin.html";
+    private static final String SUCCESS = "admin.jsp";
     private static final String FAIL = "error.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
