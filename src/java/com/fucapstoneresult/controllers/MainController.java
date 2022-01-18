@@ -22,6 +22,8 @@ public class MainController extends HttpServlet {
     private static final String LOGIN = "LoginController";
     private static final String SIGNUP = "SignUpController";
     private static final String INDEX = "index.jsp";
+    private static final String ADD_POST = "AddPostController";
+    private static final String GET_LIST_PROJECT = "GetListProjectController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,6 +34,12 @@ public class MainController extends HttpServlet {
                 url = LOGIN;
             }else if("Create account".equals(action)){
                 url = SIGNUP;
+            }
+            else if ("AddPost".equals(action)) {
+                url = ADD_POST;
+            }
+            else if ("GetListProject".equals(action)) {
+                url = GET_LIST_PROJECT;
             }
         } catch (Exception e) {
             e.printStackTrace();

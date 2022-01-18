@@ -28,8 +28,8 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "INSERT INTO Projects(ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, TeamID, InstructorID, PostID) "
-                            + " VALUES (?,?,?,?,?,?,?,?,?,?)";
+                String sql = "INSERT INTO Projects(ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID) "
+                            + " VALUES (?,?,?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, project.getProjectID());
                 stm.setString(2, project.getProjectName());
@@ -38,9 +38,7 @@ public class ProjectDAO {
                 stm.setFloat(5, project.getProjectScore());
                 stm.setString(6, project.getMajorID());
                 stm.setString(7, project.getSemesterID());
-                stm.setString(8, project.getTeamID());
-                stm.setString(9, project.getInstructorID());
-                stm.setString(10, project.getPostID());
+                stm.setString(8, project.getPostID());
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -70,7 +68,7 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, TeamID, InstructorID, PostID "
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID "
                             + " FROM Projects ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
@@ -83,11 +81,57 @@ public class ProjectDAO {
                     float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
                     String majorID = rs.getString("MajorID");
                     String semesterID = rs.getString("SemesterID");
-                    String teamID = rs.getString("TeamID");
-                    String instructorID = rs.getString("InstructorID");
                     String postID = rs.getString("PostID");
                     
-                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, teamID, instructorID, postID));
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
+    }
+    
+    public List<ProjectDTO> getAllProjectBySemester(String semesterID) throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID, PostID "
+                            + " FROM Projects "
+                            + " WHERE SemesterID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, semesterID);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
+                    String majorID = rs.getString("MajorID");
+                    String postID = rs.getString("PostID");
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID, postID));
                 }
             }
         } 
@@ -118,7 +162,7 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Projects "
-                            + " SET ProjectName=?, ProjectDescription=?, ProjectImage=?, ProjectScore=?, MajorID=?, SemesterID=?, TeamID=?, InstructorID=?, PostID=? "
+                            + " SET ProjectName=?, ProjectDescription=?, ProjectImage=?, ProjectScore=?, MajorID=?, SemesterID=?, PostID=? "
                             + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
                 
@@ -128,10 +172,8 @@ public class ProjectDAO {
                 stm.setFloat(4, project.getProjectScore());
                 stm.setString(5, project.getMajorID());
                 stm.setString(6, project.getSemesterID());
-                stm.setString(7, project.getTeamID());
-                stm.setString(8, project.getInstructorID());
-                stm.setString(9, project.getPostID());
-                stm.setString(10, project.getProjectID());
+                stm.setString(7, project.getPostID());
+                stm.setString(8, project.getProjectID());
                 
                 check = stm.executeUpdate() > 0;
                 
@@ -181,6 +223,48 @@ public class ProjectDAO {
         }
         
         return check;
+    }
+    
+    public List<ProjectDTO> getProjectForSelect() throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectID, ProjectName "
+                            + " FROM Projects ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
     }
     
     
