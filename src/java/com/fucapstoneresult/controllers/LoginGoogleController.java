@@ -57,6 +57,11 @@ public class LoginGoogleController extends HttpServlet {
                 }
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", userDTO);
+                
+                UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+                System.out.println(userLogin.getUserName());
+                System.out.println(userLogin.getEmail());
+                
             }
         } catch (Exception e) {
             e.printStackTrace();

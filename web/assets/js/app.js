@@ -125,6 +125,24 @@ btnScroll.forEach((ele, index) => ele.addEventListener('mouseout', () => {
     itemScrollList[index].parentNode.children[0].classList.add('display-none');
 }))
 
+// More choice menu
+
+let moreChoiceDot = document.querySelectorAll('.more-choice__dot');
+let moreChoiceMenu = document.querySelectorAll('.more-choice__menu');
+
+moreChoiceDot.forEach((ele, index) => ele.addEventListener('click', () => {
+    for (let i = 0; i < moreChoiceMenu.length; i++) {
+        if (i !== index) {
+            moreChoiceMenu[i].style.display = 'none';
+        }
+    }
+    if (moreChoiceMenu[index].style.display === 'none') {
+        moreChoiceMenu[index].style.display = 'block';
+    }
+    else {
+        moreChoiceMenu[index].style.display = 'none';
+    }
+}))
 
 
 
