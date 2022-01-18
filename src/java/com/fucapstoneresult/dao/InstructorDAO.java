@@ -26,12 +26,13 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "INSERT INTO Instructors(InstructorID, InstructorName, InstructorImage) "
-                            + " VALUES (?,?,?)";
+                String sql = "INSERT INTO Instructors(InstructorID, InstructorName, InstructorImage, ProjectID) "
+                            + " VALUES (?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, instructor.getInstructorID());
                 stm.setString(2, instructor.getInstructorName());
                 stm.setString(3, instructor.getInstructorImage());
+                stm.setString(4, instructor.getProjectID());
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -61,7 +62,7 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT InstructorName, InstructorImage "
+                String sql = "SELECT InstructorName, InstructorImage, ProjectID "
                             + " FROM Instructors "
                             + " WHERE InstructorID=?";
                 stm = conn.prepareStatement(sql);
@@ -69,7 +70,7 @@ public class InstructorDAO {
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString(("InstructorImage")));
+                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"), rs.getString("ProjectID"));
                 }
             }
         } 
@@ -100,13 +101,14 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Instructors "
-                            + " SET InstructorName=?, InstructorImage=? "
+                            + " SET InstructorName=?, InstructorImage=?, ProjectID=? "
                             + " WHERE InstructorID=?";
                 stm = conn.prepareStatement(sql);
                 
                 stm.setString(1, instructor.getInstructorName());
                 stm.setString(2, instructor.getInstructorImage());
-                stm.setString(3, instructor.getInstructorID());
+                stm.setString(3, instructor.getProjectID());
+                stm.setString(4, instructor.getInstructorID());
                 
                 check = stm.executeUpdate() > 0;
                 
@@ -156,14 +158,6 @@ public class InstructorDAO {
         }
         
         return check;
-    }
-    
-        public static void main(String[] args) throws SQLException {
-        InstructorDAO dao = new InstructorDAO();
-        
-        boolean check = dao.deleteInstructor("1");
-        
-        System.out.println(check);
     }
     
 }

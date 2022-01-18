@@ -29,3 +29,60 @@
 .add-post-submit button:first-of-type {
     margin-right: 10px;
 }
+
+.add-post label {
+    color: var(--main-light-grey);
+    margin: 15px 0px;
+}
+
+.add-post input, .add-post select {
+    outline: none;
+    border: none;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: var(--main-white);
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.post-upload__image {
+    padding-left: 0px !important;
+    margin-bottom: 15px !important;
+}
+
+.post-upload__image label{
+    margin-left: 0px !important;
+    color: var(--main-white) !important;
+}
+
+.post-upload__image img {
+    width: 100px;
+    max-height: 300px;
+    object-fit: cover;
+    border: 0.5px solid var(--main-mod-border-bold);
+    margin-top: 15px;
+}
+
+.bootstrap-tagsinput {
+   width: 100%  ;
+}
+
+.bootstrap-tagsinput input {
+    width: 100% !important;
+}
+
+.bootstrap-tagsinput span {
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: #17a2b8;
+}

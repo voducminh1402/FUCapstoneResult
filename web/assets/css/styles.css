@@ -17,7 +17,7 @@
     --main-orange: #F26F21;
     --main-bold-orange: #a33c00;
     --main-white: #ffffff;
-    --main-light-grey: #8697A8;
+    --main-light-grey: #a5adb4;
     --main-mod-input: #F8FAFB;
     --main-mod-header: #44566C;
     --main-light-white: #e2e2e2;
@@ -42,9 +42,7 @@
     padding: 0 !important;
 }
 
-.display-none {
-    display: none !important;
-}
+
 
 .display-block {
     display: block !important;
@@ -95,8 +93,73 @@ input {
     z-index: 10;
 }
 
+.scroll-page {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-right: 3px solid var(--main-orange);
+    padding-right: 15px;
+    margin-bottom: 120px;
+    margin-right: 15px;
+    z-index: 10;
+}
+
+.scroll-items {
+    text-align: right;
+    padding: 3px 0px;
+}
+
+.scroll-items span a {
+    display: inline-block;
+}
+
+.scroll-items span a i {
+    color: var(--main-bold-white);
+    font-size: 10px !important;
+    transform: translateY(-2.5px);
+    height: 100%;
+    text-shadow: -1px -1px 0 var(--main-orange), 1px -1px 0 var(--main-orange), -1px 1px 0 var(--main-orange), 1px 1px 0 var(--main-orange);
+}
+
+.scroll-page a {
+    display: block;
+    text-align: right;
+    color: var(--main-white);
+    text-decoration: none;
+    transition: ease-in 0.3s !important;
+    padding: 7px 10px;
+}
+
+.close-scroll {
+    padding-top: 10px;
+    color: var(--main-white) !important;
+    cursor: pointer;
+    text-shadow: -1px -1px 0 var(--main-orange), 1px -1px 0 var(--main-orange), -1px 1px 0 var(--main-orange), 1px 1px 0 var(--main-orange);
+
+}
+
+.close-scroll i {
+    margin-left: 10px;    
+}
+
+.scroll-active {
+    color: var(--main-white) !important;
+}
+
+.scroll-items > a {
+    display: none;
+    margin-right: 10px;
+    background-color: var(--main-orange);
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
 .block {
     display: block !important;
+}
+
+.il-block {
+    display: inline-block !important;
 }
 
 .home-page-header {
@@ -330,6 +393,7 @@ header {
 
 .content-intro {
     margin-top: 100px;
+    scroll-margin-top: 100px;
 }
 
 .content-intro-img {
@@ -364,6 +428,7 @@ header {
 
 .content-good {
     margin: 100px 0px;
+    scroll-margin-top: 100px;
 }
 
 .content-good h2 {
@@ -445,10 +510,15 @@ header {
 
 .content-near-project {
     margin: 100px 0px;
+    scroll-margin-top: 100px;
 }
 
 .content-near-project h2 {
     margin-bottom: 50px;
+}
+
+.content-lecturer {
+    scroll-margin-top: 100px;
 }
 
 .lecturer {
@@ -486,6 +556,10 @@ header {
 
 .lecturer:hover .lecturer-info {
     bottom: -15px;
+}
+
+.content-timeline {
+    scroll-margin-top: 100px;
 }
 
 .content-timeline h2 {
@@ -536,6 +610,10 @@ header {
     text-align: center;
     width: 20%;
     z-index: 9;
+}
+
+.content-post {
+    scroll-margin-top: 100px;
 }
 
 .footer {
@@ -617,6 +695,47 @@ header {
 .footer-end p {
     color: white;
 }
+
+.footer-copyright {
+    float: right;
+}
+
+.back-top {
+    display: inline-block;
+    background-color: var(--main-white);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s, 
+      opacity .5s, visibility .5s;
+    z-index: 1000;
+    text-decoration: none;
+    display: none;
+}
+
+.back-top::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: var(--main-orange);
+}
+
+.back-top:hover {
+    cursor: pointer;
+    background-color: var(--main-mod-border-bold);
+}
+
+.back-top:active {
+    background-color: #555;
+}
+
 
 /* START PROJECT PAGE AND PROJECT WITH MAJOR PAGE */
 .project-background__img {
@@ -1168,4 +1287,7 @@ article{
 .me-re-name input{
     height: 200px;
     width: 100%;
+}
+.display-none {
+    display: none !important;
 }
