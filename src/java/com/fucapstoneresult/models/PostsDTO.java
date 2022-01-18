@@ -15,27 +15,27 @@ public class PostsDTO {
     private String postTitle;
     private String postDate;
     private String postAuthor;
-    private String postDescription;
+    private String postContent;
     private String postImage;
     private String lastEditedUser;
     private int upvote;
-    private String poPostID;
     private int postStatusID;
+    private String projectID;
 
     public PostsDTO() {
     }
 
-    public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postDescription, String postImage, String lastEditedUser, int upvote, String poPostID, int postStatusID) {
+    public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postContent, String postImage, String lastEditedUser, int upvote, int postStatusID, String projectID) {
         this.postID = postID;
         this.postTitle = postTitle;
         this.postDate = postDate;
         this.postAuthor = postAuthor;
-        this.postDescription = postDescription;
+        this.postContent = postContent;
         this.postImage = postImage;
         this.lastEditedUser = lastEditedUser;
         this.upvote = upvote;
-        this.poPostID = poPostID;
         this.postStatusID = postStatusID;
+        this.projectID = projectID;
     }
 
     public String getPostID() {
@@ -70,12 +70,12 @@ public class PostsDTO {
         this.postAuthor = postAuthor;
     }
 
-    public String getPostDescription() {
-        return postDescription;
+    public String getPostContent() {
+        return postContent;
     }
 
-    public void setPostDescription(String postDescription) {
-        this.postDescription = postDescription;
+    public void setPostContent(String postContent) {
+        this.postContent = postContent;
     }
 
     public String getPostImage() {
@@ -102,14 +102,6 @@ public class PostsDTO {
         this.upvote = upvote;
     }
 
-    public String getPoPostID() {
-        return poPostID;
-    }
-
-    public void setPoPostID(String poPostID) {
-        this.poPostID = poPostID;
-    }
-
     public int getPostStatusID() {
         return postStatusID;
     }
@@ -117,5 +109,15 @@ public class PostsDTO {
     public void setPostStatusID(int postStatusID) {
         this.postStatusID = postStatusID;
     }
+
+    public String getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID = projectID;
+    }
+
+   
     
 }
