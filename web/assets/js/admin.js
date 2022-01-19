@@ -2,13 +2,7 @@
   "use strict";
   const name = document.getElementById("name");
   const password = document.getElementById("password");
-  const passwordConfirm = document.getElementById("password-confirm");
-  const checkbox = document.getElementById("checkbox");
   const passwordMessage = document.querySelector(".password-message");
-  const passwordConfirmMessage = document.querySelector(
-    ".password-confirm-message"
-  );
-  const checkedbox = document.querySelector(".accept-checkbox");
   const nameMessage = document.querySelector(".name-message");
   name.addEventListener("input", function () {
     const value = name.value.trim();
@@ -29,32 +23,6 @@
       passwordMessage.innerHTML = "";
     }
   });
-  passwordConfirm.addEventListener("input", function () {
-    const value = passwordConfirm.value.trim();
-
-    if (value != password.value.trim()) {
-      passwordConfirmMessage.innerHTML =
-        "Mật khẩu xác nhận không trùng với mật khẩu!";
-    } else {
-      passwordConfirmMessage.innerHTML = "";
-    }
-    password.addEventListener("input", function () {
-      if (value != password.value.trim()) {
-        passwordConfirmMessage.innerHTML =
-          "Mật khẩu xác nhận không trùng với mật khẩu!";
-      } else {
-        passwordConfirmMessage.innerHTML = "";
-      }
-    });
-  });
-  checkbox.addEventListener("click", function () {
-    if (checkbox.checked == false) {
-      checkedbox.innerHTML =
-        "Đồng ý với điều khoản của chúng tôi để tạo tài khoản!";
-    } else {
-      checkedbox.innerHTML = "";
-    }
-  });
 
   $(document).ready(function () {
     var x_timer;
@@ -73,7 +41,7 @@
         dataType: "text",
         success: function (data) {
           $(".email-message").html(data);
-        }
+        },
       });
     }
   });
@@ -83,10 +51,7 @@
     if (password.value.trim().length < 8) {
       alert("Không thể tạo tài khoản. Xin vui lòng thử lại!");
       e.preventDefault();
-    } else if (password.value.trim() != passwordConfirm.value.trim()) {
-      alert("Không thể tạo tài khoản. Xin vui lòng thử lại!");
-      e.preventDefault();
-    } else if (!checkbox.checked) {
+    } else if (name.value.trim().length > 50 || name.value.trim().length < 2) {
       alert("Không thể tạo tài khoản. Xin vui lòng thử lại!");
       e.preventDefault();
     } else if (checkEmail > 1) {
