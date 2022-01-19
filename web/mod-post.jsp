@@ -198,7 +198,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="more-choice__item">
-                                                    <a href="">
+                                                    <a href="MainController?action=RemovePost&id=${o.postID}">
                                                         <span>Xóa</span>
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                                     </a>

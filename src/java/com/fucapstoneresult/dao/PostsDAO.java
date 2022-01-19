@@ -234,10 +234,13 @@ public class PostsDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " DELETE Posts "
+                String sql = " UPDATE Posts "
+                        + " SET PostStatusID=?"
                         + " WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, PostID);
+                stm.setInt(1, 3);                
+                stm.setString(2, PostID);
+
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

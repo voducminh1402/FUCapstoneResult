@@ -36,6 +36,10 @@
         <servlet-name>UpdatePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemovePostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemovePostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>UpdatePostController</servlet-name>
         <url-pattern>/UpdatePostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemovePostController</servlet-name>
+        <url-pattern>/RemovePostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
