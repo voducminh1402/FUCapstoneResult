@@ -9,9 +9,8 @@ import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,32 +21,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "SignUpController", urlPatterns = {"/SignUpController"})
-public class SignUpController extends HttpServlet {
+@WebServlet(name = "LoadAllUserController", urlPatterns = {"/LoadAllUserController"})
+public class LoadAllUserController extends HttpServlet {
 
-    private static final String SUCCESS = "login.html";
-    private static final String FAIL = "signup.html";
-
+    private static final String ERROR = "admin.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = SUCCESS;
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UUID id = UUID.randomUUID();
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-            String createDate = dtf.format(now);
-            UserDTO user = new UserDTO(id.toString(), name, createDate, 2, "", email, password, "", 1);
             UserDAO dao = new UserDAO();
-            if(!dao.addUser(user)){
-                url = FAIL;
+            List<UserDTO> list = dao.getAllUser();
+            if(!list.isEmpty()){
+                request.setAttribute("LIST_USER", list);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            response.sendRedirect(url);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

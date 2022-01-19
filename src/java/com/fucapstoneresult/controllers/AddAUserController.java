@@ -22,26 +22,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "SignUpController", urlPatterns = {"/SignUpController"})
-public class SignUpController extends HttpServlet {
+@WebServlet(name = "AddAUserController", urlPatterns = {"/AddAUserController"})
+public class AddAUserController extends HttpServlet {
 
-    private static final String SUCCESS = "login.html";
-    private static final String FAIL = "signup.html";
-
+    private static final String SUCCESS = "admin.jsp";
+    private static final String FAIL = "error.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
             String name = request.getParameter("name");
-            String email = request.getParameter("email");
             String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            int role = Integer.parseInt(request.getParameter("role"));
+            int status = Integer.parseInt(request.getParameter("status"));
+            String image = request.getParameter("image");
             UUID id = UUID.randomUUID();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String createDate = dtf.format(now);
-            UserDTO user = new UserDTO(id.toString(), name, createDate, 2, "", email, password, "", 1);
+            UserDTO user = new UserDTO(id.toString(), name, createDate, status, image, email, password, "", role);
             UserDAO dao = new UserDAO();
-            if(!dao.addUser(user)){
+            boolean check = dao.addUser(user);
+            if(!check){
                 url = FAIL;
             }
         } catch (Exception e) {
