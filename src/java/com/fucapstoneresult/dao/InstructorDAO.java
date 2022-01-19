@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,13 +28,12 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "INSERT INTO Instructors(InstructorID, InstructorName, InstructorImage, ProjectID) "
-                            + " VALUES (?,?,?,?)";
+                String sql = "INSERT INTO Instructors(InstructorID, InstructorName, InstructorImage) "
+                            + " VALUES (?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, instructor.getInstructorID());
                 stm.setString(2, instructor.getInstructorName());
                 stm.setString(3, instructor.getInstructorImage());
-                stm.setString(4, instructor.getProjectID());
                 
                 check = stm.executeUpdate() > 0;
             }
@@ -62,7 +63,7 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT InstructorName, InstructorImage, ProjectID "
+                String sql = "SELECT InstructorName, InstructorImage "
                             + " FROM Instructors "
                             + " WHERE InstructorID=?";
                 stm = conn.prepareStatement(sql);
@@ -70,7 +71,7 @@ public class InstructorDAO {
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"), rs.getString("ProjectID"));
+                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"));
                 }
             }
         } 
@@ -101,14 +102,13 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Instructors "
-                            + " SET InstructorName=?, InstructorImage=?, ProjectID=? "
+                            + " SET InstructorName=?, InstructorImage=? "
                             + " WHERE InstructorID=?";
                 stm = conn.prepareStatement(sql);
                 
                 stm.setString(1, instructor.getInstructorName());
                 stm.setString(2, instructor.getInstructorImage());
-                stm.setString(3, instructor.getProjectID());
-                stm.setString(4, instructor.getInstructorID());
+                stm.setString(3, instructor.getInstructorID());
                 
                 check = stm.executeUpdate() > 0;
                 
@@ -159,5 +159,48 @@ public class InstructorDAO {
         
         return check;
     }
+    
+    public List<InstructorDTO> getAllInstructor() throws SQLException {
+        List<InstructorDTO> List = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT InstructorID, InstructorName, InstructorImage "
+                            + " FROM Instructors ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String instructorID = rs.getString("instructorID");
+                    String instructorName = rs.getString("instructorName");
+                    String instructorImage = rs.getString("instructorImage");
+                    
+                    List.add(new InstructorDTO(instructorID, instructorName, instructorImage));
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return List;
+    }
+    
     
 }
