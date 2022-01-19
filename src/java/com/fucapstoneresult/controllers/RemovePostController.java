@@ -6,74 +6,45 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
-import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author VODUCMINH
  */
-public class AddPostController extends HttpServlet {
-    private static final String ERROR = "login.html";
-    private static final String SUCCESS = "mod-add-post.jsp";
+public class RemovePostController extends HttpServlet {
+    private static final String ERROR = "mod-post.jsp";
+    private static final String SUCCESS = "mod-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            String postID = request.getParameter("id");
             
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-            LocalDateTime now = LocalDateTime.now();
-            String currentDate = dtf.format(now);
+            PostsDAO dao = new PostsDAO();
             
-            UUID uuid = UUID.randomUUID();
-            String postID = uuid.toString();
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            boolean check = dao.delete(postID);
             
-            PostsDAO postDao = new PostsDAO();
-            
-            if (userLogin != null) {
-                String userId = userLogin.getUserID();
-                TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-                TagsDAO tagDao = new TagsDAO();
-                
-                PostsDTO post = new PostsDTO(postID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, projectID);
-                boolean check = postDao.insert(post);
-                boolean checkTagDetail = false, checkTag = false;
-                
-                if (check) {
-                    for (String postTag : postTags) {
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
-                    }
-                    if (checkTagDetail && checkTag) {
-                        url = SUCCESS;
-                    }
-                }
+            if (check) {
+                url = SUCCESS;
             }
+            
         } 
         catch (Exception e) {
             System.out.println(e.toString());

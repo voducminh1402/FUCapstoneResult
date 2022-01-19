@@ -25,6 +25,10 @@ public class MainController extends HttpServlet {
     private static final String INDEX = "index.jsp";
     private static final String ADD_POST = "AddPostController";
     private static final String GET_LIST_PROJECT = "GetListProjectController";
+    private static final String GET_LIST_POST = "GetPostController";
+    private static final String EDIT_POST = "EditPostController";
+    private static final String UPDATE_POST = "UpdatePostController";
+    private static final String REMOVE_POST = "RemovePostController";
     private static final String LOAD_ALL_USER = "LoadAllUserController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -46,6 +50,18 @@ public class MainController extends HttpServlet {
                 url = GET_LIST_PROJECT;
             }else if("Load All User".equals(action)){
                 url = LOAD_ALL_USER;
+            }
+            else if ("GetListPost".equals(action)) {
+                url = GET_LIST_POST;
+            }
+            else if ("EditPost".equals(action)) {
+                url = EDIT_POST;
+            }
+            else if ("UpdatePost".equals(action)) {
+                url = UPDATE_POST;
+            }
+            else if ("RemovePost".equals(action)) {
+                url = REMOVE_POST;
             }
         } catch (Exception e) {
             e.printStackTrace();
