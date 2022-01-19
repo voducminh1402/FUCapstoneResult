@@ -24,6 +24,10 @@
         <servlet-name>GetListProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.GetListProjectController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetPostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>GetListProjectController</servlet-name>
         <url-pattern>/GetListProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetPostController</servlet-name>
+        <url-pattern>/GetPostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
