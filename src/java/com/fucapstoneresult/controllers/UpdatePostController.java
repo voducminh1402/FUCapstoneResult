@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 public class UpdatePostController extends HttpServlet {
     private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-edit-post.jsp";
+    private static final String SUCCESS = "mod-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
