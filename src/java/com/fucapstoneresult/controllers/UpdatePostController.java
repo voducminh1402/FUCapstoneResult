@@ -5,60 +5,58 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author VODUCMINH
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String SIGNUP = "SignUpController";
-    private static final String INDEX = "index.jsp";
-    private static final String ADD_POST = "AddPostController";
-    private static final String GET_LIST_PROJECT = "GetListProjectController";
-    private static final String GET_LIST_POST = "GetPostController";
-    private static final String EDIT_POST = "EditPostController";
-    private static final String UPDATE_POST = "UpdatePostController";
-    
+public class UpdatePostController extends HttpServlet {
+    private static final String ERROR = "mod-edit-post.jsp";
+    private static final String SUCCESS = "mod-edit-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
-            }else if("Create account".equals(action)){
-                url = SIGNUP;
+            HttpSession session = request.getSession();
+            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            
+            String postID = request.getParameter("post-id");
+            String postTitle = request.getParameter("post-title");
+            String postAuthor = request.getParameter("post-author");
+            String postImage = request.getParameter("post-thumbnail");
+            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
+            String[] postTags = request.getParameter("post-tag").split(",");
+            String projectID = request.getParameter("project-name");
+            
+            PostsDTO post = new PostsDTO(postID, postTitle, "", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            
+            PostsDAO dao = new PostsDAO();
+            boolean check = dao.update(post);
+            
+            if (check) {
+                url = SUCCESS;
             }
-            else if ("AddPost".equals(action)) {
-                url = ADD_POST;
-            }
-            else if ("GetListProject".equals(action)) {
-                url = GET_LIST_PROJECT;
-            }
-            else if ("GetListPost".equals(action)) {
-                url = GET_LIST_POST;
-            }
-            else if ("EditPost".equals(action)) {
-                url = EDIT_POST;
-            }
-            else if ("UpdatePost".equals(action)) {
-                url = UPDATE_POST;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -5,9 +5,18 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,48 +26,44 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author VODUCMINH
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String SIGNUP = "SignUpController";
-    private static final String INDEX = "index.jsp";
-    private static final String ADD_POST = "AddPostController";
-    private static final String GET_LIST_PROJECT = "GetListProjectController";
-    private static final String GET_LIST_POST = "GetPostController";
-    private static final String EDIT_POST = "EditPostController";
-    private static final String UPDATE_POST = "UpdatePostController";
-    
+public class EditPostController extends HttpServlet {
+    private static final String ERROR = "mod-edit-post.jsp";
+    private static final String SUCCESS = "mod-edit-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
-            }else if("Create account".equals(action)){
-                url = SIGNUP;
+            String postID = request.getParameter("id");
+            
+            PostsDAO postDao = new PostsDAO();
+            ProjectDAO projectDao = new ProjectDAO();
+            TagsDAO tagDao = new TagsDAO();
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            
+            
+            List<TagDetailsDTO> listDetailTag = new ArrayList<>();
+            List<TagsDTO> listTag = tagDao.getListTag(postID);
+            
+            for (TagsDTO tagsDTO : listTag) {
+                listDetailTag.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
             }
-            else if ("AddPost".equals(action)) {
-                url = ADD_POST;
-            }
-            else if ("GetListProject".equals(action)) {
-                url = GET_LIST_PROJECT;
-            }
-            else if ("GetListPost".equals(action)) {
-                url = GET_LIST_POST;
-            }
-            else if ("EditPost".equals(action)) {
-                url = EDIT_POST;
-            }
-            else if ("UpdatePost".equals(action)) {
-                url = UPDATE_POST;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            
+            List<ProjectDTO> list = projectDao.getAllProject();
+            PostsDTO post = postDao.getPostWithID(postID);
+            
+            request.setAttribute("DETAIL_TAG", listDetailTag);
+            request.setAttribute("POST_DETAIL", post);
+            request.setAttribute("PROJECT_LIST", list);
+            url = SUCCESS;
+            
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

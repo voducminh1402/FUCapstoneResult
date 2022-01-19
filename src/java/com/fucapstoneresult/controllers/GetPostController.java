@@ -5,8 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.PostsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,17 +26,17 @@ public class GetPostController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetPostController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetPostController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = ERROR;
+        try {
+            PostsDAO postDao = new PostsDAO();
+            List<PostsDTO> postList = postDao.getAllPost();
+            request.setAttribute("POST_LIST", postList);
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
