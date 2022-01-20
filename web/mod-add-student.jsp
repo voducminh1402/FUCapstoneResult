@@ -101,29 +101,36 @@
 
 
                 <div class="content-detail content-post add-post">
-                    <h2>Lựa Chọn Giảng Viên Hướng Dẫn Cho Đồ Án</h2>
-                    <c:if test="${requestScope.PROJECT_LIST == null || requestScope.INSTRUCTOR_LIST == null}">
-                        <c:redirect url="MainController?action=GetListProject&page=add-projectinstructor"></c:redirect>
-                    </c:if>
+                    <h2>Thêm Sinh Viên</h2>
                     <form action="MainController" method="POST">
+                        <label for="">Mã Sinh Viên</label><br>
+                        <input type="text" name="student-id" required>
+                        <label for="">Tên Sinh Viên</label><br>
+                        <input type="text" name="student-name" required>
+                        <label for="">Ảnh Sinh Viên</label>
+                        <div class="project-add-upload__image post-upload__image">
+                            <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
+                            <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
+                            <input type="hidden" id="mod-post__preview-input" name="student-image">
+                            <a id="mod-post__preview-link" href="">
+                                <img id="mod-post__preview-image" src="" alt="">
+                            </a>
+                        </div>
 
-                        <select name="project-id" id="" required>
-                            <option disabled selected>Lựa Chọn Đồ Án Cần Thêm Giảng Viên Hướng Dẫn</option>
-                            <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
-                                <option value="${o.projectID}">${o.projectName}</option>
+                        <c:if test="${requestScope.TEAM_LIST == null}">
+                            <c:redirect url="MainController?action=GetListProject&page=add-student"></c:redirect>
+                        </c:if>
+                        <select name="team-id" id="" required>
+                            <option disabled selected>Lựa Chọn Nhóm Cho Sinh Viên</option>
+                            <c:forEach items="${requestScope.TEAM_LIST}" var="o">
+                                <option value="${o.teamID}">${o.teamName}</option>
                             </c:forEach>
                         </select>
                         <br>
 
-                        <select name="instructor-id" id="" required>
-                            <option disabled selected>Lựa Chọn Giảng Viên Hướng Dẫn Cho Đồ Án</option>
-                            <c:forEach items="${requestScope.INSTRUCTOR_LIST}" var="o">
-                                <option value="${o.instructorID}">${o.instructorName}</option>
-                            </c:forEach>
-                        </select>
 
                         <div class="add-project-submit">
-                            <button type="submit" name="action" value="AddProjectInstructor">Lưu</button>
+                            <button type="submit" name="action" value="AddStudent">Lưu</button>
                             <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                         </div>
                     </form>

@@ -176,9 +176,9 @@ public class InstructorDAO {
                 rs = stm.executeQuery();
                 
                 while (rs.next()) {
-                    String instructorID = rs.getString("instructorID");
-                    String instructorName = rs.getString("instructorName");
-                    String instructorImage = rs.getString("instructorImage");
+                    String instructorID = rs.getString("InstructorID");
+                    String instructorName = rs.getString("InstructorName");
+                    String instructorImage = rs.getString("InstructorImage");
                     
                     List.add(new InstructorDTO(instructorID, instructorName, instructorImage));
                 }

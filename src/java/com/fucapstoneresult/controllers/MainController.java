@@ -34,7 +34,6 @@ public class MainController extends HttpServlet {
     private static final String ADD_SEMESTER = "AddSemesterController";
     private static final String ADD_TEAM = "AddTeamController";
     private static final String ADD_STUDENT = "AddStudentController";
-    private static final String ADD_MAJOR = "AddMajorController";
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
     
@@ -82,9 +81,6 @@ public class MainController extends HttpServlet {
             }
             else if ("AddStudent".equals(action)) {
                 url = ADD_STUDENT;
-            }
-            else if ("AddMajor".equals(action)) {
-                url = ADD_MAJOR;
             }
             else if ("AddProjectInstructor".equals(action)) {
                 url = ADD_PROJECT_INSTRUCTOR;
