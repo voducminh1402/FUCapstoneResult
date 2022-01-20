@@ -1,9 +1,13 @@
+<%-- Document : admin Created on : Jan 18, 2022, 11:06:28 PM Author : HP --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@page
+contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
     <title>FPT Capstone Project Result</title>
     <link
       rel="stylesheet"
@@ -19,6 +23,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./assets/css/mod-project.css" />
+    <link rel="stylesheet" href="./assets/css/mod-post.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
     <link rel="stylesheet" href="./assets/css/responsive.css" />
   </head>
@@ -198,37 +203,56 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Le Hong Anh</td>
-                      <td>anhlhse150515@fpt.edu.vn</td>
-                      <td>01/01/2021</td>
-                      <td>Admin</td>
-                      <td>Enable</td>
-                      <td class="last-type__menu">
-                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                        <div class="more-choice__menu">
-                          <div class="more-choice__item">
-                            <a href="">
-                              <span>Xem Chi Tiết</span>
-                              <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
+                    <c:if test="${requestScope.LIST_USER==null}">
+                      <c:redirect
+                        url="MainController?action=Load All User"
+                      ></c:redirect>
+                    </c:if>
+
+                    <c:forEach
+                      items="${requestScope.LIST_USER}"
+                      var="o"
+                      varStatus="counter"
+                    >
+                      <tr>
+                        <td>${counter.count}</td>
+                        <td>${o.userName}</td>
+                        <td>${o.email}</td>
+                        <td>${o.dateCreated}</td>
+                        <td>
+                          <c:if test="${o.roleID==1}"> User </c:if>
+                          <c:if test="${o.roleID==2}"> Moderator </c:if>
+                          <c:if test="${o.roleID==3}"> Admin </c:if>
+                        </td>
+                        <td>
+                          <c:if test="${o.userStatus==2}"> Enable </c:if>
+                          <c:if test="${o.userStatus==3}"> Disable </c:if>
+                        </td>
+                        <td class="last-type__menu">
+                          <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                          <div class="more-choice__menu">
+                            <div class="more-choice__item">
+                              <a href="">
+                                <span>Xem Chi Tiết</span>
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="more-choice__item">
+                              <a href="">
+                                <span>Chỉnh Sửa</span>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                              </a>
+                            </div>
+                            <div class="more-choice__item">
+                              <a href="">
+                                <span>Xóa</span>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                              </a>
+                            </div>
                           </div>
-                          <div class="more-choice__item">
-                            <a href="">
-                              <span>Chỉnh Sửa</span>
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </a>
-                          </div>
-                          <div class="more-choice__item">
-                            <a href="">
-                              <span>Xóa</span>
-                              <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -251,7 +275,7 @@
 
     <div class="add-project-menu">
       <h2>Thêm Người Dùng</h2>
-      <form action="MainController">
+      <form action="MainController" id="form">
         <label for="name">Họ Và Tên</label><br />
         <p class="name-message"></p>
         <input name="name" type="text" id="name" />
@@ -277,11 +301,28 @@
         </select>
 
         <label for="image">Ảnh</label>
-        <div class="project-add-upload__image">
+        <div
+          class="project-add-upload__image post-upload__image"
+          style="background-color: none"
+        >
           <label style="margin: 0" for="file"
             ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
           >
-          <input type="file" name="image" id="file" placeholder="Tải Ảnh Lên" />
+          <input
+            type="file"
+            name="file"
+            id="file"
+            placeholder="Tải Ảnh Lên"
+            required
+          /><br />
+          <input
+            type="hidden"
+            id="mod-post__preview-input"
+            name="image"
+          />
+          <a id="mod-post__preview-link" href="">
+            <img id="mod-post__preview-image" src="" alt=""/>
+          </a>
         </div>
 
         <div class="add-project-submit">
@@ -294,6 +335,136 @@
     </div>
 
     <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
+    <script src="./ckeditor/ckeditor.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"
+      integrity="sha512-9UR1ynHntZdqHnwXKTaOm1s6V9fExqejKvg5XMawEMToW4sSw+3jtLrYfZPijvnwnnE8Uol1O9BcAskoxgec+g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/js/app.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#sidebarCollapse").on("click", function () {
+          $("#sidebar").toggleClass("active");
+        });
+      });
+    </script>
+    <script>
+      CKEDITOR.plugins.addExternal(
+        "imgur",
+        "/FUCapstoneResult/ckeditor/plugins/imgur/",
+        "plugin.js"
+      );
+      var editor = CKEDITOR.replace("editor", {
+        extraPlugins: "imgur",
+      });
+
+      CKEDITOR.editorConfig = function (config) {
+        config.extraPlugins = "imgur";
+        config.imgurClientID = "424e57033a8d4ea";
+      };
+
+      editor.on("change", function (evt) {
+        var data = CKEDITOR.instances.editor.getData();
+        document.getElementById("post-content").value = data;
+        console.log(data);
+      });
+    </script>
+    <script>
+      $("document").ready(function () {
+        $("input[type=file]").on("change", function () {
+          var $files = $(this).get(0).files;
+          if ($files.length) {
+            if ($files[0].size > $(this).data("max-size") * 1024) {
+              console.log("Vui lòng chọn file có dung lượng nhỏ hơn!");
+              return false;
+            }
+
+            console.log("Đang upload hình ảnh lên imgur...");
+            var apiUrl = "https://api.imgur.com/3/image";
+            var apiKey = "dcd0ee22791c49d";
+            var settings = {
+              async: false,
+              crossDomain: true,
+              processData: false,
+              contentType: false,
+              type: "POST",
+              url: apiUrl,
+              headers: {
+                Authorization: "Client-ID " + apiKey,
+                Accept: "application/json",
+              },
+              mimeType: "multipart/form-data",
+            };
+            var formData = new FormData();
+            formData.append("image", $files[0]);
+            settings.data = formData;
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+              var obj = JSON.parse(response);
+              document.getElementById("mod-post__preview-link").src =
+                obj.data.link;
+              document.getElementById("mod-post__preview-image").src =
+                obj.data.link;
+              document.getElementById("mod-post__preview-input").value =
+                obj.data.link;
+              obj.data.link;
+            });
+          }
+        });
+      });
+    </script>
+    <script>
+      $(function () {
+        $("input, select")
+          .on("change", function (event) {
+            var $element = $(event.target),
+              $container = $element.closest(".example");
+
+            if (!$element.data("tagsinput")) return;
+
+            var val = $element.val();
+            if (val === null) {
+              val = "null";
+            } else {
+              document.getElementById("post-tag-hidden").value = val;
+            }
+
+            $("code", $("pre.val", $container)).html(
+              $.isArray(val)
+                ? JSON.stringify(val)
+                : '"' + val.replace('"', '\\"') + '"'
+            );
+            $("code", $("pre.items", $container)).html(
+              JSON.stringify($element.tagsinput("items"))
+            );
+          })
+          .trigger("change");
+      });
+    </script>
     <script
       src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
       type="text/javascript"
@@ -323,7 +494,6 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
-
     <script src="./assets/js/app.js"></script>
 
     <script type="text/javascript">
@@ -343,7 +513,6 @@
         content_css: "./assets/css/mod-project.css",
       });
     </script>
-
     <script src="./assets/js/admin.js"></script>
   </body>
 </html>

@@ -99,41 +99,39 @@
                 </div>
             </nav>
             <div class="content-detail content-post add-post">
-                <h2>Thêm Bài Đăng Đồ Án</h2>
+                <h2>Sửa Bài Đăng Đồ Án</h2>
                 <form action="MainController" method="POST">
-                    <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Tạo Bài Đăng</label><br>
-                    <c:if test="${requestScope.PROJECT_LIST == null}">
-                        <c:redirect url="MainController?action=GetListProject"></c:redirect>
-                    </c:if>
+                    <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Sửa Lại Bài Đăng</label><br>
                     <select name="project-name" id="" required>
                         <option disabled selected>Đồ Án Tốt Nghiệp</option>
                         <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
                             <option value="${o.projectID}">${o.projectName}</option>
                         </c:forEach>
                     </select><br>
-                    <label for="">Tiêu Đề Bài Đăng</label><br>
-                    <input type="text" name="post-title" required>
-                    <label for="">Tên Tác Giả</label><br>
-                    <input type="text" name="post-author" required>
-                    <label for="">Ảnh Bìa Bài Đăng</label>
+                    <input name="post-id" value="${requestScope.POST_DETAIL.postID}" type="hidden">
+                    <label for="">Sửa Tiêu Đề Bài Đăng</label><br>
+                    <input type="text" name="post-title" value="${requestScope.POST_DETAIL.postTitle}" >
+                    <label for="">Sửa Tên Tác Giả</label><br>
+                    <input type="text" name="post-author" value="${requestScope.POST_DETAIL.postAuthor}" >
+                    <label for="">Sửa Bìa Bài Đăng</label>
                     <div class="project-add-upload__image post-upload__image">
                         <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
-                        <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
-                        <input type="hidden" id="mod-post__preview-input" name="post-thumbnail">
+                        <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" ><br>
+                        <input value="${requestScope.POST_DETAIL.postImage}" type="hidden" id="mod-post__preview-input" name="post-thumbnail">
                         <a id="mod-post__preview-link" href="">
-                            <img id="mod-post__preview-image" src="" alt="">
+                            <img id="mod-post__preview-image" src="${requestScope.POST_DETAIL.postImage}" alt="">
                         </a>
                     </div>
-                    <label for="">Thêm Tag Của Bài Viết</label><br>
-                    <input id="post-tag" data-role="tagsinput" type="text" required>
+                    <label for="">Sửa Tag Của Bài Viết</label><br>
+                    <input id="post-tag" data-role="tagsinput" type="text" >
                     <input id="post-tag-hidden" type="hidden" name="post-tag">
-                    <label for="">Nội Dung</label><br>
-                    <textarea id="editor" cols="30" rows="50" required></textarea>
-                    <input id="post-content" type="hidden" name="post-content">
+                    <label for="">Sửa Nội Dung</label><br>
+                    <textarea id="editor" cols="30" rows="50" ></textarea>
+                    <input id="post-content" type="hidden" name="post-content" value="${requestScope.POST_DETAIL.postContent}">
                     <div class="add-project-submit add-post-submit">
-                        <button type="submit" name="action" value="AddPost">Lưu</button>
+                        <button type="submit" name="action" value="UpdatePost">Cập Nhật</button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                    </div>
+                    </div> 
                 </form>
             </div>
         </div>
@@ -170,8 +168,13 @@
         editor.on( 'change', function( evt ) {
             var data = CKEDITOR.instances.editor.getData();
             document.getElementById("post-content").value = data;
-            console.log(data)
         });
+        
+        let content = document.getElementById("post-content").value;
+        
+        console.log(content)
+        
+        CKEDITOR.instances.editor.setData(content);
     </script>
     <script>
         $("document").ready(function () {
@@ -236,6 +239,11 @@
                 }).trigger('change');
             });
     </script>
-    
+    <script>
+        $('#post-tag').tagsinput('add', 'init');
+        <c:forEach items="${requestScope.DETAIL_TAG}" var="o">
+            $('#post-tag').tagsinput('add', '${o.tagDetailName}');
+        </c:forEach>
+    </script>
 </body>
 </html>

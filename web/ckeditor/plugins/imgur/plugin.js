@@ -57,7 +57,7 @@
                                     if(res.data.error) {
                                         alert(editor.lang.imgur.failToUpload + res.data.error);
                                     } else {
-                                        content = '<img src="' + res.data.link +'"/>';
+                                        content = "<img src='" + res.data.link +"'/>";
                                         var element = CKEDITOR.dom.element.createFromHtml(content);
                                         editor.insertElement(element);
                                     }

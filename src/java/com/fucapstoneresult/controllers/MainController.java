@@ -21,9 +21,22 @@ public class MainController extends HttpServlet {
     
     private static final String LOGIN = "LoginController";
     private static final String SIGNUP = "SignUpController";
+    private static final String ADD_A_USER = "AddAUserController";
     private static final String INDEX = "index.jsp";
     private static final String ADD_POST = "AddPostController";
     private static final String GET_LIST_PROJECT = "GetListProjectController";
+    private static final String GET_LIST_POST = "GetPostController";
+    private static final String EDIT_POST = "EditPostController";
+    private static final String UPDATE_POST = "UpdatePostController";
+    private static final String REMOVE_POST = "RemovePostController";
+    private static final String LOAD_ALL_USER = "LoadAllUserController";
+    private static final String ADD_PROJECT = "AddProjectController";
+    private static final String ADD_SEMESTER = "AddSemesterController";
+    private static final String ADD_TEAM = "AddTeamController";
+    private static final String ADD_STUDENT = "AddStudentController";
+    private static final String ADD_MAJOR = "AddMajorController";
+    private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
+    private static final String ADD_INSTRUCTOR = "AddInstructorController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,12 +47,50 @@ public class MainController extends HttpServlet {
                 url = LOGIN;
             }else if("Create account".equals(action)){
                 url = SIGNUP;
+            }else if("Add a user".equals(action)){
+                url = ADD_A_USER;
             }
             else if ("AddPost".equals(action)) {
                 url = ADD_POST;
             }
             else if ("GetListProject".equals(action)) {
                 url = GET_LIST_PROJECT;
+            }
+            else if("Load All User".equals(action)){
+                url = LOAD_ALL_USER;
+            }
+            else if ("GetListPost".equals(action)) {
+                url = GET_LIST_POST;
+            }
+            else if ("EditPost".equals(action)) {
+                url = EDIT_POST;
+            }
+            else if ("UpdatePost".equals(action)) {
+                url = UPDATE_POST;
+            }
+            else if ("RemovePost".equals(action)) {
+                url = REMOVE_POST;
+            }
+            else if ("AddProject".equals(action)) {
+                url = ADD_PROJECT;
+            }
+            else if ("AddSemester".equals(action)) {
+                url = ADD_SEMESTER;
+            }
+            else if ("AddTeam".equals(action)) {
+                url = ADD_TEAM;
+            }
+            else if ("AddStudent".equals(action)) {
+                url = ADD_STUDENT;
+            }
+            else if ("AddMajor".equals(action)) {
+                url = ADD_MAJOR;
+            }
+            else if ("AddProjectInstructor".equals(action)) {
+                url = ADD_PROJECT_INSTRUCTOR;
+            }
+            else if ("AddInstructor".equals(action)) {
+                url = ADD_INSTRUCTOR;
             }
         } catch (Exception e) {
             e.printStackTrace();
