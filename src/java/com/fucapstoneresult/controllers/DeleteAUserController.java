@@ -5,65 +5,39 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class MainController extends HttpServlet {
-    
-    private static final String LOGIN = "LoginController";
-    private static final String SIGNUP = "SignUpController";
-    private static final String ADD_A_USER = "AddAUserController";
-    private static final String INDEX = "index.jsp";
-    private static final String ADD_POST = "AddPostController";
-    private static final String GET_LIST_PROJECT = "GetListProjectController";
-    private static final String LOAD_ALL_USER = "LoadAllUserController";
-    private static final String DELETE_A_USER = "DeleteAUserController";
-    private static final String SEARCH_USERS = "SearchUsersController";
-    private static final String SHOW_USER_DETAIL = "ShowUserDetailController";
-    private static final String EDIT_USER_INFO = "EditUserInfoController";
-    
+@WebServlet(name = "DeleteAUserController", urlPatterns = {"/DeleteAUserController"})
+public class DeleteAUserController extends HttpServlet {
+
+    private static final String SUCCESS = "admin.jsp";
+    private static final String FAIL = "error.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = "";
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        String url = SUCCESS;
         try {
-            if("Login".equals(action)){
-                url = LOGIN;
-            }else if("Create account".equals(action)){
-                url = SIGNUP;
-            }else if("Add a user".equals(action)){
-                url = ADD_A_USER;
-            }
-            else if ("AddPost".equals(action)) {
-                url = ADD_POST;
-            }
-            else if ("GetListProject".equals(action)) {
-                url = GET_LIST_PROJECT;
-            }else if("Load All User".equals(action)){
-                url = LOAD_ALL_USER;
-            }else if("DeleteAUser".equals(action)){
-                url = DELETE_A_USER;
-            }else if("SearchUser".equals(action)){
-                url = SEARCH_USERS;
-            }else if("showUserDetail".equals(action)){
-                url = SHOW_USER_DETAIL;
-            }else if("EditUserInfo".equals(action)){
-                url = EDIT_USER_INFO;
+            String userID = request.getParameter("id");
+            UserDAO dao = new UserDAO();
+            if (!dao.deleteUser(userID)) {
+                url = FAIL;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+        } finally {
+            response.sendRedirect(url);
         }
     }
 

@@ -22,8 +22,10 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
-private static final String SUCCESS = "index.html";
-private static final String FAIL = "login.html";
+
+    private static final String SUCCESS = "index.html";
+    private static final String FAIL = "login.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -33,14 +35,14 @@ private static final String FAIL = "login.html";
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLoginUser(email, password);
-            if(user!=null){
+            if (user != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", user);
                 url = SUCCESS;
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             response.sendRedirect(url);
         }
     }

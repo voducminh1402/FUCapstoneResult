@@ -59,4 +59,21 @@
       e.preventDefault();
     }
   });
+
+  document
+    .getElementById("close-user-detail-info")
+    .addEventListener("click", function () {
+      console.log("close");
+      document
+        .querySelector(".show-user-detail")
+        .classList.add("show-user-detail-disappear");
+    });
+  document
+    .getElementById("show-user-detail-info")
+    .addEventListener("click", function () {
+      console.log("show");
+      document
+        .querySelector(".show-user-detail")
+        .classList.remove("show-user-detail-disappear");
+    });
 })();
