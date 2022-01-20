@@ -5,14 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +18,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
+public class AddStudentController extends HttpServlet {
+
+    private static final String ERROR = "login.html";
+    private static final String SUCCESS = "mod-add-student.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,27 +33,27 @@ public class UpdatePostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            String studentID = request.getParameter("student-id");
+            String studentName = request.getParameter("student-name");
+            String studentImage = request.getParameter("student-image");
+            String teamID = request.getParameter("team-id");
             
-            PostsDTO post = new PostsDTO(postID, postTitle, "", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            StudentDAO dao = new StudentDAO();
             
-            PostsDAO dao = new PostsDAO();
-            boolean check = dao.update(post);
-            
-            if (check) {
-                url = SUCCESS;
+            if(userLogin != null){
+                
+                StudentDTO stu = new StudentDTO(studentID, studentName, "1", studentImage, teamID);
+                boolean check =  dao.insertStudent(stu);
+                
+                if(check){
+                    url = SUCCESS;
+                }
+                
             }
-        } 
-        catch (Exception e) {
+            
+        } catch (Exception e) {
             System.out.println(e.toString());
-        }
-        finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

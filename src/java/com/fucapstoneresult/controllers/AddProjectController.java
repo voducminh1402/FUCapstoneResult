@@ -5,8 +5,8 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,11 +21,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
+public class AddProjectController extends HttpServlet {
+    private static final String ERROR = "login.html";
+    private static final String SUCCESS = "mod-add-project.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,27 +35,30 @@ public class UpdatePostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            UUID uuid = UUID.randomUUID();
+            String projectID = uuid.toString();
+            String projectName = request.getParameter("project-name");
+            String projectDescription = request.getParameter("project-description");
+            String projectImage = request.getParameter("project-image");
+            String projectScore = request.getParameter("project-score");
+            String semesterID = request.getParameter("semester-id");
             
-            PostsDTO post = new PostsDTO(postID, postTitle, "", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            ProjectDAO dao = new ProjectDAO();
             
-            PostsDAO dao = new PostsDAO();
-            boolean check = dao.update(post);
-            
-            if (check) {
-                url = SUCCESS;
+            if(userLogin != null){
+                
+                ProjectDTO project = new ProjectDTO(projectID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
+                boolean check = dao.insertProject(project);
+                
+                if(check){
+                    url = SUCCESS;
+                }
+                
             }
-        } 
-        catch (Exception e) {
+            
+        } catch (Exception e) {
             System.out.println(e.toString());
-        }
-        finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
