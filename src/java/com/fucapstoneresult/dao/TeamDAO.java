@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -156,5 +158,46 @@ public class TeamDAO {
         return check;
     }
      
+    
+    public List<TeamDTO> getAllTeam() throws SQLException {
+        List<TeamDTO> List = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT TeamID, TeamName "
+                            + " FROM Teams ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String teamID = rs.getString("TeamID");
+                    String teamName = rs.getString("TeamName");
+                    
+                    List.add(new TeamDTO(teamID, teamName));
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return List;
+    }
     
 }

@@ -5,14 +5,14 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.InstructorDAO;
-import com.fucapstoneresult.dao.ProjectDAO;
-import com.fucapstoneresult.dao.TeamDAO;
-import com.fucapstoneresult.models.InstructorDTO;
-import com.fucapstoneresult.models.ProjectDTO;
-import com.fucapstoneresult.models.TeamDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,41 +23,34 @@ import javax.servlet.http.HttpSession;
  *
  * @author VODUCMINH
  */
-public class GetListProjectController extends HttpServlet {
-    private static final String TARGET = "mod-add-post.jsp";
-    private static final String ADD_TEAM = "mod-add-team.jsp";
-    private static final String ADD_PROJECT_INSTRUCTOR = "mod-add-project-instructor.jsp";
-    private static final String ADD_STUDENT = "mod-add-student.jsp";
-    private static final String ERROR = "login.html";
+public class UpdatePostController extends HttpServlet {
+    private static final String ERROR = "mod-edit-post.jsp";
+    private static final String SUCCESS = "mod-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
+            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            ProjectDAO dao = new ProjectDAO();
-            List<ProjectDTO> list = dao.getAllProject();
-            InstructorDAO DAO = new InstructorDAO();
-            List<InstructorDTO> List = DAO.getAllInstructor();
-            TeamDAO DAOteam = new TeamDAO();
-            List<TeamDTO> ListTeam = DAOteam.getAllTeam();
+            String postID = request.getParameter("post-id");
+            String postTitle = request.getParameter("post-title");
+            String postAuthor = request.getParameter("post-author");
+            String postImage = request.getParameter("post-thumbnail");
+            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
+            String[] postTags = request.getParameter("post-tag").split(",");
+            String projectID = request.getParameter("project-name");
             
-            request.setAttribute("PROJECT_LIST", list);
-            String page = request.getParameter("page");
-            request.setAttribute("INSTRUCTOR_LIST", List);
-            request.setAttribute("TEAM_LIST", ListTeam);
+            PostsDTO post = new PostsDTO(postID, postTitle, "", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
             
-            if(page.equals("add-post")){
-                url = TARGET;
-            }else if(page.equals("add-team")){
-                url = ADD_TEAM;
-            }else if(page.equals("add-projectinstructor")){
-                url = ADD_PROJECT_INSTRUCTOR;
-            }else if(page.equals("add-student")){
-                url = ADD_STUDENT;
+            PostsDAO dao = new PostsDAO();
+            boolean check = dao.update(post);
+            
+            if (check) {
+                url = SUCCESS;
             }
-            
         } 
         catch (Exception e) {
             System.out.println(e.toString());

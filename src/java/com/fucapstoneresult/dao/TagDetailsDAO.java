@@ -19,26 +19,26 @@ import java.util.List;
  * @author PhongVu
  */
 public class TagDetailsDAO {
-    public List<TagDetailsDTO> getListTagDetails(String search) throws SQLException{
-        List<TagDetailsDTO> listtagdetail = new ArrayList<>();
+    public TagDetailsDTO getTagDetails(String tagID) throws SQLException{
+        TagDetailsDTO tagDetail = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         
         try {
-           conn=com.fucapstoneresult.utils.DBUtils.getConnection();
+           conn = DBUtils.getConnection();
            if(conn!=null){
                 String sql = " SELECT TagDetailID, TagDetailName "
                             +" FROM TagDetails "
-                            +" WHERE TagDetailID like ? ";
+                            +" WHERE TagDetailID = ? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, "%"+search+"%");
+                stm.setString(1, tagID);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                if(rs.next()){
                     String TagDetailID = rs.getString("TagDetailID");
                     String TagdetailName = rs.getString("TagDetailName");
                     
-                    listtagdetail.add(new TagDetailsDTO(TagDetailID, TagdetailName));
+                    tagDetail = new TagDetailsDTO(TagDetailID, TagdetailName);
                 }
             } 
        } catch (Exception e) {
@@ -50,7 +50,7 @@ public class TagDetailsDAO {
         }
         
         
-        return listtagdetail;
+        return tagDetail;
    }
     
    
