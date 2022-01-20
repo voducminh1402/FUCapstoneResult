@@ -68,6 +68,10 @@
         <servlet-name>GetListIntructorController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.GetListIntructorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddStudentController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddStudentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>GetListIntructorController</servlet-name>
         <url-pattern>/GetListIntructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddStudentController</servlet-name>
+        <url-pattern>/AddStudentController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
