@@ -5,65 +5,39 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.InstructorDAO;
-import com.fucapstoneresult.dao.ProjectDAO;
-import com.fucapstoneresult.dao.TeamDAO;
-import com.fucapstoneresult.models.InstructorDTO;
-import com.fucapstoneresult.models.ProjectDTO;
-import com.fucapstoneresult.models.TeamDTO;
+import com.fucapstoneresult.dao.UserDAO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class GetListProjectController extends HttpServlet {
-    private static final String TARGET = "mod-add-post.jsp";
-    private static final String ADD_TEAM = "mod-add-team.jsp";
-    private static final String ADD_PROJECT_INSTRUCTOR = "mod-add-project-instructor.jsp";
-    private static final String ADD_STUDENT = "mod-add-student.jsp";
-    private static final String ERROR = "login.html";
-    
+@WebServlet(name = "DeleteAUserController", urlPatterns = {"/DeleteAUserController"})
+public class DeleteAUserController extends HttpServlet {
+
+    private static final String SUCCESS = "admin.jsp";
+    private static final String FAIL = "error.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SUCCESS;
         try {
-            
-            ProjectDAO dao = new ProjectDAO();
-            List<ProjectDTO> list = dao.getAllProject();
-            InstructorDAO DAO = new InstructorDAO();
-            List<InstructorDTO> List = DAO.getAllInstructor();
-            TeamDAO DAOteam = new TeamDAO();
-            List<TeamDTO> ListTeam = DAOteam.getAllTeam();
-            
-            request.setAttribute("PROJECT_LIST", list);
-            String page = request.getParameter("page");
-            request.setAttribute("INSTRUCTOR_LIST", List);
-            request.setAttribute("TEAM_LIST", ListTeam);
-            
-            if(page.equals("add-post")){
-                url = TARGET;
-            }else if(page.equals("add-team")){
-                url = ADD_TEAM;
-            }else if(page.equals("add-projectinstructor")){
-                url = ADD_PROJECT_INSTRUCTOR;
-            }else if(page.equals("add-student")){
-                url = ADD_STUDENT;
+            String userID = request.getParameter("id");
+            UserDAO dao = new UserDAO();
+            if (!dao.deleteUser(userID)) {
+                url = FAIL;
             }
-            
-        } 
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            response.sendRedirect(url);
         }
     }
 
