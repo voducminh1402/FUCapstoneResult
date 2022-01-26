@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="assets/css/mod-project.css">
+    <link rel="stylesheet" href="assets/css/mod-comment-request.css">
 
 </head>
 
@@ -81,10 +82,6 @@
                                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                                         <i class="fas fa-align-left"></i>
                                     </button>
-                                    <div class="menu-search">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -104,11 +101,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <h2>Xét Duyệt</h2>
+                            <h2>Bình Luận</h2>
                             <div class="direct-link">
                                 <i class="fas fa-home"></i>
                                 <i class="fas fa-chevron-right"></i>
-                                <span>Xét Duyệt</span>
+                                <span>Bình Luận</span>
                             </div>
                         </div>
                     </div>
@@ -118,7 +115,7 @@
                                 <div class="filter">
                                     <span>Hiển Thị</span>
                                     <select name="" id="">
-                                        <option value="">Tất Cả Trạng Thái</option>
+                                        <option value="">Tất Cả Bình Luận</option>
                                         <option value="">Đã Duyệt</option>
                                         <option value="">Đang Chờ Xét Duyệt</option>
                                         <option value="">Đã Xóa</option>
@@ -130,7 +127,7 @@
                                 <div class="manage-project">
                                     <div class="menu-search menu-search-project">
                                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Bài Đăng...">
+                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Bình Luận...">
                                     </div>
                                 </div>
                             </div>
@@ -141,61 +138,44 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th><input type="checkbox"></th>
                                         <th>Tên Người Dùng</th>
                                         <th>Email</th>
-                                        <th>Nội dung</th>
-                                        <th>Ngày yêu cầu</th>
-                                        <th>Ngày Xét Duyệt</th>
-                                        <th></th>
-                                        <th>Trạng Thái</th>
-                                        <th></th>
-                                        <th></th>
+                                        <th>Bình Luận</th>
+                                        <th>Phản Hồi Tới</th>
+
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
+                                        <td><input type="checkbox"></td>
                                         <td>Phạm Đức Huy</td>
                                         <td>PhamDucHuy@gmail.com</td>
                                         <td>
-                                            <!-- Button trigger modal -->
-                                            <button type="button " class="btn button_btn" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                <a href="mod-request-contents.html">Xem Nội Dung</a>
-                                            </button>
+                                            <p style="color: #3308ce ; font-size:15px">25/1/2021 lúc 13:00 pm</p>
+                                            <p style="color:black">Bài này thật tuyệt
+                                                vời.Rất cảm ơn những chia sẻ và đóng góp quý báu của
+                                                anh.
+                                            </p>
+                                            <nav aria-label="breadcrumb">
+                                                <ol class="breadcrumb">
+                                                    <li class="breadcrumb-item"><a href="#">Đã Duyệt</a></li>
+                                                    <li class="breadcrumb-item"><a href="#">Phản Hồi</a></li>
+                                                    <li class="breadcrumb-item"><a href="#">Chỉnh Sửa</a></li>
+                                                    <li class="breadcrumb-item"><a href="#" style="color:red">Xoá</a>
+                                                    </li>
+                                                </ol>
+                                            </nav>
                                         </td>
-                                        <td>1-10-2021</td>
-                                        <td>1-19-2021</td>
-                                        <td></td>
-                                        <td>Đang chờ</td>
                                         <td>
-                                        </td>
-                                        <td class="last-type__menu">
-                                            <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                            <div class="more-choice__menu">
-                                                <div class="more-choice__item">
-                                                    <a href="">
-                                                        <span>Xem Chi Tiết</span>
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="more-choice__item">
-                                                    <a href="">
-                                                        <span>Chỉnh Sửa</span>
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                                <div class="more-choice__item">
-                                                    <a href="">
-                                                        <span>Xóa</span>
-                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <p style="color: #3308ce">Những mẹo khi làm <br />đồ án tốt
+                                                nghiệp</p>
+                                            <i class="fa-regular fa-comment"></i><a href="blog-single.html"
+                                                style="color: #3308ce">Xem
+                                                Bài
+                                                Viết</a>
                                         </td>
                                     </tr>
-
                                 </tbody>
                             </table>
 

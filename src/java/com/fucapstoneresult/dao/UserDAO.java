@@ -20,14 +20,14 @@ import java.util.List;
  */
 public class UserDAO {
 
-    public boolean addUser(UserDTO user) throws SQLException{
+    public boolean addUser(UserDTO user) throws SQLException {
         boolean check = false;
         Connection con = null;
         PreparedStatement stm = null;
         int rs = 0;
         try {
             con = DBUtils.getConnection();
-            if(con!=null){
+            if (con != null) {
                 String sql = "INSERT INTO Users(UserID, UserName, DateCreated, UserStatusID, UserImage, Email, Password, OTP, RoleID) "
                         + " VALUES (?,?,?,?,?,?,?,?,?)";
                 stm = con.prepareStatement(sql);
@@ -41,32 +41,36 @@ public class UserDAO {
                 stm.setString(8, user.getOTP());
                 stm.setInt(9, user.getRoleID());
                 rs = stm.executeUpdate();
-                if(rs>0){
+                if (rs > 0) {
                     check = true;
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(stm!=null)stm.close();
-            if(con!=null)con.close();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
         return check;
     }
-    
-    public List<UserDTO> getAllUser() throws SQLException{
+
+    public List<UserDTO> getAllUser() throws SQLException {
         List<UserDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
             con = DBUtils.getConnection();
-            if(con!=null){
+            if (con != null) {
                 String sql = " SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                         + " FROM Users ";
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     String userID = rs.getString("UserID");
                     String userName = rs.getString("UserName");
                     String dateCreated = rs.getString("DateCreated");
@@ -82,10 +86,16 @@ public class UserDAO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(rs!=null)rs.close();
-            if(stm!=null)stm.close();
-            if(con!=null)con.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
         return list;
     }
@@ -171,6 +181,36 @@ public class UserDAO {
         return check;
     }
 
+    public boolean updateUserByAdmin(UserDTO User) throws SQLException, ClassNotFoundException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE Users SET UserStatusID=?, RoleID=? "
+                        + " WHERE UserID=? ";
+                stm = conn.prepareCall(sql);
+                stm.setInt(1, User.getUserStatus());
+                stm.setInt(2, User.getRoleID());
+                stm.setString(3, User.getUserID());
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+
     public boolean deleteUser(String userID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -179,10 +219,10 @@ public class UserDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = " UPDATE Users "
-                        + " SET UserStatus = ?"
+                        + " SET UserStatusID = ?"
                         + " WHERE UserID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setInt(1, 0);
+                stm.setInt(1, 3);
                 stm.setString(2, userID);
                 check = stm.executeUpdate() > 0 ? true : false;
             }
@@ -295,7 +335,7 @@ public class UserDAO {
             if (con != null) {
                 String sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                         + " FROM Users "
-                        + " WHERE Email = ? AND Password like ? ";
+                        + " WHERE Email = ? AND Password like ? AND UserStatusID = 2 ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, email);
                 stm.setString(2, password);
@@ -326,6 +366,70 @@ public class UserDAO {
             }
         }
         return user;
+    }
+
+    public List<UserDTO> searchUsers(int statusID, int roleID) throws SQLException {
+        List<UserDTO> list = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql;
+                if (statusID != 0 && roleID != 0) {
+                    sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
+                            + " FROM Users "
+                            + " WHERE UserStatusID = ? AND RoleID = ? ";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, statusID);
+                    stm.setInt(2, roleID);
+                } else if (statusID == 0) {
+                    sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
+                            + " FROM Users "
+                            + " WHERE RoleID = ? ";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, roleID);
+                } else if (roleID == 0) {
+                    sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
+                            + " FROM Users "
+                            + " WHERE UserStatusID = ? ";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, statusID);
+                } else {
+                    sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
+                            + " FROM Users ";
+                    stm = con.prepareStatement(sql);
+                }
+
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String userName = rs.getString("UserName");
+                    String userID = rs.getString("UserID");
+                    String dateCreated = rs.getString("DateCreated");
+                    String userImage = rs.getString("UserImage");
+                    String email = rs.getString("Email");
+                    String password = rs.getString("Password");
+                    int userStatusID = rs.getInt("UserStatusID");
+                    int userRoleID = rs.getInt("RoleID");
+                    String OTP = rs.getString("OTP");
+                    list.add(new UserDTO(userID, userName, dateCreated, userStatusID, userImage, email, password, OTP, userRoleID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
     }
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {

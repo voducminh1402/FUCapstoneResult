@@ -30,6 +30,17 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_POST = "UpdatePostController";
     private static final String REMOVE_POST = "RemovePostController";
     private static final String LOAD_ALL_USER = "LoadAllUserController";
+    private static final String DELETE_A_USER = "DeleteAUserController";
+    private static final String SEARCH_USERS = "SearchUsersController";
+    private static final String SHOW_USER_DETAIL = "ShowUserDetailController";
+    private static final String EDIT_USER_INFO = "EditUserInfoController";
+    private static final String ADD_PROJECT = "AddProjectController";
+    private static final String ADD_SEMESTER = "AddSemesterController";
+    private static final String ADD_TEAM = "AddTeamController";
+    private static final String ADD_STUDENT = "AddStudentController";
+    private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
+    private static final String ADD_INSTRUCTOR = "AddInstructorController";
+    private static final String UPDATE_PROJECT = "UpdateProjectController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,8 +59,17 @@ public class MainController extends HttpServlet {
             }
             else if ("GetListProject".equals(action)) {
                 url = GET_LIST_PROJECT;
-            }else if("Load All User".equals(action)){
+            }
+            else if("Load All User".equals(action)){
                 url = LOAD_ALL_USER;
+            }else if("DeleteAUser".equals(action)){
+                url = DELETE_A_USER;
+            }else if("SearchUser".equals(action)){
+                url = SEARCH_USERS;
+            }else if("showUserDetail".equals(action)){
+                url = SHOW_USER_DETAIL;
+            }else if("EditUserInfo".equals(action)){
+                url = EDIT_USER_INFO;
             }
             else if ("GetListPost".equals(action)) {
                 url = GET_LIST_POST;
@@ -62,6 +82,27 @@ public class MainController extends HttpServlet {
             }
             else if ("RemovePost".equals(action)) {
                 url = REMOVE_POST;
+            }
+            else if ("AddProject".equals(action)) {
+                url = ADD_PROJECT;
+            }
+            else if ("AddSemester".equals(action)) {
+                url = ADD_SEMESTER;
+            }
+            else if ("AddTeam".equals(action)) {
+                url = ADD_TEAM;
+            }
+            else if ("AddStudent".equals(action)) {
+                url = ADD_STUDENT;
+            }
+            else if ("AddProjectInstructor".equals(action)) {
+                url = ADD_PROJECT_INSTRUCTOR;
+            }
+            else if ("AddInstructor".equals(action)) {
+                url = ADD_INSTRUCTOR;
+            }
+            else if ("UpdateProject".equals(action)) {
+                url = UPDATE_PROJECT;
             }
         } catch (Exception e) {
             e.printStackTrace();
