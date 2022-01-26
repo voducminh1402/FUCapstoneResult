@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [FUCapstoneResult]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Database [FUCapstoneResult]    Script Date: 1/19/2022 11:40:58 PM ******/
 CREATE DATABASE [FUCapstoneResult]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +80,7 @@ ALTER DATABASE [FUCapstoneResult] SET QUERY_STORE = OFF
 GO
 USE [FUCapstoneResult]
 GO
-/****** Object:  Table [dbo].[Comments]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -89,7 +89,7 @@ CREATE TABLE [dbo].[Comments](
 	[CommentID] [nvarchar](50) NOT NULL,
 	[PostID] [nvarchar](50) NOT NULL,
 	[UserID] [nvarchar](50) NOT NULL,
-	[CommentDetail] [ntext] NOT NULL,
+	[CommentDetail] [nvarchar](max) NOT NULL,
 	[CommentTime] [datetime] NOT NULL,
 	[CommentStatusID] [int] NOT NULL,
  CONSTRAINT [PK_Comments] PRIMARY KEY CLUSTERED 
@@ -98,7 +98,7 @@ CREATE TABLE [dbo].[Comments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CommentStatus]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[CommentStatus]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -112,7 +112,7 @@ CREATE TABLE [dbo].[CommentStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Instructors]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Instructors]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,15 +120,14 @@ GO
 CREATE TABLE [dbo].[Instructors](
 	[InstructorID] [nvarchar](50) NOT NULL,
 	[InstructorName] [nvarchar](200) NOT NULL,
-	[InstructorImage] [ntext] NOT NULL,
-	[ProjectID] [nvarchar](50) NULL,
+	[InstructorImage] [nvarchar](max) NOT NULL,
  CONSTRAINT [PK_Instructors] PRIMARY KEY CLUSTERED 
 (
 	[InstructorID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Majors]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Majors]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,7 +142,7 @@ CREATE TABLE [dbo].[Majors](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[POPostStatuses]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[POPostStatuses]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -157,29 +156,29 @@ CREATE TABLE [dbo].[POPostStatuses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Posts]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Posts]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Posts](
 	[PostID] [nvarchar](50) NOT NULL,
-	[PostTitle] [nvarchar](500) NOT NULL,
+	[PostTitle] [nvarchar](300) NOT NULL,
 	[PostDate] [date] NOT NULL,
 	[PostAuthor] [nvarchar](200) NOT NULL,
-	[PostContent] [ntext] NOT NULL,
-	[PostImage] [ntext] NOT NULL,
+	[PostContent] [nvarchar](max) NOT NULL,
+	[PostImage] [nvarchar](max) NOT NULL,
 	[LastEditedUser] [nvarchar](50) NOT NULL,
 	[Upvote] [int] NOT NULL,
 	[PostStatusID] [int] NOT NULL,
-	[ProjectID] [nvarchar](50) NULL,
+	[ProjectID] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Posts] PRIMARY KEY CLUSTERED 
 (
 	[PostID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[PostStatuses]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[PostStatuses]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -193,7 +192,7 @@ CREATE TABLE [dbo].[PostStatuses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectInstructor]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectInstructor]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +207,7 @@ CREATE TABLE [dbo].[ProjectInstructor](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerCommentStatuses]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerCommentStatuses]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -222,25 +221,25 @@ CREATE TABLE [dbo].[ProjectOwnerCommentStatuses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerPostComments]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerPostComments]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[ProjectOwnerPostComments](
 	[CommentID] [nvarchar](50) NOT NULL,
-	[POPostID] [nvarchar](50) NULL,
-	[UserID] [nvarchar](50) NULL,
-	[CommentDetail] [ntext] NULL,
-	[CommentTime] [datetime] NULL,
-	[CommentStatusID] [int] NULL,
+	[POPostID] [nvarchar](50) NOT NULL,
+	[UserID] [nvarchar](50) NOT NULL,
+	[CommentDetail] [nvarchar](max) NOT NULL,
+	[CommentTime] [datetime] NOT NULL,
+	[CommentStatusID] [int] NOT NULL,
  CONSTRAINT [PK_ProjectOwnerPostComments] PRIMARY KEY CLUSTERED 
 (
 	[CommentID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerPosts]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerPosts]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -248,21 +247,21 @@ GO
 CREATE TABLE [dbo].[ProjectOwnerPosts](
 	[POPostID] [nvarchar](50) NOT NULL,
 	[POPostTitle] [nvarchar](500) NOT NULL,
-	[POPostContent] [ntext] NOT NULL,
-	[POPostImage] [ntext] NOT NULL,
+	[POPostContent] [nvarchar](max) NOT NULL,
+	[POPostImage] [nvarchar](max) NOT NULL,
 	[POPostDate] [date] NOT NULL,
 	[StudentID] [nvarchar](50) NOT NULL,
 	[LastEditedUser] [nvarchar](50) NOT NULL,
 	[Upvote] [nchar](10) NOT NULL,
 	[POPostStatusID] [int] NOT NULL,
-	[PostID] [nvarchar](50) NULL,
+	[PostID] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_ProjectOwnerPosts] PRIMARY KEY CLUSTERED 
 (
 	[POPostID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerPostVotes]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerPostVotes]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -277,7 +276,7 @@ CREATE TABLE [dbo].[ProjectOwnerPostVotes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerTagDetails]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerTagDetails]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -291,7 +290,7 @@ CREATE TABLE [dbo].[ProjectOwnerTagDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectOwnerTags]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[ProjectOwnerTags]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -306,7 +305,7 @@ CREATE TABLE [dbo].[ProjectOwnerTags](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Projects]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Projects]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -314,19 +313,18 @@ GO
 CREATE TABLE [dbo].[Projects](
 	[ProjectID] [nvarchar](50) NOT NULL,
 	[ProjectName] [nvarchar](200) NOT NULL,
-	[ProjectDescription] [ntext] NOT NULL,
-	[ProjectImage] [ntext] NULL,
+	[ProjectDescription] [nvarchar](max) NOT NULL,
+	[ProjectImage] [nvarchar](max) NULL,
 	[ProjectScore] [float] NOT NULL,
 	[MajorID] [nvarchar](50) NOT NULL,
 	[SemesterID] [nvarchar](50) NOT NULL,
-	[PostID] [nvarchar](50) NOT NULL,
  CONSTRAINT [PK_Projects] PRIMARY KEY CLUSTERED 
 (
 	[ProjectID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Roles]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Roles]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -340,7 +338,7 @@ CREATE TABLE [dbo].[Roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Semesters]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Semesters]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -354,7 +352,7 @@ CREATE TABLE [dbo].[Semesters](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Students]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Students]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -371,7 +369,7 @@ CREATE TABLE [dbo].[Students](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TagDetails]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[TagDetails]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -385,7 +383,7 @@ CREATE TABLE [dbo].[TagDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Tags]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Tags]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -400,7 +398,7 @@ CREATE TABLE [dbo].[Tags](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Teams]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Teams]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -414,7 +412,7 @@ CREATE TABLE [dbo].[Teams](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Users]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Users]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -424,9 +422,9 @@ CREATE TABLE [dbo].[Users](
 	[UserName] [nvarchar](200) NOT NULL,
 	[DateCreated] [datetime] NOT NULL,
 	[UserStatusID] [int] NOT NULL,
-	[UserImage] [nchar](10) NOT NULL,
+	[UserImage] [nvarchar](max) NOT NULL,
 	[Email] [nvarchar](100) NOT NULL,
-	[Password] [ntext] NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
 	[OTP] [nvarchar](6) NULL,
 	[RoleID] [int] NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
@@ -435,7 +433,7 @@ CREATE TABLE [dbo].[Users](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[UserStatus]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[UserStatus]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -449,7 +447,7 @@ CREATE TABLE [dbo].[UserStatus](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Votes]    Script Date: 1/17/2022 8:15:44 PM ******/
+/****** Object:  Table [dbo].[Votes]    Script Date: 1/19/2022 11:40:58 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -464,9 +462,50 @@ CREATE TABLE [dbo].[Votes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT [dbo].[Instructors] ([InstructorID], [InstructorName], [InstructorImage], [ProjectID]) VALUES (N'1', N'HoangNT', N'ok', NULL)
+INSERT [dbo].[Instructors] ([InstructorID], [InstructorName], [InstructorImage]) VALUES (N'1', N'HoangNT', N'ok')
 GO
 INSERT [dbo].[Majors] ([MajorID], [MajorName], [MajorImage]) VALUES (N'1', N'KTMP', N'ok')
+GO
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'1502edfa-49d2-43a9-b4de-44efce302bbd', N'Code Tự Động Bằng Sóng Não', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh 1', N'<p>&nbsp;</p>
+<p><img src=''https://i.imgur.com/cq9B5SF.jpg'' /></p>
+<p>ok</p>
+<p><img src=''https://i.imgur.com/olfNvHQ.jpg'' />hcm</p>
+<p>&nbsp;</p>
+', N'https://i.imgur.com/SlPAg4F.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'2')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn Test', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh', N'<p>Lorem ip<strong>sum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididu</strong>nt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamu<em>s arcu felis. Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.</em></p>
+<p>&nbsp;</p>
+<p><em><img src=''https://i.imgur.com/JIAfkr2.jpg'' /></em></p>
+', N'https://i.imgur.com/g6XFReo.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'1')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'46193a22-f173-43a3-ab83-72a1c2d35666', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn 3:58', CAST(N'2022-01-18' AS Date), N'Võ Đức Minh', N'<p>ok</p>
+<p><strong>besst</strong></p>
+<p>&nbsp;</p>
+<p><strong><img src=''https://i.imgur.com/exDZAr2.png'' /></strong></p>
+', N'https://i.imgur.com/nAh8Fu8.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 1, N'1')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'5d2acb9e-d685-4806-97fb-95bffe0364dc', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn 18/1', CAST(N'2022-01-18' AS Date), N'Võ Đức Minh', N'<p>ok good</p>
+<p><strong>hello</strong></p>
+<p><img src="https://i.imgur.com/ml9gW9Q.jpg" /></p>
+<p>&nbsp;</p>
+', N'https://i.imgur.com/42Zkac2.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'1')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'6a439d0a-34d9-471c-9b8e-2ee04174ab72', N'Code Tự Động Bằng Sóng Não', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh', N'<p><img src=''https://i.imgur.com/so3S0GI.png'' /></p>
+', N'https://i.imgur.com/t0xXKCP.png', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 1, N'3')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'89d48001-62af-413b-b447-fc446efec7d6', N'Code Tự Động Bằng Sóng Não', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh', N'<h2>What is Lorem Ipsum?</h2>
+<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p><img src="https://i.imgur.com/Bhykfas.jpg" /></p>
+', N'https://i.imgur.com/fn7cDoc.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 1, N'3')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'b14c96e4-6a54-483b-b3f6-dd6a22a0f346', N'711 Không Một Bóng Người Vì Sinh Viên Chuyển Sang Dùng Dịch Vụ Mua Hàng Hộ', CAST(N'2022-01-18' AS Date), N'Võ Đức Minh', N'<h2>What is Lorem Ipsum?</h2>
+<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>&nbsp;</p>
+<p><img src="https://i.imgur.com/JmLMsXG.jpg" /></p>
+', N'https://i.imgur.com/xkMUg1B.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'2')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'cb7e7189-866d-4090-8f9e-f169f33556c4', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn', CAST(N'2022-01-18' AS Date), N'Võ Đức Minh', N'<p>ok</p>
+<p><strong>besst content</strong></p>
+<p><img src=''https://i.imgur.com/EEuqlLL.jpg'' /></p>
+<p>&nbsp;</p>
+', N'https://i.imgur.com/HE3AieV.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'1')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'cf7bd93f-3f47-48fd-9a2b-54e9c96725ea', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh', N'<p><img src=''https://i.imgur.com/nvSd0DW.jpg'' /></p>
+', N'https://i.imgur.com/Ljun5Ys.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'3')
+INSERT [dbo].[Posts] ([PostID], [PostTitle], [PostDate], [PostAuthor], [PostContent], [PostImage], [LastEditedUser], [Upvote], [PostStatusID], [ProjectID]) VALUES (N'f3dcb79d-9893-46cf-bb92-c7a555b50daa', N'Sinh Viên Đại Học FPT Xây Dựng Hệ Thống Đỗ Xe Máy Siêu Xịn', CAST(N'2022-01-19' AS Date), N'Võ Đức Minh', N'<p><img src="https://i.imgur.com/sB8S1TB.jpg" /></p>
+', N'https://i.imgur.com/6Ugpuem.jpg', N'5a1e40f4-a2a3-4078-a257-21863e042b12', 0, 3, N'3')
 GO
 SET IDENTITY_INSERT [dbo].[PostStatuses] ON 
 
@@ -477,9 +516,9 @@ SET IDENTITY_INSERT [dbo].[PostStatuses] OFF
 GO
 INSERT [dbo].[ProjectInstructor] ([ProjectID], [InstructorID]) VALUES (N'1', N'1')
 GO
-INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID], [PostID]) VALUES (N'1', N'Đồ Án Đỗ Xe Máy Tự Động', N'1', N'1', 1, N'1', N'1', N'1')
-INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID], [PostID]) VALUES (N'2', N'Hệ Thống Mua Hàng 711 Hộ', N'1', N'1', 1, N'1', N'1', N'1')
-INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID], [PostID]) VALUES (N'3', N'Đồ Án Code Tự Động Bằng Sóng Não', N'1', N'1', 1, N'1', N'1', N'1')
+INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID]) VALUES (N'1', N'Đồ Án Đỗ Xe Máy Tự Động', N'1', N'1', 1, N'1', N'1')
+INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID]) VALUES (N'2', N'Hệ Thống Mua Hàng 711 Hộ', N'1', N'1', 1, N'1', N'1')
+INSERT [dbo].[Projects] ([ProjectID], [ProjectName], [ProjectDescription], [ProjectImage], [ProjectScore], [MajorID], [SemesterID]) VALUES (N'3', N'Đồ Án Code Tự Động Bằng Sóng Não', N'1', N'1', 1, N'1', N'1')
 GO
 SET IDENTITY_INSERT [dbo].[Roles] ON 
 
@@ -490,6 +529,50 @@ INSERT [dbo].[Semesters] ([SemesterID], [SemesterName]) VALUES (N'1', N'Spring 2
 GO
 INSERT [dbo].[Students] ([StudentID], [StudentName], [MajorID], [StudentImage], [TeamID]) VALUES (N'1', N'Võ Đức Minh', N'1', N'123', N'1')
 INSERT [dbo].[Students] ([StudentID], [StudentName], [MajorID], [StudentImage], [TeamID]) VALUES (N'2', N'Trần Quang Quyền', N'1', N'123', N'1')
+GO
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'15f15c5e-3be7-45c3-981c-3b85b712d347', N'ok')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'1dc95834-4d80-4cd3-ae2c-fcd6d1b0f359', N'hcmuni')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'33fddaca-4f99-4c2c-b6cf-c2feb38197ea', N'edu')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'3401b7f7-7a8b-4e81-8b94-9d9bdd192d2a', N'hcm')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'37ef14be-2592-4fff-87ce-843e2bf8d117', N'xemay')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'384b5e18-1c8b-4f92-8639-76efb04f6423', N'hcm')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'4844cfce-15ad-48a8-98b8-14394fc3461a', N'hcm')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'4cfae97f-0770-4b39-901e-3ffcc9539a48', N'ok')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'4f1f8c0c-f3ef-4a79-a0b5-715875aa2841', N'hcm')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'6697f982-79bf-43fe-ba0d-d80e21111cab', N'fpt')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'6c7e8cba-e1e4-445c-b06a-2cce8cb81084', N'songnao')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'71c0ce28-6e12-4601-88a0-fb2abc7b083f', N'good')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'782004ab-d31a-4852-a847-8566f30ab572', N'fpt ')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'79f0a18e-e360-4c36-b82a-48168f347751', N'hcm')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'8b789d1a-7245-4469-9434-a28aa4779135', N'fpt')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'90454430-879a-4fcf-926d-17a04d1d7116', N'uni')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'99fe6916-e898-4d0c-b7c0-d5bb65a56dcc', N'xemay')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'd30e417f-e99e-404b-b8e0-244c7a3c0c72', N'hc')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'd7f8cc83-ecea-42ef-b9f3-4ed7af72bc62', N'sinhvien')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'deaf0f5d-cdc2-4563-86d4-9b2251d9d872', N'711')
+INSERT [dbo].[TagDetails] ([TagDetailID], [TagDetailName]) VALUES (N'f3bd3bd0-bfc8-43a3-b33f-6d94eca3365a', N'hcm')
+GO
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'1502edfa-49d2-43a9-b4de-44efce302bbd', N'384b5e18-1c8b-4f92-8639-76efb04f6423')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1', N'8b789d1a-7245-4469-9434-a28aa4779135')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1', N'99fe6916-e898-4d0c-b7c0-d5bb65a56dcc')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1', N'f3bd3bd0-bfc8-43a3-b33f-6d94eca3365a')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'46193a22-f173-43a3-ab83-72a1c2d35666', N'37ef14be-2592-4fff-87ce-843e2bf8d117')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'46193a22-f173-43a3-ab83-72a1c2d35666', N'4cfae97f-0770-4b39-901e-3ffcc9539a48')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'46193a22-f173-43a3-ab83-72a1c2d35666', N'71c0ce28-6e12-4601-88a0-fb2abc7b083f')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'6a439d0a-34d9-471c-9b8e-2ee04174ab72', N'd30e417f-e99e-404b-b8e0-244c7a3c0c72')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'89d48001-62af-413b-b447-fc446efec7d6', N'3401b7f7-7a8b-4e81-8b94-9d9bdd192d2a')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'89d48001-62af-413b-b447-fc446efec7d6', N'6697f982-79bf-43fe-ba0d-d80e21111cab')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'89d48001-62af-413b-b447-fc446efec7d6', N'6c7e8cba-e1e4-445c-b06a-2cce8cb81084')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'89d48001-62af-413b-b447-fc446efec7d6', N'90454430-879a-4fcf-926d-17a04d1d7116')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'b14c96e4-6a54-483b-b3f6-dd6a22a0f346', N'33fddaca-4f99-4c2c-b6cf-c2feb38197ea')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'b14c96e4-6a54-483b-b3f6-dd6a22a0f346', N'782004ab-d31a-4852-a847-8566f30ab572')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'b14c96e4-6a54-483b-b3f6-dd6a22a0f346', N'd7f8cc83-ecea-42ef-b9f3-4ed7af72bc62')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'b14c96e4-6a54-483b-b3f6-dd6a22a0f346', N'deaf0f5d-cdc2-4563-86d4-9b2251d9d872')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'cb7e7189-866d-4090-8f9e-f169f33556c4', N'15f15c5e-3be7-45c3-981c-3b85b712d347')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'cb7e7189-866d-4090-8f9e-f169f33556c4', N'1dc95834-4d80-4cd3-ae2c-fcd6d1b0f359')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'cb7e7189-866d-4090-8f9e-f169f33556c4', N'4f1f8c0c-f3ef-4a79-a0b5-715875aa2841')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'cf7bd93f-3f47-48fd-9a2b-54e9c96725ea', N'4844cfce-15ad-48a8-98b8-14394fc3461a')
+INSERT [dbo].[Tags] ([PostID], [TagDetailID]) VALUES (N'f3dcb79d-9893-46cf-bb92-c7a555b50daa', N'79f0a18e-e360-4c36-b82a-48168f347751')
 GO
 INSERT [dbo].[Teams] ([TeamID], [TeamName]) VALUES (N'1', N'GaoTeam')
 INSERT [dbo].[Teams] ([TeamID], [TeamName]) VALUES (N'2', N'SuperTeam')
