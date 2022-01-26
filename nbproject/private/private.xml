@@ -4,6 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerTagDetailsDAO.java</file>
+            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerPostCommentsDAO.java</file>
+            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerTagsDAO.java</file>
+=======
+<<<<<<< HEAD
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/user-info.jsp</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ShowUserDetailController.java</file>
@@ -18,6 +23,7 @@
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectInstructorController.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
 >>>>>>> d5b5830380dce61c7552885307b1524b5e7c1701
+>>>>>>> 854a82281ff7fac4817099f5ef4327c45cdb7f9c
         </group>
     </open-files>
 </project-private>
