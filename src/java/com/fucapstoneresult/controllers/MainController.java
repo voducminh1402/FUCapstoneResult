@@ -30,19 +30,17 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_POST = "UpdatePostController";
     private static final String REMOVE_POST = "RemovePostController";
     private static final String LOAD_ALL_USER = "LoadAllUserController";
-<<<<<<< HEAD
     private static final String DELETE_A_USER = "DeleteAUserController";
     private static final String SEARCH_USERS = "SearchUsersController";
     private static final String SHOW_USER_DETAIL = "ShowUserDetailController";
     private static final String EDIT_USER_INFO = "EditUserInfoController";
-=======
     private static final String ADD_PROJECT = "AddProjectController";
     private static final String ADD_SEMESTER = "AddSemesterController";
     private static final String ADD_TEAM = "AddTeamController";
     private static final String ADD_STUDENT = "AddStudentController";
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
->>>>>>> d5b5830380dce61c7552885307b1524b5e7c1701
+    private static final String UPDATE_PROJECT = "UpdateProjectController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -102,6 +100,9 @@ public class MainController extends HttpServlet {
             }
             else if ("AddInstructor".equals(action)) {
                 url = ADD_INSTRUCTOR;
+            }
+            else if ("UpdateProject".equals(action)) {
+                url = UPDATE_PROJECT;
             }
         } catch (Exception e) {
             e.printStackTrace();

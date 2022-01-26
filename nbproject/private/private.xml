@@ -3,27 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerTagDetailsDAO.java</file>
-            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerPostCommentsDAO.java</file>
-            <file>file:/C:/Users/Asus/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectOwnerTagsDAO.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/user-info.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ShowUserDetailController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditUserInfoController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/admin.jsp</file>
-=======
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddStudentController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePostController.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-add-student.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdateProjectController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-project.jsp</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectInstructorController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
->>>>>>> d5b5830380dce61c7552885307b1524b5e7c1701
->>>>>>> 854a82281ff7fac4817099f5ef4327c45cdb7f9c
+            <file>file:/D:/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-update-project.jsp</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-edit-post.jsp</file>
         </group>
     </open-files>
 </project-private>
