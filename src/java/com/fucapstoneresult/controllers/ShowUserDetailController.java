@@ -9,41 +9,35 @@ import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "ShowUserDetailController", urlPatterns = {"/ShowUserDetailController"})
+public class ShowUserDetailController extends HttpServlet {
 
-    private static final String SUCCESS = "index.html";
-    private static final String FAIL = "login.html";
-
+    private static final String SUCCESS = "user-info.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = SUCCESS;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            String userID = request.getParameter("id");
             UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER", user);
-                url = SUCCESS;
-            }
+            UserDTO user = dao.searchUserByID(userID);
+            request.setAttribute("USER_DETAIL", user);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            response.sendRedirect(url);
+        }finally{
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

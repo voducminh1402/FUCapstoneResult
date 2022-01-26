@@ -40,6 +40,42 @@
         <servlet-name>RemovePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemovePostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddProjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSemesterController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddSemesterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTeamController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddTeamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddIntructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddIntructorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddInstructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddInstructorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProjectInstructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddProjectInstructorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetListIntructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetListIntructorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddStudentController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddStudentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdateProjectController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -71,6 +107,42 @@
     <servlet-mapping>
         <servlet-name>RemovePostController</servlet-name>
         <url-pattern>/RemovePostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectController</servlet-name>
+        <url-pattern>/AddProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSemesterController</servlet-name>
+        <url-pattern>/AddSemesterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeamController</servlet-name>
+        <url-pattern>/AddTeamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddIntructorController</servlet-name>
+        <url-pattern>/AddIntructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddInstructorController</servlet-name>
+        <url-pattern>/AddInstructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProjectInstructorController</servlet-name>
+        <url-pattern>/AddProjectInstructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetListIntructorController</servlet-name>
+        <url-pattern>/GetListIntructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddStudentController</servlet-name>
+        <url-pattern>/AddStudentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProjectController</servlet-name>
+        <url-pattern>/UpdateProjectController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

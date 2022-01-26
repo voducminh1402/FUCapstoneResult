@@ -9,41 +9,39 @@ import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "SearchUsersController", urlPatterns = {"/SearchUsersController"})
+public class SearchUsersController extends HttpServlet {
 
-    private static final String SUCCESS = "index.html";
-    private static final String FAIL = "login.html";
+    private static final String SUCCESS = "admin.jsp";
+    private static final String FAIL = "error.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = SUCCESS;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            int status = Integer.parseInt(request.getParameter("status"));
+            int role = Integer.parseInt(request.getParameter("role"));
             UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER", user);
-                url = SUCCESS;
-            }
+            List<UserDTO> list = dao.searchUsers(status, role);
+            request.setAttribute("LIST_USER", list);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            response.sendRedirect(url);
+        }finally{
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

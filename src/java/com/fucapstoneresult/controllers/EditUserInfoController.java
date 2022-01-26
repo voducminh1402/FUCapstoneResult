@@ -9,41 +9,42 @@ import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "EditUserInfoController", urlPatterns = {"/EditUserInfoController"})
+public class EditUserInfoController extends HttpServlet {
 
-    private static final String SUCCESS = "index.html";
-    private static final String FAIL = "login.html";
+    private static final String SUCCESS = "user-info.jsp";
+    private static final String FAIL = "error.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = SUCCESS;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
+            String id = request.getParameter("id");
+            int role = Integer.parseInt(request.getParameter("role"));
+            int status = Integer.parseInt(request.getParameter("status"));
+            UserDTO user = new UserDTO(id, "", "", status, "", "", "", "", role);
             UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER", user);
-                url = SUCCESS;
+            if (!dao.updateUserByAdmin(user)) {
+                url = FAIL;
             }
+            user = dao.searchUserByID(id);
+            request.setAttribute("USER_DETAIL", user);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            response.sendRedirect(url);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
