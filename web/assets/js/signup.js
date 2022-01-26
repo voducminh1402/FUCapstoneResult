@@ -73,7 +73,7 @@
         dataType: "text",
         success: function (data) {
           $(".email-message").html(data);
-        },
+        }
       });
     }
   });
