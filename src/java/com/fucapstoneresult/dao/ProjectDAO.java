@@ -262,6 +262,54 @@ public class ProjectDAO {
         
         return projectList;
     }
+    
+    public ProjectDTO getProject(String projectID) throws SQLException {
+        ProjectDTO project = new ProjectDTO();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectName, ProjectDescription, ProjectImage, ProjectScore, SemesterID "
+                            + " FROM Projects "
+                            + " WHERE ProjectID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, projectID);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectName = rs.getString("ProjectName");
+                    String projectDes = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    String projectScore = rs.getString("ProjectScore");
+                    String semesterID = rs.getString("SemesterID");
+                    
+                    project = new ProjectDTO(projectID, projectName, projectDes, projectImage, Float.parseFloat(projectScore), "", semesterID);
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return project;
+    }
+    
+    
 }
 
 
