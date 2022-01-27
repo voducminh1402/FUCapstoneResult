@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-<<<<<<< HEAD
-=======
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePostController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdateProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-post.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-update-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-edit-post.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/private/private.properties</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-edit-post.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/models/PostsDTO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/project.properties</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePostController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditPostController.java</file>
         </group>
     </open-files>
->>>>>>> ba92f3f8f8c4183b442e46e6bbd96ac20342362b
 </project-private>
