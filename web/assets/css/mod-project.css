@@ -594,3 +594,7 @@ tr:nth-last-of-type(-n + 3) .last-type__menu .more-choice__menu {
 .project-add-upload__image {
   background-color: white;
 }
+
+.infor-image{
+    width: 50%;
+}

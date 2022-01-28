@@ -20,6 +20,11 @@
 
 .main__content .content .main-picture {
   width: 100%;
+  height: 400px;
+  background-image: url(../images/image-product-1.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .main__content .content h1 {
@@ -114,6 +119,13 @@
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem;
+  outline: none;
+}
+
+.comment-request {
+  color: #f26f21;
+  font-weight: bold;
+  margin-left: 20px;
 }
 
 .main__content .leave-comment form #submit {

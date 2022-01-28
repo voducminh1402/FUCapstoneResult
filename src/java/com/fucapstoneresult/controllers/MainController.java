@@ -40,7 +40,12 @@ public class MainController extends HttpServlet {
     private static final String ADD_STUDENT = "AddStudentController";
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
+<<<<<<< HEAD
     private static final String VOTE_POST_PROJECT = "VoteController";
+=======
+    private static final String UPDATE_PROJECT = "UpdateProjectController";
+    private static final String COMMENT_POST = "CommentPostController";
+>>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -101,8 +106,16 @@ public class MainController extends HttpServlet {
             else if ("AddInstructor".equals(action)) {
                 url = ADD_INSTRUCTOR;
             }
+<<<<<<< HEAD
             else if ("Vote".equals(action)) {
                 url = VOTE_POST_PROJECT;
+=======
+            else if ("UpdateProject".equals(action)) {
+                url = UPDATE_PROJECT;
+            }
+            else if ("CommentPost".equals(action)) {
+                url = COMMENT_POST;
+>>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
             }
         } catch (Exception e) {
             e.printStackTrace();

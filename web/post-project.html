@@ -32,11 +32,12 @@
       <div class="main__content row gx-5">
         <div class="col-lg-8">
           <div class="content">
-            <img
+            <!-- <img
               src="./assets/images/image-product-1.jpg"
               alt="product picture"
               class="main-picture"
-            />
+            /> -->
+            <div class="main-picture"></div>
             <h1 class="name-project">Web Design for the Future</h1>
             <div class="project-info">
               <div class="author">
@@ -88,46 +89,39 @@
           </div>
           <div class="comment">
             <h5>03 Bình luận</h5>
-            <div class="comment-info">
-              <div class="comment-info__user-picture">
-                <img
-                  src="./assets/images/image-product-1.jpg"
-                  alt="user picture"
-                />
-              </div>
-              <div class="comment-info__content">
-                <div class="content-header">
-                  <h6 class="user-name">Le Hong Anh</h6>
-                  <span> 8:40 02/10/2022 </span>
+            <div id="comment-area" class="comment-area">
+              <div class="comment-info">
+                <div class="comment-info__user-picture">
+                  <img
+                    src="./assets/images/image-product-1.jpg"
+                    alt="user picture"
+                  />
                 </div>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nobis voluptatum magnam sequi officia commodi earum, autem
-                  dolores atque ipsa, porro labore reprehenderit repellendus
-                  optio vel eligendi necessitatibus illum velit in.
-                </p>
+                <div class="comment-info__content">
+                  <div class="content-header">
+                    <h6 class="user-name">Le Hong Anh</h6>
+                    <span> 8:40 02/10/2022 </span>
+                  </div>
+                  <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Nobis voluptatum magnam sequi officia commodi earum, autem
+                    dolores atque ipsa, porro labore reprehenderit repellendus
+                    optio vel eligendi necessitatibus illum velit in.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div class="leave-comment">
             <h5>Để lại Bình luận</h5>
-            <p>
-              Tất cả góp ý sẽ được đăng tải dưới dạng ẩn danh. Những nội dung
-              bắt buộc sẽ được đánh dấu *
-            </p>
             <form action="#">
-              <label for="input-comment">Bình luận</label><br />
               <textarea
                 name="input-comment"
                 id="comment"
                 cols="30"
-                rows="10"
+                rows="3"
               ></textarea
               ><br />
-              <label for="name">Tên *</label><br />
-              <input type="text" id="name" name="name" /><br />
-              <label for="email">Email *</label><br />
-              <input type="email" name="email" id="email" /><br />
               <input id="submit" type="button" value="Gửi" name="action" />
             </form>
           </div>
@@ -284,6 +278,7 @@
       </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
       integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -294,6 +289,7 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+<<<<<<< HEAD
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
       integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -301,5 +297,34 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="./assets/js/post-project.js"></script>
+=======
+    <script src="./assets/js/post-project.js"></script>
+    <script>
+      const submit = document.getElementById("submit");
+      const inputComment = document.getElementById("comment");
+
+      submit.addEventListener('click', () => {
+        let input = inputComment.value;
+        console.log("A");
+
+        $.ajax({
+          type: 'POST',
+          url: 'MainController?action=CommentPost&input-comment=' + input,
+          data: input,
+          dataType: 'text',
+          success: function(response) {
+            if (response.length > 1) {
+              console.log(response);
+              console.log("ok");
+            }
+            else {
+              console.log("fail");
+            }
+          }
+        })
+      })
+
+    </script>
+>>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
   </body>
 </html>
