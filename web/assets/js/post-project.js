@@ -34,8 +34,7 @@ function vote() {
   $.ajax({
     type: "POST",
     url: `MainController?action=Vote`,
-    data: "vote=",
-    votes,
+    data: "vote=" + votes,
     dataType: "text",
 
     //if received a response from the server
@@ -43,49 +42,9 @@ function vote() {
       if (data == "fail")
         window.location.href =
           "http://localhost:8080/FUCapstoneResult/login.html";
-      else if (data == "vote") voteNumbers.innerHTML = "1";
-      else voteNumbers.innerHTML = "0";
+      else voteNumbers.innerHTML = data;
     },
-
-    // //If there was no resonse from the server
-    // error: function (jqXHR, textStatus, errorThrown) {
-    //   console.log("Something really bad happened " + textStatus);
-    //   $("#ajaxResponse").html(jqXHR.responseText);
-    // },
   });
-}
-
-function vote1() {
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/FUCapstoneResult/MainController",
-  //   data: "vote=" + votes + "action=Vote",
-  //   dataType: "text",
-  //   //if received a response from the server
-  //   success: function (data, textStatus, jqXHR) {
-  //     //our country code was correct so we have some information to display
-  //     // window.open(data);
-  //     alert(data);
-  //   },
-  //   //If there was no resonse from the server
-  //   error: function (jqXHR, textStatus, errorThrown) {
-  //     console.log("Something really bad happened " + textStatus);
-  //     $("#ajaxResponse").html(jqXHR.responseText);
-  //   },
-  //   //capture the request before it was sent to server
-  //   beforeSend: function (jqXHR, settings) {
-  //     //adding some Dummy data to the request
-  //     settings.data += "&dummyData=whatever";
-  //     //disable the button until we get the response
-  //     $("#myButton").attr("disabled", true);
-  //   },
-  //   //this is called after the response or error functions are finsihed
-  //   //so that we can take some action
-  //   complete: function (jqXHR, textStatus) {
-  //     //enable the button
-  //     $("#myButton").attr("disabled", false);
-  //   },
-  // });
 }
 
 let checkEmpty = true;
