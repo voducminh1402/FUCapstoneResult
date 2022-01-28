@@ -5,51 +5,44 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.dao.VotesDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "CheckDuplicateUserController", urlPatterns = {"/CheckDuplicateUserController"})
-public class CheckDuplicateUserController extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
+public class VoteController extends HttpServlet {
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         try {
-            String email = request.getParameter("email");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.searchUserByEmail(email);
-            PrintWriter out = response.getWriter();
+            HttpSession session = request.getSession();
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            
             if (user != null) {
-                out.println("Xin lỗi, email: " + email + ", đã bị trùng!");
-//                response.getWriter().write("trung");
-            } else {
-                out.println("");
-//                response.getWriter().write("khong trung");
+                response.getWriter().write("success");
+                VotesDAO dao = new VotesDAO();
+//                dao.addVote(user.getUserID(), postID);
             }
-            response.setContentType("application/json");
+            else {
+                response.getWriter().write("fail");
+            }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
