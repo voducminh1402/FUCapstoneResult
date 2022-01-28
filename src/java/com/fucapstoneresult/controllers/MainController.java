@@ -41,6 +41,7 @@ public class MainController extends HttpServlet {
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
     private static final String UPDATE_PROJECT = "UpdateProjectController";
+    private static final String COMMENT_POST = "CommentPostController";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -103,6 +104,9 @@ public class MainController extends HttpServlet {
             }
             else if ("UpdateProject".equals(action)) {
                 url = UPDATE_PROJECT;
+            }
+            else if ("CommentPost".equals(action)) {
+                url = COMMENT_POST;
             }
         } catch (Exception e) {
             e.printStackTrace();
