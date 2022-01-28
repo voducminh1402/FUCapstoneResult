@@ -1,7 +1,6 @@
-<<<<<<< HEAD
-const voteBtn = document.getElementById("vote").childNodes[1];
 const unVoteBtn = document.getElementById("un-vote").childNodes[1];
 const voteNumbers = document.getElementById("vote-numbers");
+const voteBtn = document.getElementById("vote").childNodes[1];
 const form = document.getElementById("form-vote");
 let votes = 0;
 
@@ -34,8 +33,9 @@ unVoteBtn.addEventListener("click", vote);
 function vote() {
   $.ajax({
     type: "POST",
-    url: "MainController?action=Vote",
-    data: votes,
+    url: `MainController?action=Vote`,
+    data: "vote=",
+    votes,
     dataType: "text",
 
     //if received a response from the server
@@ -43,7 +43,8 @@ function vote() {
       if (data == "fail")
         window.location.href =
           "http://localhost:8080/FUCapstoneResult/login.html";
-      else voteNumbers.innerHTML = `${votes}`;
+      else if (data == "vote") voteNumbers.innerHTML = "1";
+      else voteNumbers.innerHTML = "0";
     },
 
     // //If there was no resonse from the server
@@ -86,23 +87,25 @@ function vote1() {
   //   },
   // });
 }
-=======
+
 let checkEmpty = true;
 
 getCommentTime = () => {
-    let date = new Date();
+  let date = new Date();
 
-    return `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-}
+  return `${date.getHours()}:${date.getMinutes()} ${date.getDate()}/${
+    date.getMonth() + 1
+  }/${date.getFullYear()}`;
+};
 
 document.getElementById("submit").addEventListener("click", () => {
-    let comment = document.getElementById("comment");
-    let commentArea = document.getElementById("comment-area");
+  let comment = document.getElementById("comment");
+  let commentArea = document.getElementById("comment-area");
 
-    if (comment !== "") {
-        checkEmpty = false;
+  if (comment !== "") {
+    checkEmpty = false;
 
-        let commentContent = `<div class="comment-info">
+    let commentContent = `<div class="comment-info">
                                 <div class="comment-info__user-picture">
                                 <img
                                     src="./assets/images/image-product-1.jpg"
@@ -121,10 +124,6 @@ document.getElementById("submit").addEventListener("click", () => {
                                 </div>
                             </div>`;
 
-        commentArea.insertAdjacentHTML("beforeend", commentContent)
-    }
-})
-
-
-
->>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
+    commentArea.insertAdjacentHTML("beforeend", commentContent);
+  }
+});

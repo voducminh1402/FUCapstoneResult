@@ -23,26 +23,33 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
 public class VoteController extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
+            int vote = Integer.parseInt(request.getParameter("vote"));
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("USER");
-            
+
             if (user != null) {
-                response.getWriter().write("success");
+                
                 VotesDAO dao = new VotesDAO();
-//                dao.addVote(user.getUserID(), postID);
-            }
-            else {
+                if (vote == 1) {
+                    dao.addVote(user.getUserID(), "1");
+                    response.getWriter().write("vote");
+                } else {
+                    dao.removeVote(user.getUserID(), "1");
+                    response.getWriter().write("un-vote");
+                }
+
+            } else {
                 response.getWriter().write("fail");
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
