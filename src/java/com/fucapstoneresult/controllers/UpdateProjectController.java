@@ -5,18 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.TagDetailsDAO;
-import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.TagDetailsDTO;
-import com.fucapstoneresult.models.TagsDTO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +18,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
+public class UpdateProjectController extends HttpServlet {
+
+    private static final String ERROR = "mod-update-project.jsp";
+    private static final String SUCCESS = "mod-project.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,43 +33,19 @@ public class UpdatePostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            String projectID = request.getParameter("project-id");
+            String projectName = request.getParameter("project-name");
+            String projectDescription = request.getParameter("project-des");
+            String projectImage = request.getParameter("project-image");
+            String projectScore = request.getParameter("project-score");
+            String semesterID = request.getParameter("semester-id");
             
-            PostsDTO post = null;
+            ProjectDAO dao = new ProjectDAO();
+            ProjectDTO pro = new ProjectDTO(projectID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
             
-            if (userLogin != null) {
-                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
-            }
-            else {
-                response.sendRedirect("login.html");
-            }
+            boolean check = dao.updateProject(pro);
             
-            TagsDAO tagDao = new TagsDAO();
-            boolean checkTagDelete = tagDao.delete(postID);
-            
-            PostsDAO dao = new PostsDAO();
-            boolean check = dao.update(post);
-            
-            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-            
-            boolean checkTagDetail = false, checkTag = false;
-            
-            if (check && checkTagDelete) {
-                for (String postTag : postTags) {
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
-                    }
-            }
-            
-            if (checkTag) {
+            if (check) {
                 url = SUCCESS;
             }
         } 

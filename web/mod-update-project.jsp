@@ -99,37 +99,31 @@
                 </div>
             </nav>
             <div class="content-detail content-post add-post">
-                <h2>Sửa Bài Đăng Đồ Án</h2>
+                <h2>Sửa Thông Tin Đồ Án</h2>
                 <form action="MainController" method="POST">
-                    <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Sửa Lại Bài Đăng</label><br>
-                    <select name="project-name" id="" required>
-                        <option disabled>Đồ Án Tốt Nghiệp</option>
-                        <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
-                            <option value="${o.projectID}">${o.projectName}</option>
-                        </c:forEach>
-                    </select><br>
-                    <input name="post-id" value="${requestScope.POST_DETAIL.postID}" type="hidden">
-                    <label for="">Sửa Tiêu Đề Bài Đăng</label><br>
-                    <input type="text" name="post-title" value="${requestScope.POST_DETAIL.postTitle}" >
-                    <label for="">Sửa Tên Tác Giả</label><br>
-                    <input type="text" name="post-author" value="${requestScope.POST_DETAIL.postAuthor}" >
-                    <label for="">Sửa Bìa Bài Đăng</label>
+                    <label for="">Mã Đồ Án Đang Sửa</label><br>
+                    <input name="project-id" value="${requestScope.VIEW_PROJECT.projectID}" readonly="">
+                    <label for="">Mã Kỳ Học Đồ Án Đang Sửa</label><br>
+                    <input name="semester-id" value="${requestScope.VIEW_PROJECT.semesterID}" readonly="">
+                    <label for="">Sửa Tên Đồ Án</label><br>
+                    <input type="text" name="project-name" value="${requestScope.VIEW_PROJECT.projectName}" >
+                    <label for="">Sửa Mô Tả Đồ Án</label><br>
+                    <textarea id="editor" cols="30" rows="50" ></textarea>
+                    <input id="post-content" type="hidden" name="project-des" value="${requestScope.VIEW_PROJECT.projectDescription}">
+                    <label for="">Sửa Điểm Số Đồ Án</label><br>
+                        <input type="number" step="0.05" min="0" max="10" name="project-score">
+                    <label for="">Sửa Ảnh Bìa Đồ Án</label>
                     <div class="project-add-upload__image post-upload__image">
                         <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
                         <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" ><br>
-                        <input value="${requestScope.POST_DETAIL.postImage}" type="hidden" id="mod-post__preview-input" name="post-thumbnail">
+                        <input value="${requestScope.VIEW_PROJECT.projectImage}" type="hidden" id="mod-post__preview-input" name="project-image">
                         <a id="mod-post__preview-link" href="">
-                            <img id="mod-post__preview-image" src="${requestScope.POST_DETAIL.postImage}" alt="">
+                            <img id="mod-post__preview-image" src="${requestScope.VIEW_PROJECT.projectImage}" alt="">
                         </a>
                     </div>
-                    <label for="">Sửa Tag Của Bài Viết</label><br>
-                    <input id="post-tag" data-role="tagsinput" type="text" >
-                    <input id="post-tag-hidden" type="hidden" name="post-tag">
-                    <label for="">Sửa Nội Dung</label><br>
-                    <textarea id="editor" cols="30" rows="50" ></textarea>
-                    <input id="post-content" type="hidden" name="post-content" value="${requestScope.POST_DETAIL.postContent}">
+                    
                     <div class="add-project-submit add-post-submit">
-                        <button type="submit" name="action" value="UpdatePost">Cập Nhật</button>
+                        <button type="submit" name="action" value="UpdateProject">Cập Nhật</button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                     </div> 
                 </form>

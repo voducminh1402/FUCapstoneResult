@@ -28,6 +28,9 @@ public class GetListProjectController extends HttpServlet {
     private static final String ADD_TEAM = "mod-add-team.jsp";
     private static final String ADD_PROJECT_INSTRUCTOR = "mod-add-project-instructor.jsp";
     private static final String ADD_STUDENT = "mod-add-student.jsp";
+    private static final String PROJECT = "mod-project.jsp";
+    private static final String VIEW_PROJECT = "mod-view-project.jsp";
+    private static final String UPDATE_PROJECT = "mod-update-project.jsp";
     private static final String ERROR = "login.html";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,8 +39,11 @@ public class GetListProjectController extends HttpServlet {
         String url = ERROR;
         try {
             
+            String proID = request.getParameter("id");
+            
             ProjectDAO dao = new ProjectDAO();
             List<ProjectDTO> list = dao.getAllProject();
+            ProjectDTO project = dao.getProject(proID);
             InstructorDAO DAO = new InstructorDAO();
             List<InstructorDTO> List = DAO.getAllInstructor();
             TeamDAO DAOteam = new TeamDAO();
@@ -47,6 +53,7 @@ public class GetListProjectController extends HttpServlet {
             String page = request.getParameter("page");
             request.setAttribute("INSTRUCTOR_LIST", List);
             request.setAttribute("TEAM_LIST", ListTeam);
+            request.setAttribute("VIEW_PROJECT", project);
             
             if(page.equals("add-post")){
                 url = TARGET;
@@ -56,6 +63,12 @@ public class GetListProjectController extends HttpServlet {
                 url = ADD_PROJECT_INSTRUCTOR;
             }else if(page.equals("add-student")){
                 url = ADD_STUDENT;
+            }else if(page.equals("project")){
+                url = PROJECT;
+            }else if(page.equals("view-project")){
+                url = VIEW_PROJECT;
+            }else if(page.equals("update-project")){
+                url = UPDATE_PROJECT;
             }
             
         } 

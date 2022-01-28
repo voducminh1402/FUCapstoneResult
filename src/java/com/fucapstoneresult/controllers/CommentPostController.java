@@ -5,12 +5,8 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.TagDetailsDAO;
-import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.TagDetailsDTO;
-import com.fucapstoneresult.models.TagsDTO;
+import com.fucapstoneresult.dao.CommentDAO;
+import com.fucapstoneresult.models.CommentDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,9 +23,10 @@ import javax.servlet.http.HttpSession;
  *
  * @author VODUCMINH
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
+public class CommentPostController extends HttpServlet {
+    private static final String ERROR = "projects.html"; //tam
+    private static final String SUCCESS = "projects.html"; //tam
+    private static final String LOGIN = "login.html"; //tam
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,52 +36,35 @@ public class UpdatePostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            boolean check = false;
             
-            PostsDTO post = null;
-            
-            if (userLogin != null) {
-                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            if (userLogin == null) {
+                url = LOGIN;
             }
             else {
-                response.sendRedirect("login.html");
+                UUID uuid = UUID.randomUUID();
+                String commentId = uuid.toString();
+                String commentDetail = request.getParameter("input-comment");
+                String postId = "1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1";
+                String userId = userLogin.getUserID();
+                
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+                LocalDateTime now = LocalDateTime.now();
+                String commentTime = dtf.format(now);
+                
+                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
+                CommentDAO dao = new CommentDAO();
+                check = dao.insertComment(comment);
             }
             
-            TagsDAO tagDao = new TagsDAO();
-            boolean checkTagDelete = tagDao.delete(postID);
-            
-            PostsDAO dao = new PostsDAO();
-            boolean check = dao.update(post);
-            
-            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-            
-            boolean checkTagDetail = false, checkTag = false;
-            
-            if (check && checkTagDelete) {
-                for (String postTag : postTags) {
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
-                    }
-            }
-            
-            if (checkTag) {
-                url = SUCCESS;
+            if (check) {
+                response.getWriter().write("Post Comment Successfully");
             }
         } 
         catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
