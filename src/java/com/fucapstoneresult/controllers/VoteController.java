@@ -34,16 +34,16 @@ public class VoteController extends HttpServlet {
             UserDTO user = (UserDTO) session.getAttribute("USER");
 
             if (user != null) {
-                
+                int count = 0;
                 VotesDAO dao = new VotesDAO();
                 if (vote == 1) {
                     dao.addVote(user.getUserID(), "1");
-                    response.getWriter().write("vote");
+                    count = dao.countNumberVotes("1");
                 } else {
                     dao.removeVote(user.getUserID(), "1");
-                    response.getWriter().write("un-vote");
+                    count = dao.countNumberVotes("1");
                 }
-
+                response.getWriter().write(count+"");
             } else {
                 response.getWriter().write("fail");
             }

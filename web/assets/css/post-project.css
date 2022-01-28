@@ -48,11 +48,13 @@
   align-items: flex-end;
 }
 .vote button {
+  padding: 0;
+  margin: 0;
   background-color: white;
   border: none;
+}
+.vote button i {
   font-size: 1.5rem;
-  justify-items: flex-start;
-  place-items: inherit;
 }
 /* .vote button i {
   color: rgb(247, 200, 139);
