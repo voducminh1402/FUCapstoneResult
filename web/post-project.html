@@ -52,6 +52,18 @@
                 <i class="far fa-comment-alt"></i>
                 <span>11 Bình luận</span>
               </div>
+
+              <div class="vote">
+                <span id="vote-numbers">0</span>
+
+                <button type="submit" id="vote">
+                  <i class="fas fa-caret-up"></i>
+                </button>
+
+                <button type="submit" id="un-vote">
+                  <i class="fas fa-caret-down"></i>
+                </button>
+              </div>
             </div>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
@@ -126,7 +138,7 @@
             </form>
           </div>
           <div class="recent-post left-col">
-            <h3>Các đồ án liên quan</h3>
+            <h3>Các bài viết liên quan</h3>
             <div class="line-break"></div>
             <ul>
               <li>
@@ -141,7 +153,7 @@
                   </div>
                   <div class="project-content">
                     <a href="#">
-                      <h5 class="project-name">Đồ Án 1</h5>
+                      <h5 class="project-name">Bài viết 1</h5>
                     </a>
 
                     <p>20/06/2020</p>
@@ -160,7 +172,7 @@
                   </div>
                   <div class="project-content">
                     <a href="#">
-                      <h5 class="project-name">Đồ Án 1</h5>
+                      <h5 class="project-name">Bài viết 2</h5>
                     </a>
 
                     <p>20/06/2020</p>
@@ -179,7 +191,7 @@
                   </div>
                   <div class="project-content">
                     <a href="#">
-                      <h5 class="project-name">Đồ Án 1</h5>
+                      <h5 class="project-name">Bài viết 3</h5>
                     </a>
 
                     <p>20/06/2020</p>
@@ -265,7 +277,12 @@
       </div>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
       integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -276,32 +293,40 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
+    <<<<<<< HEAD
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./assets/js/post-project.js"></script>
+    =======
     <script src="./assets/js/post-project.js"></script>
     <script>
       const submit = document.getElementById("submit");
       const inputComment = document.getElementById("comment");
 
-      submit.addEventListener('click', () => {
+      submit.addEventListener("click", () => {
         let input = inputComment.value;
         console.log("A");
 
         $.ajax({
-          type: 'POST',
-          url: 'MainController?action=CommentPost&input-comment=' + input,
+          type: "POST",
+          url: "MainController?action=CommentPost&input-comment=" + input,
           data: input,
-          dataType: 'text',
-          success: function(response) {
+          dataType: "text",
+          success: function (response) {
             if (response.length > 1) {
               console.log(response);
               console.log("ok");
-            }
-            else {
+            } else {
               console.log("fail");
             }
-          }
-        })
-      })
-
+          },
+        });
+      });
     </script>
+    >>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
   </body>
 </html>
