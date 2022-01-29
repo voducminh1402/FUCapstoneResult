@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * @author Asus
  */
 public class ProjectOwnerPostCommentsDAO {
-    public boolean insertPostComment(ProjectOwnerPostCommentsDTO postComment) throws SQLException, ClassNotFoundException {
+    public boolean insertPoPostComment(ProjectOwnerPostCommentsDTO postComment) throws SQLException, ClassNotFoundException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -95,5 +95,17 @@ public class ProjectOwnerPostCommentsDAO {
             }
         }
         return check;
+    }
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        String CommentID ="1";
+        String PoPostID="1";
+        String UserId="1";
+        String CommentDetail = "good";
+        String CommentTime="1-29-2022";
+        String CommentStatusID="1";
+        ProjectOwnerPostCommentsDAO dao= new ProjectOwnerPostCommentsDAO();
+        ProjectOwnerPostCommentsDTO postComment = new ProjectOwnerPostCommentsDTO(CommentID, PoPostID, UserId, CommentDetail, CommentTime, 1);
+        dao.insertPoPostComment(postComment);
+        
     }
 }

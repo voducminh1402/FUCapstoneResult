@@ -72,6 +72,14 @@
         <servlet-name>AddStudentController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.AddStudentController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCommentController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddCommentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCommentsController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadCommentsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>AddStudentController</servlet-name>
         <url-pattern>/AddStudentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCommentController</servlet-name>
+        <url-pattern>/AddCommentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCommentsController</servlet-name>
+        <url-pattern>/LoadCommentsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
