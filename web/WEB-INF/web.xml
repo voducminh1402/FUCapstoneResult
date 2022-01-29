@@ -73,12 +73,21 @@
         <servlet-class>com.fucapstoneresult.controllers.AddStudentController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>AddCommentController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.AddCommentController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoadCommentsController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.LoadCommentsController</servlet-class>
+=======
+        <servlet-name>UpdateProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdateProjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CommentPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.CommentPostController</servlet-class>
+>>>>>>> f03c992816169bb02b75433136efda1db8b3397c
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -145,12 +154,21 @@
         <url-pattern>/AddStudentController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>AddCommentController</servlet-name>
         <url-pattern>/AddCommentController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoadCommentsController</servlet-name>
         <url-pattern>/LoadCommentsController</url-pattern>
+=======
+        <servlet-name>UpdateProjectController</servlet-name>
+        <url-pattern>/UpdateProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CommentPostController</servlet-name>
+        <url-pattern>/CommentPostController</url-pattern>
+>>>>>>> f03c992816169bb02b75433136efda1db8b3397c
     </servlet-mapping>
     <session-config>
         <session-timeout>

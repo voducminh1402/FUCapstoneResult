@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author VODUCMINH
  */
 public class MainController extends HttpServlet {
-    
+
     private static final String LOGIN = "LoginController";
     private static final String SIGNUP = "SignUpController";
     private static final String ADD_A_USER = "AddAUserController";
@@ -40,73 +40,80 @@ public class MainController extends HttpServlet {
     private static final String ADD_STUDENT = "AddStudentController";
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
+<<<<<<< HEAD
     private static final String ADD_COMMENT = "AddCommentController";
 
     
+=======
+
+    private static final String VOTE_POST_PROJECT = "VoteController";
+
+    private static final String UPDATE_PROJECT = "UpdateProjectController";
+    private static final String COMMENT_POST = "CommentPostController";
+
+>>>>>>> f03c992816169bb02b75433136efda1db8b3397c
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "";
         String action = request.getParameter("action");
         try {
-            if("Login".equals(action)){
+            if ("Login".equals(action)) {
                 url = LOGIN;
-            }else if("Create account".equals(action)){
+            } else if ("Create account".equals(action)) {
                 url = SIGNUP;
-            }else if("Add a user".equals(action)){
+            } else if ("Add a user".equals(action)) {
                 url = ADD_A_USER;
-            }
-            else if ("AddPost".equals(action)) {
+            } else if ("AddPost".equals(action)) {
                 url = ADD_POST;
-            }
-            else if ("GetListProject".equals(action)) {
+            } else if ("GetListProject".equals(action)) {
                 url = GET_LIST_PROJECT;
-            }
-            else if("Load All User".equals(action)){
+            } else if ("Load All User".equals(action)) {
                 url = LOAD_ALL_USER;
-            }else if("DeleteAUser".equals(action)){
+            } else if ("DeleteAUser".equals(action)) {
                 url = DELETE_A_USER;
-            }else if("SearchUser".equals(action)){
+            } else if ("SearchUser".equals(action)) {
                 url = SEARCH_USERS;
-            }else if("showUserDetail".equals(action)){
+            } else if ("showUserDetail".equals(action)) {
                 url = SHOW_USER_DETAIL;
-            }else if("EditUserInfo".equals(action)){
+            } else if ("EditUserInfo".equals(action)) {
                 url = EDIT_USER_INFO;
-            }
-            else if ("GetListPost".equals(action)) {
+            } else if ("GetListPost".equals(action)) {
                 url = GET_LIST_POST;
-            }
-            else if ("EditPost".equals(action)) {
+            } else if ("EditPost".equals(action)) {
                 url = EDIT_POST;
-            }
-            else if ("UpdatePost".equals(action)) {
+            } else if ("UpdatePost".equals(action)) {
                 url = UPDATE_POST;
-            }
-            else if ("RemovePost".equals(action)) {
+            } else if ("RemovePost".equals(action)) {
                 url = REMOVE_POST;
-            }
-            else if ("AddProject".equals(action)) {
+            } else if ("AddProject".equals(action)) {
                 url = ADD_PROJECT;
-            }
-            else if ("AddSemester".equals(action)) {
+            } else if ("AddSemester".equals(action)) {
                 url = ADD_SEMESTER;
-            }
-            else if ("AddTeam".equals(action)) {
+            } else if ("AddTeam".equals(action)) {
                 url = ADD_TEAM;
-            }
-            else if ("AddStudent".equals(action)) {
+            } else if ("AddStudent".equals(action)) {
                 url = ADD_STUDENT;
-            }
-            else if ("AddProjectInstructor".equals(action)) {
+            } else if ("AddProjectInstructor".equals(action)) {
                 url = ADD_PROJECT_INSTRUCTOR;
-            }
-            else if ("AddInstructor".equals(action)) {
+            } else if ("AddInstructor".equals(action)) {
                 url = ADD_INSTRUCTOR;
+<<<<<<< HEAD
             }else if ("AddComment".equals(action)) {
                 url = ADD_COMMENT;
+=======
+            } else if ("Vote".equals(action)) {
+                url = VOTE_POST_PROJECT;
+            } else if ("UpdateProject".equals(action)) {
+                url = UPDATE_PROJECT;
+            } else if ("CommentPost".equals(action)) {
+                url = COMMENT_POST;
+
+>>>>>>> f03c992816169bb02b75433136efda1db8b3397c
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
