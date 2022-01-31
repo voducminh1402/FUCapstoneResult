@@ -40,11 +40,13 @@ public class MainController extends HttpServlet {
     private static final String ADD_STUDENT = "AddStudentController";
     private static final String ADD_PROJECT_INSTRUCTOR = "AddProjectInstructorController";
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
-
+    private static final String ADD_COMMENT = "AddCommentController";
     private static final String VOTE_POST_PROJECT = "VoteController";
-
     private static final String UPDATE_PROJECT = "UpdateProjectController";
     private static final String COMMENT_POST = "CommentPostController";
+    private static final String LOAD_COMMENTS = "LoadCommentsController";
+    private static final String DELETE_COMMENT = "DeleteCommentController";
+    private static final String UNDO_ACCEPT_COMMENT = "UndoAcceptCommentController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -91,13 +93,20 @@ public class MainController extends HttpServlet {
                 url = ADD_PROJECT_INSTRUCTOR;
             } else if ("AddInstructor".equals(action)) {
                 url = ADD_INSTRUCTOR;
+            }else if ("AddComment".equals(action)) {
+                url = ADD_COMMENT;
             } else if ("Vote".equals(action)) {
                 url = VOTE_POST_PROJECT;
             } else if ("UpdateProject".equals(action)) {
                 url = UPDATE_PROJECT;
             } else if ("CommentPost".equals(action)) {
                 url = COMMENT_POST;
-
+            } else if ("LoadComments".equals(action)) {
+                url = LOAD_COMMENTS;
+            } else if ("DeleteComment".equals(action)) {
+                url = DELETE_COMMENT;
+            } else if ("Undo".equals(action)) {
+                url = UNDO_ACCEPT_COMMENT;
             }
 
         } catch (Exception e) {
