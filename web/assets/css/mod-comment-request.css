@@ -16,3 +16,20 @@ input[type=submit] {
     border-radius: 5px;
 
 }
+
+.accepted {
+    background-color: green;
+}
+
+.accepted:hover {
+    background-color: green;
+}
+
+.deleted {
+    background-color: red;
+    border-color: red;
+}
+
+.deleted:hover {
+    background-color: red;
+}

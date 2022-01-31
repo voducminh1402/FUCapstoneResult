@@ -5,36 +5,51 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.ProjectOwnerPostCommentsDAO;
+import com.fucapstoneresult.models.UserCommentDTO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Asus
  */
 public class AddCommentController extends HttpServlet {
+
     private static final String ERROR = "mod-comment-request.jsp";
     private static final String SUCCESS = "mod-comment-request.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         boolean check = true;
         try {
-           
-            
-           
+            String commentId = request.getParameter("commentId");
+            String poPostId = request.getParameter("postId");
+            String userId = request.getParameter("userId");
+            String commentDetail = request.getParameter("commentDetail");
+            String commentTime = request.getParameter("commentTime");
+            int commentStatusId = 2;
+
+            ProjectOwnerPostCommentsDAO dao = new ProjectOwnerPostCommentsDAO();
+            UserCommentDTO user = new UserCommentDTO(commentId,poPostId, userId , commentDetail , commentTime, commentStatusId);
+            check = dao.insertPoPostComment(user);
+
+            if (check) {
+                url = SUCCESS;
+            }
 
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-       
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

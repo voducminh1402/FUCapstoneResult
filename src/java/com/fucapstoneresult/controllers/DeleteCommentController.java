@@ -6,10 +6,10 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.UserCommentDTO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Asus
  */
-public class LoadCommentsController extends HttpServlet {
+@WebServlet(name = "DeleteCommentController", urlPatterns = {"/DeleteCommentController"})
+public class DeleteCommentController extends HttpServlet {
 
     private static final String ERROR = "mod-comment-request.jsp";
     private static final String SUCCESS = "mod-comment-request.jsp";
@@ -26,18 +27,15 @@ public class LoadCommentsController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url=ERROR;
         try {
+            String commentId = request.getParameter("commentId");
             CommentDAO dao = new CommentDAO();
-           List<UserCommentDTO> user = dao.joinUserComment();
-           if(user!=null){
-               request.setAttribute("LIST_USERCOMMENT", user);
-           }
+            dao.deleteComments(commentId);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-            
+             request.getRequestDispatcher(url).forward(request, response);
         }
 
     }

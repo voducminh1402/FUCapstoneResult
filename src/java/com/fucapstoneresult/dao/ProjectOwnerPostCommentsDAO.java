@@ -6,6 +6,7 @@
 package com.fucapstoneresult.dao;
 
 import com.fucapstoneresult.models.ProjectOwnerPostCommentsDTO;
+import com.fucapstoneresult.models.UserCommentDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,22 +17,26 @@ import java.sql.SQLException;
  * @author Asus
  */
 public class ProjectOwnerPostCommentsDAO {
-    public boolean insertPoPostComment(ProjectOwnerPostCommentsDTO postComment) throws SQLException, ClassNotFoundException {
+    public boolean insertPoPostComment(UserCommentDTO postComment) throws SQLException, ClassNotFoundException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO ProjectOwnerPostComments(CommentID, POPostID, UserID, CommentDetail , CommentTime, CommentStatusID)"
+                String sql =  " UPDATE Comments "
+                        + " SET CommentStatusID = 2"
+                        + " WHERE CommentID=?"
+                        + " INSERT INTO ProjectOwnerPostComments(CommentID, POPostID, UserID, CommentDetail , CommentTime, CommentStatusID)"
                         + " VALUES(?,?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, postComment.getCommentID());
-                stm.setString(2, postComment.getPopostID());
-                stm.setString(3, postComment.getUserID());
-                stm.setString(4, postComment.getCommentDetail());
-                stm.setString(5, postComment.getCommentTime());
-                stm.setInt(6, postComment.getCommentStatusID());                        
+                stm.setString(1, postComment.getCommentId());
+                stm.setString(2, postComment.getCommentId());
+                stm.setString(3, postComment.getPostId());
+                stm.setString(4, postComment.getUserId());
+                stm.setString(5, postComment.getCommentDetail());
+                stm.setString(6, postComment.getCommentTime());
+                stm.setInt(7, postComment.getCommentStatusId());                        
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } finally {
@@ -105,7 +110,7 @@ public class ProjectOwnerPostCommentsDAO {
         String CommentStatusID="1";
         ProjectOwnerPostCommentsDAO dao= new ProjectOwnerPostCommentsDAO();
         ProjectOwnerPostCommentsDTO postComment = new ProjectOwnerPostCommentsDTO(CommentID, PoPostID, UserId, CommentDetail, CommentTime, 1);
-        dao.insertPoPostComment(postComment);
+        
         
     }
 }
