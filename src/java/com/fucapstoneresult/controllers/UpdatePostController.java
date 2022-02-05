@@ -6,7 +6,11 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,12 +47,35 @@ public class UpdatePostController extends HttpServlet {
             String[] postTags = request.getParameter("post-tag").split(",");
             String projectID = request.getParameter("project-name");
             
-            PostsDTO post = new PostsDTO(postID, postTitle, "", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            PostsDTO post = null;
+            
+            if (userLogin != null) {
+                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+            }
+            else {
+                response.sendRedirect("login.html");
+            }
+            
+            TagsDAO tagDao = new TagsDAO();
+            boolean checkTagDelete = tagDao.delete(postID);
             
             PostsDAO dao = new PostsDAO();
             boolean check = dao.update(post);
             
-            if (check) {
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            
+            boolean checkTagDetail = false, checkTag = false;
+            
+            if (check && checkTagDelete) {
+                for (String postTag : postTags) {
+                        UUID newUuid = UUID.randomUUID();
+                        String tagDetailId = newUuid.toString();
+                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
+                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                    }
+            }
+            
+            if (checkTag) {
                 url = SUCCESS;
             }
         } 
