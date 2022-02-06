@@ -76,6 +76,11 @@ public class CommentDTO {
     public void setCommentStatusId(int commentStatusId) {
         this.commentStatusId = commentStatusId;
     }
+
+    @Override
+    public String toString() {
+        return "CommentDTO{" + "commentId=" + commentId + ", postId=" + postId + ", userId=" + userId + ", commentDetail=" + commentDetail + ", commentTime=" + commentTime + ", commentStatusId=" + commentStatusId + '}';
+    }
     
     
 }
