@@ -5,51 +5,51 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.ProjectOwnerPostCommentsDAO;
+import com.fucapstoneresult.models.UserCommentDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author Asus
  */
-@WebServlet(name = "CheckDuplicateUserController", urlPatterns = {"/CheckDuplicateUserController"})
-public class CheckDuplicateUserController extends HttpServlet {
+public class AddCommentController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "mod-comment-request.jsp";
+    private static final String SUCCESS = "mod-comment-request.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
+        boolean check = true;
         try {
-            String email = request.getParameter("email");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.searchUserByEmail(email);
-            PrintWriter out = response.getWriter();
-            if (user != null) {
-                out.println("Xin lỗi, email: " + email + ", đã bị trùng!");
-//                response.getWriter().write("trung");
-            } else {
-                out.println("");
-//                response.getWriter().write("khong trung");
+            String commentId = request.getParameter("commentId");
+            String poPostId = request.getParameter("postId");
+            String userId = request.getParameter("userId");
+            String commentDetail = request.getParameter("commentDetail");
+            String commentTime = request.getParameter("commentTime");
+            int commentStatusId = 2;
+
+            ProjectOwnerPostCommentsDAO dao = new ProjectOwnerPostCommentsDAO();
+            UserCommentDTO user = new UserCommentDTO(commentId,poPostId, userId , commentDetail , commentTime, commentStatusId);
+            check = dao.insertPoPostComment(user);
+
+            if (check) {
+                url = SUCCESS;
             }
-            response.setContentType("application/json");
+
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .main {
@@ -40,6 +40,33 @@
 
 .main__content .content .project-info div {
   padding-right: 2rem;
+}
+
+.vote {
+  padding: 0;
+  margin: 0;
+  align-items: flex-end;
+}
+.vote button {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: none;
+}
+.vote button i {
+  font-size: 1.5rem;
+}
+/* .vote button i {
+  color: rgb(247, 200, 139);
+} */
+#vote {
+  margin: 0 10px;
+}
+.vote-active {
+  color: green;
+}
+.un-vote-active {
+  color: red;
 }
 
 .main__content .comment {
@@ -135,7 +162,7 @@
   right: 1rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   color: #f26f21;
   font-size: 1.5rem;
   cursor: pointer;
@@ -179,8 +206,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .main__content .recent-post__info .picture-project img {
@@ -227,15 +254,15 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .main__content .instructor-info img {
@@ -251,8 +278,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .main__content .team-members ul li {
@@ -262,14 +289,14 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .main__content .team-members ul li img {

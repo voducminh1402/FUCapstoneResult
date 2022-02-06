@@ -5,8 +5,7 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.CommentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,38 +16,26 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author HP
+ * @author Asus
  */
-@WebServlet(name = "CheckDuplicateUserController", urlPatterns = {"/CheckDuplicateUserController"})
-public class CheckDuplicateUserController extends HttpServlet {
+@WebServlet(name = "UndoAcceptCommentController", urlPatterns = {"/UndoAcceptCommentController"})
+public class UndoAcceptCommentController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String ERROR = "mod-comment-request.jsp";
+    private static final String SUCCESS = "mod-comment-request.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url=ERROR;
         try {
-            String email = request.getParameter("email");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.searchUserByEmail(email);
-            PrintWriter out = response.getWriter();
-            if (user != null) {
-                out.println("Xin lỗi, email: " + email + ", đã bị trùng!");
-//                response.getWriter().write("trung");
-            } else {
-                out.println("");
-//                response.getWriter().write("khong trung");
-            }
-            response.setContentType("application/json");
+            String commentId = request.getParameter("commentId");
+            CommentDAO dao = new CommentDAO();
+            dao.undoAcceptComments(commentId);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+             request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
