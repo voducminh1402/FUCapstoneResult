@@ -283,7 +283,6 @@
 
       submit.addEventListener('click', () => {
         let input = inputComment.value;
-        console.log("A");
 
         $.ajax({
           type: 'POST',
@@ -293,7 +292,7 @@
           success: function(response) {
             if (response.length > 1) {
               console.log(response);
-              console.log("ok");
+              console.log(response);
             }
             else {
               console.log("fail");
