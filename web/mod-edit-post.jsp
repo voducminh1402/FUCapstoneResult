@@ -103,7 +103,7 @@
                 <form action="MainController" method="POST">
                     <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Sửa Lại Bài Đăng</label><br>
                     <select name="project-name" id="" required>
-                        <option disabled selected>Đồ Án Tốt Nghiệp</option>
+                        <option disabled>Đồ Án Tốt Nghiệp</option>
                         <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
                             <option value="${o.projectID}">${o.projectName}</option>
                         </c:forEach>
