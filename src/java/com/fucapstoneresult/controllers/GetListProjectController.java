@@ -7,9 +7,11 @@ package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.models.InstructorDTO;
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import java.io.IOException;
 import java.util.List;
@@ -32,6 +34,7 @@ public class GetListProjectController extends HttpServlet {
     private static final String VIEW_PROJECT = "mod-view-project.jsp";
     private static final String UPDATE_PROJECT = "mod-update-project.jsp";
     private static final String ERROR = "login.html";
+    private static final String ADD_PROJECT = "mod-add-project.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,12 +51,15 @@ public class GetListProjectController extends HttpServlet {
             List<InstructorDTO> List = DAO.getAllInstructor();
             TeamDAO DAOteam = new TeamDAO();
             List<TeamDTO> ListTeam = DAOteam.getAllTeam();
+            SemesterDAO DAOSemester = new SemesterDAO();
+            List<SemesterDTO> listSem = DAOSemester.getAllSemester();
             
             request.setAttribute("PROJECT_LIST", list);
             String page = request.getParameter("page");
             request.setAttribute("INSTRUCTOR_LIST", List);
             request.setAttribute("TEAM_LIST", ListTeam);
             request.setAttribute("VIEW_PROJECT", project);
+            request.setAttribute("SEMESTER_LIST", listSem);
             
             if(page.equals("add-post")){
                 url = TARGET;
@@ -69,6 +75,8 @@ public class GetListProjectController extends HttpServlet {
                 url = VIEW_PROJECT;
             }else if(page.equals("update-project")){
                 url = UPDATE_PROJECT;
+            }else if(page.equals("add-project")){
+                url = ADD_PROJECT;
             }
             
         } 
