@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -156,16 +158,46 @@ public class SemesterDAO {
         return check;
     }
     
-    public static void main(String[] args) throws SQLException {
-        SemesterDAO dao = new SemesterDAO();
+    public List<SemesterDTO> getAllSemester() throws SQLException {
+        List<SemesterDTO> semetList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         
-//        boolean check = dao.udpateSemester(new SemesterDTO("1", "Spring20211"));
-//        SemesterDTO dto = dao.getSemester("1");
-//        System.out.println(dto.getSemesterName());
-
-boolean check = dao.deleteSemester("1");
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT SemesterID, SemesterName "
+                            + " FROM Semesters ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String semesterID = rs.getString("SemesterID");
+                    String semesterName = rs.getString("SemesterName");
+                    
+                    
+                    semetList.add(new SemesterDTO(semesterID, semesterName));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
         
-        System.out.println(check);
+        return semetList;
     }
     
 }
