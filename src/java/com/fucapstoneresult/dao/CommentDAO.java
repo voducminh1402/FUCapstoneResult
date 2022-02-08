@@ -61,7 +61,7 @@ public class CommentDAO {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            conn = DBUtils.getConnection();
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null) {
 
                 String sql = " SELECT CommentID, PostID, UserID, CommentDetail, CommentTime, CommentStatusID "
@@ -96,6 +96,50 @@ public class CommentDAO {
         return listComments;
 
     }
+     
+    public List<CommentDTO> getListCommentsByPost(String id) throws SQLException {
+        List<CommentDTO> listComments= new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+            if (conn != null) {
+
+                String sql = "SELECT CommentID, UserID, CommentDetail, CommentTime " +
+                            " FROM Comments " +
+                            " WHERE PostID = ? AND CommentStatusID=2 ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String commentId = rs.getString("CommentID");                  
+                    String postId = id;
+                    String userId = rs.getString("UserID");
+                    String commentDetail = rs.getString("CommentDetail");
+                    String commentTime = rs.getString("CommentTime");
+                   
+                    listComments.add(new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 2 ));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listComments;
+
+    }
+     
      public boolean deleteComments(String commentId) throws SQLException {
         boolean check = false;
         Connection conn = null;

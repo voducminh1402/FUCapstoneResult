@@ -5,52 +5,53 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.VotesDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.CommentDAO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.ProjectDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author VODUCMINH
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
-
+public class DetailProjectController extends HttpServlet {
+    private static final String ERROR = "index.jsp";
+    private static final String SUCCESS = "post-project.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String url = ERROR;
         try {
-            int vote = Integer.parseInt(request.getParameter("vote"));
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
+            String projectID = request.getParameter("id");
             
-            String postId = "1502edfa-49d2-43a9-b4de-44efce302bbd";
+            PostsDAO postDao = new PostsDAO();
+            PostsDTO post = postDao.getPostWithProjectId(projectID);
             
-            if (user != null) {
-                int count = 0;
-                VotesDAO dao = new VotesDAO();
-                if (vote == 1) {
-                    dao.addVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-                } else {
-                    dao.removeVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-                }
-                response.getWriter().write(count+"");
-            } else {
-                response.getWriter().write("fail");
+            if (post != null) {
+                CommentDAO cmtDao = new CommentDAO();
+                List<CommentDTO> comments = cmtDao.getListCommentsByPost(post.getPostID());
+                
+                request.setAttribute("POST", post);
+                request.setAttribute("COMMENTS", comments);
+                request.setAttribute("COUNT_CMT", comments.size());
+                url = SUCCESS;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

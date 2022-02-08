@@ -1,3 +1,13 @@
+<%-- 
+    Document   : index
+    Created on : Feb 7, 2022, 12:34:09 AM
+    Author     : VODUCMINH
+--%>
+<%@page import="com.fucapstoneresult.models.ProjectDTO"%>
+<%@page import="com.fucapstoneresult.dao.ProjectDAO"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -232,61 +242,24 @@
                         <h2>Đồ Án Nổi Bật</h2>
                         <div class="capstone-slider">
                             <div class="good-capstone-slide">
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
+                                <%
+                                    ProjectDAO projectDao = new ProjectDAO();
+                                    List<ProjectDTO> projectList = projectDao.getTop10Project();
+                                    request.setAttribute("PROJECT_LIST", projectList);
+                                %>
+                                <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
+                                    <div class="good-capstone">
+                                        <img src="${o.projectImage}" alt="">
+                                        <div class="good-capstone-text">
+                                            <h3>
+                                                <a href="MainController?action=DetailProject&id=${o.projectID}">${o.projectName}</a>
+                                            </h3>
+                                            <p>${o.projectDescription}</p>
+                                        </div>
+                                        <div class="good-capstone-overlay">
+                                        </div>
                                     </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
-                                    </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
-                                    </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
-                                    </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
-                                    </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="good-capstone-text">
-                                        <h3>Hệ thống điều khiển Robot tự động</h3>
-                                        <p>Đây là đồ án của sinh viên chuyên ngành IOT và SE (Software Engineering) về sản phẩm xây dựng hệ thống điều khiển Robot tự động</p>
-                                    </div>
-                                    <div class="good-capstone-overlay">
-                                    </div>
-                                </div>
-                                
+                                </c:forEach>
                                 <button type="button" class="slick-prev">Previous</button>
                                 <button type="button" class="slick-next">Next</button>
                             </div>
@@ -716,3 +689,4 @@
 </body>
 
 </html>
+
