@@ -111,6 +111,55 @@ public class PostsDAO {
 
         return post;
     }
+    
+    public PostsDTO getPostWithProjectId(String id) throws SQLException {
+        PostsDTO post = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = " SELECT TOP 1 PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
+                        + " FROM Posts "
+                        + " WHERE ProjectID=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+                    String ProjectID = id;
+
+                    post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return post;
+    }
 
     public List<PostsDTO> getListPost(String search) throws SQLException {
         List<PostsDTO> listPost = new ArrayList<>();
