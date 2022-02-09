@@ -103,7 +103,7 @@
                 <form action="MainController" method="POST">
                     <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Tạo Bài Đăng</label><br>
                     <c:if test="${requestScope.PROJECT_LIST == null}">
-                        <c:redirect url="MainController?action=GetListProject"></c:redirect>
+                        <c:redirect url="MainController?action=GetListProject&page=add-post"></c:redirect>
                     </c:if>
                     <select name="project-name" id="" required>
                         <option disabled selected>Đồ Án Tốt Nghiệp</option>
@@ -223,7 +223,7 @@
                     if (!$element.data('tagsinput'))
                     return;
 
-                    var val = $element.val();
+                    var val = $element.val(); 
                     if (val === null) {
                         val = "null";
                     }

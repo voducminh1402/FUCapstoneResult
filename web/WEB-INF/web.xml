@@ -80,13 +80,25 @@
         <servlet-name>LoadCommentsController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.LoadCommentsController</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>UpdateProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdateProjectController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CommentPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.CommentPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadingIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadingIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.DetailProjectController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -168,9 +180,24 @@
         <servlet-name>CommentPostController</servlet-name>
         <url-pattern>/CommentPostController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadingIndexController</servlet-name>
+        <url-pattern>/LoadingIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadIndexController</servlet-name>
+        <url-pattern>/LoadIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailProjectController</servlet-name>
+        <url-pattern>/DetailProjectController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

@@ -42,8 +42,6 @@ public class AddPostController extends HttpServlet {
             LocalDateTime now = LocalDateTime.now();
             String currentDate = dtf.format(now);
             
-            UUID uuid = UUID.randomUUID();
-            String postID = uuid.toString();
             String postTitle = request.getParameter("post-title");
             String postAuthor = request.getParameter("post-author");
             String postImage = request.getParameter("post-thumbnail");
@@ -58,16 +56,23 @@ public class AddPostController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
                 
-                PostsDTO post = new PostsDTO(postID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, projectID);
+                PostsDTO post = new PostsDTO(projectID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, projectID);
                 boolean check = postDao.insert(post);
                 boolean checkTagDetail = false, checkTag = false;
                 
                 if (check) {
                     for (String postTag : postTags) {
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                        if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
+                            String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
+                            checkTag = tagDao.insert(new TagsDTO(projectID, tagDetailId));
+                        }
+                        else {
+                            UUID newUuid = UUID.randomUUID();
+                            String tagDetailId = newUuid.toString();
+                            checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
+                            checkTag = tagDao.insert(new TagsDTO(projectID, tagDetailId));
+                        }
+                        
                     }
                     if (checkTagDetail && checkTag) {
                         url = SUCCESS;
