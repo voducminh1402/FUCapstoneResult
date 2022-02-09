@@ -123,7 +123,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID "
                         + " FROM Posts "
-                        + " WHERE PostID like ? ";
+                        + " WHERE PostTitle like ? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + search + "%");
                 rs = stm.executeQuery();
@@ -255,5 +255,58 @@ public class PostsDAO {
 
         return check;
     }
+    
+    public List<PostsDTO> getPostsByTagID (String id) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<PostsDTO> list = new ArrayList<>();
 
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "SELECT Posts.PostID, Posts.PostTitle, Posts.PostDate, Posts.PostAuthor, Posts.PostContent, Posts.PostImage, Posts.LastEditedUser, "
+                        + "Posts.Upvote, Posts.PostStatusId, Posts.ProjectID "
+                        + " FROM Tags "
+                        + " JOIN Posts ON Posts.PostID = Tags.PostID "
+                        + " WHERE TagDetailID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, id);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+                    String ProjectID = rs.getString("ProjectID");
+                    
+                    list.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null)
+                rs.close();
+            if (stm != null)
+                stm.close();
+            if (con != null)
+                con.close();
+        }
+        return list;
+    }
+
+    
+    public static void main(String[] args) throws SQLException {
+        PostsDAO dao = new PostsDAO();
+        List<PostsDTO> list = dao.getListPost("FPT");
+        for (PostsDTO postsDTO : list) {
+            System.out.println(postsDTO);
+        }
+    }
 }

@@ -5,52 +5,33 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.VotesDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
+@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
+public class FilterPostController extends HttpServlet {
 
+    private static final String SUCCESS = "project-major.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String url = SUCCESS;
         try {
-            int vote = Integer.parseInt(request.getParameter("vote"));
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
-
-            if (user != null) {
-                int count = 0;
-                String postID = "1";
-                VotesDAO dao = new VotesDAO();
-                if (vote == 1) {
-                    dao.addVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-                } else {
-                    dao.removeVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-                }
-                response.getWriter().write(count+"");
-            } else {
-                response.getWriter().write("fail");
-            }
+            //van chua lam duoc truy van can phai join bang moi lam duoc, xem lai quan he giua post va project 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

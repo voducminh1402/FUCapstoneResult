@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.dao;
 
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
@@ -123,5 +124,59 @@ public class TagDetailsDAO {
         
         
         return check;
+    }
+    
+    public List<TagDetailsDTO> getTagsByName(String name) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<TagDetailsDTO> list = new ArrayList<>();
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "SELECT TagDetailID "
+                        + " FROM TagDetails "
+                        + " WHERE TagDetailName like ? ";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + name + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    list.add(new TagDetailsDTO(rs.getString("TagDetailID")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) 
+                rs.close();
+            if (stm != null) 
+                stm.close();
+            if (con != null) 
+                con.close();
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        TagDetailsDAO dao = new TagDetailsDAO();
+        PostsDAO d = new PostsDAO();
+        List<TagDetailsDTO> list = dao.getTagsByName("o");
+        List<PostsDTO> l;
+        List<PostsDTO> listPosts = new ArrayList<>();
+        int count = 0;
+        for (TagDetailsDTO tagDetailsDTO : list) {
+            l = d.getPostsByTagID(tagDetailsDTO.getTagDetailID());
+//            for (PostsDTO postsDTO : l) {
+//                count++;
+//                System.out.println(postsDTO);
+//            }
+//            System.out.println(l.size());
+            listPosts.addAll(l);
+        }
+        System.out.println(count);
+        for (PostsDTO listPost : listPosts) {
+            System.out.println(listPost);
+        }
+        System.out.println(listPosts.size());
     }
 }

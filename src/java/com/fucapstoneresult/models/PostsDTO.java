@@ -118,6 +118,11 @@ public class PostsDTO {
         this.projectID = projectID;
     }
 
+    @Override
+    public String toString() {
+        return "PostsDTO{" + "postID=" + postID + ", postTitle=" + postTitle + ", postDate=" + postDate + ", postAuthor=" + postAuthor + ", postContent=" + postContent + ", postImage=" + postImage + ", lastEditedUser=" + lastEditedUser + ", upvote=" + upvote + ", postStatusID=" + postStatusID + ", projectID=" + projectID + '}';
+    }
+
    
     
 }

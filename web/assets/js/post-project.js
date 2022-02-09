@@ -42,7 +42,10 @@ function vote() {
       if (data == "fail")
         window.location.href =
           "http://localhost:8080/FUCapstoneResult/login.html";
-      else voteNumbers.innerHTML = data;
+      else {
+        voteNumbers.innerHTML = data;
+        console.log("anh vui ve");
+      }
     },
   });
 }
