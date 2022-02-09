@@ -8,9 +8,13 @@ package com.fucapstoneresult.dao;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,7 +134,7 @@ public class PostsDAO {
                 if (rs.next()) {
                     String PostID = rs.getString("PostID");
                     String PostTitle = rs.getString("PostTitle");
-                    String PostDate = rs.getString("PostDate");
+                    String PostDate = convertDatetime(rs.getString("PostDate"));
                     String PostAuthor = rs.getString("PostAuthor");
                     String PostContent = rs.getString("PostContent");
                     String PostImage = rs.getString("PostImage");
@@ -300,6 +304,18 @@ public class PostsDAO {
         }
 
         return check;
+    }
+    
+    public static String convertDatetime(String date) {
+//        Timestamp originalTime = Timestamp.valueOf(date);
+        Date convertDate = Date.valueOf(date);
+        DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
+        return df.format(convertDate);
+    }
+    
+    public static void main(String[] args) {
+        PostsDAO dao = new PostsDAO();
+        System.out.println(dao.convertDatetime("2022-02-09"));
     }
 
 }

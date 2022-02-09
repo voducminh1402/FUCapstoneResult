@@ -8,9 +8,13 @@ import com.fucapstoneresult.models.CommentDTO;
 import com.fucapstoneresult.models.UserCommentDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,7 +122,7 @@ public class CommentDAO {
                     String postId = id;
                     String userId = rs.getString("UserID");
                     String commentDetail = rs.getString("CommentDetail");
-                    String commentTime = rs.getString("CommentTime");
+                    String commentTime = convertDatetime(rs.getString("CommentTime"));
                    
                     listComments.add(new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 2 ));
                 }
@@ -240,13 +244,20 @@ public class CommentDAO {
         return userComment;
     }
        
-    
-     public static void main(String[] args) throws SQLException {
-        CommentDAO dao = new CommentDAO();
-        List<UserCommentDTO> user =dao.joinUserComment();
-         for (UserCommentDTO userCommentDTO : user) {
-             System.out.println(userCommentDTO);
-         }
+    public static String convertDatetime(String date) {
+        Timestamp originalTime = Timestamp.valueOf(date);
+        Date convertDate = new Date(originalTime.getTime());
+        DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm");
+        return df.format(convertDate);
     }
+       
+    
+//     public static void main(String[] args) throws SQLException {
+//        CommentDAO dao = new CommentDAO();
+//        List<UserCommentDTO> user =dao.joinUserComment();
+//         for (UserCommentDTO userCommentDTO : user) {
+//             System.out.println(userCommentDTO);
+//         }
+//    }
     
 }
