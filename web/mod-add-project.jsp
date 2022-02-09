@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -110,16 +111,18 @@
                         </textarea>
                         <label for="">Điểm Số Đồ Án</label><br>
                         <input type="number" step="0.05" min="0" max="10" name="project-score">
+                        
+                        <c:if test="${requestScope.SEMESTER_LIST == null}">
+                            <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
+                        </c:if>
                         <label for="">Học Kì</label><br>
-                        <select name="semester-id" id="">
-                            <option value="1">Học Kì Spring 2021</option>
-                            <option value="2">Học Kì Fall 2020</option>
-                            <option value="3">Học Kì Summer 2020</option>
-                            <option value="4">Học Kì Spring 2020</option>
-                            <option value="5">Học Kì Fall 2019</option>
-                            <option value="6">Học Kì Summer 2019</option>
-                            <option value="5">Học Kì Spring 2019</option>
+                        <select name="semester-id" id="" required>
+                            <option disabled selected>Lựa Chọn Kì Cho Đồ Án</option>
+                            <c:forEach items="${requestScope.SEMESTER_LIST}" var="o">
+                                <option value="${o.semesterID}">${o.semesterName}</option>
+                            </c:forEach>
                         </select>
+                        <br>
                         <label for="">Ảnh Bìa Đồ Án</label>
                         <div class="project-add-upload__image post-upload__image">
                             <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
