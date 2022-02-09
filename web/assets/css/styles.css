@@ -472,6 +472,16 @@ header {
 
 .good-capstone-text h3 {
     margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.good-capstone-text a {
+    color: var(--main-white);
+    text-decoration: none;
+}
+
+.good-capstone-text p {
+    max-height: 80px !important;
 }
 
 .slick-prev::before {

@@ -45,7 +45,7 @@ public class CommentPostController extends HttpServlet {
                 UUID uuid = UUID.randomUUID();
                 String commentId = uuid.toString();
                 String commentDetail = request.getParameter("input-comment");
-                String postId = "1ca2ea84-bdcd-4c87-8c1a-e5816e566ed1";
+                String postId = request.getParameter("id");
                 String userId = userLogin.getUserID();
                 
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
