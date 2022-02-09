@@ -1,3 +1,11 @@
+<%-- 
+    Document   : post-project
+    Created on : Feb 7, 2022, 8:52:47 AM
+    Author     : VODUCMINH
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,20 +45,20 @@
               alt="product picture"
               class="main-picture"
             /> -->
-            <div class="main-picture"></div>
-            <h1 class="name-project">Web Design for the Future</h1>
+            <div class="main-picture" style="background-image: url(${requestScope.POST.postImage})"></div>
+            <h1 class="name-project">${requestScope.POST.postTitle}</h1>
             <div class="project-info">
               <div class="author">
                 <i class="far fa-user"></i>
-                <span>Le Hong Anh</span>
+                <span>${requestScope.POST.postAuthor}</span>
               </div>
               <div class="date-publish">
                 <i class="far fa-calendar-alt"></i>
-                <span>10/12/2021</span>
+                <span>${requestScope.POST.postDate}</span>
               </div>
               <div class="number-comment">
                 <i class="far fa-comment-alt"></i>
-                <span>11 Bình luận</span>
+                <span>${requestScope.COUNT_CMT} Bình luận</span>
               </div>
 
               <div class="vote">
@@ -66,50 +74,36 @@
               </div>
             </div>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto
-              harum repudiandae nostrum laudantium sequi corrupti repellendus
-              vel perspiciatis rem a, ipsam et suscipit eos veritatis, ad
-              consequatur illum deserunt assumenda. Lorem ipsum dolor sit, amet
-              consectetur adipisicing elit. Minus sapiente delectus maiores
-              similique veniam vel in nisi nobis minima modi ullam quae magnam,
-              illo rerum saepe cumque reprehenderit alias omnis. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Adipisci nisi quos
-              eos architecto consequatur nostrum iusto recusandae veniam
-              quibusdam voluptatem quisquam, dolor ipsum corrupti doloremque cum
-              reprehenderit harum in est?
+              ${requestScope.POST.postContent}
             </p>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores in, repellendus aliquid reprehenderit obcaecati
-              blanditiis adipisci magnam rem aspernatur quidem distinctio
-              provident maxime sed porro error perferendis, laboriosam beatae
-              fugiat.
-            </p>
+            <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
           </div>
           <div class="comment">
-            <h5>03 Bình luận</h5>
-            <div id="comment-area" class="comment-area">
-              <div class="comment-info">
-                <div class="comment-info__user-picture">
-                  <img
-                    src="./assets/images/image-product-1.jpg"
-                    alt="user picture"
-                  />
+            <h5>${requestScope.COUNT_CMT} Bình luận</h5>
+            
+                <div id="comment-area" class="comment-area">
+                    <c:forEach items="${requestScope.COMMENTS}" var="o">
+                    <div class="comment-info">
+                      <div class="comment-info__user-picture">
+                        <img
+                          src="./assets/images/image-product-1.jpg"
+                          alt="user picture"
+                        />
+                      </div>
+                      <div class="comment-info__content">
+                        <div class="content-header">
+                          <h6 class="user-name">Vo Duc Minh</h6>
+                          <span> ${o.commentTime} </span>
+                        </div>
+                        <p>
+                          ${o.commentDetail}
+                        </p>
+                      </div>
+                    </div>
+                    </c:forEach>
                 </div>
-                <div class="comment-info__content">
-                  <div class="content-header">
-                    <h6 class="user-name">Le Hong Anh</h6>
-                    <span> 8:40 02/10/2022 </span>
-                  </div>
-                  <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Nobis voluptatum magnam sequi officia commodi earum, autem
-                    dolores atque ipsa, porro labore reprehenderit repellendus
-                    optio vel eligendi necessitatibus illum velit in.
-                  </p>
-                </div>
-              </div>
-            </div>
+            
+            
           </div>
           <div class="leave-comment">
             <h5>Để lại Bình luận</h5>
@@ -293,33 +287,25 @@
       integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
       crossorigin="anonymous"
     ></script>
-    <<<<<<< HEAD
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./assets/js/post-project.js"></script>
-    =======
     <script src="./assets/js/post-project.js"></script>
     <script>
       const submit = document.getElementById("submit");
       const inputComment = document.getElementById("comment");
+      const post = document.getElementById("post-id");
 
       submit.addEventListener("click", () => {
         let input = inputComment.value;
+        let postId = post.value;
         console.log("A");
 
         $.ajax({
           type: "POST",
-          url: "MainController?action=CommentPost&input-comment=" + input,
+          url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
           data: input,
           dataType: "text",
           success: function (response) {
             if (response.length > 1) {
               console.log(response);
-              console.log("ok");
             } else {
               console.log("fail");
             }
@@ -327,6 +313,5 @@
         });
       });
     </script>
-    >>>>>>> 6f3684ded52eb62088621658795113c07fee19fb
   </body>
 </html>

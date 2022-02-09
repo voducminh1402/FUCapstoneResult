@@ -309,7 +309,55 @@ public class ProjectDAO {
         return project;
     }
     
+    public List<ProjectDTO> getTop10Project() throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT TOP 10 ProjectID, ProjectName, ProjectDescription, ProjectImage "
+                            + " FROM Projects "
+                            + " ORDER BY ProjectScore DESC";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, 0, "", ""));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
+    }
     
+    public static void main(String[] args) throws SQLException {
+        ProjectDAO dao = new ProjectDAO();
+        
+        System.out.println(dao.getTop10Project());
+    }
 }
 
 
