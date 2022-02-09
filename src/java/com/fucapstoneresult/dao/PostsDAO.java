@@ -29,7 +29,7 @@ public class PostsDAO {
         try {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID "
+                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
                         + " FROM Posts ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
@@ -43,9 +43,8 @@ public class PostsDAO {
                     String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
-                    String ProjectID = rs.getString("ProjectID");
 
-                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID));
+                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID));
                 }
             }
         } catch (Exception e) {
@@ -74,7 +73,7 @@ public class PostsDAO {
         try {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID "
+                String sql = " SELECT PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
                         + " FROM Posts "
                         + " WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
@@ -90,9 +89,8 @@ public class PostsDAO {
                     String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
-                    String ProjectID = rs.getString("ProjectID");
 
-                    post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID);
+                    post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID);
                 }
             }
         } catch (Exception e) {
@@ -124,7 +122,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT TOP 1 PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
                         + " FROM Posts "
-                        + " WHERE ProjectID=?";
+                        + " WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
                 
@@ -139,9 +137,8 @@ public class PostsDAO {
                     String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
-                    String ProjectID = id;
 
-                    post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID);
+                    post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID);
                 }
             }
         } catch (Exception e) {
@@ -186,9 +183,9 @@ public class PostsDAO {
                     String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
-                    String ProjectID = rs.getString("ProjectID");
+//                    String ProjectID = rs.getString("ProjectID");
 
-                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID));
+                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID));
                 }
             }
         } catch (Exception e) {
@@ -215,7 +212,7 @@ public class PostsDAO {
         try {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null) {
-                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=? "
+                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=? "
                         + " WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostTitle());
@@ -223,7 +220,7 @@ public class PostsDAO {
                 stm.setString(3, post.getPostContent());
                 stm.setString(4, post.getPostImage());
                 stm.setString(5, post.getLastEditedUser());
-                stm.setString(6, post.getProjectID());
+//                stm.setString(6, post.getProjectID());
                 stm.setString(7, post.getPostID());
                 
                 check = stm.executeUpdate() > 0 ? true : false;
@@ -247,8 +244,8 @@ public class PostsDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " INSERT INTO Posts(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID) "
-                        + " VALUES(?,?,?,?,?,?,?,?,?,?) ";
+                String sql = " INSERT INTO Posts(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID) "
+                        + " VALUES(?,?,?,?,?,?,?,?,?) ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostID());
                 stm.setString(2, post.getPostTitle());
@@ -259,7 +256,7 @@ public class PostsDAO {
                 stm.setString(7, post.getLastEditedUser());
                 stm.setInt(8, post.getUpvote());
                 stm.setInt(9, post.getPostStatusID());
-                stm.setString(10, post.getProjectID());
+//                stm.setString(10, post.getProjectID());
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
