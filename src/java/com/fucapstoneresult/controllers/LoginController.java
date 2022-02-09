@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private static final String SUCCESS = "index.html";
+    private static final String SUCCESS = "index.jsp";
     private static final String FAIL = "login.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
