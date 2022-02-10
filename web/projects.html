@@ -256,6 +256,7 @@
       crossorigin="anonymous"
       async
     ></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -263,5 +264,90 @@
     ></script>
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/projects.js"></script>
+    <script>
+      var $posts = $('#posts').masonry({
+        // options
+        percentPosition: true 
+      });
+
+      const filterBtn = document.getElementById("filter");
+      const posts = document.getElementById("posts");
+      const load = document.getElementById("load");
+      let number = 1;
+
+      var list;
+
+      filterBtn.addEventListener("change", function () {
+        number = 1;
+        console.log("anh vui ve");
+        console.log(filterBtn.value);
+        $.ajax({
+          type: "POST",
+          url: `MainController?action=Filter`,
+          data: "filterValue=" + filterBtn.value,
+          dataType: "json",
+
+          //if received a response from the server
+          success: function (data) {
+            anh = data;
+
+            removeAllChildNodes(posts);
+            loadProject(data);
+          },
+        });
+      });
+
+      function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+
+      load.addEventListener("click", function () {
+        number += 1;
+        $.ajax({
+          type: "POST",
+          url: `MainController?action=Filter`,
+          data: "filterValue=" + filterBtn.value,
+          dataType: "json",
+
+          //if received a response from the server
+          success: function (data) {
+            anh = data;
+
+            removeAllChildNodes(posts);
+            loadProject(data);
+          },
+        });
+      });
+
+      function loadProject(data) {
+        for (i = 0; i < number; i++) {
+          let project = `<div class="project-detail col-sm-6 col-md-4">
+          <div class="project-content">
+            <div class="project-content-overlay">
+              <img
+                class="project-content-img"
+                src="${data[i].postImage}"
+                alt=""
+              />
+              <div class="project-content-text">
+                <span id="title">${data[i].postTitle}</span>
+                <h5>Web Development Framework</h5>
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
+
+          var $project = $(project);
+          $posts.append($project);
+          $posts.masonry('appended', $project);
+
+          // posts.insertAdjacentHTML("beforeend", commentContent);
+        }
+      }
+
+    </script>
   </body>
 </html>
