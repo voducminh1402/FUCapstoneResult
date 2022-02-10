@@ -263,11 +263,11 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/app.js"></script>
-    <script src="./assets/js/projects.js"></script>
+
     <script>
-      var $posts = $('#posts').masonry({
+      var $posts = $("#posts").masonry({
         // options
-        percentPosition: true 
+        percentPosition: true,
       });
 
       const filterBtn = document.getElementById("filter");
@@ -323,31 +323,26 @@
 
       function loadProject(data) {
         for (i = 0; i < number; i++) {
-          let project = `<div class="project-detail col-sm-6 col-md-4">
-          <div class="project-content">
-            <div class="project-content-overlay">
-              <img
-                class="project-content-img"
-                src="${data[i].postImage}"
-                alt=""
-              />
-              <div class="project-content-text">
-                <span id="title">${data[i].postTitle}</span>
-                <h5>Web Development Framework</h5>
-                <span>View Project</span>
-              </div>
-            </div>
-          </div>
-        </div>`;
+          let commentContent = `<div class="project-detail col-sm-6 col-md-4">
+                                  <div class="project-content">
+                                    <div class="project-content-overlay">
+                                      <img
+                                        class="project-content-img"
+                                        src="${data[i].postImage}"
+                                        alt=""
+                                      />
+                                      <div class="project-content-text">
+                                        <span id="title">${data[i].postTitle}</span>
+                                        <h5>Web Development Framework</h5>
+                                        <span>View Project</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>`;
 
-          var $project = $(project);
-          $posts.append($project);
-          $posts.masonry('appended', $project);
-
-          // posts.insertAdjacentHTML("beforeend", commentContent);
+          posts.insertAdjacentHTML("beforeend", commentContent);
         }
       }
-
     </script>
   </body>
 </html>
