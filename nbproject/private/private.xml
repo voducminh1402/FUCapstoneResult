@@ -8,12 +8,13 @@
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/PostsDTO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/SemesterDTO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/SemesterDAO.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserDTO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/projects.html</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/FilterPostController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserDTO.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
         </group>
     </open-files>
