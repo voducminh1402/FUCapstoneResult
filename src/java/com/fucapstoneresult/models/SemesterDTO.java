@@ -16,6 +16,11 @@ public class SemesterDTO {
     public SemesterDTO() {
     }
 
+    public SemesterDTO(String semesterID) {
+        this.semesterID = semesterID;
+        this.semesterName = "";
+    }
+
     public SemesterDTO(String semesterID, String semesterName) {
         this.semesterID = semesterID;
         this.semesterName = semesterName;
