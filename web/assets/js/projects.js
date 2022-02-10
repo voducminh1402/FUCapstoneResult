@@ -1,73 +1,75 @@
-const filterBtn = document.getElementById("filter");
-const posts = document.getElementById("posts");
-const load = document.getElementById("load");
-let number = 1;
 
-var list;
 
-filterBtn.addEventListener("change", function () {
-  number = 1;
-  console.log("anh vui ve");
-  console.log(filterBtn.value);
-  $.ajax({
-    type: "POST",
-    url: `MainController?action=Filter`,
-    data: "filterValue=" + filterBtn.value,
-    dataType: "json",
+// const filterBtn = document.getElementById("filter");
+// const posts = document.getElementById("posts");
+// const load = document.getElementById("load");
+// let number = 1;
 
-    //if received a response from the server
-    success: function (data) {
-      anh = data;
+// var list;
 
-      removeAllChildNodes(posts);
-      loadProject(data);
-    },
-  });
-});
+// filterBtn.addEventListener("change", function () {
+//   number = 1;
+//   console.log("anh vui ve");
+//   console.log(filterBtn.value);
+//   $.ajax({
+//     type: "POST",
+//     url: `MainController?action=Filter`,
+//     data: "filterValue=" + filterBtn.value,
+//     dataType: "json",
 
-function removeAllChildNodes(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
+//     //if received a response from the server
+//     success: function (data) {
+//       anh = data;
 
-load.addEventListener("click", function () {
-  number += 1;
-  $.ajax({
-    type: "POST",
-    url: `MainController?action=Filter`,
-    data: "filterValue=" + filterBtn.value,
-    dataType: "json",
+//       removeAllChildNodes(posts);
+//       loadProject(data);
+//     },
+//   });
+// });
 
-    //if received a response from the server
-    success: function (data) {
-      anh = data;
+// function removeAllChildNodes(parent) {
+//   while (parent.firstChild) {
+//     parent.removeChild(parent.firstChild);
+//   }
+// }
 
-      removeAllChildNodes(posts);
-      loadProject(data);
-    },
-  });
-});
+// load.addEventListener("click", function () {
+//   number += 1;
+//   $.ajax({
+//     type: "POST",
+//     url: `MainController?action=Filter`,
+//     data: "filterValue=" + filterBtn.value,
+//     dataType: "json",
 
-function loadProject(data) {
-  for (i = 0; i < number; i++) {
-    let commentContent = `<div class="project-detail col-sm-6 col-md-4">
-    <div class="project-content">
-      <div class="project-content-overlay">
-        <img
-          class="project-content-img"
-          src="${data[i].postImage}"
-          alt=""
-        />
-        <div class="project-content-text">
-          <span id="title">${data[i].postTitle}</span>
-          <h5>Web Development Framework</h5>
-          <span>View Project</span>
-        </div>
-      </div>
-    </div>
-  </div>`;
+//     //if received a response from the server
+//     success: function (data) {
+//       anh = data;
 
-    posts.insertAdjacentHTML("beforeend", commentContent);
-  }
-}
+//       removeAllChildNodes(posts);
+//       loadProject(data);
+//     },
+//   });
+// });
+
+// function loadProject(data) {
+//   for (i = 0; i < number; i++) {
+//     let commentContent = `<div class="project-detail col-sm-6 col-md-4">
+//     <div class="project-content">
+//       <div class="project-content-overlay">
+//         <img
+//           class="project-content-img"
+//           src="${data[i].postImage}"
+//           alt=""
+//         />
+//         <div class="project-content-text">
+//           <span id="title">${data[i].postTitle}</span>
+//           <h5>Web Development Framework</h5>
+//           <span>View Project</span>
+//         </div>
+//       </div>
+//     </div>
+//   </div>`;
+
+//     posts.insertAdjacentHTML("beforeend", commentContent);
+//   }
+// }

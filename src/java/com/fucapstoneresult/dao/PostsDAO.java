@@ -8,9 +8,13 @@ package com.fucapstoneresult.dao;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,7 +134,7 @@ public class PostsDAO {
                 if (rs.next()) {
                     String PostID = rs.getString("PostID");
                     String PostTitle = rs.getString("PostTitle");
-                    String PostDate = rs.getString("PostDate");
+                    String PostDate = convertDatetime(rs.getString("PostDate"));
                     String PostAuthor = rs.getString("PostAuthor");
                     String PostContent = rs.getString("PostContent");
                     String PostImage = rs.getString("PostImage");
@@ -301,6 +305,18 @@ public class PostsDAO {
 
         return check;
     }
+    
+    public static String convertDatetime(String date) {
+//        Timestamp originalTime = Timestamp.valueOf(date);
+        Date convertDate = Date.valueOf(date);
+        DateFormat df = new SimpleDateFormat("dd/MM/YYYY");
+        return df.format(convertDate);
+    }
+    
+    public static void main(String[] args) {
+        PostsDAO dao = new PostsDAO();
+        System.out.println(dao.convertDatetime("2022-02-09"));
+    }
 
     public List<PostsDTO> getPostsByTagID(String id) throws SQLException {
         Connection con = null;
@@ -403,16 +419,16 @@ public class PostsDAO {
         return list;
     }
 
-    public static void main(String[] args) throws SQLException {
-        PostsDAO dao = new PostsDAO();
-        List<String> l = new ArrayList<>();
-        l.add("1");
-        l.add("2");
-        l.add("3");
-        l.add("87a71150-51fb-496a-8735-d371aed91284");
-        List<PostsDTO> list = dao.getPostsByProjectID(l);
-        for (PostsDTO postsDTO : list) {
-            System.out.println(postsDTO);
-        }
-    }
+//    public static void main(String[] args) throws SQLException {
+//        PostsDAO dao = new PostsDAO();
+//        List<String> l = new ArrayList<>();
+//        l.add("1");
+//        l.add("2");
+//        l.add("3");
+//        l.add("87a71150-51fb-496a-8735-d371aed91284");
+//        List<PostsDTO> list = dao.getPostsByProjectID(l);
+//        for (PostsDTO postsDTO : list) {
+//            System.out.println(postsDTO);
+//        }
+//    }
 }
