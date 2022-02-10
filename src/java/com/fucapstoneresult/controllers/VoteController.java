@@ -32,29 +32,23 @@ public class VoteController extends HttpServlet {
             int vote = Integer.parseInt(request.getParameter("vote"));
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("USER");
-            
-            String postId = "1502edfa-49d2-43a9-b4de-44efce302bbd";
-            
+
+            String postId = request.getParameter("id");
+
             if (user != null) {
                 int count = 0;
                 String postID = "1";
                 VotesDAO dao = new VotesDAO();
                 if (vote == 1) {
-<<<<<<< HEAD
+
                     dao.addVote(user.getUserID(), postID);
                     count = dao.countNumberVotes(postID);
                 } else {
-                    dao.removeVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-=======
-                    dao.addVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-                } else {
                     dao.removeVote(user.getUserID(), postId);
                     count = dao.countNumberVotes(postId);
->>>>>>> d39369a0acd10be67937326565ec01e091906978
+
                 }
-                response.getWriter().write(count+"");
+                response.getWriter().write(count + "");
             } else {
                 response.getWriter().write("fail");
             }

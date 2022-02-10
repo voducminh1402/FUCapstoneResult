@@ -64,7 +64,7 @@ public class PostsDAO {
 
         return listPost;
     }
-    
+
     public PostsDTO getPostWithID(String ID) throws SQLException {
         PostsDTO post = null;
         Connection conn = null;
@@ -111,7 +111,7 @@ public class PostsDAO {
 
         return post;
     }
-    
+
     public PostsDTO getPostWithProjectId(String id) throws SQLException {
         PostsDTO post = null;
         Connection conn = null;
@@ -120,14 +120,14 @@ public class PostsDAO {
 
         try {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = " SELECT TOP 1 PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
                         + " FROM Posts "
                         + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
-                
+
                 rs = stm.executeQuery();
                 if (rs.next()) {
                     String PostID = rs.getString("PostID");
@@ -170,7 +170,7 @@ public class PostsDAO {
         try {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null) {
-                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID "
+                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID "
                         + " FROM Posts "
                         + " WHERE PostTitle like ? ";
                 stm = conn.prepareStatement(sql);
@@ -225,7 +225,7 @@ public class PostsDAO {
                 stm.setString(5, post.getLastEditedUser());
                 stm.setString(6, post.getProjectID());
                 stm.setString(7, post.getPostID());
-                
+
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -287,7 +287,7 @@ public class PostsDAO {
                         + " SET PostStatusID=?"
                         + " WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
-                stm.setInt(1, 3);                
+                stm.setInt(1, 3);
                 stm.setString(2, PostID);
 
                 check = stm.executeUpdate() > 0 ? true : false;
@@ -304,8 +304,8 @@ public class PostsDAO {
 
         return check;
     }
-    
-    public List<PostsDTO> getPostsByTagID (String id) throws SQLException {
+
+    public List<PostsDTO> getPostsByTagID(String id) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -333,27 +333,87 @@ public class PostsDAO {
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
                     String ProjectID = rs.getString("ProjectID");
-                    
-                    list.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, ProjectID));
+
+                    if (PostStatusID == 1) {
+                        list.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID));
+                    }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null)
+            if (rs != null) {
                 rs.close();
-            if (stm != null)
+            }
+            if (stm != null) {
                 stm.close();
-            if (con != null)
+            }
+            if (con != null) {
                 con.close();
+            }
         }
         return list;
     }
 
-    
+    public List<PostsDTO> getPostsByProjectID(List<String> listID) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<PostsDTO> list = new ArrayList<>();
+
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, "
+                        + "Upvote, PostStatusId "
+                        + " FROM Posts "
+                        + " WHERE PostID = ?";
+                for (String id : listID) {
+                    stm = con.prepareStatement(sql);
+                    stm.setString(1, id);
+                    rs = stm.executeQuery();
+                    if (rs.next()) {
+                        String PostID = rs.getString("PostID");
+                        String PostTitle = rs.getString("PostTitle");
+                        String PostDate = rs.getString("PostDate");
+                        String PostAuthor = rs.getString("PostAuthor");
+                        String PostContent = rs.getString("PostContent");
+                        String PostImage = rs.getString("PostImage");
+                        String LastEditedUser = rs.getString("LastEditedUser");
+                        int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                        int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+                        if (PostStatusID == 1) {
+                            list.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID));
+                        }
+
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws SQLException {
         PostsDAO dao = new PostsDAO();
-        List<PostsDTO> list = dao.getListPost("FPT");
+        List<String> l = new ArrayList<>();
+        l.add("1");
+        l.add("2");
+        l.add("3");
+        l.add("87a71150-51fb-496a-8735-d371aed91284");
+        List<PostsDTO> list = dao.getPostsByProjectID(l);
         for (PostsDTO postsDTO : list) {
             System.out.println(postsDTO);
         }

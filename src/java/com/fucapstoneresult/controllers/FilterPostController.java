@@ -6,8 +6,20 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,16 +34,56 @@ import javax.servlet.http.HttpServletResponse;
 public class FilterPostController extends HttpServlet {
 
     private static final String SUCCESS = "project-major.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            //van chua lam duoc truy van can phai join bang moi lam duoc, xem lai quan he giua post va project 
+            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
+            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
+            String semesterName = request.getParameter("filterValue");
+            SemesterDAO semesterDao = new SemesterDAO();
+            String semesterID = semesterDao.getSemesterByName(semesterName);
+            ProjectDAO projectDao = new ProjectDAO();
+            List<String> listProjectID;
+            listProjectID = projectDao.getAllProjectIDBySemester(semesterID);
+            PostsDAO postDao = new PostsDAO();
+            List<PostsDTO> listPost = postDao.getPostsByProjectID(listProjectID);
+
+//            File file = new File("posts.json");
+//            
+//            JsonWriter writer = new JsonWriter(new FileWriter(file));
+//            writer.beginObject();
+//            writer.name("data");
+//            writer.beginArray();
+//            for (PostsDTO post : listPost) {
+//                writer.beginObject();
+//                writer.name("id").value(post.getPostID());
+//                writer.name("title").value(post.getPostTitle());
+//                writer.name("date").value(post.getPostDate());
+//                writer.name("author").value(post.getPostAuthor());
+//                writer.name("content").value(post.getPostContent());
+//                writer.name("image").value(post.getPostImage());
+//                writer.name("upvote").value(post.getUpvote());
+//                writer.name("status").value(post.getPostStatusID());                
+//                writer.endObject();
+//            }
+//            writer.endArray();
+//            writer.endObject();
+//            writer.close();
+            Gson gson = new Gson();
+            FileWriter fileWriter = new FileWriter("posts.json");
+            gson.toJson(listPost, fileWriter);
+            fileWriter.close();
+
+            String json = new Gson().toJson(listPost);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
