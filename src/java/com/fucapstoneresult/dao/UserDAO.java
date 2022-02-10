@@ -434,8 +434,8 @@ public class UserDAO {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDAO dao = new UserDAO();
-        String email = "anh@gmail.com";
-        String password = "anh";
+        String email = "1";
+        String password = "1";
         UserDTO a = dao.searchUserByEmail(email);
         System.out.println(a);
         UserDTO anh = new UserDTO("22222", email, "2020-1-12", 2, email, email, password, "123", 1);

@@ -50,10 +50,10 @@ public class UpdatePostController extends HttpServlet {
             PostsDTO post = null;
             
             if (userLogin != null) {
-                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1, projectID);
+                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1);
             }
             else {
-                response.sendRedirect("login.html");
+                response.sendRedirect("login.jsp");
             }
             
             TagsDAO tagDao = new TagsDAO();

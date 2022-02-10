@@ -54,6 +54,39 @@ public class TagDetailsDAO {
         return tagDetail;
    }
     
+    
+    public TagDetailsDTO getTagDetailsWithName(String name) throws SQLException{
+        TagDetailsDTO tagDetail = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+           conn = DBUtils.getConnection();
+           if(conn!=null){
+                String sql = " SELECT TagDetailID, TagDetailName "
+                            +" FROM TagDetails "
+                            +" WHERE TagDetailName = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, name);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    String TagDetailID = rs.getString("TagDetailID");
+                    String TagdetailName = rs.getString("TagDetailName");
+                    
+                    tagDetail = new TagDetailsDTO(TagDetailID, TagdetailName);
+                }
+            } 
+       } catch (Exception e) {
+           e.printStackTrace();
+       }finally{
+            if(rs!=null) rs.close();
+            if(stm!=null) stm.close();
+            if(conn!=null) conn.close();  
+        }
+        
+        return tagDetail;
+   }
    
     public boolean update(TagDetailsDTO tagdetail) throws SQLException{
         boolean check = false;
