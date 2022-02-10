@@ -5,55 +5,57 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.VotesDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
+@WebServlet(name = "SearchByTagNameController", urlPatterns = {"/SearchByTagNameController"})
+public class SearchByTagNameController extends HttpServlet {
+
+    private static final String SUCCESS = "project-major.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String url = SUCCESS;
         try {
-            int vote = Integer.parseInt(request.getParameter("vote"));
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
-
-            String postId = request.getParameter("id");
-
-            if (user != null) {
-                int count = 0;
-                String postID = "1";
-                VotesDAO dao = new VotesDAO();
-                if (vote == 1) {
-
-                    dao.addVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-                } else {
-                    dao.removeVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-
-                }
-                response.getWriter().write(count + "");
-            } else {
-                response.getWriter().write("fail");
+            String searchValue = request.getParameter("searchValue");
+            searchValue = searchValue.trim().toLowerCase();
+            if (searchValue == null || searchValue.isEmpty()) {
+                url = "index.html";
             }
+//            TagDetailsDAO tagDetaiDdao = new TagDetailsDAO();
+//            PostsDAO postDao = new PostsDAO();
+//            List<TagDetailsDTO> listTags = tagDetaiDdao.getTagsByName(searchValue);
+//            List<PostsDTO> listPosts = new ArrayList<>();
+//            
+//            for (TagDetailsDTO tagDetailsDTO : listTags) {
+//                listPosts.addAll(postDao.getPostsByTagID(tagDetailsDTO.getTagDetailID()));
+//            }
+            PostsDAO postDao = new PostsDAO();
+            List<PostsDTO> listPosts = postDao.getListPost(searchValue);
+
+            request.setAttribute("LIST_POSTS", listPosts);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

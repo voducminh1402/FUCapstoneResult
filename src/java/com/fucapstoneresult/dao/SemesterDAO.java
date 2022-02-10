@@ -92,6 +92,46 @@ public class SemesterDAO {
         return semester;
     }
     
+    public String getSemesterByName(String name) throws SQLException {
+        String semester = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT SemesterID "
+                            + " FROM Semesters "
+                            + " WHERE SemesterName=?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, name);
+                rs = stm.executeQuery();
+                
+                if (rs.next()) {
+                    semester = rs.getString("SemesterID");
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return semester;
+    }
+    
     public boolean udpateSemester(SemesterDTO semester) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -198,6 +238,11 @@ public class SemesterDAO {
         }
         
         return semetList;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        SemesterDAO dao = new SemesterDAO();
+        System.out.println(dao.getSemesterByName("Spring 2021"));
     }
     
 }
