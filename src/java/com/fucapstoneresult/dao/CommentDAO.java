@@ -247,7 +247,7 @@ public class CommentDAO {
     public static String convertDatetime(String date) {
         Timestamp originalTime = Timestamp.valueOf(date);
         Date convertDate = new Date(originalTime.getTime());
-        DateFormat df = new SimpleDateFormat("dd/MM/YYYY hh:mm");
+        DateFormat df = new SimpleDateFormat("dd/MM/YYYY HH:mm");
         return df.format(convertDate);
     }
        
