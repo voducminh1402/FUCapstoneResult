@@ -16,6 +16,15 @@ public class TagDetailsDTO {
     public TagDetailsDTO() {
     }
 
+    public TagDetailsDTO(String TagDetailID) {
+        this.TagDetailID = TagDetailID;
+    }
+
+    @Override
+    public String toString() {
+        return "TagDetailsDTO{" + "TagDetailID=" + TagDetailID + ", TagDetailName=" + TagDetailName + '}';
+    }
+
     public TagDetailsDTO(String TagDetailID, String TagDetailName) {
         this.TagDetailID = TagDetailID;
         this.TagDetailName = TagDetailName;

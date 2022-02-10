@@ -45,10 +45,15 @@ public class MainController extends HttpServlet {
     private static final String UPDATE_PROJECT = "UpdateProjectController";
     private static final String COMMENT_POST = "CommentPostController";
     private static final String LOAD_COMMENTS = "LoadCommentsController";
-    private static final String DELETE_COMMENT = "DeleteCommentController";
+    private static final String DELETE_COMMENT = "DeleteCommentController";   
     private static final String UNDO_ACCEPT_COMMENT = "UndoAcceptCommentController";
+
+    private static final String SEARCH_POSTS = "SearchByTagNameController";
+    private static final String FILTER_POSTS = "FilterPostController";
+
     private static final String LOADING_INDEX = "LoadIndexController";
     private static final String DETAIL_PROJECT = "DetailProjectController";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -109,10 +114,17 @@ public class MainController extends HttpServlet {
                 url = DELETE_COMMENT;
             } else if ("Undo".equals(action)) {
                 url = UNDO_ACCEPT_COMMENT;
+
+            } else if ("Search".equals(action)) {
+                url = SEARCH_POSTS;
+            } else if ("Filter".equals(action)) {
+                url = FILTER_POSTS;
+
             }else if ("LoadingIndex".equals(action)) {
                 url = LOADING_INDEX;
             }else if ("DetailProject".equals(action)) {
                 url = DETAIL_PROJECT;
+
             }
             
 

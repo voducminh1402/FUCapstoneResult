@@ -17,6 +17,7 @@ public class UserDTO {
     private int userStatus;
     private String userImage;
     private String email;
+    private String subEmail;
     private String password;
     private String OTP;
     private int roleID;
@@ -31,6 +32,27 @@ public class UserDTO {
         this.userStatus = userStatus;
         this.userImage = userImage;
         this.email = email;
+        this.password = password;
+        this.OTP = OTP;
+        this.roleID = roleID;
+    }
+
+    public String getSubEmail() {
+        return subEmail;
+    }
+
+    public void setSubEmail(String subEmail) {
+        this.subEmail = subEmail;
+    }
+
+    public UserDTO(String userID, String userName, String dateCreated, int userStatus, String userImage, String email, String subEmail, String password, String OTP, int roleID) {
+        this.userID = userID;
+        this.userName = userName;
+        this.dateCreated = dateCreated;
+        this.userStatus = userStatus;
+        this.userImage = userImage;
+        this.email = email;
+        this.subEmail = subEmail;
         this.password = password;
         this.OTP = OTP;
         this.roleID = roleID;
@@ -110,8 +132,10 @@ public class UserDTO {
 
     @Override
     public String toString() {
-        return "UserDTO{" + "userID=" + userID + ", userName=" + userName + ", dateCreated=" + dateCreated + ", userStatus=" + userStatus + ", userImage=" + userImage + ", email=" + email + ", password=" + password + ", OTP=" + OTP + ", roleID=" + roleID + '}';
+        return "UserDTO{" + "userID=" + userID + ", userName=" + userName + ", dateCreated=" + dateCreated + ", userStatus=" + userStatus + ", userImage=" + userImage + ", email=" + email + ", subEmail=" + subEmail + ", password=" + password + ", OTP=" + OTP + ", roleID=" + roleID + '}';
     }
+
+    
   
 
 }
