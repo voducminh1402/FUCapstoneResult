@@ -125,7 +125,7 @@
                         </a>
                     </div>
                     <label for="">Thêm Tag Của Bài Viết</label><br>
-                    <input id="post-tag" data-role="tagsinput" type="text" required>                                                                                            
+                    <input id="post-tag" data-role="tagsinput" type="text" required>
                     <input id="post-tag-hidden" type="hidden" name="post-tag">
                     <label for="">Nội Dung</label><br>
                     <textarea id="editor" cols="30" rows="50" required></textarea>
@@ -138,6 +138,7 @@
             </div>
         </div>
     </div>
+
     <script src="./ckeditor/ckeditor.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

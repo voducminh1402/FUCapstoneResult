@@ -1,3 +1,11 @@
+<%-- 
+    Document   : project-major
+    Created on : Feb 8, 2022, 7:08:40 PM
+    Author     : HP
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,81 +119,20 @@
                     </div>
                     <div class="project-major-content">
                         <div class="row">
+                            <c:forEach items="${requestScope.LIST_POSTS}" var="o">
                             <div class="project-detail col-md-4 col-sm-6">
                                 <div class="project-content project-content-major">
                                     <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
+                                        <img class="project-content-img project-content-major-img" src=${o.postImage} alt="">
                                         <div class="project-content-text">
                                             <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
+                                            <h5>${o.postTitle}</h5>
                                             <span>View Project</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="project-detail col-md-4 col-sm-6">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail col-md-4 col-sm-6">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail col-md-4 col-sm-6">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail col-md-4 col-sm-6">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail col-md-4 col-sm-6">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h5>Web Development Framework</h5>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
+                            </c:forEach>
                     <div class="projects-loading">
                         <a href="#">Thêm nhiều sản phẩm hơn ...</a>
                     </div>
