@@ -53,8 +53,8 @@ public class InstructorDAO {
         return check;
     }
     
-    public InstructorDTO getInstructor(String instructorID) throws SQLException {
-        InstructorDTO instructor = null;
+    public List<InstructorDTO> getInstructor(String instructorID) throws SQLException {
+        List<InstructorDTO> instructorList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -71,7 +71,7 @@ public class InstructorDAO {
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"));
+                    instructorList.add(new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"))) ;
                 }
             }
         } 
@@ -90,7 +90,7 @@ public class InstructorDAO {
             }
         }
         
-        return instructor;
+        return instructorList;
     }
     
     public boolean updateInstructor(InstructorDTO instructor) throws SQLException {

@@ -249,6 +249,11 @@
   color: white;
 }
 
+.instructor-all {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .main__content .instructor-info {
   display: -webkit-box;
   display: -ms-flexbox;
