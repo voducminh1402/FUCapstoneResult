@@ -20,12 +20,12 @@ public class PostsDTO {
     private String lastEditedUser;
     private int upvote;
     private int postStatusID;
-    private String projectID;
+
 
     public PostsDTO() {
     }
 
-    public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postContent, String postImage, String lastEditedUser, int upvote, int postStatusID, String projectID) {
+    public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postContent, String postImage, String lastEditedUser, int upvote, int postStatusID) {
         this.postID = postID;
         this.postTitle = postTitle;
         this.postDate = postDate;
@@ -35,7 +35,6 @@ public class PostsDTO {
         this.lastEditedUser = lastEditedUser;
         this.upvote = upvote;
         this.postStatusID = postStatusID;
-        this.projectID = projectID;
     }
 
     public String getPostID() {
@@ -110,14 +109,16 @@ public class PostsDTO {
         this.postStatusID = postStatusID;
     }
 
-    public String getProjectID() {
-        return projectID;
+    @Override
+    public String toString() {
+
+        return "PostsDTO{" + "postID=" + postID + ", postTitle=" + postTitle + ", postDate=" + postDate + ", postAuthor=" + postAuthor + ", postContent=" + postContent + ", postImage=" + postImage + ", lastEditedUser=" + lastEditedUser + ", upvote=" + upvote + ", postStatusID=" + postStatusID + '}';
+
     }
 
-    public void setProjectID(String projectID) {
-        this.projectID = projectID;
-    }
+    
 
    
+
     
 }

@@ -438,5 +438,9 @@ public class UserDAO {
         String password = "1";
         UserDTO a = dao.searchUserByEmail(email);
         System.out.println(a);
+        UserDTO anh = new UserDTO("22222", email, "2020-1-12", 2, email, email, password, "123", 1);
+        
+        boolean check = dao.addUser(anh);
+        System.out.println(check);
     }
 }

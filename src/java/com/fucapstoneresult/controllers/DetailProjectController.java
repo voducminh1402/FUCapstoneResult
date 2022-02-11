@@ -6,13 +6,23 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.CommentDAO;
+import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.models.InstructorDTO;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -36,12 +46,31 @@ public class DetailProjectController extends HttpServlet {
             
             PostsDAO postDao = new PostsDAO();
             PostsDTO post = postDao.getPostWithProjectId(projectID);
+            TagsDAO tagDao = new TagsDAO();
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            ProjectInstructorDAO projectInsDao = new ProjectInstructorDAO();
+            InstructorDAO instructorDao = new InstructorDAO();
+            StudentDAO studentDao = new StudentDAO();
             
             if (post != null) {
                 CommentDAO cmtDao = new CommentDAO();
                 List<CommentDTO> comments = cmtDao.getListCommentsByPost(post.getPostID());
+                List<TagsDTO> tagList = tagDao.getListTag(projectID);
+                List<TagDetailsDTO> tagDetailList = new ArrayList<>();
+                
+                for (TagsDTO tagsDTO : tagList) {
+                    tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
+                    tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+                }
+                
+                String instructorId = projectInsDao.getProjectInstructor(projectID).getInstructorID();
+                List<InstructorDTO> instructorList = instructorDao.getInstructor(instructorId);
+                List<StudentDTO> teamList = studentDao.getListStudentWithTeam(projectID);
                 
                 request.setAttribute("POST", post);
+                request.setAttribute("INSTRUCTOR", instructorList);
+                request.setAttribute("TEAM", teamList);
+                request.setAttribute("TAGS", tagDetailList);
                 request.setAttribute("COMMENTS", comments);
                 request.setAttribute("COUNT_CMT", comments.size());
                 url = SUCCESS;

@@ -150,6 +150,46 @@ public class ProjectDAO {
         return projectList;
     }
     
+    public List<String> getAllProjectIDBySemester(String semesterID) throws SQLException {
+        List<String> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectID "
+                            + " FROM Projects "
+                            + " WHERE SemesterID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, semesterID);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {                                     
+                    projectList.add(rs.getString("ProjectID"));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
+    }
+    
     public boolean updateProject(ProjectDTO project) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -356,7 +396,7 @@ public class ProjectDAO {
     public static void main(String[] args) throws SQLException {
         ProjectDAO dao = new ProjectDAO();
         
-        System.out.println(dao.getTop10Project());
+        System.out.println(dao.getAllProjectIDBySemester("1"));
     }
 }
 

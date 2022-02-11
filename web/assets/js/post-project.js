@@ -7,11 +7,11 @@ let votes = 0;
 voteBtn.addEventListener("click", () => {
   if (voteBtn.classList.contains("vote-active")) {
     voteBtn.classList.remove("vote-active");
-    console.log("aaa")
+    console.log("aaa");
     votes -= 1;
   } else {
     voteBtn.classList.add("vote-active");
-    console.log("aaa11")
+    console.log("aaa11");
     votes += 1;
   }
   //   voteNumbers.innerHTML = `${votes}`;
@@ -46,7 +46,7 @@ function vote() {
           "http://localhost:8080/FUCapstoneResult/login.html";
       else {
         voteNumbers.innerHTML = data;
-        console.log(data)
+        console.log(data);
       }
     },
   });
