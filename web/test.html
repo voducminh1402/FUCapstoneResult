@@ -1,3 +1,9 @@
+<%-- 
+    Document   : po-add-post
+    Created on : Jan 28, 2022, 11:10:25 AM
+    Author     : ADMIN
+--%>
+                                                                                
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,119 +25,36 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>FPT University</h3>
-                <strong>FU</strong>
-            </div>
-    
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
-                        Home
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-    
-        </nav>
     
         <!-- Page Content  -->
-        <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div class="mod-header">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="left-side-menu">
-                                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                                        <i class="fas fa-align-left"></i>
-                                    </button>
-                                    <div class="menu-search">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                        <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
-                                    </div>
-                                </div>   
-                            </div>
-                            <div class="col-md-6">
-                                <div class="right-side-info">
-                                    <div class="info-login">
-                                        <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
-                                        <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+        <div id="content" style="width: 70%;">
+            <div class="POPost-header">
+              <h1 style="font-size: 2rem;">Tạo bài viết</h1>
+              <div class="devider" style="width: 60%;"></div>
+            </div>
             <div class="content-detail content-post add-post">
-                <h2>Thêm Bài Đăng Đồ Án</h2>
                 <form action="MainController" method="POST">
-                    <label for="">Lựa Chọn Đồ Án Tốt Nghiệp Để Tạo Bài Đăng</label><br>
-                    <c:if test="${requestScope.PROJECT_LIST == null}">
-                        <c:redirect url="MainController?action=GetListProject&page=add-post"></c:redirect>
-                    </c:if>
-                    <select name="project-name" id="" required>
-                        <option disabled selected>Đồ Án Tốt Nghiệp</option>
-                        <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
-                            <option value="${o.projectID}">${o.projectName}</option>
-                        </c:forEach>
-                    </select><br>
                     <label for="">Tiêu Đề Bài Đăng</label><br>
-                    <input type="text" name="post-title" required>
-                    <label for="">Tên Tác Giả</label><br>
-                    <input type="text" name="post-author" required>
+                    <input type="text" name="po-post-title" required>
+                    <label for="">Mã số sinh viên</label><br>
+                    <input type="text" name="po-post-authorID" required>
                     <label for="">Ảnh Bìa Bài Đăng</label>
                     <div class="project-add-upload__image post-upload__image">
                         <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
                         <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
-                        <input type="hidden" id="mod-post__preview-input" name="post-thumbnail">
+                        <input type="hidden" id="mod-post__preview-input" name="po-post-thumbnail">
                         <a id="mod-post__preview-link" href="">
                             <img id="mod-post__preview-image" src="" alt="">
                         </a>
                     </div>
                     <label for="">Thêm Tag Của Bài Viết</label><br>
                     <input id="post-tag" data-role="tagsinput" type="text" required>                                                                                            
-                    <input id="post-tag-hidden" type="hidden" name="post-tag">
+                    <input id="post-tag-hidden" type="hidden" name="po-post-tag">
                     <label for="">Nội Dung</label><br>
-                    <textarea id="editor" cols="30" rows="50" required></textarea>
-                    <input id="post-content" type="hidden" name="post-content">
+                    <textarea id="editor" cols="10" rows="30" required></textarea>
+                    <input id="post-content" type="hidden" name="po-post-content">
                     <div class="add-project-submit add-post-submit">
-                        <button type="submit" name="action" value="AddPost">Lưu</button>
+                        <button type="submit" name="action" value="PoAddPost">Lưu</button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
@@ -222,7 +145,7 @@
                     if (!$element.data('tagsinput'))
                     return;
 
-                    var val = $element.val(); 
+                    var val = $element.val();
                     if (val === null) {
                         val = "null";
                     }

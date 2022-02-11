@@ -100,6 +100,14 @@
         <servlet-name>DetailProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.DetailProjectController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddPoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdatePoPostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>DetailProjectController</servlet-name>
         <url-pattern>/DetailProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPoPostController</servlet-name>
+        <url-pattern>/AddPoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <url-pattern>/UpdatePoPostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

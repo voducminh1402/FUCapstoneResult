@@ -53,6 +53,8 @@ public class MainController extends HttpServlet {
 
     private static final String LOADING_INDEX = "LoadIndexController";
     private static final String DETAIL_PROJECT = "DetailProjectController";
+    
+    private static final String PO_AD_POST= "AddPoPostController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -125,6 +127,8 @@ public class MainController extends HttpServlet {
             }else if ("DetailProject".equals(action)) {
                 url = DETAIL_PROJECT;
 
+            }else if ("PoAddPost".equals(action)){
+                url = PO_AD_POST;
             }
             
 

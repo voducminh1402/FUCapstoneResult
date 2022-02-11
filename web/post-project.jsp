@@ -198,39 +198,63 @@
             <h3>Tags</h3>
             <div class="line-break"></div>
             <ul>
-                <c:forEach items="${requestScope.TAGS}" var="o">
-                    <li><a href="#">${o.tagDetailName}</a></li>
-                </c:forEach>
+              <li><a href="#">website</a></li>
+              <li><a href="#">website</a></li>
+              <li><a href="#">website</a></li>
+              <li><a href="#">website</a></li>
+              <li><a href="#">website</a></li>
             </ul>
           </div>
           <div class="instructor left-col">
             <h3>Giảng viên hướng dẫn</h3>
             <div class="line-break"></div>
-            <div class="instructor-all">
-                <c:forEach items="${requestScope.INSTRUCTOR}" var="o">
-                    <div class="instructor-info">
-                        <img
-                          src="${o.instructorImage}"
-                          alt="instructor image"
-                        />
-                        <div class="intructor-name">${o.instructorName}</div>
-                    </div>
-                </c:forEach>
+            <div class="instructor-info">
+              <img
+                src="./assets/images/image-product-1.jpg"
+                alt="instructor image"
+              />
+              <div class="intructor-name">ThS. Nguyễn Thế Hoàng</div>
             </div>
           </div>
           <div class="team-members left-col">
             <h3>Các thành viên của nhóm</h3>
             <div class="line-break"></div>
             <ul>
-                <c:forEach items="${requestScope.TEAM}" var="o">
-                    <li>
-                        <img
-                          src="${o.studentImage}"
-                          alt="team member image"
-                        />
-                        <p>${o.studentName}</p>
-                      </li>
-                </c:forEach>
+              <li>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="team member image"
+                />
+                <p>Le Hong Anh</p>
+              </li>
+              <li>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="team member image"
+                />
+                <p>Le Hong Anh</p>
+              </li>
+              <li>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="team member image"
+                />
+                <p>Le Hong Anh</p>
+              </li>
+              <li>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="team member image"
+                />
+                <p>Le Hong Anh</p>
+              </li>
+              <li>
+                <img
+                  src="./assets/images/image-product-1.jpg"
+                  alt="team member image"
+                />
+                <p>Le Hong Anh</p>
+              </li>
             </ul>
           </div>
           <div class="about-us left-col">

@@ -50,10 +50,10 @@
                                 
                             </div>
                             <div class="menu-search">
-                                <form action="MainController">
+                                <form action="">
                                     <div class="menu-search-wrap">
-                                        <input name="searchValue" type="text" placeholder="Tìm kiếm">
-                                        <button name="action" value="Search" type="submit">
+                                        <input type="text" placeholder="Tìm kiếm">
+                                        <button type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -72,6 +72,9 @@
                                     </li>
                                     <li>
                                         <a href="./blog-single.html">Bài viết</a>
+                                    </li>
+                                    <li>
+                                        <a href="./blog-single.html">Nội dung của bạn</a>
                                     </li>
                                     <li>
                                         <a href="./contact.html">Liên hệ</a>
