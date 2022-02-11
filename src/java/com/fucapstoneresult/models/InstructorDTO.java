@@ -13,7 +13,7 @@ public class InstructorDTO {
     private String instructorID;
     private String instructorName;
     private String instructorImage;
-
+    
     public InstructorDTO() {
     }
 
@@ -46,6 +46,5 @@ public class InstructorDTO {
     public void setInstructorImage(String instructorImage) {
         this.instructorImage = instructorImage;
     }
-    
-    
+
 }
