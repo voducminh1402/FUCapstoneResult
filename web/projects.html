@@ -136,19 +136,19 @@
               <span class="filter-semester-title">Lọc Theo: </span>
               <select class="filter-semester" name="action" id="filter">
                 <option selected value="Học Kì">Tất Cả Học Kì</option>
-                <option value="Spring 2019">Spring 2019</option>
+                <!-- <option value="Spring 2019">Spring 2019</option>
                 <option value="Summer 2019">Summer 2019</option>
                 <option value="Fall 2019">Fall 2019</option>
                 <option value="Spring 2021">Spring 2021</option>
                 <option value="Summer 2020">Summer 2020</option>
-                <option value="Fall 2020">Fall 2020</option>
+                <option value="Fall 2020">Fall 2020</option> -->
               </select>
             </div>
           </div>
         </div>
         <div class="projects-main">
           <div id="posts" class="row" data-masonry='{"percentPosition": true }'>
-            <div class="project-detail col-sm-6 col-md-4">
+            <!-- <div class="project-detail col-sm-6 col-md-4">
               <div class="project-content">
                 <div class="project-content-overlay">
                   <img
@@ -163,7 +163,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="projects-loading">
@@ -263,7 +263,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="./assets/js/app.js"></script>
-
+    <script src="./assets/js/projects.js"></script>
     <script>
       var $posts = $("#posts").masonry({
         // options
@@ -274,11 +274,50 @@
       const posts = document.getElementById("posts");
       const load = document.getElementById("load");
       let number = 1;
+      const stepNumber = 5;
 
       var list;
 
+      window.addEventListener("load", function () {
+        number = stepNumber;
+        console.log("anh vui ve");
+        console.log(filterBtn.value);
+        $.ajax({
+          type: "POST",
+          url: `MainController?action=Load Semester`,
+          // data: "filterValue=" + filterBtn.value,
+          dataType: "json",
+
+          //if received a response from the server
+          success: function (data) {
+            console.log(data);
+            //<option value="Spring 2019">Spring 2019</option>
+            data.forEach((element) => {
+              let option = `<option value="${element.semesterName}">${element.semesterName}</option>`;
+              filterBtn.insertAdjacentHTML("beforeend", option);
+            });
+          },
+        });
+        $.ajax({
+          type: "POST",
+          url: `MainController?action=Filter`,
+          data: "filterValue=" + filterBtn.value,
+          dataType: "json",
+
+          //if received a response from the server
+          success: function (data) {
+            anh = data;
+
+            if (number <= data.length) {
+              removeAllChildNodes(posts);
+              loadProject(data);
+            }
+          },
+        });
+      });
+
       filterBtn.addEventListener("change", function () {
-        number = 1;
+        number = stepNumber;
         console.log("anh vui ve");
         console.log(filterBtn.value);
         $.ajax({
@@ -291,8 +330,10 @@
           success: function (data) {
             anh = data;
 
-            removeAllChildNodes(posts);
-            loadProject(data);
+            if (number <= data.length) {
+              removeAllChildNodes(posts);
+              loadProject(data);
+            }
           },
         });
       });
@@ -304,7 +345,7 @@
       }
 
       load.addEventListener("click", function () {
-        number += 1;
+        number += stepNumber;
         $.ajax({
           type: "POST",
           url: `MainController?action=Filter`,
@@ -314,33 +355,38 @@
           //if received a response from the server
           success: function (data) {
             anh = data;
-
-            removeAllChildNodes(posts);
-            loadProject(data);
+            if (number <= data.length) {
+              removeAllChildNodes(posts);
+              loadProject(data);
+            }
           },
         });
       });
 
       function loadProject(data) {
         for (i = 0; i < number; i++) {
-          let commentContent = `<div class="project-detail col-sm-6 col-md-4">
-                                  <div class="project-content">
-                                    <div class="project-content-overlay">
-                                      <img
-                                        class="project-content-img"
-                                        src="${data[i].postImage}"
-                                        alt=""
-                                      />
-                                      <div class="project-content-text">
-                                        <span id="title">${data[i].postTitle}</span>
-                                        <h5>Web Development Framework</h5>
-                                        <span>View Project</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>`;
+          let project = `<div class="project-detail col-sm-6 col-md-4">
+          <div class="project-content">
+            <div class="project-content-overlay">
+              <img
+                class="project-content-img"
+                src="${data[i].postImage}"
+                alt=""
+              />
+              <div class="project-content-text">
+                <span id="title">${data[i].postTitle}</span>
+                <h5>Web Development Framework</h5>
+                <span>View Project</span>
+              </div>
+            </div>
+          </div>
+        </div>`;
 
-          posts.insertAdjacentHTML("beforeend", commentContent);
+          var $project = $(project);
+          $posts.append($project);
+          $posts.masonry("appended", $project);
+
+          // posts.insertAdjacentHTML("beforeend", commentContent);
         }
       }
     </script>

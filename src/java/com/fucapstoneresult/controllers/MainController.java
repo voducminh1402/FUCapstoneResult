@@ -53,6 +53,7 @@ public class MainController extends HttpServlet {
 
     private static final String LOADING_INDEX = "LoadIndexController";
     private static final String DETAIL_PROJECT = "DetailProjectController";
+    private static final String LOAD_SEMESTER = "LoadSemesterController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -125,6 +126,8 @@ public class MainController extends HttpServlet {
             }else if ("DetailProject".equals(action)) {
                 url = DETAIL_PROJECT;
 
+            } else if ("Load Semester".equals(action)) {
+                url = LOAD_SEMESTER;
             }
             
 
