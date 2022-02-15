@@ -5,53 +5,63 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.VotesDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
+@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
+public class FilterPostController extends HttpServlet {
+
+    private static final String SUCCESS = "project-major.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String url = SUCCESS;
         try {
-            int vote = Integer.parseInt(request.getParameter("vote"));
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
-
-            String postId = request.getParameter("id");
-
-            if (user != null) {
-                int count = 0;
-                String postID = "1";
-                VotesDAO dao = new VotesDAO();
-                if (vote == 1) {
-
-                    dao.addVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-                } else {
-                    dao.removeVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-
-                }
-                response.getWriter().write(count + "");
+            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
+            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
+            String semesterName = request.getParameter("filterValue");
+            PostsDAO postDao = new PostsDAO();
+            List<PostsDTO> listPost;
+            if ("Học Kì".equals(semesterName)) {
+                
+                listPost = postDao.getAllPost();
             } else {
-                response.getWriter().write("fail");
+                SemesterDAO semesterDao = new SemesterDAO();
+                String semesterID = semesterDao.getSemesterByName(semesterName);
+
+                ProjectDAO projectDao = new ProjectDAO();
+                List<String> listProjectID;
+                listProjectID = projectDao.getAllProjectIDBySemester(semesterID);
+                listPost = postDao.getPostsByProjectID(listProjectID);
             }
+
+            String json = new Gson().toJson(listPost);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         } catch (Exception e) {
             e.printStackTrace();
         }

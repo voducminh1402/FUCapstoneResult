@@ -56,15 +56,16 @@ public class AddPostController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
                 
-                PostsDTO post = new PostsDTO(projectID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, projectID);
+                PostsDTO post = new PostsDTO(projectID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1);
                 boolean check = postDao.insert(post);
-                boolean checkTagDetail = false, checkTag = false;
+                boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
                 
                 if (check) {
                     for (String postTag : postTags) {
                         if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
                             String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
                             checkTag = tagDao.insert(new TagsDTO(projectID, tagDetailId));
+                            checkTagNotAdd = true;
                         }
                         else {
                             UUID newUuid = UUID.randomUUID();
@@ -74,7 +75,7 @@ public class AddPostController extends HttpServlet {
                         }
                         
                     }
-                    if (checkTagDetail && checkTag) {
+                    if ((checkTagDetail && checkTag) || (checkTagNotAdd && checkTag)) {
                         url = SUCCESS;
                     }
                 }

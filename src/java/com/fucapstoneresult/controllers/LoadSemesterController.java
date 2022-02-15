@@ -5,53 +5,44 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.VotesDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.SemesterDTO;
+import com.google.gson.Gson;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
+@WebServlet(name = "LoadSemesterController", urlPatterns = {"/LoadSemesterController"})
+public class LoadSemesterController extends HttpServlet {
 
+    private static final String SUCCESS = "project-major.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        String url = SUCCESS;
         try {
-            int vote = Integer.parseInt(request.getParameter("vote"));
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("USER");
 
-            String postId = request.getParameter("id");
-
-            if (user != null) {
-                int count = 0;
-                String postID = "1";
-                VotesDAO dao = new VotesDAO();
-                if (vote == 1) {
-
-                    dao.addVote(user.getUserID(), postID);
-                    count = dao.countNumberVotes(postID);
-                } else {
-                    dao.removeVote(user.getUserID(), postId);
-                    count = dao.countNumberVotes(postId);
-
-                }
-                response.getWriter().write(count + "");
-            } else {
-                response.getWriter().write("fail");
-            }
+            SemesterDAO dao = new SemesterDAO();
+            List<SemesterDTO> list = dao.getAllSemester();
+            
+            String json = new Gson().toJson(list);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         } catch (Exception e) {
             e.printStackTrace();
         }
