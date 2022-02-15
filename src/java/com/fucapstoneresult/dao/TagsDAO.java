@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class TagsDAO {
     
-    public List<TagsDTO> getListTag(String search) throws SQLException{
+    public List<TagsDTO> getListTag(String ID) throws SQLException{
         List<TagsDTO> listtag = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
@@ -31,9 +31,9 @@ public class TagsDAO {
            if(conn!=null){
                 String sql = " SELECT PostID, TagDetailID "
                             +" FROM Tags "
-                            +" WHERE PostID like ? ";
+                            +" WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, "%"+search+"%");
+                stm.setString(1, ID);
                 rs = stm.executeQuery();
                 while(rs.next()){
                     String PostID = rs.getString("PostID");
@@ -49,7 +49,6 @@ public class TagsDAO {
             if(stm!=null) stm.close();
             if(conn!=null) conn.close();  
         }
-        
         
         return listtag;
    }
@@ -86,7 +85,7 @@ public class TagsDAO {
             conn=DBUtils.getConnection();
             if(conn!=null){
                 String sql = " INSERT INTO Tags(PostID, TagDetailID) "
-                            +" VALUES(?,?) ";
+                            +" VALUES (?,?) ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, tag.getPostID());
                 stm.setString(2, tag.getTagdetailID());
@@ -98,7 +97,6 @@ public class TagsDAO {
             if(stm!=null) stm.close();
             if(conn!=null) conn.close();
         }
-        
         
         return check;
     }
@@ -114,7 +112,7 @@ public class TagsDAO {
                             +" WHERE PostID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, PostID);
-                check=stm.executeUpdate()>0?true:false;
+                check=stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
         }finally{

@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -69,7 +71,7 @@ public class InstructorDAO {
                 rs = stm.executeQuery();
                 
                 if (rs.next()) {
-                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString(("InstructorImage")));
+                    instructor = new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage"));
                 }
             }
         } 
@@ -158,12 +160,47 @@ public class InstructorDAO {
         return check;
     }
     
-        public static void main(String[] args) throws SQLException {
-        InstructorDAO dao = new InstructorDAO();
+    public List<InstructorDTO> getAllInstructor() throws SQLException {
+        List<InstructorDTO> List = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
         
-        boolean check = dao.deleteInstructor("1");
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT InstructorID, InstructorName, InstructorImage "
+                            + " FROM Instructors ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String instructorID = rs.getString("InstructorID");
+                    String instructorName = rs.getString("InstructorName");
+                    String instructorImage = rs.getString("InstructorImage");
+                    
+                    List.add(new InstructorDTO(instructorID, instructorName, instructorImage));
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
         
-        System.out.println(check);
+        return List;
     }
+    
     
 }
