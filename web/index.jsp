@@ -74,6 +74,9 @@
                                         <a href="./blog-single.html">Bài viết</a>
                                     </li>
                                     <li>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                    </li>
+                                    <li>
                                         <a href="./contact.html">Liên hệ</a>
                                     </li>
                                 </ul>
@@ -689,4 +692,3 @@
 </body>
 
 </html>
-

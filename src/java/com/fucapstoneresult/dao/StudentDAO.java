@@ -205,4 +205,42 @@ public class StudentDAO {
         return list;
     }
     
+      public String getStudentID (String studentName) throws SQLException{
+        String studentID = "0";
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try{
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = " SELECT StudentID"
+                        + " FROM Students "
+                        + " WHERE StudentName = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, studentName);
+                rs = stm.executeQuery();
+                
+                if (rs.next()){
+                    studentID = rs.getString("StudentID");
+                }
+                
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            if (conn != null){
+                conn.close();
+            }
+            if (stm != null){
+                stm.close();
+            }
+            if (rs != null){
+                rs.close();
+            }
+        }
+        return studentID;
+    }
+    
 }

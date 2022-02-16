@@ -265,9 +265,9 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/projects.js"></script>
     <script>
-      var $posts = $("#posts").masonry({
+      var $posts = $('#posts').masonry({
         // options
-        percentPosition: true,
+        percentPosition: true 
       });
 
       const filterBtn = document.getElementById("filter");
@@ -384,11 +384,16 @@
 
           var $project = $(project);
           $posts.append($project);
+//<<<<<<< dev
           $posts.masonry("appended", $project);
+//=======
+          $posts.masonry('appended', $project);
+//>>>>>>> nguyennkt
 
           // posts.insertAdjacentHTML("beforeend", commentContent);
         }
       }
+
     </script>
   </body>
 </html>
