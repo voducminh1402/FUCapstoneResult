@@ -28,7 +28,7 @@ public class PoPostDAO {
         try{
             conn= com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null){
-                String sql = "SELECT SELECT POPostID, POPostTitle, POPostContent, POPostImage, POPostDate, StudentID, LastEditedUser, Upvote, POPostStatusID, PostID"
+                String sql = "SELECT POPostID, POPostTitle, POPostContent, POPostImage, POPostDate, StudentID, LastEditedUser, Upvote, POPostStatusID, PostID"
                         +" FROM ProjectOwnerPosts";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
@@ -39,7 +39,7 @@ public class PoPostDAO {
                     String studentID = rs.getString("StudentID");
                     String PoPostContent = rs.getString("POPostContent");
                     String PostImage = rs.getString("POPostImage");
-                    String LastEditedUser = rs.getString(" LastEditedUser");
+                    String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("POPostStatusID"));
                     String ProjectID = rs.getString("PostID");
@@ -63,6 +63,55 @@ public class PoPostDAO {
             }
         }
         return listPost;
+    }
+    
+    public ProjectOwnerPostsDTO getPostByID(String id) throws ClassNotFoundException, SQLException{
+        ProjectOwnerPostsDTO post = null;
+        Connection conn=null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = " SELECT POPostTitle, POPostContent, POPostImage, POPostDate, StudentID, LastEditedUser, Upvote, POPostStatusID, PostID"
+                        +" FROM ProjectOwnerPosts"
+                        + " WHERE POPostID = ?";
+                
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                rs = stm.executeQuery();
+                
+                if (rs.next()){
+                    String PoPostID = id;
+                    String PoPostTitle = rs.getString("POPostTitle");
+                    String PoPostContent = rs.getString("POPostContent");
+                    String PoPostImage = rs.getString("POPostImage");
+                    String PoPostDate = rs.getString("POPostDate");
+                    String StudentID = rs.getString("StudentID");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PoPostStatusID = Integer.parseInt(rs.getString("POPostStatusID"));
+                    String PostID = rs.getString("PostID");
+                    
+                    post = new ProjectOwnerPostsDTO(PoPostID, PoPostTitle, PoPostDate, StudentID, PoPostContent, PoPostImage, LastEditedUser, upvote, PoPostStatusID, PostID);
+                    
+                }
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return post;
     }
     
     public boolean insert (ProjectOwnerPostsDTO post) throws SQLException {
@@ -107,7 +156,7 @@ public class PoPostDAO {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
             if (conn != null){
                 String sql = "UPDATE ProjectOwnerPosts SET POPostTitle = ?, POPostContent = ?, POPostImage = ?, LastEditedUser = ?"
-                        + "WHERE POPostID = ?";
+                        + " WHERE POPostID = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPopostTitle());
                 stm.setString(2, post.getPopostContent());
@@ -117,7 +166,8 @@ public class PoPostDAO {
                 
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-        }catch (Exception e ){            
+        }catch (Exception e ){  
+            e.printStackTrace();
         } finally{
             if (stm != null){
                 stm.close();

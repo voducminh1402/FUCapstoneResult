@@ -31,9 +31,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author ADMIN
  */
-public class UpdatePoPostController extends HttpServlet {
-    private static final String ERROR = "blog-single.html";
-    private static final String SUCCESS = "blog-single.html";
+public class UpdatePoPostController1 extends HttpServlet {
+    private static final String ERROR = "po-update-post.jsp";
+    private static final String SUCCESS = "po-view-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -105,7 +105,7 @@ public class UpdatePoPostController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(UpdatePoPostController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdatePoPostController1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -123,7 +123,7 @@ public class UpdatePoPostController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(UpdatePoPostController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdatePoPostController1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

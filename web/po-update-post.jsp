@@ -13,7 +13,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="referrer" content="no-referrer">
-        <title>FPT Capstone Project Result</title>
+        <title>Po-update-post</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" integrity="sha512-xmGTNt20S0t62wHLmQec2DauG9T+owP9e6VU8GigI0anN7OXLip9i7IwEhelasml2osdxX71XcYm6BQunTQeQg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -101,15 +101,17 @@
             <!-- Page Content  -->
             <div id="content" style="width: 100%;">
                 <div class="POPost-header">
-                    <h1 style="font-size: 2.2rem; color: black; margin-bottom: 20px">Tạo bài viết</h1>
+                    <h1 style="font-size: 2.2rem; color: black; margin-bottom: 20px">Chỉnh sửa bài viết</h1>
                     <div class="devider" style="width: 100%;"></div>
                 </div>
                 <div class="content-detail content-post add-post" style="border-radius: 15px; margin-bottom: 30px">
                     <form action="MainController" method="POST">                     
+                        <input type="hidden" name="po-post-id" value="${requestScope.POST.popostID}">
                         <label for="">Tiêu Đề Bài Đăng</label><br>
-                        <input type="text" name="po-post-title"  style="margin-bottom: 5px" required>
+                        <input type="text" name="po-post-title"  style="margin-bottom: 5px" value="${requestScope.POST.popostTitle}" required>
                         <label for="">Thêm Tag Của Bài Viết</label><br>
-                        <input id="post-tag" data-role="tagsinput" type="text" style="margin-bottom: 5px" required>    
+                        <input id="post-tag" data-role="tagsinput" type="text" style="margin-bottom: 5px"> 
+                        <input id="post-tag-hidden" type="hidden" name="po-post-tag"> 
                         <label for="">Ảnh Bìa Bài Đăng</label>
                         <div class="project-add-upload__image post-upload__image" >
                             <label style="margin: 0; background-color: inherit" for="file" ><i class="bi bi-cloud-arrow-up" style="color: black">
@@ -121,16 +123,17 @@
                             <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
                             <input type="hidden" id="mod-post__preview-input" name="po-post-thumbnail">
                             <a id="mod-post__preview-link" href="">
-                                <img id="mod-post__preview-image" src="" alt="">
+                                <img id="mod-post__preview-image" src="${requestScope.POST.popostImage}" alt="">
                             </a>
                         </div>    
                         <label for="">Nội Dung</label><br>
-                        <textarea id="editor" cols="30" rows="50" style="border: none;" required></textarea>
-                        <input  id="post-tag" data-role="tagsinput" type="text" required>
+                        <textarea id="editor" cols="30" rows="30" style="border: none; width: 100%" required>
+                            ${requestScope.POST.popostContent}
+                        </textarea>
                         <input id="post-content" type="hidden" name="po-post-content">                                                                                 
                         <input id="post-tag-hidden" type="hidden" name="po-post-tag">
                         <div class="add-project-submit add-post-submit">
-                            <button type="submit" name="action" value="PoAddPost" style="background-color:#F26F21 ">Lưu</button>
+                            <button type="submit" name="action" value="PoUpdatePost" style="background-color:#F26F21 ">Lưu</button>
                             <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                         </div>
                     </form>
