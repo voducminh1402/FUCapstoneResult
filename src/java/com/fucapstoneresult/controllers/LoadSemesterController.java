@@ -9,17 +9,12 @@ import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.SemesterDTO;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,35 +25,21 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
-public class FilterPostController extends HttpServlet {
+@WebServlet(name = "LoadSemesterController", urlPatterns = {"/LoadSemesterController"})
+public class LoadSemesterController extends HttpServlet {
 
     private static final String SUCCESS = "project-major.jsp";
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
-            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
-            String semesterName = request.getParameter("filterValue");
-            PostsDAO postDao = new PostsDAO();
-            List<PostsDTO> listPost;
-            if ("Học Kì".equals(semesterName)) {
-                
-                listPost = postDao.getAllPost();
-            } else {
-                SemesterDAO semesterDao = new SemesterDAO();
-                String semesterID = semesterDao.getSemesterByName(semesterName);
 
-                ProjectDAO projectDao = new ProjectDAO();
-                List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(semesterID);
-                listPost = postDao.getPostsByProjectID(listProjectID);
-            }
-
-            String json = new Gson().toJson(listPost);
+            SemesterDAO dao = new SemesterDAO();
+            List<SemesterDTO> list = dao.getAllSemester();
+            
+            String json = new Gson().toJson(list);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);

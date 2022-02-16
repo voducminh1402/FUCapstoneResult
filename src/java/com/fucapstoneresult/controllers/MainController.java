@@ -53,12 +53,16 @@ public class MainController extends HttpServlet {
 
     private static final String LOADING_INDEX = "LoadIndexController";
     private static final String DETAIL_PROJECT = "DetailProjectController";
+//<<<<<<< dev
+    private static final String LOAD_SEMESTER = "LoadSemesterController";
+//=======
     
     private static final String PO_AD_POST= "AddPoPostController";
     private static final String PO_VIEW_POST= "ViewPoPostController";
     private static final String PO_UPDATE_POST= "UpdatePoPostController1";
     private static final String VIEW_UPDATE_POST= "ViewUpdatePageController";
     private static final String PO_DELETE_POST = "DeletePoPostController";
+//>>>>>>> nguyennkt
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -131,6 +135,10 @@ public class MainController extends HttpServlet {
             }else if ("DetailProject".equals(action)) {
                 url = DETAIL_PROJECT;
 
+//<<<<<<< dev
+            } else if ("Load Semester".equals(action)) {
+                url = LOAD_SEMESTER;
+//=======
             }else if ("PoAddPost".equals(action)){
                 url = PO_AD_POST;
             }
@@ -145,6 +153,7 @@ public class MainController extends HttpServlet {
             }
             else if ("deletePoPostController".equals(action)){
                 url = PO_DELETE_POST;
+//>>>>>>> nguyennkt
             }
             
 
