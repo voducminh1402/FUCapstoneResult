@@ -7,15 +7,19 @@
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PoPostDAO.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/web/po-update-post.jsp</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/filters/CharacterEncodingFilter.java</file>
+            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/models/TagDetailsDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectOwnerPostsDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/models/TagsDTO.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/web/po-view-post.jsp</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewUpdatePageController.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/web/po-add-post.jsp</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/web/WEB-INF/web.xml</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagDetailsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController1.java</file>
         </group>
     </open-files>
 </project-private>
