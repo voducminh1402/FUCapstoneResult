@@ -123,7 +123,7 @@
                         <a id="mod-post__preview-link" href="">
                             <img id="mod-post__preview-image" src="" alt="">
                         </a>
-                    </div>
+                    </div> 
                     <label for="">Thêm Tag Của Bài Viết</label><br>
                     <input id="post-tag" data-role="tagsinput" type="text" required>
                     <input id="post-tag-hidden" type="hidden" name="post-tag">
@@ -195,7 +195,7 @@
                     url: apiUrl,
                     headers: {
                     Authorization: "Client-ID " + apiKey,
-                    Accept: "application/json",
+                    Accept: "application/json",2
                     },
                     mimeType: "multipart/form-data",
                 };

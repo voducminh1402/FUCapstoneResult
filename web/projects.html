@@ -304,7 +304,7 @@
       }
 
       load.addEventListener("click", function () {
-        number += 1;
+        number += 5;
         $.ajax({
           type: "POST",
           url: `MainController?action=Filter`,
@@ -314,7 +314,7 @@
           //if received a response from the server
           success: function (data) {
             anh = data;
-
+            console.log(data)
             removeAllChildNodes(posts);
             loadProject(data);
           },
