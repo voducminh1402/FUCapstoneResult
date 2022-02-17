@@ -3,17 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <group/>
 =======
 //<<<<<<< HEAD
+=======
+>>>>>>> 98325fda14e9d704215e1cda496242687b39816e
         <group/>
-//=======
         <group>
-//<<<<<<< dev
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.properties</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.xml</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/projects.html</file>
-//=======
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewPoPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PoPostDAO.java</file>
@@ -31,9 +31,11 @@
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagDetailsDAO.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController1.java</file>
-//>>>>>>> nguyennkt
         </group>
+<<<<<<< HEAD
 //>>>>>>> 3ae377a5d60b4062b1c917ef06b0758122ae2f7e
 >>>>>>> 5dcd85902fc61cbaca2c28ee85a17b41b6398792
+=======
+>>>>>>> 98325fda14e9d704215e1cda496242687b39816e
     </open-files>
 </project-private>
