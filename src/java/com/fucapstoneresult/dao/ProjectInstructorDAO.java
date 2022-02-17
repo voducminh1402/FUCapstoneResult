@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -155,4 +157,47 @@ public class ProjectInstructorDAO {
         
         return check;
     }
+    
+    public List<String> getAllProjectByInstructorID(String instructorID) throws SQLException {
+        List<String> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectID "
+                            + " FROM ProjectInstructor "
+                            + " WHERE InstructorID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, instructorID);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    
+                    projectList.add(projectID);
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
+    }
+    
 }
