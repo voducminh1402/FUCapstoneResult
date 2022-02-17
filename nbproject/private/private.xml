@@ -6,6 +6,14 @@
         <group/>
 //=======
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePostController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+=======
 //<<<<<<< dev
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.properties</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.xml</file>
@@ -29,6 +37,7 @@
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagDetailsDAO.java</file>
             <file>file:/D:/Study/CN5/SWP291_3/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController1.java</file>
 //>>>>>>> nguyennkt
+>>>>>>> e14bc73a0db57028acd1720423513851e3932cfc
         </group>
 //>>>>>>> 3ae377a5d60b4062b1c917ef06b0758122ae2f7e
     </open-files>
