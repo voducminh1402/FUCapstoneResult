@@ -314,10 +314,6 @@ public class PostsDAO {
         return df.format(convertDate);
     }
     
-    public static void main(String[] args) {
-        PostsDAO dao = new PostsDAO();
-        System.out.println(dao.convertDatetime("2022-02-09"));
-    }
 
     public List<PostsDTO> getPostsByTagID(String id) throws SQLException {
         Connection con = null;
@@ -420,16 +416,11 @@ public class PostsDAO {
         return list;
     }
 
-//    public static void main(String[] args) throws SQLException {
-//        PostsDAO dao = new PostsDAO();
-//        List<String> l = new ArrayList<>();
-//        l.add("1");
-//        l.add("2");
-//        l.add("3");
-//        l.add("87a71150-51fb-496a-8735-d371aed91284");
-//        List<PostsDTO> list = dao.getPostsByProjectID(l);
-//        for (PostsDTO postsDTO : list) {
-//            System.out.println(postsDTO);
-//        }
-//    }
+    public static void main(String[] args) throws SQLException {
+        PostsDAO dao = new PostsDAO();
+        List<PostsDTO> l = dao.getAllPost();
+        for (PostsDTO l1 : l) {
+            System.out.println(l1);
+        }
+    }
 }

@@ -5,65 +5,41 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.ProjectDAO;
-import com.fucapstoneresult.dao.SemesterDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonWriter;
-import java.io.File;
-import java.io.FileWriter;
+import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author ADMIN
  */
-@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
-public class FilterPostController extends HttpServlet {
+public class DeletePoPostController extends HttpServlet {
 
-    private static final String SUCCESS = "project-major.jsp";
-
+    private final String ERROR = "index.html";
+    private final String SUCCESS = "po-view-post.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
-            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
-            String semesterName = request.getParameter("filterValue");
-            PostsDAO postDao = new PostsDAO();
-            List<PostsDTO> listPost;
-            if ("Học Kì".equals(semesterName)) {
-                
-                listPost = postDao.getAllPost();
-            } else {
-                SemesterDAO semesterDao = new SemesterDAO();
-                String semesterID = semesterDao.getSemesterByName(semesterName);
-
-                ProjectDAO projectDao = new ProjectDAO();
-                List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(semesterID);
-                listPost = postDao.getPostsByProjectID(listProjectID);
+            String id = request.getParameter("id");
+            PoPostDAO dao = new PoPostDAO();
+            boolean check = dao.delete(id);
+            if (!check){
+                url = ERROR;
             }
-
-            String json = new Gson().toJson(listPost);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
+        }
+        finally{
+            response.sendRedirect(url);
         }
     }
 
