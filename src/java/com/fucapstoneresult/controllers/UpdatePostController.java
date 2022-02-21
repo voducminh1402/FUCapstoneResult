@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,6 +59,12 @@ public class UpdatePostController extends HttpServlet {
             
             TagsDAO tagDao = new TagsDAO();
             boolean checkTagDelete = tagDao.delete(postID);
+            
+            List<TagsDTO> listTag = tagDao.getListTag(postID);
+            
+            if (listTag.size() == 0) {
+                checkTagDelete = true;
+            }
             
             PostsDAO dao = new PostsDAO();
             boolean check = dao.update(post);
