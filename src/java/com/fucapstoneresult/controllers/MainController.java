@@ -59,9 +59,11 @@ public class MainController extends HttpServlet {
     
     private static final String PO_AD_POST= "AddPoPostController";
     private static final String PO_VIEW_POST= "ViewPoPostController";
-    private static final String PO_UPDATE_POST= "UpdatePoPostController1";
+    private static final String PO_UPDATE_POST= "UpdatePoPostController";
     private static final String VIEW_UPDATE_POST= "ViewUpdatePageController";
     private static final String PO_DELETE_POST = "DeletePoPostController";
+    private static final String VIEW_ADD_POST = "ViewAddPoPostPageController";
+    private static final String VIEW_BLOG_SINGLE_PAGE = "ViewBlogSingleController";
 //>>>>>>> nguyennkt
 
 
@@ -154,6 +156,12 @@ public class MainController extends HttpServlet {
             else if ("deletePoPostController".equals(action)){
                 url = PO_DELETE_POST;
 //>>>>>>> nguyennkt
+            }
+            else if ("ViewAddPoPostPage".equals(action)){
+                url = VIEW_ADD_POST;
+            }
+            else if ("viewPoPost".equals(action)){
+                url = VIEW_BLOG_SINGLE_PAGE;
             }
             
 

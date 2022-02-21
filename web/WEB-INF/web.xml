@@ -33,10 +33,6 @@
         <servlet-class>com.fucapstoneresult.controllers.EditPostController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdatePostController</servlet-name>
-        <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemovePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemovePostController</servlet-class>
     </servlet>
@@ -117,8 +113,16 @@
         <servlet-class>com.fucapstoneresult.controllers.DeletePoPostController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdatePoPostController1</servlet-name>
-        <servlet-class>com.fucapstoneresult.controllers.UpdatePoPostController1</servlet-class>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdatePoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAddPoPostPageController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewAddPoPostPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBlogSingleController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewBlogSingleController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -143,10 +147,6 @@
     <servlet-mapping>
         <servlet-name>EditPostController</servlet-name>
         <url-pattern>/EditPostController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdatePostController</servlet-name>
-        <url-pattern>/UpdatePostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RemovePostController</servlet-name>
@@ -229,8 +229,16 @@
         <url-pattern>/DeletePoPostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdatePoPostController1</servlet-name>
-        <url-pattern>/UpdatePoPostController1</url-pattern>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <url-pattern>/UpdatePoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAddPoPostPageController</servlet-name>
+        <url-pattern>/ViewAddPoPostPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBlogSingleController</servlet-name>
+        <url-pattern>/ViewBlogSingleController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
