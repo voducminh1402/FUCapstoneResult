@@ -35,11 +35,10 @@ import javax.servlet.http.HttpSession;
  */
 public class AddPoPostController extends HttpServlet {
 
-    private static final String ERROR = "blog-single.html";
-    private static final String SUCCESS = "blog-single.html";
+    private static final String ERROR = "post-project.jsp";
+    private static final String SUCCESS = "post-project.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
@@ -56,8 +55,7 @@ public class AddPoPostController extends HttpServlet {
             String popostContent = request.getParameter("po-post-content").replace("source=\"", "src='").replace("\" />", "' />");
             String[] popostTags = request.getParameter("po-post-tag").split(",");
             //PostsDTO post =  (PostsDTO) session.getAttribute("POST");
-            //String postID = request.getParameter("id");
-            String postID = "2";
+            String postID = request.getParameter("po-post-id");
             String authorInfo = userLogin.getUserName();
             StudentDAO student = new StudentDAO();
             String authorID = student.getStudentID(authorInfo);
@@ -69,7 +67,7 @@ public class AddPoPostController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
                 
-                ProjectOwnerPostsDTO post = new ProjectOwnerPostsDTO(popostID, popostTitle, currentDate,  authorID,  popostContent, popostImage, userID, 0, 1, postID);
+                ProjectOwnerPostsDTO post = new ProjectOwnerPostsDTO(popostID, popostTitle, currentDate,  authorID,  popostContent, popostImage, userID, 0, 2, postID);
                 boolean check = postDao.insert(post);
                 boolean checkTagDetail = false, checkTag = false;
                 
