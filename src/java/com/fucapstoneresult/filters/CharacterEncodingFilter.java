@@ -103,7 +103,7 @@ public class CharacterEncodingFilter implements Filter {
         
         request.setCharacterEncoding("UTF-8");
         chain.doFilter(request, response);
-    }
+     }
 
     /**
      * Return the filter configuration object for this filter.

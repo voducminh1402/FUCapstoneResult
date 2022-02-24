@@ -2,14 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.properties</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/nbproject/private/private.xml</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/projects.html</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/project-instructor-view.html</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/blog-single.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PoPostDAO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemovePostController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/po-update-post.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/po-view-post.jsp</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/assets/css/po-view-post.css</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/mod-request.html</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectOwnerPostsDTO.java</file>
+            <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/po-add-post.jsp</file>
         </group>
->>>>>>> 3ae377a5d60b4062b1c917ef06b0758122ae2f7e
     </open-files>
 </project-private>

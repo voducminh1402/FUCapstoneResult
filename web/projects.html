@@ -265,9 +265,9 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/projects.js"></script>
     <script>
-      var $posts = $("#posts").masonry({
+      var $posts = $('#posts').masonry({
         // options
-        percentPosition: true,
+        percentPosition: true 
       });
 
       const filterBtn = document.getElementById("filter");
@@ -345,7 +345,11 @@
       }
 
       load.addEventListener("click", function () {
+<<<<<<< HEAD
+        number += 5;
+=======
         number += stepNumber;
+>>>>>>> e14bc73a0db57028acd1720423513851e3932cfc
         $.ajax({
           type: "POST",
           url: `MainController?action=Filter`,
@@ -355,10 +359,16 @@
           //if received a response from the server
           success: function (data) {
             anh = data;
+<<<<<<< HEAD
+            console.log(data)
+            removeAllChildNodes(posts);
+            loadProject(data);
+=======
             if (number <= data.length) {
               removeAllChildNodes(posts);
               loadProject(data);
             }
+>>>>>>> e14bc73a0db57028acd1720423513851e3932cfc
           },
         });
       });
@@ -384,11 +394,16 @@
 
           var $project = $(project);
           $posts.append($project);
+//<<<<<<< dev
           $posts.masonry("appended", $project);
+//=======
+          $posts.masonry('appended', $project);
+//>>>>>>> nguyennkt
 
           // posts.insertAdjacentHTML("beforeend", commentContent);
         }
       }
+
     </script>
   </body>
 </html>

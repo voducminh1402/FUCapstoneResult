@@ -5,18 +5,22 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,64 +29,63 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author ADMIN
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
+public class UpdatePoPostController extends HttpServlet {
+    private static final String ERROR = "po-update-post.jsp";
+    private static final String SUCCESS = "po-view-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try {
+        try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            TagsDAO tagDao = new TagsDAO();
+            ProjectOwnerPostsDTO post = null;
             
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
+            DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String currentDate = dateTime.format(now);
             
-            PostsDTO post = null;
+            String popostID = request.getParameter("po-post-id");
+            String popostTitle = request.getParameter("po-post-title");
+            String postImage = request.getParameter("po-post-thumbnail");
+            String popostContent = request.getParameter("po-post-content").replace("src=\"", "src='").replace("\" />", "' />");
+            String[] popostTags = request.getParameter("po-post-tag").split(",");
+            String ProjectID = "2";
+            String authorInfo = userLogin.getUserName();
+            StudentDAO student = new StudentDAO();
+            String authorID = student.getStudentID(authorInfo);
             
-            if (userLogin != null) {
-                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1);
+            if (userLogin != null){
+                post = new ProjectOwnerPostsDTO(popostID, popostTitle, currentDate, authorID, popostContent, postImage, userLogin.getUserID(), 0, 1, ProjectID);
             }
             else {
                 response.sendRedirect("login.jsp");
             }
             
-            TagsDAO tagDao = new TagsDAO();
-            boolean checkTagDelete = tagDao.delete(postID);
             
-            PostsDAO dao = new PostsDAO();
+            PoPostDAO dao = new PoPostDAO();
             boolean check = dao.update(post);
-            
-            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-            
             boolean checkTagDetail = false, checkTag = false;
             
-            if (check && checkTagDelete) {
-                for (String postTag : postTags) {
+            if (check){
+                for (String postTag : popostTags){
                         UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                        String tagDetailID = newUuid.toString();
+                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailID, postTag));
+                        checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailID));
+                    }
+                    if (checkTag){
+                        url = SUCCESS;
                     }
             }
-            
-            if (checkTag) {
-                url = SUCCESS;
-            }
-        } 
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        finally {
+    }catch(Exception e){
+        System.out.println(e.toString());
+    }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
@@ -99,7 +102,11 @@ public class UpdatePostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdatePoPostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -113,7 +120,11 @@ public class UpdatePostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdatePoPostController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

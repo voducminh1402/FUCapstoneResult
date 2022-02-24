@@ -214,7 +214,8 @@ public class PostsDAO {
         Connection conn = null;
         PreparedStatement stm = null;
         try {
-            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+            conn = DBUtils.getConnection();
+            
             if (conn != null) {
                 String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=? "
                         + " WHERE PostID=? ";
@@ -225,7 +226,7 @@ public class PostsDAO {
                 stm.setString(4, post.getPostImage());
                 stm.setString(5, post.getLastEditedUser());
 //                stm.setString(6, post.getProjectID());
-                stm.setString(7, post.getPostID());
+                stm.setString(6, post.getPostID());
 
                 check = stm.executeUpdate() > 0 ? true : false;
             }

@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPT Capstone Project Result </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -19,20 +20,20 @@
             <header class="home-page-header">
                 <a href="./index.html" class="home-page-header__logo">
                     <img src="./assets/images/logo.png" alt="">
-                    <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
+                    <span class="school-intro">Trường đại học FPT - Phân hiệu thành phố Hồ Chí Minh</span>
                 </a>
-            </header>
+            </header>                                                                               
             <div class="menu-right">
-                        <div class="menu-icon">
-                            <div class="menu-icon-line1"></div>
-                            <div class="menu-icon-line2"></div>
-                            <div class="menu-icon-line3"></div>
-                        </div>
-                    </div>
+                <div class="menu-icon">
+                    <div class="menu-icon-line1"></div>
+                    <div class="menu-icon-line2"></div>
+                    <div class="menu-icon-line3"></div>
+                </div>
+            </div>
             <div class="menu-detail">
                 <div class="menu-wrap">
                     <div class="menu-close-button">
-                        
+
                     </div>
                     <div class="menu-search">
                         <form action="">
@@ -75,27 +76,12 @@
                         </div>
                     </div>
                     <div class="menu-footer">
-                        <span>Theo dõi ngay:</span> 
+                        <span>Theo dõi ngay:</span>
                         <span class="menu-footer-link">
                             <span><i class="fab fa-facebook-f"></i></span>
                             <span><i class="fas fa-globe"></i></span>
                             <span><i class="fab fa-twitter"></i></span>
                         </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="project-background">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="project-background__img" style="background-image: url(https://hcmuni.fpt.edu.vn/Data/Sites/1/Banner/123.png);">
-                        <div class="project-background__img-overlay">
-                            <div class="background-content">
-                                BÀI VIẾT
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -115,11 +101,11 @@
                 <div class="left-column col-md-8 pr-md-4">
                     <article class="tip-content">
                         <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
-                            <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_1.jpg"
+                            <img src="${requestScope.POST.popostImage}"
                                 alt="thumbnail">
                         </div>
                         <div class="tip-content__title">
-                            <h1 style="font-weight:700">Chọn nhóm để làm đồ án như thế nào thì ổn?</h1>
+                            <h1 style="font-weight:700">${requestScope.POST.popostTitle}</h1>
                         </div>
                         <div class="tip-content__info" style="padding-bottom: 15px;">
                             <div class="tip-author" style="display: inline-block; padding-right: 20px">
@@ -130,7 +116,7 @@
                                             d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                     </svg>
                                 </i>
-                                <span>Nguyen Trung</span>
+                                <span>${requestScope.STUDENT.studentName}</span>
                             </div>
                             <div class="tip-date" style="display: inline-block; padding-right: 20px">
                                 <i class="bi bi-calendar-event">
@@ -142,7 +128,7 @@
                                             d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
                                     </svg>
                                 </i>
-                                <span>08/09/2022</span>
+                                <span>${requestScope.POST.popostDate}</span>
                             </div>
                             <div class="tip-interaction" style="display: inline-block">
                                 <i class="bi bi-chat-right-dots">
@@ -157,31 +143,9 @@
                                 <span>05 bình luận</span>
                             </div>
                         </div>
-                        <div class="tip-content__sapo">
-                            <p>
-                                Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr saperet,
-                                ocurreret
-                                pertinacia pri an.
-                                No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum nulla argumentum ei.
-                                Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo malis, pri quando
-                                everti electram ei,
-                                ex homero omittam salutatus sed. Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit,
-                                sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris
-                                nisi ut aliquip ex ea commodo consequat
-                            </p>
-                        </div>
                         <div class="tip-content__body">
                             <p>
-                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                nulla
-                                pariatur. Excepteur
-                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                                est
-                                laborum. Lorem ipsum
-                                dolor sit amet, consectetur
+                                ${requestScope.POST.popostContent}
                             </p>
                         </div>
                     </article>
@@ -279,42 +243,45 @@
                             <form action="#" method="post">
                                 <div class="f-response" style="padding-bottom: 30px;">
                                     <span style="padding-bottom: 10px;">Nội dung</span><br>
-                                    <input type="text"
-                                        style="height: 130px; width: 100%; margin-top: 10px; border: 1px solid lightgrey;"><br>
+                                    <textarea type="text"
+                                        style="height: 130px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
                                 </div>
                                 <div class="f-name" style="padding-bottom: 30px;">
                                     <span>Họ và tên*</span><br>
-                                    <input type="text"
-                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey;"><br>
+                                    <textarea type="text"
+                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
                                 </div>
                                 <div class="f-email" style="padding-bottom: 10px;">
                                     <span style="margin-bottom: 10px;">Email</span><br>
-                                    <input type="text"
-                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey;"><br>
+                                    <textarea type="text"
+                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
                                 </div>
-                                <button type="submit" style="color: white">Đăng tải</button>
+                                <button style="color: white">Đăng tải</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="right-column col-md-4">
                     <aside>
-                        <div class="search" style="padding-bottom: 50px;">
-                            <form action="#">
-                                <input type="text" placeholder="Search" name="search" class="search-box">
-                                <button class="search-btn" type="submit">
-                                    <i class="bi bi-search">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path
-                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </i>
-                                </button>
-                            </form>
+                        <div class="row" style="padding-bottom: 50px;">
+                            <div class="search col-12" >
+                                <form action="#">
+                                    <input type="text" placeholder="Search" name="search" class="search-box">
+                                    <button class="search-btn" type="submit">
+                                        <i class="bi bi-search">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                            </svg>
+                                        </i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
+                        
                         <div class="recent-post" style="padding-bottom: 50px;">
-                            <h1>Bài viết liên quan</h1>
+                            <h1 style="font-size: 2em;">Bài viết liên quan</h1>
                             <div class="devider"></div>
                             <div class="post-list">
                                 <div class="post-list__item">
@@ -338,14 +305,14 @@
                             </div>
                         </div>
                         <div class="tags" style="padding-bottom: 50px;">
-                            <h1>Tags</h1>
+                            <h1 style="font-size: 2em;">Tags</h1>
                             <div class="devider"></div>
                             <div class="tag-list">
                                 <div class="tag-list__item">
                                     <a href="#">IoT</a>
                                 </div>
                                 <div class="tag-list__item">
-                                    <a href="#">Kĩ thuật phần mềm</a>
+                                    <a href="#">Kỹ thuật phần mềm</a>
                                 </div>
                                 <div class="tag-list__item">
                                     <a href="#">C#</a>
@@ -371,47 +338,52 @@
                             </div>
                         </div>
                         <div class="our-team" style="padding-bottom: 50px;">
-                            <h1>Thành viên của nhóm</h1>
+                            <h1 style="font-size: 2em;">Thành viên của nhóm</h1>
                             <div class="devider"></div>
                             <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom" title="Võ Đức Minh (Leader)">
+                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
+                                    title="Võ Đức Minh (Leader)">
                                     <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
                                         alt=""></a>
                             </div>
                             <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom" title="Nguyễn Khắc Trung Nguyên (Front-end dev)">
+                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
+                                    title="Nguyễn Khắc Trung Nguyên (Front-end dev)">
                                     <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
                                         alt=""></a>
                             </div>
                             <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom" title="Lê Hồng Anh (Front-end dev)">
+                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
+                                    title="Lê Hồng Anh (Front-end dev)">
                                     <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
                                         alt=""></a>
                             </div>
                             <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom" title="Phạm Đức Huy (Back-end dev)">
+                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
+                                    title="Phạm Đức Huy (Back-end dev)">
                                     <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
                                         alt=""></a>
                             </div>
                             <div class="team-member">
-                                <div class="member-ava" >
-                                    <a href="#" data-tongle="tooltip" data-placement="bottom" title="Trần Quang Quyền (Back-end dev)">
+                                <div class="member-ava">
+                                    <a href="#" data-tongle="tooltip" data-placement="bottom"
+                                        title="Trần Quang Quyền (Back-end dev)">
                                         <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
                                             alt=""></a>
-                                </div>                               
+                                </div>
                             </div>
                         </div>
                         <div class="team-introduction">
-                            <h1>Thông tin của nhóm</h1>
+                            <h1 style="font-size: 2em;">Thông tin của nhóm</h1>
                             <div class="devider"></div>
                             <div class="team-introduction__content">
                                 <p>
-                                    Proin hendrerit eget tellus sit amet vestibulum. Nullam a tincidunt
-                                    leo. Sed eget sem scelerisque, malesuada lectus sed, facilisis
-                                    sapien. Pellentesque quis ullamcorper est, vitae condimentum enim.
-                                    Phasellus suscipit eu lacus finibus rhoncus. Maecenas sed lacus
-                                    aliquam, vehicula sapien ac, cursus erat. Aenean vel erat a urna
-                                    efficitur varius.
+                                    Proin hendrerit eget tellus sit amet vestibulum. Nullam a tincidunt leo. Sed eget
+                                    sem scelerisque, malesuada lectus sed, facilisis sapien. Pellentesque quis
+                                    ullamcorper est, vitae condimentum enim. Phasellus suscipit eu lacus finibus
+                                    rhoncus. Maecenas
+                                    sed lacus aliquam, vehicula sapien ac, cursus erat. Aenean vel erat a urna efficitur
+                                    varius.
                                 </p>
                             </div>
                         </div>
@@ -422,10 +394,12 @@
     </section>
     <div class="footer">
         <div class="container">
-           <div class="footer-content row">
+            <div class="footer-content row">
                 <div class="footer-content-first col-md-4">
                     <h3>Về Đại Học FPT</h3>
-                    <p>Đại học FPT hướng tới xây dựng mô hình của một trường Đại học thế hệ mới; gắn liền đào tạo với thực tiễn cuộc sống và nhu cầu nhân lực của đất nước, góp phần đưa Giáo dục Việt Nam tiến tới ngang tầm các nước trên thế giới.</p>
+                    <p>Đại học FPT hướng tới xây dựng mô hình của một trường Đại học thế hệ mới; gắn liền đào tạo với
+                        thực tiễn cuộc sống và nhu cầu nhân lực của đất nước, góp phần đưa Giáo dục Việt Nam tiến tới
+                        ngang tầm các nước trên thế giới.</p>
                     <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
                 </div>
                 <div class="footer-content-detail col-md-2">
@@ -444,7 +418,8 @@
                 <div class="col-md-4">
                     <span>Theo Dõi Trường Đại Học FPT Tại: </span>
                     <div class="follow-social">
-                        <p>Cung cấp năng lực cạnh tranh toàn cầu cho đông đảo người học, góp phần mở mang bờ cõi trí tuệ đất nước</p>
+                        <p>Cung cấp năng lực cạnh tranh toàn cầu cho đông đảo người học, góp phần mở mang bờ cõi trí tuệ
+                            đất nước</p>
                         <div class="social">
                             <a href="">
                                 <i class="fab fa-facebook-f"></i>
@@ -458,7 +433,7 @@
                         </div>
                     </div>
                 </div>
-           </div>
+            </div>
         </div>
         <div class="footer-end container-fluid">
             <div class="container">
@@ -469,7 +444,7 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
     <div class="overlay-page" id="overlay-page"></div>
     <div id="loader" class="loader">
         <div class="loading">
@@ -485,17 +460,25 @@
             <div class="loading__letter">.</div>
             <div class="loading__letter">.</div>
             <div class="loading__letter">.</div>
-          </div>
+        </div>
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./assets/js/app.js"></script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip({
-                placement : 'bottom'
+                placement: 'bottom'
             });
         });
+    </script>
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById('myBtn');
+        btn.addEventListener('click', openModal);
+        function openModal(){
+            modal.style.display= 'block'; 
+        }
     </script>
 </body>
 
