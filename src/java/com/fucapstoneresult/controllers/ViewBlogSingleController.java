@@ -5,84 +5,63 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.CommentDAO;
+import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
-import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author ADMIN
  */
-public class UpdatePostController extends HttpServlet {
-    private static final String ERROR = "mod-edit-post.jsp";
-    private static final String SUCCESS = "mod-post.jsp";
-    
+public class ViewBlogSingleController extends HttpServlet {
+
+    private final String ERROR = "po-view-post.jsp";
+    private final String SUCCESS = "blog-single.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
-            String postID = request.getParameter("post-id");
-            String postTitle = request.getParameter("post-title");
-            String postAuthor = request.getParameter("post-author");
-            String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
-            String[] postTags = request.getParameter("post-tag").split(",");
-            String projectID = request.getParameter("project-name");
-            
-            PostsDTO post = null;
-            
-            if (userLogin != null) {
-                post = new PostsDTO(postID, postTitle, "2021-01-01", postAuthor, postContent, postImage, userLogin.getUserID(), 0, 1);
-            }
-            else {
-                response.sendRedirect("login.jsp");
-            }
-            
+            String postID = request.getParameter("id");
+            PoPostDAO postDao = new PoPostDAO();
+            ProjectOwnerPostsDTO post = postDao.getPostByID(postID);
+            StudentDAO studentDao = new StudentDAO();
+            StudentDTO student = studentDao.getStudent(post.getPopostAuthorID());
             TagsDAO tagDao = new TagsDAO();
-            boolean checkTagDelete = tagDao.delete(postID);
-            
-            PostsDAO dao = new PostsDAO();
-            boolean check = dao.update(post);
-            
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             
-            boolean checkTagDetail = false, checkTag = false;
-            
-            if (check && checkTagDelete) {
-                for (String postTag : postTags) {
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailId = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
-                    }
-            }
-            
-            if (checkTag) {
+            if (post != null) {
+                List<TagsDTO> tagList = tagDao.getListTag(postID);
+                List<TagDetailsDTO> tagDetailList = new ArrayList<>();
+                
+                for (TagsDTO tagsDTO : tagList) {
+                    tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
+                    tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+                }
+                request.setAttribute("POST", post);
+                request.setAttribute("STUDENT", student);
+                request.setAttribute("TAG", tagDetailList);
                 url = SUCCESS;
             }
-        } 
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

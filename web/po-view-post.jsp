@@ -9,6 +9,9 @@
         <title>FPT Capstone Project Result </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/responsive.css">
@@ -122,11 +125,12 @@
                                             <div class="project-content project-content-major">
                                                 <div class="project-content-overlay">
                                                     <img class="project-content-img project-content-major-img" src="${o.popostImage}" alt="">
-                                                    <div class="project-content-text">
+                                                    <div class="project-content-text">                                                       
                                                         <h1 class="po-post-status" style="color: lightgreen; font-size: 15px">Đã được duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.popostTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa bài viết</a>
-                                                        <a class="edit-post" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa bài viết</a>
+                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.popostID}">Xem</a>
+                                                        <a class="edit-post" style="text-decoration: none;margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa</a>
+                                                        <a class="edit-post" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -140,17 +144,17 @@
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.popostTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa bài viết</a>
-                                                        <a class="edit-post" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa bài viết</a>
+                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.popostID}">Xem</a>
+                                                        <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa</a>
+                                                        <a id="delete" class="edit-post" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa</a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>                                                                                        
-                                    </c:if>
-                                </c:forEach>
+                                            </div>                                                                                        
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </section>
                 <div class="footer">
                     <div class="container">

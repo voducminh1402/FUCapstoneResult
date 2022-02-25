@@ -9,6 +9,7 @@ import com.fucapstoneresult.dao.PoPostDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,35 +31,37 @@ public class ViewUpdatePageController extends HttpServlet {
 
     private static final String ERROR = "index.jsp";
     private static final String SUCCESS = "po-update-post.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
             String PostID = request.getParameter("id");
-            
+
             PoPostDAO postDao = new PoPostDAO();
             ProjectOwnerPostsDTO post = postDao.getPostByID(PostID);
-            /*TagsDAO dao = new TagsDAO();
-            List<TagsDTO> tags = new ArrayList<>();
-            tags = dao.getListTag(PostID);
-            for (TagsDTO tag : tags){
-                TagDetailsDAO tagDao = new TagDetailsDAO();
-                List<String> tagName = new ArrayList<>();
-                tagName= tagDao.getTagDetailsWithName(tag.getTagdetailID();
-            }*/
-            if (post != null){
+            TagsDAO tagDao = new TagsDAO();
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            List<TagsDTO> tagList = tagDao.getListTag(PostID);
+            List<TagDetailsDTO> tagDetailList = new ArrayList<>();
+
+            for (TagsDTO tagsDTO : tagList) {
+                tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
+                tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+            }
+            if (post != null) {
                 request.setAttribute("POST", post);
-                //request.setAttribute("TAG", tags);
+                request.setAttribute("TAG",  tagDetailList);
                 url = SUCCESS;
-            }           
-        }catch (Exception e){
+            }
+        } catch (Exception e) {
             System.out.println(e.toString());
-        }
-        finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
