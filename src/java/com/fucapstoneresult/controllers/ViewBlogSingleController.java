@@ -5,19 +5,20 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.CommentDAO;
 import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
+import com.fucapstoneresult.models.CommentDTO;
 import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,36 +28,39 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-public class ViewUpdatePageController extends HttpServlet {
+public class ViewBlogSingleController extends HttpServlet {
 
-    private static final String ERROR = "index.jsp";
-    private static final String SUCCESS = "po-update-post.jsp";
+    private final String ERROR = "po-view-post.jsp";
+    private final String SUCCESS = "blog-single.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String PostID = request.getParameter("id");
-
+            String postID = request.getParameter("id");
             PoPostDAO postDao = new PoPostDAO();
-            ProjectOwnerPostsDTO post = postDao.getPostByID(PostID);
+            ProjectOwnerPostsDTO post = postDao.getPostByID(postID);
+            StudentDAO studentDao = new StudentDAO();
+            StudentDTO student = studentDao.getStudent(post.getPopostAuthorID());
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-            List<TagsDTO> tagList = tagDao.getListTag(PostID);
-            List<TagDetailsDTO> tagDetailList = new ArrayList<>();
-
-            for (TagsDTO tagsDTO : tagList) {
-                tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
-                tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
-            }
+            
             if (post != null) {
+                List<TagsDTO> tagList = tagDao.getListTag(postID);
+                List<TagDetailsDTO> tagDetailList = new ArrayList<>();
+                
+                for (TagsDTO tagsDTO : tagList) {
+                    tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
+                    tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+                }
                 request.setAttribute("POST", post);
-                request.setAttribute("TAG",  tagDetailList);
+                request.setAttribute("STUDENT", student);
+                request.setAttribute("TAG", tagDetailList);
                 url = SUCCESS;
             }
         } catch (Exception e) {
-            System.out.println(e.toString());
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
@@ -74,13 +78,7 @@ public class ViewUpdatePageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -94,13 +92,7 @@ public class ViewUpdatePageController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

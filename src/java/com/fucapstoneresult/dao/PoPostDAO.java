@@ -207,4 +207,32 @@ public class PoPostDAO {
         }
         return check;
     }
+    
+    public boolean confirmPost (String postID) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = "UPDATE ProjectOwnerPosts"
+                        +" SET POPostStatusID = ?"
+                        +"WHERE POPostID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 1);
+                stm.setString(2, postID);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        finally{
+            if (conn != null){
+            conn.close();
+        }
+            if (stm != null){
+                stm.close();
+            }
+        }
+        return check;
+    }
 }
