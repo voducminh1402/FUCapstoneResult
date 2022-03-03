@@ -195,7 +195,7 @@
                     url: apiUrl,
                     headers: {
                     Authorization: "Client-ID " + apiKey,
-                    Accept: "application/json",2
+                    Accept: "application/json",
                     },
                     mimeType: "multipart/form-data",
                 };
