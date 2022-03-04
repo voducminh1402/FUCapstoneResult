@@ -5,14 +5,15 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PoPostDAO;
-import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,8 +37,14 @@ public class ViewPoPostController extends HttpServlet {
         String url = ERROR;
         try{
             /* TODO output your page here. You may use following sample code. */
-            PoPostDAO post = new PoPostDAO();
-            List<ProjectOwnerPostsDTO> postList = post.getAllPost();
+            PostsDAO post = new PostsDAO();
+            List<PostsDTO> postListCheck = post.getAllPost();
+            List<PostsDTO> postList = new ArrayList<>();
+            for (PostsDTO postItem : postListCheck){
+                if (postItem.getIsMainPost() != null){
+                    postList.add(postItem);
+                }
+            }
             
             request.setAttribute("POPOST_LIST", postList);
         }catch(Exception e){
