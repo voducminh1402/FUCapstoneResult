@@ -205,8 +205,8 @@ public class StudentDAO {
         return list;
     }
     
-      public String getStudentID (String studentName) throws SQLException{
-        String studentID = "0";
+      public StudentDTO getStudentbyName (String studentName) throws SQLException{
+        StudentDTO student = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -215,7 +215,7 @@ public class StudentDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = " SELECT StudentID"
+                String sql = " SELECT StudentID, MajorID, StudentImage, TeamID"
                         + " FROM Students "
                         + " WHERE StudentName = ? ";
                 stm = conn.prepareStatement(sql);
@@ -223,7 +223,7 @@ public class StudentDAO {
                 rs = stm.executeQuery();
                 
                 if (rs.next()){
-                    studentID = rs.getString("StudentID");
+                    student = new StudentDTO(rs.getString("StudentID"), rs.getString("MajorID"), rs.getString("StudentImage"), studentName, rs.getString("TeamID"));
                 }
                 
             }
@@ -240,7 +240,7 @@ public class StudentDAO {
                 rs.close();
             }
         }
-        return studentID;
+        return student;
     }
     
 }

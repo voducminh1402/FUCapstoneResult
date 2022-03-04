@@ -5,13 +5,12 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.ProjectOwnerPostCommentsDTO;
-import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
@@ -35,7 +34,7 @@ import javax.servlet.http.HttpSession;
  */
 public class AddPoPostController extends HttpServlet {
 
-    private static final String ERROR = "post-project.jsp";
+    private static final String ERROR = "index.jsp";
     private static final String SUCCESS = "post-project.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
@@ -57,17 +56,21 @@ public class AddPoPostController extends HttpServlet {
             //PostsDTO post =  (PostsDTO) session.getAttribute("POST");
             String postID = request.getParameter("po-post-id");
             String authorInfo = userLogin.getUserName();
-            StudentDAO student = new StudentDAO();
-            String authorID = student.getStudentID(authorInfo);
+            StudentDAO studentDao = new StudentDAO();
+            StudentDTO student = studentDao.getStudentbyName(authorInfo); 
+            String teamID = student.getTeamID();
+            PostsDAO postDao = new PostsDAO();
+            PostsDTO mainPost = new PostsDTO();
+            mainPost = postDao.getPostWithID(postID);
+            String projectID = mainPost.getProjectID();
             
-            PoPostDAO postDao = new PoPostDAO();
             
-            if (userLogin != null){
+            if (userLogin != null && teamID.equals(projectID)){
                 String userID = userLogin.getUserID();
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
                 
-                ProjectOwnerPostsDTO post = new ProjectOwnerPostsDTO(popostID, popostTitle, currentDate,  authorID,  popostContent, popostImage, userID, 0, 2, postID);
+                PostsDTO post = new PostsDTO(popostID, popostTitle, currentDate,  authorInfo,  popostContent, popostImage, userID, 0, 2, postID, projectID);
                 boolean check = postDao.insert(post);
                 boolean checkTagDetail = false, checkTag = false;
                 
@@ -79,6 +82,7 @@ public class AddPoPostController extends HttpServlet {
                         checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailID));
                     }
                     if (checkTagDetail && checkTag){
+                        request.setAttribute("POST", mainPost);
                         url = SUCCESS;
                     }
                 }
