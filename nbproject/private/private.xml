@@ -3,6 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadIndexController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+=======
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/project-instructor-view.html</file>
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/blog-single.jsp</file>
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
@@ -18,6 +24,7 @@
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/mod-request.html</file>
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectOwnerPostsDTO.java</file>
             <file>file:/C:/Users/ADMIN/Desktop/FUCapstoneResult/web/po-add-post.jsp</file>
+>>>>>>> 94e1a8cd3a4e28cdce9415f83f2a44f80ff29cc0
         </group>
     </open-files>
 </project-private>
