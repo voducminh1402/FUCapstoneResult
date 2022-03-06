@@ -5,10 +5,10 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
@@ -39,8 +39,8 @@ public class ViewUpdatePageController extends HttpServlet {
         try {
             String PostID = request.getParameter("id");
 
-            PoPostDAO postDao = new PoPostDAO();
-            ProjectOwnerPostsDTO post = postDao.getPostByID(PostID);
+            PostsDAO postDao = new PostsDAO();
+            PostsDTO post = postDao.getPostWithID(PostID);
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             List<TagsDTO> tagList = tagDao.getListTag(PostID);

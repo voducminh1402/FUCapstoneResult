@@ -106,9 +106,12 @@
                 </div>
                 <div class="content-detail content-post add-post" style="border-radius: 15px; margin-bottom: 30px">
                     <form action="MainController" method="POST">                     
-                        <input type="hidden" name="po-post-id" value="${requestScope.POST.popostID}">
+                        <input type="hidden" name="po-post-id" value="${requestScope.POST.postID}">
+                        <input type="hidden" name="po-post-author" value="${requestScope.POST.postAuthor}">
+                        <input type="hidden" name="po-post-project" value="${requestScope.POST.projectID}">
+                        <input type="hidden" name="is-main-post" value="${requestScope.POST.isMainPost}">
                         <label for="">Tiêu Đề Bài Đăng</label><br>
-                        <input type="text" name="po-post-title"  style="margin-bottom: 5px" value="${requestScope.POST.popostTitle}" required>
+                        <input type="text" name="po-post-title"  style="margin-bottom: 5px" value="${requestScope.POST.postTitle}" required>
                         <label for="">Thêm Tag Của Bài Viết</label><br>
                         <input id="post-tag" data-role="tagsinput" type="text" style="margin-bottom: 5px"> 
                         <input id="post-tag-hidden" type="hidden" name="po-post-tag"> 
@@ -123,12 +126,12 @@
                             <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
                             <input type="hidden" id="mod-post__preview-input" name="po-post-thumbnail">
                             <a id="mod-post__preview-link" href="">
-                                <img id="mod-post__preview-image" src="${requestScope.POST.popostImage}" alt="">
+                                <img id="mod-post__preview-image" src="${requestScope.POST.postImage}" alt="">
                             </a>
                         </div>    
                         <label for="">Nội Dung</label><br>
                         <textarea id="editor" cols="30" rows="30" style="border: none; width: 100%" required>
-                            ${requestScope.POST.popostContent}
+                            ${requestScope.POST.postContent}
                         </textarea>
                         <input id="post-content" type="hidden" name="po-post-content">                                                                                 
                         <input id="post-tag-hidden" type="hidden" name="po-post-tag">
