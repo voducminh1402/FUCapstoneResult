@@ -109,10 +109,6 @@
         <servlet-class>com.fucapstoneresult.controllers.ViewUpdatePageController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeletePoPostController</servlet-name>
-        <servlet-class>com.fucapstoneresult.controllers.DeletePoPostController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>UpdatePoPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdatePoPostController</servlet-class>
     </servlet>
@@ -227,10 +223,6 @@
     <servlet-mapping>
         <servlet-name>ViewUpdatePageController</servlet-name>
         <url-pattern>/ViewUpdatePageController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeletePoPostController</servlet-name>
-        <url-pattern>/DeletePoPostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdatePoPostController</servlet-name>
