@@ -120,33 +120,31 @@
                                     <c:redirect url="MainController?action=GetListPoPost"></c:redirect>
                                 </c:if>
                                 <c:forEach items="${requestScope.POPOST_LIST}" var="o" > 
-                                    <c:if test="${o.statusID eq 1}">
+                                    <c:if test="${o.postStatusID eq 1}">
                                         <div class="project-detail col-md-4 col-sm-6">
                                             <div class="project-content project-content-major">
                                                 <div class="project-content-overlay">
-                                                    <img class="project-content-img project-content-major-img" src="${o.popostImage}" alt="">
+                                                    <img class="project-content-img project-content-major-img" src="${o.postImage}" alt="">
                                                     <div class="project-content-text">                                                       
                                                         <h1 class="po-post-status" style="color: lightgreen; font-size: 15px">Đã được duyệt</h1>
-                                                        <h5 style="font-size: 30px; font-weight: 700">${o.popostTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.popostID}">Xem</a>
-                                                        <a class="edit-post" style="text-decoration: none;margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa</a>
-                                                        <a class="edit-post" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa</a>
+                                                        <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
+                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.postID}">Xem</a>
+                                                        <a class="edit-post" style="text-decoration: none;margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>                                                                                        
                                     </c:if>
-                                    <c:if test="${o.statusID eq 2}">
+                                    <c:if test="${o.postStatusID eq 2}">
                                         <div class="project-detail col-md-4 col-sm-6">
                                             <div class="project-content project-content-major">
                                                 <div class="project-content-overlay">
-                                                    <img class="project-content-img project-content-major-img" src="${o.popostImage}" alt="">
+                                                    <img class="project-content-img project-content-major-img" src="${o.postImage}" alt="">
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
-                                                        <h5 style="font-size: 30px; font-weight: 700">${o.popostTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.popostID}">Xem</a>
-                                                        <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.popostID}">Chỉnh sửa</a>
-                                                        <a id="delete" class="edit-post" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left: 10px; text-decoration: none" href="MainController?action=deletePoPostController&id=${o.popostID}">Xóa</a>
+                                                        <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
+                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.postID}">Xem</a>
+                                                        <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
                                             </div>                                                                                        

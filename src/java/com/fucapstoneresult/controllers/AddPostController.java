@@ -48,6 +48,7 @@ public class AddPostController extends HttpServlet {
             String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
             String[] postTags = request.getParameter("post-tag").split(",");
             String projectID = request.getParameter("project-name");
+            String isMainPost= null;
             
             PostsDAO postDao = new PostsDAO();
             
@@ -56,7 +57,7 @@ public class AddPostController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
                 
-                PostsDTO post = new PostsDTO(projectID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1);
+                PostsDTO post = new PostsDTO(projectID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, isMainPost, projectID);
                 boolean check = postDao.insert(post);
                 boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
                 
