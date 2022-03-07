@@ -265,9 +265,9 @@
     <script src="./assets/js/app.js"></script>
     <script src="./assets/js/projects.js"></script>
     <script>
-      var $posts = $("#posts").masonry({
+      var $posts = $('#posts').masonry({
         // options
-        percentPosition: true,
+        percentPosition: true 
       });
 
       const filterBtn = document.getElementById("filter");
@@ -345,6 +345,7 @@
       }
 
       load.addEventListener("click", function () {
+        number += 5;
         number += stepNumber;
         $.ajax({
           type: "POST",
@@ -355,6 +356,9 @@
           //if received a response from the server
           success: function (data) {
             anh = data;
+            console.log(data)
+            removeAllChildNodes(posts);
+            loadProject(data);
             if (number <= data.length) {
               removeAllChildNodes(posts);
               loadProject(data);
@@ -389,6 +393,7 @@
           // posts.insertAdjacentHTML("beforeend", commentContent);
         }
       }
+
     </script>
   </body>
 </html>

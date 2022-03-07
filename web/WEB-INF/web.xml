@@ -33,10 +33,6 @@
         <servlet-class>com.fucapstoneresult.controllers.EditPostController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>UpdatePostController</servlet-name>
-        <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>RemovePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemovePostController</servlet-class>
     </servlet>
@@ -100,6 +96,38 @@
         <servlet-name>DetailProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.DetailProjectController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddPoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewPoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewUpdatePageController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewUpdatePageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.DeletePoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdatePoPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAddPoPostPageController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewAddPoPostPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewBlogSingleController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewBlogSingleController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChooseInstructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ChooseInstructorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -123,10 +151,6 @@
     <servlet-mapping>
         <servlet-name>EditPostController</servlet-name>
         <url-pattern>/EditPostController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdatePostController</servlet-name>
-        <url-pattern>/UpdatePostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RemovePostController</servlet-name>
@@ -191,6 +215,38 @@
     <servlet-mapping>
         <servlet-name>DetailProjectController</servlet-name>
         <url-pattern>/DetailProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPoPostController</servlet-name>
+        <url-pattern>/AddPoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPoPostController</servlet-name>
+        <url-pattern>/ViewPoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewUpdatePageController</servlet-name>
+        <url-pattern>/ViewUpdatePageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePoPostController</servlet-name>
+        <url-pattern>/DeletePoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePoPostController</servlet-name>
+        <url-pattern>/UpdatePoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAddPoPostPageController</servlet-name>
+        <url-pattern>/ViewAddPoPostPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewBlogSingleController</servlet-name>
+        <url-pattern>/ViewBlogSingleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseInstructorController</servlet-name>
+        <url-pattern>/ChooseInstructorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
