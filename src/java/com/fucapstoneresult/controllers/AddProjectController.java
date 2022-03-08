@@ -5,8 +5,18 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
+import com.fucapstoneresult.dao.TeamDAO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.ProjectInstructorDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
+import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,9 +34,10 @@ import javax.servlet.http.HttpSession;
  * @author PhongVu
  */
 public class AddProjectController extends HttpServlet {
+
     private static final String ERROR = "login.html";
     private static final String SUCCESS = "mod-add-project.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -34,31 +45,77 @@ public class AddProjectController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            String currentDate = dtf.format(now);
+
             UUID uuid = UUID.randomUUID();
             String projectID = uuid.toString();
+            UUID uuidPost = UUID.randomUUID();
+            String postID = uuidPost.toString();
+
             String projectName = request.getParameter("project-name");
-            String projectDescription = request.getParameter("project-description");
+            String projectDescription = request.getParameter("project-description").replace("src=\"", "src='").replace("\" />", "' />");
             String projectImage = request.getParameter("project-image");
             String projectScore = request.getParameter("project-score");
             String semesterID = request.getParameter("semester-id");
-            
+            String teamName = request.getParameter("team-name");
+            String instructorID = request.getParameter("instructor-id");
+            String[] postTags = request.getParameter("post-tag").split(",");
+
             ProjectDAO dao = new ProjectDAO();
-            
-            if(userLogin != null){
-                
+            TeamDAO teamdao = new TeamDAO();
+            ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
+            PostsDAO postdao = new PostsDAO();
+
+            if (userLogin != null) {
+
+                String postAuthor = userLogin.getUserName();
+                String userID = userLogin.getUserID();
+
+                TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+                TagsDAO tagDao = new TagsDAO();
+
                 ProjectDTO project = new ProjectDTO(projectID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
                 boolean check = dao.insertProject(project);
-                
-                if(check){
-                    url = SUCCESS;
+
+                TeamDTO team = new TeamDTO(projectID, teamName);
+                boolean checkteam = teamdao.insertTeam(team);
+
+                ProjectInstructorDTO proins = new ProjectInstructorDTO(projectID, instructorID);
+                boolean checkproins = proinsdao.insertProjectInstructor(proins);
+
+                PostsDTO post = new PostsDTO(postID, projectName, currentDate, postAuthor, projectDescription, projectImage, userID, 0, 1, null, projectID);
+                boolean checkPost = postdao.insert(post);
+                boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
+
+                if (check && checkteam && checkproins && checkPost) {
+
+                    for (String postTag : postTags) {
+                        if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
+                            String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
+                            checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                            checkTagNotAdd = true;
+                        } else {
+                            UUID newUuid = UUID.randomUUID();
+                            String tagDetailId = newUuid.toString();
+                            checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
+                            checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                        }
+
+                    }
+                    if ((checkTagDetail && checkTag) || (checkTagNotAdd && checkTag)) {
+                        url = SUCCESS;
+                    }
+
                 }
-                
+
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
