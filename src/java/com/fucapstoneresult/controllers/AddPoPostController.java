@@ -65,7 +65,7 @@ public class AddPoPostController extends HttpServlet {
             String projectID = mainPost.getProjectID();
             
             
-            if (userLogin != null && teamID.equals(projectID)){
+            if (userLogin != null){
                 String userID = userLogin.getUserID();
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();

@@ -128,9 +128,9 @@ public class PostsDAO {
             conn = com.fucapstoneresult.utils.DBUtils.getConnection();
 
             if (conn != null) {
-                String sql = " SELECT TOP 1 PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID"
+                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost"
                         + " FROM Posts "
-                        + " WHERE PostID=?";
+                        + " WHERE ProjectID=? AND IsMainPost IS NULL";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
 
@@ -146,7 +146,7 @@ public class PostsDAO {
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
                     String isMainPost = rs.getString("IsMainPost");
-                    String projectID = rs.getString("ProjectID");
+                    String projectID = id;
 
                     post = new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID);
                 }
@@ -225,7 +225,7 @@ public class PostsDAO {
             conn = DBUtils.getConnection();
 
             if (conn != null) {
-                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=? "
+                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=? "
                         + " WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostTitle());
@@ -233,8 +233,9 @@ public class PostsDAO {
                 stm.setString(3, post.getPostContent());
                 stm.setString(4, post.getPostImage());
                 stm.setString(5, post.getLastEditedUser());
+                stm.setString(6, post.getProjectID());
 //                stm.setString(6, post.getProjectID());
-                stm.setString(6, post.getPostID());
+                stm.setString(7, post.getPostID());
 
                 check = stm.executeUpdate() > 0 ? true : false;
             }
