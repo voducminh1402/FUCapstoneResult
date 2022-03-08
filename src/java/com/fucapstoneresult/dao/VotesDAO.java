@@ -114,9 +114,47 @@ public class VotesDAO {
         }
         return count;
     }
+    
+    public boolean checkIfUserVote(String userId, String postId) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        boolean check = false;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = " SELECT UserID, PostID "
+                        + "FROM Votes "
+                        + "WHERE PostID = ? AND UserID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, postId);
+                stm.setString(2, userId);
+                
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    check = true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return check;
+    }
 
     public static void main(String[] args) throws SQLException {
         VotesDAO dao = new VotesDAO();
+//        dao.addVote("2be08d52-a613-4b6c-a105-bc024b0a9d55", "1");
         System.out.println(dao.countNumberVotes("1"));
     }
 }

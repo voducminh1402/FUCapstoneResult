@@ -106,12 +106,28 @@
                     <form action="MainController" method="POST">
                         <label for="">Tên Đồ Án</label><br>
                         <input type="text" name="project-name" required>
-                        <label for="">Mô Tả Đồ Án</label><br>
-                        <textarea id="editor" cols="30" rows="50" name="project-description" required>
-                        </textarea>
-                        <label for="">Điểm Số Đồ Án</label><br>
-                        <input type="number" step="0.05" min="0" max="10" name="project-score">
-                        
+                        <c:if test="${requestScope.TEAM_LIST == null}">
+                            <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
+                        </c:if>
+                        <label for="">Nhóm Thực Hiện</label><br>
+                        <select name="team-name" id="" required>
+                            <option disabled selected>Lựa Chọn Nhóm Thực Hiện Đồ Án</option>
+                            <c:forEach items="${requestScope.TEAM_LIST}" var="o">
+                                <option value="${o.teamName}">${o.teamName}</option>
+                            </c:forEach>
+                        </select>
+                        <br>
+                        <c:if test="${requestScope.TEAM_LIST == null}">
+                            <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
+                        </c:if>
+                        <label for="">Giảng Viên Hướng Dẫn</label><br>
+                        <select name="instructor-id" id="" required>
+                            <option disabled selected>Lựa Chọn Giảng Viên Hướng Dẫn Cho Đồ Án</option>
+                            <c:forEach items="${requestScope.INSTRUCTOR_LIST}" var="o">
+                                <option value="${o.instructorID}">${o.instructorName}</option>
+                            </c:forEach>
+                        </select>
+                        <br>
                         <c:if test="${requestScope.SEMESTER_LIST == null}">
                             <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
                         </c:if>
@@ -123,6 +139,8 @@
                             </c:forEach>
                         </select>
                         <br>
+                        <label for="">Điểm Số Đồ Án</label><br>
+                        <input type="number" step="0.05" min="0" max="10" name="project-score">
                         <label for="">Ảnh Bìa Đồ Án</label>
                         <div class="project-add-upload__image post-upload__image">
                             <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
@@ -133,6 +151,14 @@
                             </a>
                         </div>
 
+                        <label for="">Thêm Tag Của Bài Viết</label><br>
+                        <input id="post-tag" data-role="tagsinput" type="text" required>
+                        <input id="post-tag-hidden" type="hidden" name="post-tag">
+
+                        <label for="">Mô Tả Đồ Án</label><br>
+                        <textarea id="editor" cols="30" rows="50" name="project-description" required>
+                        </textarea>
+                        <br>
                         <div class="add-project-submit">
                             <button type="submit" name="action" value="AddProject">Lưu</button>
                             <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
