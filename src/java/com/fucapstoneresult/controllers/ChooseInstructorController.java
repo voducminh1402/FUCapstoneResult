@@ -5,42 +5,49 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PoPostDAO;
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.InstructorDAO;
+import com.fucapstoneresult.models.InstructorDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author PhongVu
  */
-public class DeletePoPostController extends HttpServlet {
-
-    private final String ERROR = "index.html";
-    private final String SUCCESS = "po-view-post.jsp";
+public class ChooseInstructorController extends HttpServlet {
+    
+    private static final String ERROR = "index.jsp";
+    private static final String SUCCESS = "project-instructor-view.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SUCCESS;
+        String url = SUCCESS; 
+        
         try {
-            String id = request.getParameter("id");
-            PoPostDAO dao = new PoPostDAO();
-            boolean check = dao.delete(id);
-            if (!check){
-                url = ERROR;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
+            String insID = request.getParameter("instructor-id");
+            InstructorDTO ins = new InstructorDTO();
+            InstructorDAO dao = new InstructorDAO();
+            
+            ins = dao.getInstructorByID(insID);
+            
+            request.setAttribute("INS", ins);
+            
+            
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
-        finally{
-            response.sendRedirect(url);
-        }
+        
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

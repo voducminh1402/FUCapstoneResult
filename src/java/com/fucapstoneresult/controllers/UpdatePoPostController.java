@@ -5,11 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
-import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public class UpdatePoPostController extends HttpServlet {
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             TagsDAO tagDao = new TagsDAO();
-            ProjectOwnerPostsDTO post = null;
+            PostsDTO post = null;
             
             DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
@@ -55,22 +56,22 @@ public class UpdatePoPostController extends HttpServlet {
             String postImage = request.getParameter("po-post-thumbnail");
             String popostContent = request.getParameter("po-post-content").replace("src=\"", "src='").replace("\" />", "' />");
             String[] popostTags = request.getParameter("po-post-tag").split(",");
-            String ProjectID = "2";
-            String authorInfo = userLogin.getUserName();
-            StudentDAO student = new StudentDAO();
-            String authorID = student.getStudentID(authorInfo);
+            String projectID = request.getParameter("po-post-project");
+            String authorName = request.getParameter("po-post-author");
+            String isMainPost = request.getParameter("is-main-post");
             
             if (userLogin != null){
-                post = new ProjectOwnerPostsDTO(popostID, popostTitle, currentDate, authorID, popostContent, postImage, userLogin.getUserID(), 0, 1, ProjectID);
+                post = new PostsDTO(popostID, popostTitle, currentDate, authorName, popostContent, postImage, userLogin.getUserID(), 0, 1, isMainPost, projectID);
             }
             else {
                 response.sendRedirect("login.jsp");
             }
             
             
-            PoPostDAO dao = new PoPostDAO();
+            PostsDAO dao = new PostsDAO();
             boolean check = dao.update(post);
             boolean checkTagDetail = false, checkTag = false;
+            List<PostsDTO> listPost = null;
             
             if (check){
                 for (String postTag : popostTags){
@@ -80,6 +81,7 @@ public class UpdatePoPostController extends HttpServlet {
                         checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailID));
                     }
                     if (checkTag){
+                        request.setAttribute("POPOST_LIST", listPost);
                         url = SUCCESS;
                     }
             }

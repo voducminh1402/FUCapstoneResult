@@ -18,6 +18,11 @@
   font-weight: bold;
 }
 
+.main__content {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
 .main__content .content .main-picture {
   width: 100%;
   height: 400px;
@@ -284,7 +289,7 @@
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
 }
 
 .main__content .team-members ul li {
@@ -308,6 +313,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .main__content .team-members ul li p {
