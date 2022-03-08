@@ -8,6 +8,7 @@ package com.fucapstoneresult.controllers;
 import com.fucapstoneresult.dao.VotesDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,52 +20,30 @@ import javax.servlet.http.HttpSession;
  *
  * @author HP
  */
-@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
-public class VoteController extends HttpServlet {
+@WebServlet(name = "GetVoteController", urlPatterns = {"/GetVoteController"})
+public class GetVoteController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
         try {
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("USER");
             String postId = request.getParameter("id");
+            VotesDAO dao = new VotesDAO();
+            boolean check = false;
+            if (user != null)
+                check = dao.checkIfUserVote(user.getUserID(), postId);
+            int count = dao.countNumberVotes(postId);
 
-            if (user != null) {
+            response.getWriter().write(count + "" + check);
 
-                String s = request.getParameter("add");
-                VotesDAO dao = new VotesDAO();
-                boolean add = false;
-                boolean check = dao.checkIfUserVote(user.getUserID(), postId);
-
-                if ("true".equals(s)) {
-                    add = true;
-                }
-                if (!check) {
-                    if (add) {
-                        dao.addVote(user.getUserID(), postId);
-
-                    } else {
-                        dao.removeVote(user.getUserID(), postId);
-
-                    }
-                } else {
-
-                    dao.removeVote(user.getUserID(), postId);
-
-                }
-
-                response.getWriter().write(dao.countNumberVotes(postId) + "");
-            } else {
-                response.getWriter().write("fail");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
