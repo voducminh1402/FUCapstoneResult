@@ -120,6 +120,10 @@
         <servlet-name>ViewBlogSingleController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.ViewBlogSingleController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChooseInstructorController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ChooseInstructorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -231,6 +235,10 @@
     <servlet-mapping>
         <servlet-name>ViewBlogSingleController</servlet-name>
         <url-pattern>/ViewBlogSingleController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChooseInstructorController</servlet-name>
+        <url-pattern>/ChooseInstructorController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
