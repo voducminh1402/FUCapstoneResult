@@ -78,7 +78,7 @@ document.getElementById("submit").addEventListener("click", () => {
                                 </div>
                                 <div class="comment-info__content">
                                 <div class="content-header">
-                                    <h6 class="user-name">Le Hong Anh</h6>
+                                    <h6 class="user-name">Vo Duc Minh</h6>
                                     <span> ${getCommentTime()} </span>
                                     <span class="comment-request">Bình luận đang chờ kiểm duyệt!</span>
                                 </div>
