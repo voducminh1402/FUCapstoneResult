@@ -6,6 +6,10 @@
         <group/>
 =======
         <group>
+<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+=======
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/web/post-project.jsp</file>
@@ -18,6 +22,7 @@
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/src/java/com/fucapstoneresult/models/PostsDTO.java</file>
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
             <file>file:/D:/Study/CN5/SWP291_6/FUCapstoneResult/web/po-view-post.jsp</file>
+>>>>>>> 823208555794dbf26e69fe382df680f626449e92
         </group>
 >>>>>>> 67e8cf2e4bc7d443f1b958d0e08bbdc511dff44f
     </open-files>
