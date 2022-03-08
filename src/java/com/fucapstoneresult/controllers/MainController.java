@@ -156,7 +156,7 @@ public class MainController extends HttpServlet {
             else if ("viewPoPost".equals(action)){
                 url = VIEW_BLOG_SINGLE_PAGE;
             }
-            else if ("ChooseInstructor".equals(action)){
+            else if ("InstructorDetail".equals(action)){
                 url = CHOOSE_INSTRUCTOR;
             }
 
