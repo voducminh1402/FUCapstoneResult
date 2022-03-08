@@ -6,12 +6,12 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.dao.PoPostDAO;
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.ProjectOwnerPostsDTO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
@@ -39,10 +39,9 @@ public class ViewBlogSingleController extends HttpServlet {
         String url = ERROR;
         try {
             String postID = request.getParameter("id");
-            PoPostDAO postDao = new PoPostDAO();
-            ProjectOwnerPostsDTO post = postDao.getPostByID(postID);
-            StudentDAO studentDao = new StudentDAO();
-            StudentDTO student = studentDao.getStudent(post.getPopostAuthorID());
+            PostsDAO postDao = new PostsDAO();
+            PostsDTO post = postDao.getPostWithID(postID);
+            String studentName = post.getPostAuthor();
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             
@@ -55,7 +54,7 @@ public class ViewBlogSingleController extends HttpServlet {
                     tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
                 }
                 request.setAttribute("POST", post);
-                request.setAttribute("STUDENT", student);
+                request.setAttribute("STUDENT_NAME", studentName);
                 request.setAttribute("TAG", tagDetailList);
                 url = SUCCESS;
             }

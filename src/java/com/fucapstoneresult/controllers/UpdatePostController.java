@@ -13,6 +13,7 @@ import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -26,9 +27,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author VODUCMINH
  */
-public class AddPostController extends HttpServlet {
-    private static final String ERROR = "login.html";
-    private static final String SUCCESS = "mod-add-post.jsp";
+public class UpdatePostController extends HttpServlet {
+    private static final String SUCCESS = "mod-post.jsp";
+    private static final String ERROR = "mod-post.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,9 +43,7 @@ public class AddPostController extends HttpServlet {
             LocalDateTime now = LocalDateTime.now();
             String currentDate = dtf.format(now);
             
-            UUID uuid = UUID.randomUUID();
-            String postID = uuid.toString();
-            
+            String postID = request.getParameter("post-id");
             String postTitle = request.getParameter("post-title");
             String postAuthor = request.getParameter("post-author");
             String postImage = request.getParameter("post-thumbnail");
@@ -61,10 +60,11 @@ public class AddPostController extends HttpServlet {
                 TagsDAO tagDao = new TagsDAO();
                 
                 PostsDTO post = new PostsDTO(postID, postTitle, currentDate, postAuthor, postContent, postImage, userId, 0, 1, isMainPost, projectID);
-                boolean check = postDao.insert(post);
+                boolean check = postDao.update(post);
                 boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
                 
                 if (check) {
+                    tagDao.delete(postID);
                     for (String postTag : postTags) {
                         if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
                             String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
@@ -86,7 +86,7 @@ public class AddPostController extends HttpServlet {
             }
         } 
         catch (Exception e) {
-            System.out.println(e.toString());
+            
         }
         finally {
             request.getRequestDispatcher(url).forward(request, response);

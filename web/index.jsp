@@ -65,10 +65,10 @@
                                         <a href="./index.html">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Đồ án tốt nghiệp</a>
+                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
-                                        <a href="./project-major.html">Đồ án chuyên ngành</a>
+                                        <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                     </li>
                                     <li>
                                         <a href="./blog-single.html">Bài viết</a>
