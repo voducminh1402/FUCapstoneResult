@@ -147,7 +147,8 @@
                                                         <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
-                                            </div>                                                                                        
+                                            </div> 
+                                        </div>            
                                         </c:if>
                                     </c:forEach>
                                 </div>

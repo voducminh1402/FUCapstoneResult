@@ -105,7 +105,12 @@
                     <select name="project-name" id="" required>
                         <option disabled>Đồ Án Tốt Nghiệp</option>
                         <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
-                            <option value="${o.projectID}">${o.projectName}</option>
+                            <c:if test="${requestScope.POST_DETAIL.projectID eq o.projectID}">
+                                <option value="${o.projectID}" selected="">${o.projectName}</option>
+                            </c:if>
+                            <c:if test="${requestScope.POST_DETAIL.projectID ne o.projectID}">
+                                <option value="${o.projectID}">${o.projectName}</option>
+                            </c:if>
                         </c:forEach>
                     </select><br>
                     <input name="post-id" value="${requestScope.POST_DETAIL.postID}" type="hidden">

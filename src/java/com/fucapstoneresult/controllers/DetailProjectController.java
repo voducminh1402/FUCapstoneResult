@@ -55,7 +55,7 @@ public class DetailProjectController extends HttpServlet {
             if (post != null) {
                 CommentDAO cmtDao = new CommentDAO();
                 List<CommentDTO> comments = cmtDao.getListCommentsByPost(post.getPostID());
-                List<TagsDTO> tagList = tagDao.getListTag(projectID);
+                List<TagsDTO> tagList = tagDao.getListTag(post.getPostID());
                 List<TagDetailsDTO> tagDetailList = new ArrayList<>();
                 
                 for (TagsDTO tagsDTO : tagList) {
