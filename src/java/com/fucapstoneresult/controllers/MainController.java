@@ -42,6 +42,7 @@ public class MainController extends HttpServlet {
     private static final String ADD_INSTRUCTOR = "AddInstructorController";
     private static final String ADD_COMMENT = "AddCommentController";
     private static final String VOTE_POST_PROJECT = "VoteController";
+    private static final String VOTE_POST_PROJECT_GET_VOTE = "GetVoteController";
     private static final String UPDATE_PROJECT = "UpdateProjectController";
     private static final String COMMENT_POST = "CommentPostController";
     private static final String LOAD_COMMENTS = "LoadCommentsController";
@@ -158,6 +159,8 @@ public class MainController extends HttpServlet {
             }
             else if ("ChooseInstructor".equals(action)){
                 url = CHOOSE_INSTRUCTOR;
+            }else if ("GetNumberVote".equals(action)){
+                url = VOTE_POST_PROJECT_GET_VOTE;
             }
 
         } catch (Exception e) {
