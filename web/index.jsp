@@ -3,6 +3,11 @@
     Created on : Feb 7, 2022, 12:34:09 AM
     Author     : VODUCMINH
 --%>
+<%@page import="com.fucapstoneresult.models.InstructorDTO"%>
+<%@page import="com.fucapstoneresult.dao.InstructorDAO"%>
+<%@page import="com.fucapstoneresult.dao.MajorDAO"%>
+<%@page import="com.fucapstoneresult.models.SemesterDTO"%>
+<%@page import="com.fucapstoneresult.dao.SemesterDAO"%>
 <%@page import="com.fucapstoneresult.models.ProjectDTO"%>
 <%@page import="com.fucapstoneresult.dao.ProjectDAO"%>
 <%@page import="java.util.List"%>
@@ -253,7 +258,7 @@
                                 <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
                                     <div class="good-capstone">
                                         <img src="${o.projectImage}" alt="">
-                                        <div class="good-capstone-text">
+                                        <div class="good-capstone-text good-capstone-index">
                                             <h3>
                                                 <a href="MainController?action=DetailProject&id=${o.projectID}">${o.projectName}</a>
                                             </h3>
@@ -290,126 +295,70 @@
                         </div>
                     </div>
                 </div>
-                <div id="do-an-hoc-ky" class="content-near-project">
+                <%
+                    SemesterDAO semesterDao = new SemesterDAO();
+                    MajorDAO majorDao = new MajorDAO();
+                    List<ProjectDTO> nearestList = projectDao.getNearestProject();
+                    String semesterName = semesterDao.getSemester(projectDao.getNearestProjectElement().getSemesterID()).getSemesterName();
+                    request.setAttribute("NEAREST_LIST", nearestList);
+                    request.setAttribute("NEAREST_LIST_SIZE", nearestList.size());
+                %>
+                <c:if test="${requestScope.NEAREST_LIST_SIZE == 4}">
+                    <div id="do-an-hoc-ky" class="content-near-project">
                     <div class="container-fluid">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2>Đồ Án Học Kỳ Spring 2022</h2>
+                                    <h2>Đồ Án Học Kỳ <%= semesterName %></h2>
                                 </div>
                             </div>
                         </div>
                         <div class=" row content-near-project__wrapper">
-                            <div class="project-detail no-pd col-md-3" >
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text" style="margin-left: 30px;">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
+                            <c:forEach items="${requestScope.NEAREST_LIST}" var="o">
+                                <div class="project-detail no-pd col-md-3" >
+                                    <a href="MainController?action=DetailProject&id=${o.projectID}">
+                                        <div class="project-content project-content-major">
+                                            <div class="project-content-overlay">
+                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
+                                                <div class="project-content-text" style="margin-left: 30px;">
+                                                    ${pageContext.setAttribute("majorID", o.majorID)}
+                                                    <span><%= majorDao.getMajor(pageContext.getAttribute("majorID").toString()).getMajorName() %></span>
+                                                    <h3>${o.projectName}</h3>
+                                                    <span>View Project</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
+                </c:if>
+                
                 <div id="giang-vien-huong-dan" class="content-lecturer content-good">
                     <div class="container">
                         <h2>Giảng Viên Hướng Dẫn</h2>
                         <div class="capstone-slider">
                             <div class="lecturer-slide good-capstone-slide">
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
+                                <%
+                                    InstructorDAO insDao = new InstructorDAO();
+                                    List<InstructorDTO> ins = insDao.getAllInstructor();
+                                    request.setAttribute("INS_LIST", ins);
+                                %>
+                                <c:forEach items="${requestScope.INS_LIST}" var="o">
+                                    <div class="lecturer good-capstone">
+                                        <img style="width: 100%" src="${o.instructorImage}" alt="">
+                                        <div class="lecturer-info">
+                                            <h3>
+                                                <a href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
+                                            </h3>
+                                            <span>Giảng Viên Khối Ngành SE</span>
+                                        </div>
+                                        <div class="lecturer-overlay good-capstone-overlay">
+                                        </div>
                                     </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
+                                </c:forEach>
                                 <button type="button" class="slick-prev">Previous</button>
                                 <button type="button" class="slick-next">Next</button>
                             </div>

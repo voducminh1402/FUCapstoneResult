@@ -242,7 +242,7 @@ public class SemesterDAO {
     
     public static void main(String[] args) throws SQLException {
         SemesterDAO dao = new SemesterDAO();
-        System.out.println(dao.getSemesterByName("Spring 2021"));
+        System.out.println(dao.getSemester("1").getSemesterName());
     }
     
 }
