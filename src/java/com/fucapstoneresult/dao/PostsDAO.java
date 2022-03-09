@@ -429,12 +429,82 @@ public class PostsDAO {
         }
         return list;
     }
+    public int getUpVoteByProjectId(String id) throws SQLException {
+        PostsDTO post = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int upVote = 0;
+        try {
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = " SELECT Upvote "
+                        + " FROM Posts "
+                        + " WHERE ProjectID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    upVote = Integer.parseInt(rs.getString("Upvote"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return upVote;
+    }
+
+    public boolean updateUpVoteByProjectId(String id, int votes) throws SQLException {
+        PostsDTO post = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        int rs = 0;
+        boolean success = false;
+        try {
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = "UPDATE Posts "
+                        + " SET Upvote = ? "
+                        + " WHERE ProjectID = ? ";
+
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, votes);
+                stm.setString(2, id);
+                rs = stm.executeUpdate();
+                if (rs > 0) {
+                    success = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return success;
+    }
 
     public static void main(String[] args) throws SQLException {
         PostsDAO dao = new PostsDAO();
-        List<PostsDTO> l = dao.getAllPost();
-        for (PostsDTO l1 : l) {
-            System.out.println(l1);
-        }
+        System.out.println(dao.getUpVoteByProjectId("1"));
     }
 }
