@@ -279,6 +279,7 @@
   width: 15rem;
   height: 15rem;
   margin-bottom: 1rem;
+  object-fit: cover;
 }
 
 .main__content .team-members ul {

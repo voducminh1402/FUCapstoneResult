@@ -121,21 +121,22 @@
         <servlet-class>com.fucapstoneresult.controllers.ViewBlogSingleController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>UpdatePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>
     </servlet>
     <servlet>
-=======
 <!--        <servlet-name>UpdatePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>-->
->>>>>>> 457ac5a4522ddcf47f1073e4c6e26450a2c8e7ef
         <servlet-name>ChooseInstructorController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.ChooseInstructorController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePostController</servlet-name>
+        <url-pattern>/UpdatePostController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginGoogleController</servlet-name>
@@ -246,22 +247,8 @@
         <url-pattern>/ViewBlogSingleController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>ChooseInstructorController</servlet-name>
         <url-pattern>/ChooseInstructorController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdatePostController</servlet-name>
-        <url-pattern>/UpdatePostController</url-pattern>
-=======
-
-<!--        <servlet-name>UpdatePostController</servlet-name>
-        <url-pattern>/UpdatePostController</url-pattern>-->
-
-        <servlet-name>ChooseInstructorController</servlet-name>
-        <url-pattern>/ChooseInstructorController</url-pattern>
-
->>>>>>> 457ac5a4522ddcf47f1073e4c6e26450a2c8e7ef
     </servlet-mapping>
     <session-config>
         <session-timeout>
