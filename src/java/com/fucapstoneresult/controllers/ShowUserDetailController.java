@@ -30,8 +30,11 @@ public class ShowUserDetailController extends HttpServlet {
         String url = SUCCESS;
         try {
             String userID = request.getParameter("id");
+            String page = request.getParameter("page");
+            
             UserDAO dao = new UserDAO();
             UserDTO user = dao.searchUserByID(userID);
+            request.setAttribute("PAGE", page);
             request.setAttribute("USER_DETAIL", user);
         } catch (Exception e) {
             e.printStackTrace();

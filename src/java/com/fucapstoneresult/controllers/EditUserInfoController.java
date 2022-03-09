@@ -5,7 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,15 +35,28 @@ public class EditUserInfoController extends HttpServlet {
         String url = SUCCESS;
         try {
             String id = request.getParameter("id");
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String page = request.getParameter("page");
             int role = Integer.parseInt(request.getParameter("role"));
             int status = Integer.parseInt(request.getParameter("status"));
-            UserDTO user = new UserDTO(id, "", "", status, "", "", "", "", role);
+
+            UserDTO user = new UserDTO(id, name, "", status, "", email, "", "", role);
+            if (page.equals("student")) {
+                StudentDAO studentDao = new StudentDAO();
+                StudentDTO student = studentDao.getStudent(id);
+                student.setStudentName(name);
+                studentDao.updateStudent(student);
+            }
+
             UserDAO dao = new UserDAO();
             if (!dao.updateUserByAdmin(user)) {
+
                 url = FAIL;
             }
             user = dao.searchUserByID(id);
             request.setAttribute("USER_DETAIL", user);
+            request.setAttribute("PAGE", page);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
