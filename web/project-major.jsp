@@ -37,76 +37,7 @@
     <div class="home-page-wrapper">
         <div class="container-fluid">
             <div class="header-all">
-                <div class="header-part">
-                    <header class="home-page-header">
-                        <a href="./index.html" class="home-page-header__logo">
-                            <img src="./assets/images/logo.png" alt="">
-                            <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
-                        </a>
-                    </header>
-                    <div class="menu-right">
-                                <div class="menu-icon">
-                                    <div class="menu-icon-line1"></div>
-                                    <div class="menu-icon-line2"></div>
-                                    <div class="menu-icon-line3"></div>
-                                </div>
-                            </div>
-                    <div class="menu-detail">
-                        <div class="menu-wrap">
-                            <div class="menu-close-button">
-                                
-                            </div>
-                            <div class="menu-search">
-                                <form action="">
-                                    <div class="menu-search-wrap">
-                                        <input type="text" placeholder="Tìm kiếm">
-                                        <button type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="menu-items">
-                                <ul>
-                                    <li>
-                                        <a href="./index.html">Trang chủ</a>
-                                    </li>
-                                    <li>
-                                        <a href="projects.html">Đồ án tốt nghiệp</a>
-                                    </li>
-                                    <li>
-                                        <a href="./project-major.html">Đồ án chuyên ngành</a>
-                                    </li>
-                                    <li>
-                                        <a href="./blog-single.html">Bài viết</a>
-                                    </li>
-                                    <li>
-                                        <a href="./contact.html">Liên hệ</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-contact">
-                                <div>
-                                    <a href="tel:02873005588">(028) 73005588</a>
-                                </div>
-                                <div>
-                                    <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
-                                </div>
-                                <div>
-                                    <a href="">Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</a>
-                                </div>
-                            </div>
-                            <div class="menu-footer">
-                                <span>Theo dõi ngay:</span> 
-                                <span class="menu-footer-link">
-                                    <span><i class="fab fa-facebook-f"></i></span>
-                                    <span><i class="fas fa-globe"></i></span>
-                                    <span><i class="fab fa-twitter"></i></span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <jsp:include page="_Header-part.jsp" />
             </div>
             <section class="projects-major">
                 <div class="container">
@@ -126,7 +57,14 @@
                                         <img class="project-content-img project-content-major-img" src=${o.postImage} alt="">
                                         <div class="project-content-text">
                                             <span>Software Engineering</span>
-                                            <h5>${o.postTitle}</h5>
+                                            <h5>
+                                                <c:if test="${o.isMainPost eq null}">
+                                                    <a href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                                </c:if>
+                                                <c:if test="${o.isMainPost ne null}">
+                                                    <a href="MainController?action=DetailProject&id=${o.projectID}">${o.postTitle}</a>
+                                                </c:if>
+                                            </h5>
                                             <span>View Project</span>
                                         </div>
                                     </div>
@@ -148,7 +86,7 @@
                         </div>
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
-                            <div><a href="./index.html">Trang chủ</a></div>
+                            <div><a href="./index.jsp">Trang chủ</a></div>
                             <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>

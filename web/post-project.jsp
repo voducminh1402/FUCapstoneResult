@@ -51,7 +51,7 @@
             <div class="header-all">
                 <div class="header-part">
                     <header class="home-page-header">
-                        <a href="./index.html" class="home-page-header__logo">
+                        <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
                             <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
                         </a>
@@ -69,10 +69,10 @@
                                 
                             </div>
                             <div class="menu-search">
-                                <form action="">
+                                <form action="MainController">
                                     <div class="menu-search-wrap">
-                                        <input type="text" placeholder="Tìm kiếm">
-                                        <button type="submit">
+                                        <input name="searchValue" type="text" placeholder="Tìm kiếm">
+                                        <button name="action" value="Search" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
@@ -81,22 +81,39 @@
                             <div class="menu-items">
                                 <ul>
                                     <li>
-                                        <a href="./index.html">Trang chủ</a>
+                                        <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Đồ án tốt nghiệp</a>
+                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
-                                        <a href="./project-major.html">Đồ án chuyên ngành</a>
+                                        <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                     </li>
                                     <li>
-                                        <a href="./blog-single.html">Bài viết</a>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                     </li>
                                     <li>
                                         <a href="./contact.html">Liên hệ</a>
                                     </li>
+                                    <li>
+                                        <c:if test="${sessionScope.USER eq null}">
+                                            <a href="./login.html">Đăng nhập</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER ne null}">
+                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                        </c:if>
+                                    </li>
                                 </ul>
                             </div>
+<!--                            <div class="menu-login">
+                                <a href="login.html">LOGIN</a>
+                                <div>
+                                    <form>
+                                        <span>Xin chào ${sessionScope.USER.userName}</span>
+                                        <button style="vertical-align: initial" type="submit">LOG OUT</button>
+                                    </form>
+                                </div>
+                            </div>-->
                             <div class="menu-contact">
                                 <div>
                                     <a href="tel:02873005588">(028) 73005588</a>
@@ -120,9 +137,17 @@
                     </div>
                 </div>
             </div>
+            
             <div class="container">
+               
                 <div class="main__content row gx-5">
+                     <div class="route">
+                        <span>
+                            <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
+                        </span> <i class="fas fa-angle-right"></i> <span>Đồ án tốt nghiệp</span>
+                    </div>
                 <div class="col-lg-8">
+                    
                     <div class="content">
                         <!-- <img
                           src="./assets/images/image-product-1.jpg"
@@ -208,86 +233,52 @@
                        style="width: 100%; padding-top: 5px; padding-bottom: 5px; background-color: #F26F21; border: none;  text-transform: uppercase; color: white; font-weight: 700; border-radius: 4px; margin-bottom: 50px; text-decoration: none; display: block; text-align: center;">Đăng
                         tải bài viết của bạn</a>
                     <div class="search">
-                        <form action="#">
+                        <form action="MainController">
                             <input
                                 type="text"
-                                name="search"
+                                name="searchValue"
                                 id="search"
                                 placeholder="Tìm kiếm..."
                                 />
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-search">
+                            </i>
+                            <button name="action" value="Search" style="display: none" type="submit"></button>
                         </form>
                     </div>
                     <div class="recent-post left-col">
                         <h3>Các bài viết liên quan</h3>
                         <div class="line-break"></div>
-                        <ul>
-                            <li>
-                                <div class="recent-post__info">
-                                    <div class="picture-project">
-                                        <a href="#">
-                                            <img
-                                                src="./assets/images/image-product-1.jpg"
-                                                alt="project image"
-                                                />
-                                        </a>
+                        <div class="post-list">
+                                <c:forEach items="${requestScope.TOP_POST}" var="o">
+                                    <div class="post-list__item single-blog-top-post">
+                                        <img src="${o.postImage}"
+                                            alt="">
+                                        <h3>
+                                            <c:if test="${o.isMainPost eq null}">
+                                                <a href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                            </c:if>
+                                            <c:if test="${o.isMainPost ne null}">
+                                                <a href="MainController?action=DetailProject&id=${o.projectID}">${o.postTitle}</a>
+                                            </c:if>    
+                                        </h3>
+                                        <span>${o.postDate}</span>
                                     </div>
-                                    <div class="project-content">
-                                        <a href="#">
-                                            <h5 class="project-name">Bài viết 1</h5>
-                                        </a>
-
-                                        <p>20/06/2020</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="recent-post__info">
-                                    <div class="picture-project">
-                                        <a href="#">
-                                            <img
-                                                src="./assets/images/image-product-1.jpg"
-                                                alt="project image"
-                                                />
-                                        </a>
-                                    </div>
-                                    <div class="project-content">
-                                        <a href="#">
-                                            <h5 class="project-name">Bài viết 2</h5>
-                                        </a>
-
-                                        <p>20/06/2020</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="recent-post__info">
-                                    <div class="picture-project">
-                                        <a href="#">
-                                            <img
-                                                src="./assets/images/image-product-1.jpg"
-                                                alt="project image"
-                                                />
-                                        </a>
-                                    </div>
-                                    <div class="project-content">
-                                        <a href="#">
-                                            <h5 class="project-name">Bài viết 3</h5>
-                                        </a>
-
-                                        <p>20/06/2020</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </c:forEach>
+                            </div>
                     </div>
-                    <div class="tags left-col">
-                        <h3>Tags</h3>
+                    <div class="team-members left-col">
+                        <h3>Các thành viên của nhóm</h3>
                         <div class="line-break"></div>
                         <ul>
-                            <c:forEach items="${requestScope.TAGS}" var="o">
-                                <li><a href="#">${o.tagDetailName}</a></li>
-                                </c:forEach>
+                            <c:forEach items="${requestScope.TEAM}" var="o">
+                                <li>
+                                    <img
+                                        src="${o.studentImage}"
+                                        alt="team member image"
+                                        />
+                                    <p>${o.studentName}</p>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <div class="instructor left-col">
@@ -305,21 +296,16 @@
                             </c:forEach>
                         </div>
                     </div>
-                    <div class="team-members left-col">
-                        <h3>Các thành viên của nhóm</h3>
+                    <div class="tags left-col">
+                        <h3>Tags</h3>
                         <div class="line-break"></div>
                         <ul>
-                            <c:forEach items="${requestScope.TEAM}" var="o">
-                                <li>
-                                    <img
-                                        src="${o.studentImage}"
-                                        alt="team member image"
-                                        />
-                                    <p>${o.studentName}</p>
-                                </li>
-                            </c:forEach>
+                            <c:forEach items="${requestScope.TAGS}" var="o">
+                                <li><a href="#">${o.tagDetailName}</a></li>
+                                </c:forEach>
                         </ul>
                     </div>
+                  
                     <div class="about-us left-col">
                         <h3>Về chúng tôi</h3>
                         <div class="line-break"></div>
@@ -343,7 +329,7 @@
                         </div>
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
-                            <div><a href="./index.html">Trang chủ</a></div>
+                            <div><a href="./index.jsp">Trang chủ</a></div>
                             <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>

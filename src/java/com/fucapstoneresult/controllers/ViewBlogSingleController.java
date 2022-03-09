@@ -44,6 +44,7 @@ public class ViewBlogSingleController extends HttpServlet {
             String studentName = post.getPostAuthor();
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            List<PostsDTO> top3Post = postDao.getListTop3Post(postID);
             
             if (post != null) {
                 List<TagsDTO> tagList = tagDao.getListTag(postID);
@@ -55,6 +56,7 @@ public class ViewBlogSingleController extends HttpServlet {
                 }
                 request.setAttribute("POST", post);
                 request.setAttribute("STUDENT_NAME", studentName);
+                request.setAttribute("TOP_POST", top3Post);
                 request.setAttribute("TAG", tagDetailList);
                 url = SUCCESS;
             }
