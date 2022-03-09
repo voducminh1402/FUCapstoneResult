@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.VotesDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class GetVoteController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("USER");
             String postId = request.getParameter("id");
+
             VotesDAO dao = new VotesDAO();
             boolean check = false;
             if (user != null)
