@@ -327,6 +327,13 @@ header {
     padding: 7px 0px;
 }
 
+.good-capstone-index p:nth-of-type(2) {
+    width: 402px;
+    height: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .menu-items ul li a {
     color: var(--main-orange);
     text-decoration: none;
@@ -552,6 +559,11 @@ header {
 
 .lecturer-info h2 {
     margin-bottom: 20px;
+}
+
+.lecturer-info h3 a {
+    text-decoration: none;
+    color: var(--main-white);
 }
 
 .lecturer-overlay {

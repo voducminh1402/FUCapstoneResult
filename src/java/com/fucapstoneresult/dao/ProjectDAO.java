@@ -8,9 +8,11 @@ package com.fucapstoneresult.dao;
 import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -393,10 +395,140 @@ public class ProjectDAO {
         return projectList;
     }
     
+    public List<ProjectDTO> getNearestProject() throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            LocalDate currentdate = LocalDate.now();
+            String valueYear = "";
+            
+            if (currentdate.getMonthValue()>= 1 && currentdate.getMonthValue()<= 4) {
+                valueYear = "Fall " + (currentdate.getYear() - 1);
+            }
+            else if (currentdate.getMonthValue()>= 5 && currentdate.getMonthValue() <= 8){
+                valueYear = "Spring " + currentdate.getYear();
+            }
+            else if (currentdate.getMonthValue()>= 9 && currentdate.getMonthValue() <= 12) {
+                valueYear = "Summer " + currentdate.getYear();
+            }
+            
+            if (conn != null) {
+                String sql = "SELECT TOP 4 * " +
+                              "FROM Projects " +
+                                    "WHERE SemesterID = (SELECT SemesterID " +
+                                    "					FROM Semesters " +
+                                    "					WHERE SemesterName = ?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, valueYear);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    String majorID = rs.getString("MajorID");
+                    String semesterID = rs.getString("SemesterID");
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, 0, majorID, semesterID));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        if (projectList.size() == 4) {
+            return projectList;
+        }
+        else {
+            return new ArrayList<>();
+        }
+    }
+    
+    public ProjectDTO getNearestProjectElement() throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        ProjectDTO project = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            LocalDate currentdate = LocalDate.now();
+            String valueYear = "";
+            
+            if (currentdate.getMonthValue()>= 1 && currentdate.getMonthValue()<= 4) {
+                valueYear = "Fall " + (currentdate.getYear() - 1);
+            }
+            else if (currentdate.getMonthValue()>= 5 && currentdate.getMonthValue() <= 8){
+                valueYear = "Spring " + currentdate.getYear();
+            }
+            else if (currentdate.getMonthValue()>= 9 && currentdate.getMonthValue() <= 12) {
+                valueYear = "Summer " + currentdate.getYear();
+            }
+            
+            if (conn != null) {
+                String sql = "SELECT TOP 4 * " +
+                              "FROM Projects " +
+                                    "WHERE SemesterID = (SELECT SemesterID " +
+                                    "					FROM Semesters " +
+                                    "					WHERE SemesterName = ?)";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, valueYear);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");                    
+                    String semesterID = rs.getString("SemesterID");
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, 0, "", semesterID));
+                }
+                project = projectList.get(0);
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return project;
+    }
+    
     public static void main(String[] args) throws SQLException {
         ProjectDAO dao = new ProjectDAO();
         
-        System.out.println(dao.getAllProjectIDBySemester("1"));
+        System.out.println(dao.getNearestProjectElement().getSemesterID());
     }
 }
 

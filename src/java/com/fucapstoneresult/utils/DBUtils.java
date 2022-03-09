@@ -19,11 +19,7 @@ public class DBUtils {
         String url = "jdbc:sqlserver://"
                 + "localhost:1433;"
                 + "databaseName=FUCapstoneResult";
-<<<<<<< HEAD
-        Connection con = DriverManager.getConnection(url, "sa", "lehonganh01112001");    
-=======
-        Connection con = DriverManager.getConnection(url, "sa", "123");
->>>>>>> 5cb0ee48704dca758c84f12976a4f527eec020cb
+        Connection con = DriverManager.getConnection(url, "sa", "Minh1402");    
         return con;
     }
 }
