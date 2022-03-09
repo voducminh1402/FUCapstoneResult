@@ -64,7 +64,7 @@ public class MainController extends HttpServlet {
     private static final String VIEW_BLOG_SINGLE_PAGE = "ViewBlogSingleController";
     private static final String CHOOSE_INSTRUCTOR = "ChooseInstructorController";
     private static final String LOAD_STUDENT_LIST = "LoadStudentListController";
-    private static final String SHOW_STUDENT_DETAIL = "ShowStudentDetailController";
+    private static final String DELETE_STUDENT = "DeleteStudentController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -165,8 +165,8 @@ public class MainController extends HttpServlet {
                 url = VOTE_POST_PROJECT_GET_VOTE;
             }else if ("LoadAllStudent".equals(action)){
                 url = LOAD_STUDENT_LIST;
-            }else if ("ShowDetailStudent".equals(action)){
-                url = SHOW_STUDENT_DETAIL;
+            }else if ("DeleteStudent".equals(action)){
+                url = DELETE_STUDENT;
             }
 
         } catch (Exception e) {

@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import static javax.servlet.SessionTrackingMode.URL;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -44,26 +46,33 @@ public class ImportExcel {
     public static final int COLUMN_INDEX_IMAGE = 3;
     public static final int COLUMN_INDEX_TEAM = 4;
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException {        
+
         final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
         UserDAO user = new UserDAO();
         StudentDAO student = new StudentDAO();
-        ProjectDAO project = new ProjectDAO();
+
         for (ObjectDTO object : objects) {
             UUID uuid = UUID.randomUUID();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String createDate = now.toString();
             String teamId = uuid.toString();
-            project.insertProject(new ProjectDTO(teamId, createDate));
-            team.insertTeam(new TeamDTO(teamId, object.getTeam()));
-            student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), teamId));
-            user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
 
+            if (team.getTeamByName(object.getTeam()) == null) {
+                team.insertTeam(new TeamDTO(teamId, object.getTeam()));
+            }
+            if (student.getStudent(object.getId()) == null) {
+
+                student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(object.getTeam()).getTeamID()));
+                user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
+            }
+            System.out.println(object);
         }
     }
+
 
     public static List<ObjectDTO> readExcel(String excelFilePath) throws FileNotFoundException, IOException {
         List<ObjectDTO> listObject = new ArrayList<>();
@@ -116,8 +125,9 @@ public class ImportExcel {
                     default:
                         break;
                 }
-                listObject.add(object);
+
             }
+            listObject.add(object);
         }
         workBook.close();
         inputStream.close();

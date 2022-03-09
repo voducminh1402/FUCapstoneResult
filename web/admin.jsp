@@ -236,7 +236,7 @@
                                                             <div class="more-choice__menu">
                                                                 <div class="more-choice__item">
                                                                     <a
-                                                                        href="MainController?action=showUserDetail&id=${o.userID}"
+                                                                        href="MainController?action=showUserDetail&id=${o.userID}&page=user"
                                                                     id="show-user-detail-info"
                                                                     >
                                                                     <span>Xem Chi Tiết</span>
@@ -244,7 +244,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=showUserDetail&id=${o.userID}">
+                                                                <a href="MainController?action=showUserDetail&id=${o.userID}&page=user">
                                                                    <span>Chỉnh Sửa</span>
                                                                     <i
                                                                         class="fa fa-pencil"

@@ -188,12 +188,14 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " UPDATE Users SET UserStatusID=?, RoleID=? "
+                String sql = " UPDATE Users SET UserStatusID=?, RoleID=?, UserName = ?, Email = ? "
                         + " WHERE UserID=? ";
                 stm = conn.prepareCall(sql);
                 stm.setInt(1, User.getUserStatus());
                 stm.setInt(2, User.getRoleID());
-                stm.setString(3, User.getUserID());
+                stm.setString(3, User.getUserName());
+                stm.setString(4, User.getEmail());
+                stm.setString(5, User.getUserID());
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 
@@ -384,13 +386,13 @@ public class UserDAO {
                     stm = con.prepareStatement(sql);
                     stm.setInt(1, statusID);
                     stm.setInt(2, roleID);
-                } else if (statusID == 0) {
+                } else if (statusID == 0 && roleID != 0) {
                     sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                             + " FROM Users "
                             + " WHERE RoleID = ? ";
                     stm = con.prepareStatement(sql);
                     stm.setInt(1, roleID);
-                } else if (roleID == 0) {
+                } else if (roleID == 0 && statusID != 0) {
                     sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                             + " FROM Users "
                             + " WHERE UserStatusID = ? ";
