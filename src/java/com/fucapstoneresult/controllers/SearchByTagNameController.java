@@ -37,7 +37,7 @@ public class SearchByTagNameController extends HttpServlet {
             String searchValue = request.getParameter("searchValue");
             searchValue = searchValue.trim().toLowerCase();
             if (searchValue == null || searchValue.isEmpty()) {
-                url = "index.html";
+                url = "index.jsp";
             }
 //            TagDetailsDAO tagDetaiDdao = new TagDetailsDAO();
 //            PostsDAO postDao = new PostsDAO();

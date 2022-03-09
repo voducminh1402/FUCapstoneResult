@@ -9,95 +9,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FPT Capstone Project Result </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/post-project.css" />
     <link rel="stylesheet" href="./assets/css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+    <style>
+        .home-page-header {
+            position: fixed;
+            top: 0;
+            background-color: var(--main-orange);
+        }
+
+        .home-page-header__logo img {
+            background-color: var(--main-white);
+        }
+    </style>
+
 </head>
 
 <body>
     <div class="header-all">
         <div class="header-part">
-            <header class="home-page-header">
-                <a href="./index.html" class="home-page-header__logo">
-                    <img src="./assets/images/logo.png" alt="">
-                    <span class="school-intro">Trường đại học FPT - Phân hiệu thành phố Hồ Chí Minh</span>
-                </a>
-            </header>                                                                               
-            <div class="menu-right">
-                <div class="menu-icon">
-                    <div class="menu-icon-line1"></div>
-                    <div class="menu-icon-line2"></div>
-                    <div class="menu-icon-line3"></div>
-                </div>
-            </div>
-            <div class="menu-detail">
-                <div class="menu-wrap">
-                    <div class="menu-close-button">
-
-                    </div>
-                    <div class="menu-search">
-                        <form action="">
-                            <div class="menu-search-wrap">
-                                <input type="text" placeholder="Tìm kiếm">
-                                <button type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                    <header class="home-page-header">
+                        <a href="./index.jsp" class="home-page-header__logo">
+                            <img src="./assets/images/logo.png" alt="">
+                            <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
+                        </a>
+                    </header>
+                    <div class="menu-right">
+                                <div class="menu-icon">
+                                    <div class="menu-icon-line1"></div>
+                                    <div class="menu-icon-line2"></div>
+                                    <div class="menu-icon-line3"></div>
+                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="menu-items">
-                        <ul>
-                            <li>
-                                <a href="./index.html">Trang chủ</a>
-                            </li>
-                            <li>
-                                <a href="projects.html">Đồ án tốt nghiệp</a>
-                            </li>
-                            <li>
-                                <a href="./project-major.html">Đồ án chuyên ngành</a>
-                            </li>
-                            <li>
-                                <a href="./blog-single.html">Bài viết</a>
-                            </li>
-                            <li>
-                                <a href="./contact.html">Liên hệ</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="menu-contact">
-                        <div>
-                            <a href="tel:02873005588">(028) 73005588</a>
+                    <div class="menu-detail">
+                        <div class="menu-wrap">
+                            <div class="menu-close-button">
+                                
+                            </div>
+                            <div class="menu-search">
+                                <form action="MainController">
+                                    <div class="menu-search-wrap">
+                                        <input name="searchValue" type="text" placeholder="Tìm kiếm">
+                                        <button name="action" value="Search" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="menu-items">
+                                <ul>
+                                    <li>
+                                        <a href="./index.jsp">Trang chủ</a>
+                                    </li>
+                                    <li>
+                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                    </li>
+                                    <li>
+                                        <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
+                                    </li>
+                                    <li>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                    </li>
+                                    <li>
+                                        <a href="./contact.html">Liên hệ</a>
+                                    </li>
+                                    <li>
+                                        <c:if test="${sessionScope.USER eq null}">
+                                            <a href="./login.html">Đăng nhập</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER ne null}">
+                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                        </c:if>
+                                    </li>
+                                </ul>
+                            </div>
+<!--                            <div class="menu-login">
+                                <a href="login.html">LOGIN</a>
+                                <div>
+                                    <form>
+                                        <span>Xin chào ${sessionScope.USER.userName}</span>
+                                        <button style="vertical-align: initial" type="submit">LOG OUT</button>
+                                    </form>
+                                </div>
+                            </div>-->
+                            <div class="menu-contact">
+                                <div>
+                                    <a href="tel:02873005588">(028) 73005588</a>
+                                </div>
+                                <div>
+                                    <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
+                                </div>
+                                <div>
+                                    <a href="">Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</a>
+                                </div>
+                            </div>
+                            <div class="menu-footer">
+                                <span>Theo dõi ngay:</span> 
+                                <span class="menu-footer-link">
+                                    <span><i class="fab fa-facebook-f"></i></span>
+                                    <span><i class="fas fa-globe"></i></span>
+                                    <span><i class="fab fa-twitter"></i></span>
+                                </span>
+                            </div>
                         </div>
-                        <div>
-                            <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
-                        </div>
-                        <div>
-                            <a href="">Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</a>
-                        </div>
-                    </div>
-                    <div class="menu-footer">
-                        <span>Theo dõi ngay:</span>
-                        <span class="menu-footer-link">
-                            <span><i class="fab fa-facebook-f"></i></span>
-                            <span><i class="fas fa-globe"></i></span>
-                            <span><i class="fab fa-twitter"></i></span>
-                        </span>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
     <section class="blog-single">
         <div class="container container-fluid">
-            <div class="tip-header">
-                <div class="row tip-row">
-                    <div class="col-md-12" style="padding-bottom: 50px; padding-top: 50px;">
-                        <h1 class="projects-header_content" style="font-weight:700">Những mẹo khi làm đồ án tốt nghiệp
-                        </h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row tip-row">
+            <div class="row tip-row" style="margin-top: 150px !important">
                 <div class="left-column col-md-8 pr-md-4">
                     <article class="tip-content">
                         <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
@@ -149,117 +173,48 @@
                             </p>
                         </div>
                     </article>
-                    <div class="tip-comment">
-                        <div class="tip-comment__header">
-                            <h5 class="comment-num">05 bình luận</h5>
-                            <ul class="tip-comment-list">
-                                <li class="tip-comment-item">
-                                    <div class="tip-comment__ava">
-                                        <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/avatar.jpg"
-                                            alt="">
+                            <div class="main__content">
+                                 <div class="comment">
+                        <h5>${requestScope.COUNT_CMT} Bình luận</h5>
+
+                        <div id="comment-area" class="comment-area">
+                            <c:forEach items="${requestScope.COMMENTS}" var="o">
+                                <div class="comment-info">
+                                    <div class="comment-info__user-picture">
+                                        <img
+                                            src="./assets/images/image-product-1.jpg"
+                                            alt="user picture"
+                                            />
                                     </div>
-                                    <div class="tip-comment__info">
-                                        <span class="c-name">Trung Nguyên</span>
-                                        <span class="c-date">09/10/2020</span>
-                                    </div>
-                                    <div class="tip-comment__content">
+                                    <div class="comment-info__content">
+                                        <div class="content-header">
+                                            <h6 class="user-name">Vo Duc Minh</h6>
+                                            <span> ${o.commentTime} </span>
+                                        </div>
                                         <p>
-                                            This is my comments
+                                            ${o.commentDetail}
                                         </p>
                                     </div>
-                                    <div class="tip-comment__reply">
-                                        <i class="bi bi-reply-fill">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                            </svg>
-                                        </i>
-                                        <span>reply</span>
-                                    </div>
-                                </li>
-                                <li class="tip-comment-item">
-                                    <div class="tip-comment__ava">
-                                        <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/avatar.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="tip-comment__info">
-                                        <span class="c-name">Võ Đức Minh</span>
-                                        <span class="c-date">09/10/2020</span>
-                                    </div>
-                                    <div class="tip-comment__content">
-                                        <p>
-                                            This is my comments
-                                        </p>
-                                    </div>
-                                    <div class="tip-comment__reply">
-                                        <i class="bi bi-reply-fill">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                            </svg>
-                                        </i>
-                                        <span>reply</span>
-                                    </div>
-                                </li>
-                                <li class="tip-comment-item">
-                                    <div class="tip-comment__ava">
-                                        <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/avatar.jpg"
-                                            alt="">
-                                    </div>
-                                    <div class="tip-comment__info">
-                                        <span class="c-name">Lê Hồng Anh</span>
-                                        <span class="c-date">09/10/2020</span>
-                                    </div>
-                                    <div class="tip-comment__content">
-                                        <p>
-                                            This is my comments
-                                        </p>
-                                    </div>
-                                    <div class="tip-comment__reply">
-                                        <i class="bi bi-reply-fill">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M5.921 11.9 1.353 8.62a.719.719 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                                            </svg>
-                                        </i>
-                                        <span>reply</span>
-                                    </div>
-                                </li>
-                            </ul>
+                                </div>
+                            </c:forEach>
                         </div>
+
+
                     </div>
-                    <div class="form-response">
-                        <div class="form-response__header">
-                            <h2 style="font-weight: 800;">Bình luận</h2>
-                            <span class="header-description">Tất cả góp ý sẽ được đăng tải dưới dạng ẩn danh. Những nội
-                                dung bắt buộc
-                                sẽ được đánh dấu *
-                            </span>
-                        </div>
-                        <div class="form-response__body" style="padding-top: 5px;">
-                            <form action="#" method="post">
-                                <div class="f-response" style="padding-bottom: 30px;">
-                                    <span style="padding-bottom: 10px;">Nội dung</span><br>
-                                    <textarea type="text"
-                                        style="height: 130px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
-                                </div>
-                                <div class="f-name" style="padding-bottom: 30px;">
-                                    <span>Họ và tên*</span><br>
-                                    <textarea type="text"
-                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
-                                </div>
-                                <div class="f-email" style="padding-bottom: 10px;">
-                                    <span style="margin-bottom: 10px;">Email</span><br>
-                                    <textarea type="text"
-                                        style="height: 60px; width: 100%; margin-top: 10px; border: 1px solid lightgrey; outline: none; padding-left: 6px; padding-top: 3px;"></textarea><br>
-                                </div>
-                                <button style="color: white">Đăng tải</button>
-                            </form>
-                        </div>
+                    <div class="leave-comment">
+                        <h5>Để lại Bình luận</h5>
+                        <form action="#">
+                            <textarea
+                                name="input-comment"
+                                id="comment"
+                                cols="30"
+                                rows="3"
+                                ></textarea
+                            ><br />
+                            <input id="submit" type="button" value="Gửi" name="action" />
+                        </form>
                     </div>
+                            </div>
                 </div>
                 <div class="right-column col-md-4">
                     <aside>
@@ -279,29 +234,25 @@
                                 </form>
                             </div>
                         </div>
-                        
                         <div class="recent-post" style="padding-bottom: 50px;">
-                            <h1 style="font-size: 2em;">Bài viết liên quan</h1>
+                            <h1 style="font-size: 2em;">Bài viết xem nhiều</h1>
                             <div class="devider"></div>
                             <div class="post-list">
-                                <div class="post-list__item">
-                                    <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_3.jpg"
-                                        alt="">
-                                    <h1>Đồ án 1</h1>
-                                    <span>11 january, 2022</span>
-                                </div>
-                                <div class="post-list__item">
-                                    <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_3.jpg"
-                                        alt="">
-                                    <h1>Đồ án 2</h1>
-                                    <span>11 january, 2022</span>
-                                </div>
-                                <div class="post-list__item">
-                                    <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_3.jpg"
-                                        alt="">
-                                    <h1>Đồ án 3</h1>
-                                    <span>11 january, 2022</span>
-                                </div>
+                                <c:forEach items="${requestScope.TOP_POST}" var="o">
+                                    <div class="post-list__item single-blog-top-post">
+                                        <img src="${o.postImage}"
+                                            alt="">
+                                        <h3>
+                                            <c:if test="${o.isMainPost eq null}">
+                                                <a href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                            </c:if>
+                                            <c:if test="${o.isMainPost ne null}">
+                                                <a href="MainController?action=DetailProject&id=${o.projectID}">${o.postTitle}</a>
+                                            </c:if>    
+                                        </h3>
+                                        <span>${o.postDate}</span>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="tags" style="padding-bottom: 50px;">
@@ -337,56 +288,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="our-team" style="padding-bottom: 50px;">
-                            <h1 style="font-size: 2em;">Thành viên của nhóm</h1>
-                            <div class="devider"></div>
-                            <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
-                                    title="Võ Đức Minh (Leader)">
-                                    <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
-                                        alt=""></a>
-                            </div>
-                            <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
-                                    title="Nguyễn Khắc Trung Nguyên (Front-end dev)">
-                                    <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
-                                        alt=""></a>
-                            </div>
-                            <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
-                                    title="Lê Hồng Anh (Front-end dev)">
-                                    <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
-                                        alt=""></a>
-                            </div>
-                            <div class="team-member">
-                                <a class="member-ava" href="#" data-tongle="tooltip" data-placement="bottom"
-                                    title="Phạm Đức Huy (Back-end dev)">
-                                    <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
-                                        alt=""></a>
-                            </div>
-                            <div class="team-member">
-                                <div class="member-ava">
-                                    <a href="#" data-tongle="tooltip" data-placement="bottom"
-                                        title="Trần Quang Quyền (Back-end dev)">
-                                        <img src="https://i.pinimg.com/550x/4d/72/97/4d7297dad94265c0acbc3b677d418935.jpg"
-                                            alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-introduction">
-                            <h1 style="font-size: 2em;">Thông tin của nhóm</h1>
-                            <div class="devider"></div>
-                            <div class="team-introduction__content">
-                                <p>
-                                    Proin hendrerit eget tellus sit amet vestibulum. Nullam a tincidunt leo. Sed eget
-                                    sem scelerisque, malesuada lectus sed, facilisis sapien. Pellentesque quis
-                                    ullamcorper est, vitae condimentum enim. Phasellus suscipit eu lacus finibus
-                                    rhoncus. Maecenas
-                                    sed lacus aliquam, vehicula sapien ac, cursus erat. Aenean vel erat a urna efficitur
-                                    varius.
-                                </p>
-                            </div>
-                        </div>
                     </aside>
                 </div>
             </div>
@@ -404,7 +305,7 @@
                 </div>
                 <div class="footer-content-detail col-md-2">
                     <span>Liên Kết Hỗ Trợ</span>
-                    <div><a href="./index.html">Trang chủ</a></div>
+                    <div><a href="./index.jsp">Trang chủ</a></div>
                     <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
                     <div><a href="./blog-single.html">Bài viết</a></div>
                 </div>

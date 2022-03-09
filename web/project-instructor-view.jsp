@@ -52,7 +52,7 @@
             <div class="header-all">
                 <div class="header-part">
                     <header class="home-page-header">
-                        <a href="./index.html" class="home-page-header__logo">
+                        <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
                             <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
                         </a>
@@ -82,7 +82,7 @@
                             <div class="menu-items">
                                 <ul>
                                     <li>
-                                        <a href="./index.html">Trang chủ</a>
+                                        <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
                                         <a href="projects.html">Đồ án tốt nghiệp</a>
@@ -126,6 +126,11 @@
             <section class="instructor">
                 <div class="container">
                     <div class="row instructor-intro">
+                        <div class="route">
+                        <span>
+                            <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
+                        </span> <i class="fas fa-angle-right"></i> <span>Giảng viên hướng dẫn</span>
+                    </div>
                         <div class="col-md-4 instructor-left">
                             <div class="instructor-list ">
                                 <ul>
@@ -179,6 +184,12 @@
             <section class="instructor-project">
                 <div class="container">
                     <div class=" row content-near-project__wrapper">
+                        <div class="instructor-project__header">
+                            <h2>Đồ án tốt nghiệp</h2>
+                            <p>Dưới sự hướng dẫn, động viên và chỉ bảo tận tình của ${requestScope.INS.instructorName}, các bạn sinh viên đã bảo vệ thành công những đồ án tâm huyết của cả thầy và trò.<br>
+                                Hãy cùng xem những bạn sinh viên trường Đại học FPT Hồ Chí Minh đã có cho mình những sản phẩm xuất sắc như thế nào nhé!
+                            </p>
+                        </div>
                         <c:forEach items="${requestScope.LIST_PROJECT}" var="o">
                             <div class="project-detail no-pd col-md-4" style="padding: 0px 5px !important">
                                 <a href="MainController?action=DetailProject&id=${o.projectID}">
@@ -212,7 +223,7 @@
                         </div>
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
-                            <div><a href="./index.html">Trang chủ</a></div>
+                            <div><a href="./index.jsp">Trang chủ</a></div>
                             <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>
