@@ -6,9 +6,12 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.InstructorDAO;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
 import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.ProjectDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,13 +32,14 @@ public class ChooseInstructorController extends HttpServlet {
         String url = SUCCESS; 
         
         try {
-            String insID = request.getParameter("instructor-id");
-            InstructorDTO ins = new InstructorDTO();
+            String insID = request.getParameter("id");
             InstructorDAO dao = new InstructorDAO();
-            
-            ins = dao.getInstructorByID(insID);
+            ProjectInstructorDAO piDao = new ProjectInstructorDAO();
+            InstructorDTO ins = dao.getInstructorByID(insID);
+            List<ProjectDTO> projectList = piDao.getAllProjectByInstructorID(insID);
             
             request.setAttribute("INS", ins);
+            request.setAttribute("LIST_PROJECT", projectList);
             
             
         } catch (Exception e) {

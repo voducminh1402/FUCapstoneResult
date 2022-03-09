@@ -132,7 +132,7 @@ public class PostsDTO {
     @Override
     public String toString() {
 
-        return "PostsDTO{" + "postID=" + postID + ", postTitle=" + postTitle + ", postDate=" + postDate + ", postAuthor=" + postAuthor + ", postContent=" + postContent + ", postImage=" + postImage + ", lastEditedUser=" + lastEditedUser + ", upvote=" + upvote + ", postStatusID=" + postStatusID + '}';
+        return "PostsDTO{" + "postID=" + postID + ", postTitle=" + postTitle + ", postDate=" + postDate + ", postAuthor=" + postAuthor + ", postContent=" + postContent + ", postImage=" + postImage + ", lastEditedUser=" + lastEditedUser + ", upvote=" + upvote + ", postStatusID=" + postStatusID + '}' + isMainPost;
 
     }
 

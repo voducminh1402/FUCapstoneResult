@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/models/StudentDTO.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadStudentListController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/student.jsp</file>
@@ -10,6 +11,26 @@
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/admin.jsp</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
+=======
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
+<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-major.jsp</file>
+=======
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectInstructorDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/assets/css/styles.css</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-instructor-view.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-instructor-view.html</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ChooseInstructorController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/models/InstructorDTO.java</file>
+
+>>>>>>> f646d2c6aff4cea8664fb709cfd1a3a05c634f23
+>>>>>>> 2742bceb64d52ebc7a18945e5c9e4a7011d50b71
         </group>
     </open-files>
 </project-private>

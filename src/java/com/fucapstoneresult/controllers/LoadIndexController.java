@@ -27,8 +27,15 @@ public class LoadIndexController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             ProjectDAO projectDao = new ProjectDAO();
-            List<ProjectDTO> projectList = projectDao.getTop10Project();
+            List<ProjectDTO> projectList = projectDao.getTop10Project();            
+            List<ProjectDTO> nearestList = projectDao.getNearestProject();
+
             request.setAttribute("PROJECT_LIST", projectList);
+            request.setAttribute("NEAREST_LIST", nearestList);            
+            request.setAttribute("NEAREST_LIST_SIZE", nearestList.size());
+            
+            System.out.println(nearestList.get(1).getSemesterID().toString());
+
             
         } 
         catch (Exception e) {

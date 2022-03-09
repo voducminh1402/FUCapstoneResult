@@ -3,6 +3,13 @@
     Created on : Feb 7, 2022, 12:34:09 AM
     Author     : VODUCMINH
 --%>
+<%@page import="com.fucapstoneresult.dao.PostsDAO"%>
+<%@page import="com.fucapstoneresult.models.PostsDTO"%>
+<%@page import="com.fucapstoneresult.models.InstructorDTO"%>
+<%@page import="com.fucapstoneresult.dao.InstructorDAO"%>
+<%@page import="com.fucapstoneresult.dao.MajorDAO"%>
+<%@page import="com.fucapstoneresult.models.SemesterDTO"%>
+<%@page import="com.fucapstoneresult.dao.SemesterDAO"%>
 <%@page import="com.fucapstoneresult.models.ProjectDTO"%>
 <%@page import="com.fucapstoneresult.dao.ProjectDAO"%>
 <%@page import="java.util.List"%>
@@ -32,7 +39,7 @@
             <div class="header-all">
                 <div class="header-part">
                     <header class="home-page-header">
-                        <a href="./index.html" class="home-page-header__logo">
+                        <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
                             <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
                         </a>
@@ -62,7 +69,7 @@
                             <div class="menu-items">
                                 <ul>
                                     <li>
-                                        <a href="./index.html">Trang chủ</a>
+                                        <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
                                         <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
@@ -71,16 +78,30 @@
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                     </li>
                                     <li>
-                                        <a href="./blog-single.html">Bài viết</a>
-                                    </li>
-                                    <li>
                                         <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                     </li>
                                     <li>
                                         <a href="./contact.html">Liên hệ</a>
                                     </li>
+                                    <li>
+                                        <c:if test="${sessionScope.USER eq null}">
+                                            <a href="./login.html">Đăng nhập</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER ne null}">
+                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                        </c:if>
+                                    </li>
                                 </ul>
                             </div>
+<!--                            <div class="menu-login">
+                                <a href="login.html">LOGIN</a>
+                                <div>
+                                    <form>
+                                        <span>Xin chào ${sessionScope.USER.userName}</span>
+                                        <button style="vertical-align: initial" type="submit">LOG OUT</button>
+                                    </form>
+                                </div>
+                            </div>-->
                             <div class="menu-contact">
                                 <div>
                                     <a href="tel:02873005588">(028) 73005588</a>
@@ -253,7 +274,7 @@
                                 <c:forEach items="${requestScope.PROJECT_LIST}" var="o">
                                     <div class="good-capstone">
                                         <img src="${o.projectImage}" alt="">
-                                        <div class="good-capstone-text">
+                                        <div class="good-capstone-text good-capstone-index">
                                             <h3>
                                                 <a href="MainController?action=DetailProject&id=${o.projectID}">${o.projectName}</a>
                                             </h3>
@@ -276,140 +297,84 @@
                                 <img src="./assets/images/company/FPT_Software_Logo-removebg-preview.png" alt="">
                             </div>
                             <div class="company-detail">
-                                <img src="./assets/images/company/FPT_Software_Logo-removebg-preview.png" alt="">
+                                <img src="./assets/images/company/9d8ed5_a00501b84f6c4bdf84170a87e873b56b_mv2.png" alt="">
                             </div>
                             <div class="company-detail">
-                                <img src="./assets/images/company/FPT_Software_Logo-removebg-preview.png" alt="">
+                                <img src="./assets/images/company/588-5882827_kms-technology-logo-png-png-download-kms-technology-removebg-preview.png" alt="">
                             </div>
                             <div class="company-detail">
-                                <img src="./assets/images/company/FPT_Software_Logo-removebg-preview.png" alt="">
+                                <img src="./assets/images/company/logo-emblem-robert-bosch-gmbh-brand-trademark-png-favpng-jMTfHxbaMQEuus126KjucucKT-removebg-preview.png" alt="">
                             </div>
                             <div class="company-detail">
-                                <img src="./assets/images/company/FPT_Software_Logo-removebg-preview.png" alt="">
+                                <img src="./assets/images/company/kisspng-samsung-galaxy-s9-samsung-electronics-logo-samsung-samsung-logo-5b4be94fd08255.9863084115317015838541-removebg-preview.png" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="do-an-hoc-ky" class="content-near-project">
+                <%
+                    SemesterDAO semesterDao = new SemesterDAO();
+                    MajorDAO majorDao = new MajorDAO();
+                    List<ProjectDTO> nearestList = projectDao.getNearestProject();
+                    String semesterName = semesterDao.getSemester(projectDao.getNearestProjectElement().getSemesterID()).getSemesterName();
+                    request.setAttribute("NEAREST_LIST", nearestList);
+                    request.setAttribute("NEAREST_LIST_SIZE", nearestList.size());
+                %>
+                <c:if test="${requestScope.NEAREST_LIST_SIZE == 4}">
+                    <div id="do-an-hoc-ky" class="content-near-project">
                     <div class="container-fluid">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2>Đồ Án Học Kỳ Spring 2022</h2>
+                                    <h2>Đồ Án Học Kỳ <%= semesterName %></h2>
                                 </div>
                             </div>
                         </div>
                         <div class=" row content-near-project__wrapper">
-                            <div class="project-detail no-pd col-md-3" >
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text" style="margin-left: 30px;">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
+                            <c:forEach items="${requestScope.NEAREST_LIST}" var="o">
+                                <div class="project-detail no-pd col-md-3" >
+                                    <a href="MainController?action=DetailProject&id=${o.projectID}">
+                                        <div class="project-content project-content-major">
+                                            <div class="project-content-overlay">
+                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
+                                                <div class="project-content-text" style="margin-left: 30px;">
+                                                    ${pageContext.setAttribute("majorID", o.majorID)}
+                                                    <span><%= majorDao.getMajor(pageContext.getAttribute("majorID").toString()).getMajorName() %></span>
+                                                    <h3>${o.projectName}</h3>
+                                                    <span>View Project</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="project-detail no-pd col-md-3">
-                                <div class="project-content project-content-major">
-                                    <div class="project-content-overlay">
-                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                        <div class="project-content-text">
-                                            <span>Software Engineering</span>
-                                            <h3>Web Development Framework</h3>
-                                            <span>View Project</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
+                </c:if>
+                
                 <div id="giang-vien-huong-dan" class="content-lecturer content-good">
                     <div class="container">
                         <h2>Giảng Viên Hướng Dẫn</h2>
                         <div class="capstone-slider">
                             <div class="lecturer-slide good-capstone-slide">
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
+                                <%
+                                    InstructorDAO insDao = new InstructorDAO();
+                                    List<InstructorDTO> ins = insDao.getAllInstructor();
+                                    request.setAttribute("INS_LIST", ins);
+                                %>
+                                <c:forEach items="${requestScope.INS_LIST}" var="o">
+                                    <div class="lecturer good-capstone">
+                                        <img style="width: 100%" src="${o.instructorImage}" alt="">
+                                        <div class="lecturer-info">
+                                            <h3>
+                                                <a href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
+                                            </h3>
+                                            <span>Giảng Viên Khối Ngành SE</span>
+                                        </div>
+                                        <div class="lecturer-overlay good-capstone-overlay">
+                                        </div>
                                     </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
-                                <div class="lecturer good-capstone">
-                                    <img src="https://cafefcdn.com/2018/4/6/image-crop-15229958697101483065539.png" alt="">
-                                    <div class="lecturer-info">
-                                        <h3>Th.S Nguyễn Thế Hoàng</h3>
-                                        <span>Giảng Viên Khối Ngành SE</span>
-                                    </div>
-                                    <div class="lecturer-overlay good-capstone-overlay">
-                                    </div>
-                                </div>
+                                </c:forEach>
                                 <button type="button" class="slick-prev">Previous</button>
                                 <button type="button" class="slick-next">Next</button>
                             </div>
@@ -474,90 +439,27 @@
                             <h2>Bài Đăng Nổi Bật Gần Đây</h2>
                             <div class="capstone-slider">
                                 <div class="good-capstone-slide">
-                                    <div class="project-detail col-md-3" >
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text" style="margin-left: 30px;">
-                                                    <span>Software Engineering</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
+                                    <%
+                                        PostsDAO postDao = new PostsDAO();
+                                        List<PostsDTO> postNear = postDao.getListPostByUpvote();
+                                        request.setAttribute("POST_NEAR", postNear);
+                                    %>
+                                    <c:forEach items="${requestScope.POST_NEAR}" var="o">
+                                        <div class="project-detail col-md-3" >
+                                            <div class="project-content project-content-major">
+                                                <div class="project-content-overlay">
+                                                    <img class="project-content-img project-content-major-img" src="${o.postImage}" alt="">
+                                                    <div class="project-content-text" style="margin-left: 30px;">
+                                                        <span>Software Engineering</span>
+                                                        <h3>
+                                                            <a href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                                        </h3>
+                                                        <span>View Project</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="project-detail col-md-3">
-                                        <div class="project-content project-content-major">
-                                            <div class="project-content-overlay">
-                                                <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
-                                                <div class="project-content-text">
-                                                    <span>Sept 08, 2020</span>
-                                                    <h3>Web Development Framework</h3>
-                                                    <span>View Project</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
                                     
                                     <button type="button" class="slick-prev">Previous</button>
                                     <button type="button" class="slick-next">Next</button>
@@ -577,7 +479,7 @@
                         </div>
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
-                            <div><a href="./index.html">Trang chủ</a></div>
+                            <div><a href="./index.jsp">Trang chủ</a></div>
                             <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>
