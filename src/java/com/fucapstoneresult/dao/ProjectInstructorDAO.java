@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.dao;
 
+import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.ProjectInstructorDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
@@ -158,8 +159,8 @@ public class ProjectInstructorDAO {
         return check;
     }
     
-    public List<String> getAllProjectByInstructorID(String instructorID) throws SQLException {
-        List<String> projectList = new ArrayList<>();
+    public List<ProjectDTO> getAllProjectByInstructorID(String instructorID) throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -168,17 +169,27 @@ public class ProjectInstructorDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT ProjectID "
-                            + " FROM ProjectInstructor "
-                            + " WHERE InstructorID=? ";
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID " +
+                                "FROM Projects " +
+                                "WHERE ProjectID IN (" +
+                                "						SELECT ProjectID " +
+                                "						FROM ProjectInstructor " +
+                                "						WHERE InstructorID = ? " +
+                                "					)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, instructorID);
                 rs = stm.executeQuery();
                 
                 while (rs.next()) {
                     String projectID = rs.getString("ProjectID");
+                    String projectName = rs.getString("ProjectName");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
+                    String majorID = rs.getString("MajorID");
+                    String semesterID = rs.getString("SemesterID");
                     
-                    projectList.add(projectID);
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID));
                 }
             }
         } 

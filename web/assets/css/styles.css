@@ -327,6 +327,13 @@ header {
     padding: 7px 0px;
 }
 
+.good-capstone-index p:nth-of-type(2) {
+    width: 402px;
+    height: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .menu-items ul li a {
     color: var(--main-orange);
     text-decoration: none;
@@ -552,6 +559,11 @@ header {
 
 .lecturer-info h2 {
     margin-bottom: 20px;
+}
+
+.lecturer-info h3 a {
+    text-decoration: none;
+    color: var(--main-white);
 }
 
 .lecturer-overlay {
@@ -895,6 +907,20 @@ header {
     padding: 0px 10px;
 }
 
+.tip-content__body img {
+    max-width: 100%;
+}
+
+.project-content-text h5 a {
+    text-decoration: none;
+    color: var(--main-white);
+}
+
+.project-content-text h3 a {
+    text-decoration: none;
+    color: var(--main-white);
+}
+
 .project-content-text span {
     display: inline-block;
     font-size: 14px;
@@ -1108,7 +1134,8 @@ header {
 .tip-content_thumbnail img{
     display: block;
     width: 100%;
-    height: auto;
+    height: 450px;
+    object-fit: cover;
     margin-bottom: 15px;
 }
 .tip-comment__info{
@@ -1213,6 +1240,17 @@ aside{
 .post-list__item{
     margin-bottom: 30px;
 }
+.single-blog-top-post h3{
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+}
+.single-blog-top-post h3 a {
+    white-space: nowrap;
+    text-decoration: none;
+    color: black;
+}
 .post-list__item img{
     width: 65px;
     height: 65px;
@@ -1300,4 +1338,18 @@ article{
 }
 .display-none {
     display: none !important;
+}
+.route {
+    margin-bottom: 15px;
+}
+.route span a {
+    text-decoration: none;
+    color: var(--main-orange);
+}
+.menu-login {
+    color: var(--main-orange);
+}
+.menu-login a {
+    color: var(--main-orange);
+    text-decoration: none;
 }

@@ -77,7 +77,7 @@ function voteA() {
     var url = new URL(url_string);
     $.ajax({
         type: "POST",
-        url: `MainController?action=Vote&add=${add}`,
+        url: `MainController?action=Vote&add=${add}&vote=${vote}`,
         data: "id=" + url.searchParams.get("id"),
         dataType: "text",
 

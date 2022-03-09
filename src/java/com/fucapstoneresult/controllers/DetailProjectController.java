@@ -51,6 +51,7 @@ public class DetailProjectController extends HttpServlet {
             ProjectInstructorDAO projectInsDao = new ProjectInstructorDAO();
             InstructorDAO instructorDao = new InstructorDAO();
             StudentDAO studentDao = new StudentDAO();
+            List<PostsDTO> top3Post = postDao.getListTop3Post(projectID);
             
             if (post != null) {
                 CommentDAO cmtDao = new CommentDAO();
@@ -73,6 +74,7 @@ public class DetailProjectController extends HttpServlet {
                 request.setAttribute("TAGS", tagDetailList);
                 request.setAttribute("COMMENTS", comments);
                 request.setAttribute("COUNT_CMT", comments.size());
+                request.setAttribute("TOP_POST", top3Post);
                 url = SUCCESS;
             }
         } 
