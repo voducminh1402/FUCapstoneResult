@@ -149,8 +149,8 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="filter">
-                                            <span>Hiển Thị</span>
-<!--                                            <select name="" id="">
+<!--                                            <span>Hiển Thị</span>
+                                            <select name="" id="">
                                                 <option value="">Tất Cả Người Dùng</option>
                                                 <option value="">Admin</option>
                                                 <option value="">Moderator</option>
@@ -167,6 +167,8 @@
                                     <div class="col-md-4 col-sm-12">
                                         <div class="manage-project">
                                             <div class="menu-search menu-search-project">
+                                                <form action="MainController">
+                                                </form>
                                                 <button>
                                                     <i class="fa fa-search" aria-hidden="true"></i>
                                                 </button>
@@ -203,37 +205,48 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Le Hong Anh</td>
-                                                <td>anhlhse150515@fpt.edu.vn</td>
-<!--                                                <td>01/01/2021</td>
-                                                <td>Admin</td>
-                                                <td>Enable</td>-->
-                                                <td class="last-type__menu">
-                                                    <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                    <div class="more-choice__menu">
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Xem Chi Tiết</span>
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
+                                            <c:if test="${requestScope.LIST_STUDENT==null}">
+                                                <c:redirect
+                                                    url="MainController?action=LoadAllStudent"
+                                                    ></c:redirect>
+                                            </c:if>
+                                            <c:forEach
+                                                items="${requestScope.LIST_STUDENT}"
+                                                var="o"
+                                                varStatus="counter"
+                                                >
+                                                <tr>
+                                                    <td>${counter.count}</td>
+                                                    <td>${o.studentID}</td>
+                                                    <td>${o.studentName}</td>
+                                                    <!--                                                <td>01/01/2021</td>
+                                                                                                    <td>Admin</td>
+                                                                                                    <td>Enable</td>-->
+                                                    <td class="last-type__menu">
+                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                        <div class="more-choice__menu">
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}">
+                                                                    <span>Xem Chi Tiết</span>
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}">
+                                                                    <span>Chỉnh Sửa</span>
+                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="more-choice__item">
+                                                                <a href="">
+                                                                    <span>Xóa</span>
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Chỉnh Sửa</span>
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Xóa</span>
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>

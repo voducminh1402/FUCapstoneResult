@@ -244,7 +244,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="href="MainController?action=showUserDetail&id=${o.userID}">
+                                                                <a href="MainController?action=showUserDetail&id=${o.userID}">
                                                                    <span>Chỉnh Sửa</span>
                                                                     <i
                                                                         class="fa fa-pencil"
