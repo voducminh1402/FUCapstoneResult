@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.VotesDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
@@ -30,11 +31,14 @@ public class VoteController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("USER");
             String postId = request.getParameter("id");
+            int vote = Integer.parseInt(request.getParameter("vote"));
 
             if (user != null) {
 
                 String s = request.getParameter("add");
                 VotesDAO dao = new VotesDAO();
+                PostsDAO d = new PostsDAO();
+                
                 boolean add = false;
                 boolean check = dao.checkIfUserVote(user.getUserID(), postId);
 
@@ -44,17 +48,17 @@ public class VoteController extends HttpServlet {
                 if (!check) {
                     if (add) {
                         dao.addVote(user.getUserID(), postId);
-
+                        vote++;
                     } else {
                         dao.removeVote(user.getUserID(), postId);
-
+                        vote--;
                     }
                 } else {
 
                     dao.removeVote(user.getUserID(), postId);
-
+                    vote--;
                 }
-
+                d.updateUpVoteByProjectId(postId, dao.countNumberVotes(postId));
                 response.getWriter().write(dao.countNumberVotes(postId) + "");
             } else {
                 response.getWriter().write("fail");
