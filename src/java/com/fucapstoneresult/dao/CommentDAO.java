@@ -206,6 +206,34 @@ public class CommentDAO {
 
         return check;
     }
+      
+    public boolean acceptComments(String commentId) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE Comments "
+                        + " SET CommentStatusID = 2"                     
+                        + " WHERE CommentID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, commentId);
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }  
        public List<UserCommentDTO> joinUserComment() throws SQLException {
         boolean check = false;
         Connection conn = null;
