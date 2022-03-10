@@ -193,12 +193,10 @@
                     var editor = CKEDITOR.replace('editor', {
                         extraPlugins: 'imgur'
                     });
-
                     CKEDITOR.editorConfig = function (config) {
                         config.extraPlugins = 'imgur';
                         config.imgurClientID = '424e57033a8d4ea';
                     };
-
                     editor.on('change', function (evt) {
                         var data = CKEDITOR.instances.editor.getData();
                         document.getElementById("project-description").value = data;
@@ -214,7 +212,6 @@
                                     console.log("Vui lòng chọn file có dung lượng nhỏ hơn!");
                                     return false;
                                 }
-
                                 console.log("Đang upload hình ảnh lên imgur...");
                                 var apiUrl = "https://api.imgur.com/3/image";
                                 var apiKey = "dcd0ee22791c49d";
@@ -251,17 +248,14 @@
                         $('input, select').on('change', function (event) {
                             var $element = $(event.target),
                                     $container = $element.closest('.example');
-
                             if (!$element.data('tagsinput'))
                                 return;
-
                             var val = $element.val();
                             if (val === null) {
                                 val = "null";
                             } else {
                                 document.getElementById('post-tag-hidden').value = val;
                             }
-
                             $('code', $('pre.val', $container)).html(($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\""));
                             $('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
                         }).trigger('change');

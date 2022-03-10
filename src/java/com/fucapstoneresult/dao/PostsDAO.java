@@ -656,29 +656,7 @@ public class PostsDAO {
         return success;
     }
 
-    public static void main(String[] args) throws SQLException {
-<<<<<<< HEAD
-        PostsDAO dao = new PostsDAO();
-        List<PostsDTO> l = dao.getListTop3Post("1");
-        for (PostsDTO l1 : l) {
-            System.out.println(l1);
-=======
-        ProjectDAO projectDao = new ProjectDAO();
-        PostsDAO dPost = new PostsDAO();
-        List<String> listProjectID;
-        listProjectID = projectDao.getAllProjectIDBySemester("1");
-        for (String string : listProjectID) {
-            System.out.println(string);
-        }
-        List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
-        for (PostsDTO postsDTO : listPost) {
-            System.out.println(postsDTO);
->>>>>>> anhlh
-        }
-        System.out.println(dao.getUpVoteByProjectId("1"));
-
-    }
-<<<<<<< HEAD
+    
 
     public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {
         Connection conn = null;
@@ -787,6 +765,5 @@ public class PostsDAO {
         }
         return check;
     }
-=======
->>>>>>> anhlh
+
 }
