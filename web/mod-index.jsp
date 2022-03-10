@@ -27,12 +27,9 @@
                     <h3>FPT University</h3>
                     <strong>FU</strong>
                 </div>
-                <c:if test="${requestScope.NUM_OF_POST == null}">
-                    <c:redirect url="MainController?action=ViewModIndexPage"></c:redirect>
-                </c:if>
                 <ul class="list-unstyled components">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="mod-index.jsp">
                             <i class="fas fa-fw fa-tachometer-alt"></i>
                             <span>Trang chủ</span></a>
                     </li>
@@ -46,14 +43,6 @@
 
                     <hr class="sidebar-divider">
 
-                    <li class="dropdown">
-                        <a href="mod-account.html" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản lí tài khoản
-                        </a>
-                    </li>
-
-                    <hr class="sidebar-divider">
-
                     <li>
                         <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-briefcase"></i> Quản lí đồ án
@@ -61,12 +50,12 @@
                     </li>
 
                     <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-briefcase"></i> Quản lí sinh viên
                         </a>
                     </li>
                     <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-briefcase"></i> Quản lí giảng viên
                         </a>
                     </li>
@@ -88,6 +77,9 @@
 
             <!-- Page Content  -->
             <div id="content">
+                <c:if test="${requestScope.NUM_OF_POST == null}">
+                    <c:redirect url="MainController?action=ViewModIndexPage"></c:redirect>
+                </c:if>
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
                         <div class="mod-header">
@@ -138,8 +130,8 @@
                                                 </svg>
                                             </i>
                                         </div>
-                                        <div class="col-9" style="padding-top: 4px; margin-left: -6px;">
-                                            <h5 style="margin-bottom: -2px; font-weight: 600;">Bài đăng chính</h5>
+                                        <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-post.jsp">Bài đăng chính</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_POST}</span>
                                             <span style="color: gray; font-size: 0.85rem;">bài viết</span>
                                         </div>
@@ -160,8 +152,8 @@
                                                 </svg>
                                             </i>
                                         </div>
-                                        <div class="col-9" style="padding-top: 4px; margin-left: -6px;">
-                                            <h5 style="margin-bottom: -2px; font-weight: 600;">Bài viết của sinh viên</h5>
+                                        <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-request.jsp">Bài viết của sinh viên</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_POPOST}</span>
                                             <span style="color: gray; font-size: 0.85rem;">bài viết đang chờ</span>
                                         </div>
@@ -182,8 +174,8 @@
                                                 </svg>
                                             </i>
                                         </div>
-                                        <div class="col-9" style="padding-top: 4px; margin-left: -6px;">
-                                            <h5 style="margin-bottom: -2px; font-weight: 600;">Đồ án</h5>
+                                        <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-project.jsp">Đồ án</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_PROJECT}</span>
                                             <span style="color: gray; font-size: 0.85rem;">Đồ án</span>
                                         </div>
@@ -198,11 +190,7 @@
                                         <table class="table">
                                             <thead>
                                             <h3>Top bài viết nổi bật</h3>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
+                                            <div class="devider" style="width: 100%; color: lightgray"></div>
                                             </thead>
                                             <tbody>
                                                 <c:forEach items="${requestScope.TOP_POST}" var="o" varStatus="counter">                                                                                                   <tr>
@@ -226,7 +214,7 @@
                                                                 <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
                                                                 </svg>
                                                             </i>
-                                                            <span>10</span>
+                                                            <span>${o.numOfComment}</span>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -254,7 +242,9 @@
                                                 <h6 style="margin-left: 60px; margin-top: 5px;">${a.commentDetail}</h6>
                                             </div> 
                                         </c:forEach>  
-                                        <a href="mod-comment-request.jsp" class="approve-comment">Xét duyệt ngay</a>
+                                        <div style="width: 40%">
+                                            <a style="font-size: 1rem" href="mod-comment-request.jsp" class="approve-comment">Xét duyệt ngay</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

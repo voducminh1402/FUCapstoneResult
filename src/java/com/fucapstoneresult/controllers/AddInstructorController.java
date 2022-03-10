@@ -9,7 +9,7 @@ import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.models.InstructorDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,36 +23,35 @@ import javax.servlet.http.HttpSession;
 public class AddInstructorController extends HttpServlet {
 
     private static final String ERROR = "login.html";
-    private static final String SUCCESS = "mod-add-instructor.jsp";
-    
+    private static final String SUCCESS = "instructor.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
-            String instructorID = request.getParameter("instructor-id");
-            String instructorName = request.getParameter("instructor-name");
-            String instructorImage = request.getParameter("instructor-image");
-            
+//            HttpSession session = request.getSession();
+//            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            UUID uuid = UUID.randomUUID();
+            String instructorID = uuid.toString();
+            String instructorName = request.getParameter("name");
+            String instructorImage = request.getParameter("image");
+
             InstructorDAO dao = new InstructorDAO();
-            
-            if(userLogin != null){
-                
-                InstructorDTO ins = new InstructorDTO(instructorID, instructorName, instructorImage);
-                boolean check = dao.insertInstructor(ins);
-                
-                if(check){
-                    url = SUCCESS;
-                }
-                
+
+//            if(userLogin != null){
+            InstructorDTO ins = new InstructorDTO(instructorID, instructorName, instructorImage);
+            boolean check = dao.insertInstructor(ins);
+
+            if (check) {
+                url = SUCCESS;
+//                }
+
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
