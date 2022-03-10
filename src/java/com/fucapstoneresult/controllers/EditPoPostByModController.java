@@ -5,52 +5,65 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.UserCommentDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Asus
+ * @author ADMIN
  */
-public class AddCommentController extends HttpServlet {
+public class EditPoPostByModController extends HttpServlet {
 
-    private static final String ERROR = "mod-comment-request.jsp";
-    private static final String SUCCESS = "mod-comment-request.jsp";
-
+    private static final String ERROR = "mod-request.jsp";
+    private static final String SUCCESS = "mod-edit-popost.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        boolean check = true;
-        try {
-            String commentId = request.getParameter("commentId");
-            String poPostId = request.getParameter("postId");
-            String userId = request.getParameter("userId");
-            String commentDetail = request.getParameter("commentDetail");
-            String commentTime = request.getParameter("commentTime");
-            int commentStatusId = 2;
-
-            CommentDAO dao = new CommentDAO();
-            CommentDTO user = new CommentDTO(commentId,poPostId, userId , commentDetail , commentTime, commentStatusId);
-            check = dao.acceptComments(commentId);
-
-            if (check) {
-                url = SUCCESS;
+        try  {
+            String postID = request.getParameter("id");
+            
+            PostsDAO postDao = new PostsDAO();
+            ProjectDAO projectDao = new ProjectDAO();
+            TagsDAO tagDao = new TagsDAO();
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            
+            
+            List<TagDetailsDTO> listDetailTag = new ArrayList<>();
+            List<TagsDTO> listTag = tagDao.getListTag(postID);
+            
+            for (TagsDTO tagsDTO : listTag) {
+                listDetailTag.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            
+            List<ProjectDTO> list = projectDao.getAllProject();
+            PostsDTO post = postDao.getPostWithID(postID);
+            
+            request.setAttribute("DETAIL_TAG", listDetailTag);
+            request.setAttribute("POST_DETAIL", post);
+            request.setAttribute("PROJECT_LIST", list);
+            url = SUCCESS;
         }
-
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        finally{
+             request.getRequestDispatcher(url).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
