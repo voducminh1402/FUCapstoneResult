@@ -608,19 +608,12 @@ public class PostsDAO {
 
     public static void main(String[] args) throws SQLException {
         PostsDAO dao = new PostsDAO();
-<<<<<<< HEAD
-=======
-
->>>>>>> 4334d62c239e087374dd502b519b66189400b262
         List<PostsDTO> l = dao.getListTop3Post("1");
         for (PostsDTO l1 : l) {
             System.out.println(l1);
         }
-<<<<<<< HEAD
         System.out.println(dao.getUpVoteByProjectId("1"));
-=======
 
->>>>>>> 4334d62c239e087374dd502b519b66189400b262
     }
 
     public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {

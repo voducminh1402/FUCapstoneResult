@@ -56,7 +56,7 @@ public class AddProjectController extends HttpServlet {
 //            String postID = uuidPost.toString();
 
             String projectName = request.getParameter("project-name");
-            String projectDescription = request.getParameter("project-description").replace("src=\"", "src='").replace("\" />", "' />");
+            String projectDescription = request.getParameter("project-description").replace("src=\"", "src='").replace("\" />", "' />").replaceAll("\"", "'");
             String projectImage = request.getParameter("project-image");
             String projectScore = request.getParameter("project-score");
             String semesterID = request.getParameter("semester-id");
