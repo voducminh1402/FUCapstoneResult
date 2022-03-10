@@ -66,6 +66,12 @@ public class MainController extends HttpServlet {
     private static final String LOAD_STUDENT_LIST = "LoadStudentListController";
     private static final String DELETE_STUDENT = "DeleteStudentController";
     private static final String VIEW_MOD_INDEX_PAGE= "ViewModIndexPageController";
+    private static final String VIEW_MOD_REQUEST_PAGE = "ViewModRequestPageController";
+    private static final String VIEW_POPOST_DETAIL = "ViewPoPostDetailController";
+    private static final String APPROVE_POST= "ApprovePostController";
+    private static final String REJECT_POST= "RejectPostController";
+    private static final String EDIT_POPOST_BY_MOD = "EditPoPostByModController";
+    private static final String SUBMIT_EDITED_POPOST = "SubmitEditedPoPostController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -170,6 +176,19 @@ public class MainController extends HttpServlet {
                 url = DELETE_STUDENT;
             }else if ("ViewModIndexPage".equals(action)){
                 url = VIEW_MOD_INDEX_PAGE;
+            }
+            else if ("ViewModRequestPage".equals(action)){
+                url = VIEW_MOD_REQUEST_PAGE;
+            }else if ("ViewPoPostDetail".equals(action)) {
+                url = VIEW_POPOST_DETAIL;
+            }else if ("ApprovePoPost".equals(action)){
+                url = APPROVE_POST;
+            }else if ("RejectPost".equals(action)) {
+                url = REJECT_POST;
+            }else if ("EditPoPost".equals(action)){
+                url = EDIT_POPOST_BY_MOD;
+            }else if ("SubmitEditedPoPost".equals(action)){
+                url = SUBMIT_EDITED_POPOST;
             }
 
         } catch (Exception e) {
