@@ -342,6 +342,7 @@ public class PostsDAO {
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (stm != null) {
                 stm.close();
@@ -663,5 +664,64 @@ public class PostsDAO {
             }
         }
         return postList;
+    }
+    
+    public boolean approvePost (String id) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = " UPDATE Posts"
+                        + " SET PostStatusID = ?"
+                        + " WHERE PostID = ?";
+                
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 1);
+                stm.setString(2, id);
+                
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+        public boolean rejectPost (String id) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = " UPDATE Posts"
+                        + " SET PostStatusID = ?"
+                        + " WHERE PostID = ?";
+                
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 3);
+                stm.setString(2, id);
+                
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
     }
 }
