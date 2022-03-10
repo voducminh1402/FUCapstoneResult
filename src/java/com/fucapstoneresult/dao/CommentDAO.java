@@ -215,7 +215,7 @@ public class CommentDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = "SELECT Users.UserName, Users.Email , Comments.CommentDetail ,Posts.PostTitle , Comments.CommentStatusID , Comments.CommentTime , Comments.CommentID , Posts.PostID , Users.UserID" 
+                String sql = "SELECT Users.UserName, Users.Email , Comments.CommentDetail ,Posts.PostTitle , Comments.CommentStatusID , Comments.CommentTime , Comments.CommentID , Posts.PostID , Users.UserID, Users.UserImage" 
                         + " FROM Users"
                         + " JOIN Comments "
                         + " ON Users.UserID = Comments.UserID "
@@ -224,7 +224,7 @@ public class CommentDAO {
                 stm = conn.prepareStatement(sql);   
                 rs = stm.executeQuery();
                 while(rs.next()){                
-                    userComment.add(new UserCommentDTO(rs.getString("UserName"), rs.getString("Email"), rs.getString("CommentDetail"), rs.getString("PostTitle"),rs.getInt("CommentStatusID"),rs.getString("CommentTime"),rs.getString("CommentID"),rs.getString("PostID"),rs.getString("PostID")));
+                    userComment.add(new UserCommentDTO(rs.getString("UserName"), rs.getString("Email"), rs.getString("CommentDetail"), rs.getString("PostTitle"),rs.getInt("CommentStatusID"),rs.getString("CommentTime"),rs.getString("CommentID"),rs.getString("PostID"),rs.getString("PostID"), rs.getString("userImage")));
                 }
             }
         } catch (Exception e) {
