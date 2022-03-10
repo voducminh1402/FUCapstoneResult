@@ -35,7 +35,7 @@ public class UpdateProjectController extends HttpServlet {
             
             String projectID = request.getParameter("project-id");
             String projectName = request.getParameter("project-name");
-            String projectDescription = request.getParameter("project-des");
+            String projectDescription = request.getParameter("project-des").replace("src=\"", "src='").replace("\" />", "' />").replaceAll("\"", "'");
             String projectImage = request.getParameter("project-image");
             String projectScore = request.getParameter("project-score");
             String semesterID = request.getParameter("semester-id");
