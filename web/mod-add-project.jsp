@@ -110,10 +110,10 @@
                             <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
                         </c:if>
                         <label for="">Nhóm Thực Hiện</label><br>
-                        <select name="team-name" id="" required>
+                        <select name="team-id" id="" required>
                             <option disabled selected>Lựa Chọn Nhóm Thực Hiện Đồ Án</option>
                             <c:forEach items="${requestScope.TEAM_LIST}" var="o">
-                                <option value="${o.teamName}">${o.teamName}</option>
+                                <option value="${o.teamID}">${o.teamName}</option>
                             </c:forEach>
                         </select>
                         <br>
@@ -156,8 +156,9 @@
                         <input id="post-tag-hidden" type="hidden" name="post-tag">
 
                         <label for="">Mô Tả Đồ Án</label><br>
-                        <textarea id="editor" cols="30" rows="50" name="project-description" required>
+                        <textarea id="editor" cols="30" rows="50" required>
                         </textarea>
+                        <input id="project-description" type="hidden" name="project-description"/>
                         <br>
                         <div class="add-project-submit">
                             <button type="submit" name="action" value="AddProject">Lưu</button>
@@ -196,7 +197,7 @@
 
                     editor.on('change', function (evt) {
                         var data = CKEDITOR.instances.editor.getData();
-                        document.getElementById("post-content").value = data;
+                        document.getElementById("project-description").value = data;
                         console.log(data)
                     });
                 </script>
