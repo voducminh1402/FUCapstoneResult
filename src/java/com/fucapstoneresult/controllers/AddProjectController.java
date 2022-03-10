@@ -50,17 +50,17 @@ public class AddProjectController extends HttpServlet {
             LocalDateTime now = LocalDateTime.now();
             String currentDate = dtf.format(now);
 
-            UUID uuid = UUID.randomUUID();
-            String projectID = uuid.toString();
-            UUID uuidPost = UUID.randomUUID();
-            String postID = uuidPost.toString();
+//            UUID uuid = UUID.randomUUID();
+//            String projectID = uuid.toString();
+//            UUID uuidPost = UUID.randomUUID();
+//            String postID = uuidPost.toString();
 
             String projectName = request.getParameter("project-name");
             String projectDescription = request.getParameter("project-description").replace("src=\"", "src='").replace("\" />", "' />");
             String projectImage = request.getParameter("project-image");
             String projectScore = request.getParameter("project-score");
             String semesterID = request.getParameter("semester-id");
-            String teamName = request.getParameter("team-name");
+            String teamID = request.getParameter("team-id");
             String instructorID = request.getParameter("instructor-id");
             String[] postTags = request.getParameter("post-tag").split(",");
 
@@ -77,31 +77,28 @@ public class AddProjectController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
 
-                ProjectDTO project = new ProjectDTO(projectID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
+                ProjectDTO project = new ProjectDTO(teamID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
                 boolean check = dao.insertProject(project);
 
-                TeamDTO team = new TeamDTO(projectID, teamName);
-                boolean checkteam = teamdao.insertTeam(team);
-
-                ProjectInstructorDTO proins = new ProjectInstructorDTO(projectID, instructorID);
+                ProjectInstructorDTO proins = new ProjectInstructorDTO(teamID, instructorID);
                 boolean checkproins = proinsdao.insertProjectInstructor(proins);
 
-                PostsDTO post = new PostsDTO(postID, projectName, currentDate, postAuthor, projectDescription, projectImage, userID, 0, 1, null, projectID);
+                PostsDTO post = new PostsDTO(teamID, projectName, currentDate, postAuthor, projectDescription, projectImage, userID, 0, 1, null, teamID);
                 boolean checkPost = postdao.insert(post);
                 boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
 
-                if (check && checkteam && checkproins && checkPost) {
+                if (check  && checkproins && checkPost) {
 
                     for (String postTag : postTags) {
                         if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
                             String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
-                            checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                            checkTag = tagDao.insert(new TagsDTO(teamID, tagDetailId));
                             checkTagNotAdd = true;
                         } else {
                             UUID newUuid = UUID.randomUUID();
                             String tagDetailId = newUuid.toString();
                             checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
-                            checkTag = tagDao.insert(new TagsDTO(postID, tagDetailId));
+                            checkTag = tagDao.insert(new TagsDTO(teamID, tagDetailId));
                         }
 
                     }

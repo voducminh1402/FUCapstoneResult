@@ -278,7 +278,7 @@
                                             <h3>
                                                 <a href="MainController?action=DetailProject&id=${o.projectID}">${o.projectName}</a>
                                             </h3>
-                                            <p>${o.projectDescription}</p>
+<!--                                            <p>${o.projectDescription}</p>-->
                                         </div>
                                         <div class="good-capstone-overlay">
                                         </div>
