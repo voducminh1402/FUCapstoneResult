@@ -19,32 +19,30 @@ import java.util.List;
  * @author VODUCMINH
  */
 public class StudentDAO {
+
     public boolean insertStudent(StudentDTO student) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
-        
+
         try {
             conn = DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = "INSERT INTO Students(StudentID, StudentName, MajorID, StudentImage, TeamID) "
-                            + " VALUES (?,?,?,?,?)";
+                        + " VALUES (?,?,?,?,?)";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, student.getStudentID());
                 stm.setString(2, student.getStudentName());
                 stm.setString(3, student.getMajorID());
                 stm.setString(4, student.getStudentImage());
                 stm.setString(5, student.getTeamID());
-                
-                
+
                 check = stm.executeUpdate() > 0;
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -52,36 +50,34 @@ public class StudentDAO {
                 conn.close();
             }
         }
-        
+
         return check;
     }
-    
-        public StudentDTO getStudent(String studentID) throws SQLException {
+
+    public StudentDTO getStudent(String studentID) throws SQLException {
         StudentDTO student = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        
+
         try {
             conn = DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = "SELECT StudentName, MajorID, StudentImage, TeamID "
-                            + " FROM Students "
-                            + " WHERE StudentID=?";
+                        + " FROM Students "
+                        + " WHERE StudentID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, studentID);
                 rs = stm.executeQuery();
-                
+
                 if (rs.next()) {
                     student = new StudentDTO(studentID, rs.getString("StudentName"), rs.getString("MajorID"), rs.getString("StudentImage"), rs.getString("TeamID"));
                 }
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (rs != null) {
                 rs.close();
             }
@@ -92,37 +88,35 @@ public class StudentDAO {
                 conn.close();
             }
         }
-        
+
         return student;
     }
-    
+
     public boolean updateStudent(StudentDTO student) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
-        
+
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Students "
-                            + " SET StudentName=?, MajorID=?, StudentImage=?, TeamID=? "
-                            + " WHERE StudentID=?";
+                        + " SET StudentName=?, MajorID=?, StudentImage=?, TeamID=? "
+                        + " WHERE StudentID=?";
                 stm = conn.prepareStatement(sql);
-                
+
                 stm.setString(1, student.getStudentName());
                 stm.setString(2, student.getMajorID());
                 stm.setString(3, student.getStudentImage());
                 stm.setString(4, student.getTeamID());
                 stm.setString(5, student.getStudentID());
-                
+
                 check = stm.executeUpdate() > 0;
-                
+
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -130,30 +124,28 @@ public class StudentDAO {
                 conn.close();
             }
         }
-        
+
         return check;
     }
-    
+
     public boolean deleteStudent(String studentID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
-        
+
         try {
             conn = DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = "DELETE Students WHERE StudentID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, studentID);
-                
+
                 check = stm.executeUpdate() > 0;
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -161,36 +153,34 @@ public class StudentDAO {
                 conn.close();
             }
         }
-        
+
         return check;
     }
-    
+
     public List<StudentDTO> getListStudentWithTeam(String teamId) throws SQLException {
         List<StudentDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        
+
         try {
             conn = DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = "SELECT StudentID, StudentName, MajorID, StudentImage "
-                            + " FROM Students "
-                            + " WHERE TeamID=?";
+                        + " FROM Students "
+                        + " WHERE TeamID=?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, teamId);
                 rs = stm.executeQuery();
-                
+
                 while (rs.next()) {
                     list.add(new StudentDTO(rs.getString("StudentID"), rs.getString("StudentName"), rs.getString("MajorID"), rs.getString("StudentImage"), teamId));
                 }
             }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             if (rs != null) {
                 rs.close();
             }
@@ -201,19 +191,55 @@ public class StudentDAO {
                 conn.close();
             }
         }
-        
+
         return list;
     }
-    
-      public StudentDTO getStudentbyName (String studentName) throws SQLException{
+
+    public List<StudentDTO> getListStudent() throws SQLException {
+        List<StudentDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = "SELECT StudentID, StudentName, MajorID, StudentImage, TeamID "
+                        + " FROM Students ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    list.add(new StudentDTO(rs.getString("StudentID"), rs.getString("StudentName"), rs.getString("MajorID"), rs.getString("StudentImage"), rs.getString("TeamID")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return list;
+    }
+
+    public StudentDTO getStudentbyName(String studentName) throws SQLException {
         StudentDTO student = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-        
-        try{
+
+        try {
             conn = DBUtils.getConnection();
-            
+
             if (conn != null) {
                 String sql = " SELECT StudentID, MajorID, StudentImage, TeamID"
                         + " FROM Students "
@@ -221,26 +247,26 @@ public class StudentDAO {
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, studentName);
                 rs = stm.executeQuery();
-                
-                if (rs.next()){
+
+                if (rs.next()) {
                     student = new StudentDTO(rs.getString("StudentID"), rs.getString("MajorID"), rs.getString("StudentImage"), studentName, rs.getString("TeamID"));
                 }
-                
+
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if (conn != null){
+        } finally {
+            if (conn != null) {
                 conn.close();
             }
-            if (stm != null){
+            if (stm != null) {
                 stm.close();
             }
-            if (rs != null){
+            if (rs != null) {
                 rs.close();
             }
         }
         return student;
     }
-    
+
 }

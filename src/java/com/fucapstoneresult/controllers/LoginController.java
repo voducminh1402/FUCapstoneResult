@@ -8,7 +8,6 @@ package com.fucapstoneresult.controllers;
 import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +22,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
 
-    private static final String SUCCESS = "index.jsp";
+    private static final String USER = "index.jsp";
+    private static final String ADMIN = "admin.jsp";
     private static final String FAIL = "login.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,9 +36,17 @@ public class LoginController extends HttpServlet {
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLoginUser(email, password);
             if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("USER", user);
-                url = SUCCESS;
+                if (user.getUserStatus() != 3) {
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("USER", user);
+                    if (user.getRoleID() == 1)
+                        url = USER;
+                    else
+                        url = ADMIN;
+                    
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
