@@ -3,14 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/user-info.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ShowUserDetailController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/student.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeleteStudentController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditUserInfoController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-add-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-index.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginGoogleController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-edit-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewPoPostDetailController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-request-contents.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/po-update-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-edit-popost.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/filters/CharacterEncodingFilter.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModIndexPageController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/models/PostsDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/signup.html</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SubmitEditedPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/po-view-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-request.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ApprovePostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditPoPostByModController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/web/mod-project.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeleteAUserController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SignUpController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_7/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdatePoPostController.java</file>
         </group>
     </open-files>
 </project-private>

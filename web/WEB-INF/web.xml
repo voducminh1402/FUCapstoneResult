@@ -134,6 +134,30 @@
         <servlet-name>ViewModIndexPageController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.ViewModIndexPageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewModRequestPageController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewModRequestPageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPoPostDetailController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewPoPostDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ApprovePostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ApprovePostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RejectPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RejectPostController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditPoPostByModController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.EditPoPostByModController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubmitEditedPoPostController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SubmitEditedPoPostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -257,6 +281,30 @@
     <servlet-mapping>
         <servlet-name>ViewModIndexPageController</servlet-name>
         <url-pattern>/ViewModIndexPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewModRequestPageController</servlet-name>
+        <url-pattern>/ViewModRequestPageController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPoPostDetailController</servlet-name>
+        <url-pattern>/ViewPoPostDetailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ApprovePostController</servlet-name>
+        <url-pattern>/ApprovePostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RejectPostController</servlet-name>
+        <url-pattern>/RejectPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditPoPostByModController</servlet-name>
+        <url-pattern>/EditPoPostByModController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitEditedPoPostController</servlet-name>
+        <url-pattern>/SubmitEditedPoPostController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

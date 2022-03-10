@@ -209,7 +209,8 @@
                                                         <td>${counter.count}</td>
                                                         <td><img class="post-thumb" src="${o.postImage}" alt=""></td>
                                                         <td>
-                                                            <h5>${o.postTitle}</h5></td>
+                                                            <a style="font-size: 1.25rem; font-weight: 600" href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                                        </td>
                                                         <td>
                                                             <i  class="bi bi-hand-thumbs-up">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
