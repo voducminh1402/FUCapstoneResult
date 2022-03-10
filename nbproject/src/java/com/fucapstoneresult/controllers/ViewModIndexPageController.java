@@ -9,6 +9,7 @@ import com.fucapstoneresult.dao.CommentDAO;
 import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.models.PostCommentDTO;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.UserCommentDTO;
@@ -40,6 +41,7 @@ public class ViewModIndexPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            int count = 0;
             int numOfPost = 0;
             int numOfPoPost = 0;
             int numOfProject = 0;
@@ -49,13 +51,13 @@ public class ViewModIndexPageController extends HttpServlet {
             PostsDAO postDao = new PostsDAO();
             List<PostsDTO> postList = postDao.getAllPost();
             List<PostsDTO> top5Post = PostsDAO.getTop5Post();
+            List<PostCommentDTO> postWithComment = new ArrayList<>();
             
             ProjectDAO projectDao = new ProjectDAO();
             List<ProjectDTO> projectList = projectDao.getAllProject();
-            
+           
             CommentDAO cmtDao = new CommentDAO();
-            List<UserCommentDTO> cmtList = cmtDao.joinUserComment();
-            List<UserCommentDTO> cmtRequestList = new ArrayList<>();
+            List<UserCommentDTO> cmtList = cmtDao.getTop3RequestComment();
             
             for (PostsDTO postsDTO : postList) {
                 if (postsDTO.getIsMainPost() == null) {
@@ -71,19 +73,17 @@ public class ViewModIndexPageController extends HttpServlet {
                 numOfProject = numOfProject + 1;
             }
             
-            for (UserCommentDTO userCommentDTO : cmtList) {
-                if (userCommentDTO.getCommentStatusId() == 1){
-                    cmtRequestList.add(userCommentDTO);
-                }
+            for (PostsDTO post1 : top5Post) {
+                int num = cmtDao.getNumComment(post1.getPostID());
+                postWithComment.add(new PostCommentDTO(post1.getPostID(), post1.getPostTitle(), post1.getPostImage(), post1.getUpvote(), num));
             }
-            
 
             request.setAttribute("USER", userLogin);
             request.setAttribute("NUM_OF_POST", numOfPost);
             request.setAttribute("NUM_OF_POPOST", numOfPoPost);
             request.setAttribute("NUM_OF_PROJECT", numOfProject);
-            request.setAttribute("TOP_POST", top5Post);
-            request.setAttribute("COMMENT_LIST", cmtRequestList);
+            request.setAttribute("TOP_POST", postWithComment);
+            request.setAttribute("COMMENT_LIST", cmtList);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

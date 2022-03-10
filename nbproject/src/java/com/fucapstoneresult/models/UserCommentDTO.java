@@ -21,11 +21,13 @@ public class UserCommentDTO {
     private String postId;
     private String userId;
     private String userImage;
+    private String postID;
+    private String isMainPost;
 
     public UserCommentDTO() {
     }
 
-    public UserCommentDTO(String userName, String email, String commentDetail, String postTitle, int commentStatusId, String commentTime, String commentId, String postId, String userId, String userImage) {
+    public UserCommentDTO(String userName, String email, String commentDetail, String postTitle, int commentStatusId, String commentTime, String commentId, String postId, String userId, String userImage, String postID, String isMainPost) {
         this.userName = userName;
         this.email = email;
         this.commentDetail = commentDetail;
@@ -36,6 +38,8 @@ public class UserCommentDTO {
         this.postId = postId;
         this.userId = userId;
         this.userImage = userImage;
+        this.postID = postID;
+        this.isMainPost = isMainPost;
     }
 
     public UserCommentDTO(String commentId, String poPostId, String userId, String commentDetail, String commentTime, int commentStatusId) {
@@ -126,5 +130,23 @@ public class UserCommentDTO {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public String getIsMainPost() {
+        return isMainPost;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
+
+    public void setIsMainPost(String isMainPost) {
+        this.isMainPost = isMainPost;
+    }
+    
+    
 
 }

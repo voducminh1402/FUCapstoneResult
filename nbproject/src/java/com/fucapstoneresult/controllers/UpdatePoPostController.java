@@ -38,7 +38,6 @@ public class UpdatePoPostController extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
@@ -82,14 +81,12 @@ public class UpdatePoPostController extends HttpServlet {
                     }
                     if (checkTag){
                         request.setAttribute("POPOST_LIST", listPost);
-                        url = SUCCESS;
+                        response.sendRedirect("po-view-post.jsp");
                     }
             }
     }catch(Exception e){
         System.out.println(e.toString());
-    }finally{
-            request.getRequestDispatcher(url).forward(request, response);
-        }
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

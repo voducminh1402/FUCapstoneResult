@@ -6,18 +6,11 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.TagDetailsDAO;
-import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.TagDetailsDTO;
-import com.fucapstoneresult.models.TagsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,39 +18,31 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author ADMIN
+ * @author VODUCMINH
  */
-public class ViewUpdatePageController extends HttpServlet {
-
-    private static final String ERROR = "index.jsp";
-    private static final String SUCCESS = "po-update-post.jsp";
-
+public class GetPostController extends HttpServlet {
+    private static final String ERROR = "mod-post.jsp";
+    private static final String SUCCESS = "mod-post.jsp";
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            String PostID = request.getParameter("id");
-
             PostsDAO postDao = new PostsDAO();
-            PostsDTO post = postDao.getPostWithID(PostID);
-            TagsDAO tagDao = new TagsDAO();
-            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
-            List<TagsDTO> tagList = tagDao.getListTag(PostID);
-            List<TagDetailsDTO> tagDetailList = new ArrayList<>();
-
-            for (TagsDTO tagsDTO : tagList) {
-                tagDetailDao.getTagDetails(tagsDTO.getTagdetailID());
-                tagDetailList.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+            List<PostsDTO> postList = postDao.getAllPost();
+            List<PostsDTO> postList1 = new ArrayList<>();
+            for (PostsDTO postsDTO : postList) {
+                if(postsDTO.getIsMainPost() == null){
+                    postList1.add(postsDTO);
+                }
             }
-            if (post != null) {
-                request.setAttribute("POST", post);
-                request.setAttribute("TAG",  tagDetailList);
-                url = SUCCESS;
-            }
-        } catch (Exception e) {
+            request.setAttribute("POST_LIST", postList1);
+        } 
+        catch (Exception e) {
             System.out.println(e.toString());
-        } finally {
+        }
+        finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
@@ -74,13 +59,7 @@ public class ViewUpdatePageController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -94,13 +73,7 @@ public class ViewUpdatePageController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUpdatePageController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

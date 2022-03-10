@@ -327,7 +327,7 @@ public class PostsDAO {
             conn = DBUtils.getConnection();
 
             if (conn != null) {
-                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=? "
+                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=?, PostStatusID=? "
                         + " WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostTitle());
@@ -336,8 +336,9 @@ public class PostsDAO {
                 stm.setString(4, post.getPostImage());
                 stm.setString(5, post.getLastEditedUser());
                 stm.setString(6, post.getProjectID());
+                stm.setInt(7, 2);
 //                stm.setString(6, post.getProjectID());
-                stm.setString(7, post.getPostID());
+                stm.setString(8, post.getPostID());
 
                 check = stm.executeUpdate() > 0 ? true : false;
             }
