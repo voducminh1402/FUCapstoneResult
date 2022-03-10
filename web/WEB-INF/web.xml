@@ -125,10 +125,14 @@
         <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>
     </servlet>
     <servlet>
-<!--        <servlet-name>UpdatePostController</servlet-name>
+        <!--        <servlet-name>UpdatePostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.UpdatePostController</servlet-class>-->
         <servlet-name>ChooseInstructorController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.ChooseInstructorController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewModIndexPageController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.ViewModIndexPageController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -249,6 +253,10 @@
     <servlet-mapping>
         <servlet-name>ChooseInstructorController</servlet-name>
         <url-pattern>/ChooseInstructorController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewModIndexPageController</servlet-name>
+        <url-pattern>/ViewModIndexPageController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

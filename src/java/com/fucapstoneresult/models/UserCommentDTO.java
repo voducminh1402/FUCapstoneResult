@@ -20,11 +20,12 @@ public class UserCommentDTO {
     private String commentId;
     private String postId;
     private String userId;
+    private String userImage;
 
     public UserCommentDTO() {
     }
 
-    public UserCommentDTO(String userName, String email, String commentDetail, String postTitle, int commentStatusId, String commentTime, String commentId, String postId, String userId) {
+    public UserCommentDTO(String userName, String email, String commentDetail, String postTitle, int commentStatusId, String commentTime, String commentId, String postId, String userId, String userImage) {
         this.userName = userName;
         this.email = email;
         this.commentDetail = commentDetail;
@@ -34,6 +35,7 @@ public class UserCommentDTO {
         this.commentId = commentId;
         this.postId = postId;
         this.userId = userId;
+        this.userImage = userImage;
     }
 
     public UserCommentDTO(String commentId, String poPostId, String userId, String commentDetail, String commentTime, int commentStatusId) {
@@ -63,6 +65,14 @@ public class UserCommentDTO {
 
     public String getCommentDetail() {
         return commentDetail;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public void setCommentDetail(String commentDetail) {
