@@ -96,8 +96,9 @@ public class PostsDAO {
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
                     String isMainPost = rs.getString("IsMainPost");
                     String projectID = rs.getString("ProjectID");
-
-                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                    if (PostStatusID == 1) {
+                        listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                    }
                 }
             }
         } catch (Exception e) {
