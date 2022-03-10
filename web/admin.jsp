@@ -167,26 +167,32 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <div class="manage-project">
-                                            <div class="menu-search menu-search-project">
-                                                <button>
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                        <form action="MainController">
+                                            <div class="manage-project">
+                                                <div class="menu-search menu-search-project">
+
+
+                                                        <button name="action" value="SearchUserByName">
+                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </button>
+                                                        <input
+                                                            class="mod-menu-input"
+                                                            type="text"
+                                                            placeholder="Tìm Kiếm Người Dùng..."
+                                                            name="name"
+                                                            />
+                                                   
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#addModal"
+                                                    class="add-project"
+                                                    >
+                                                    <i class="fas fa-plus"></i>
                                                 </button>
-                                                <input
-                                                    class="mod-menu-input"
-                                                    type="text"
-                                                    placeholder="Tìm Kiếm Người Dùng..."
-                                                    />
                                             </div>
-                                            <button
-                                                type="button"
-                                                data-toggle="modal"
-                                                data-target="#addModal"
-                                                class="add-project"
-                                                >
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +251,7 @@
                                                             </div>
                                                             <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.userID}&page=user">
-                                                                   <span>Chỉnh Sửa</span>
+                                                                    <span>Chỉnh Sửa</span>
                                                                     <i
                                                                         class="fa fa-pencil"
                                                                         aria-hidden="true"

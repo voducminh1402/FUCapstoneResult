@@ -65,7 +65,7 @@ public class DetailProjectController extends HttpServlet {
                 }
                 
                 String instructorId = projectInsDao.getProjectInstructor(projectID).getInstructorID();
-                List<InstructorDTO> instructorList = instructorDao.getInstructor(instructorId);
+                InstructorDTO instructorList = instructorDao.getInstructorByID(instructorId);
                 List<StudentDTO> teamList = studentDao.getListStudentWithTeam(projectID);
                 
                 request.setAttribute("POST", post);

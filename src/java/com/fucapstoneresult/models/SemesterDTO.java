@@ -41,4 +41,10 @@ public class SemesterDTO {
     public void setSemesterName(String semesterName) {
         this.semesterName = semesterName;
     }
+
+    @Override
+    public String toString() {
+        return "SemesterDTO{" + "semesterID=" + semesterID + ", semesterName=" + semesterName + '}';
+    }
+    
 }

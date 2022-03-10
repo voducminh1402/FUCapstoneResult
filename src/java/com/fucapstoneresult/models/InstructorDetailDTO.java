@@ -7,20 +7,22 @@ package com.fucapstoneresult.models;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class InstructorDTO {
+public class InstructorDetailDTO {
     private String instructorID;
     private String instructorName;
     private String instructorImage;
-    
-    public InstructorDTO() {
+    private int number;
+
+    public InstructorDetailDTO() {
     }
 
-    public InstructorDTO(String instructorID, String instructorName, String instructorImage) {
+    public InstructorDetailDTO(String instructorID, String instructorName, String instructorImage, int number) {
         this.instructorID = instructorID;
         this.instructorName = instructorName;
         this.instructorImage = instructorImage;
+        this.number = number;
     }
 
     public String getInstructorID() {
@@ -47,9 +49,17 @@ public class InstructorDTO {
         this.instructorImage = instructorImage;
     }
 
-    @Override
-    public String toString() {
-        return "InstructorDTO{" + "instructorID=" + instructorID + ", instructorName=" + instructorName + ", instructorImage=" + instructorImage + '}';
+    public int getNumber() {
+        return number;
     }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    @Override
+    public String toString() {
+        return "InstructorDetailDTO{" + "instructorID=" + instructorID + ", instructorName=" + instructorName + ", instructorImage=" + instructorImage + ", number=" + number + '}';
+    }
+    
 }
