@@ -25,46 +25,50 @@
                     <h3>FPT University</h3>
                     <strong>FU</strong>
                 </div>
-
                 <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <i class="fas fa-home"></i>
-                            Home
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mod-index.jsp">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Trang chủ</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
+
+                    <li class="dropdown">
+                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                            <i class="fas fa-home"></i> Quản lí người dùng
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí đồ án
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
+                        </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-briefcase"></i>
-                            About
+                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
                         </a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                            <i class="fas fa-copy"></i>
-                            Pages
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
                     </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Bài đăng chính
+                        </a>
+                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-copy"></i> Bài viết của sinh viên
+                        </a>
+                    </li>
+
                 </ul>
 
             </nav>
@@ -110,10 +114,10 @@
                             <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
                         </c:if>
                         <label for="">Nhóm Thực Hiện</label><br>
-                        <select name="team-name" id="" required>
+                        <select name="team-id" id="" required>
                             <option disabled selected>Lựa Chọn Nhóm Thực Hiện Đồ Án</option>
                             <c:forEach items="${requestScope.TEAM_LIST}" var="o">
-                                <option value="${o.teamName}">${o.teamName}</option>
+                                <option value="${o.teamID}">${o.teamName}</option>
                             </c:forEach>
                         </select>
                         <br>
@@ -156,8 +160,9 @@
                         <input id="post-tag-hidden" type="hidden" name="post-tag">
 
                         <label for="">Mô Tả Đồ Án</label><br>
-                        <textarea id="editor" cols="30" rows="50" name="project-description" required>
+                        <textarea id="editor" cols="30" rows="50" required>
                         </textarea>
+                        <input id="project-description" type="hidden" name="project-description"/>
                         <br>
                         <div class="add-project-submit">
                             <button type="submit" name="action" value="AddProject">Lưu</button>
@@ -196,7 +201,7 @@
 
                     editor.on('change', function (evt) {
                         var data = CKEDITOR.instances.editor.getData();
-                        document.getElementById("post-content").value = data;
+                        document.getElementById("project-description").value = data;
                         console.log(data)
                     });
                 </script>

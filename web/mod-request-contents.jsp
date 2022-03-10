@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,52 +26,58 @@
 <body>
     <div class="wrapper">
         <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>FPT University</h3>
-                <strong>FU</strong>
-            </div>
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
-                        Home
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
-                    </a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
-                    </a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>FPT University</h3>
+                    <strong>FU</strong>
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mod-index.jsp">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Trang chủ</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
+
+                    <li class="dropdown">
+                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                            <i class="fas fa-home"></i> Quản lí người dùng
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí đồ án
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
+                        </a>
+                    </li>
+                    <li>
+                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Bài đăng chính
+                        </a>
+                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-copy"></i> Bài viết của sinh viên
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
         <!-- Page Content  -->
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -128,11 +136,11 @@
                         <div class="left-column col-md-8 pr-md-4">
                             <article class="tip-content">
                                 <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
-                                    <img src="http://on3-step.com/tf/homekins/html/white/assets/img/blog/cover_bg_1.jpg"
+                                    <img src="${requestScope.POST.postImage}"
                                         alt="thumbnail">
                                 </div>
                                 <div class="tip-content__title">
-                                    <h1 style="font-weight:700">Chọn nhóm để làm đồ án như thế nào thì ổn?</h1>
+                                    <h1 style="font-weight:700">${requestScope.POST.postTitle}</h1>
                                 </div>
                                 <div class="tip-content__info" style="padding-bottom: 15px;">
                                     <div class="tip-author" style="display: inline-block; padding-right: 20px">
@@ -143,46 +151,19 @@
                                                     d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                                             </svg>
                                         </i>
-                                        <span>Pham Duc Huy</span>
+                                        <span>${requestScope.POST.postAuthor}</span>
                                     </div>
                                 </div>
                                 <div class="tip-content__sapo">
 
                                     <p>
-                                        Qui ut ceteros comprehensam. Cu eos sale sanctus eligendi, id ius elitr
-                                        saperet,
-                                        ocurreret
-                                        pertinacia pri an.
-                                        No mei nibh consectetuer, semper laoreet perfecto ad qui, est rebum
-                                        nulla argumentum ei.
-                                        Fierent adipisci iracundia est ei, usu timeam persius ea. Usu ea justo
-                                        malis, pri quando
-                                        everti electram ei,
-                                        ex homero omittam salutatus sed. Lorem ipsum dolor sit amet, consectetur
-                                        adipisicing
-                                        elit,
-                                        sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud
-                                        exercitation ullamco laboris
-                                        nisi ut aliquip ex ea commodo consequat
-                                    </p>
-                                    <p>
-                                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                        dolore eu fugiat
-                                        nulla
-                                        pariatur. Excepteur
-                                        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                        mollit anim id
-                                        est
-                                        laborum. Lorem ipsum
-                                        dolor sit amet, consectetur
+                                        ${requestScope.POST.postContent}
                                     </p>
                                 </div>
                             </article>
-                            <div class="content-button">
-                                <a href="mod-request.html" class="previous">&laquo; Quay về</a>
-                                <a href="#" class="next">Xét Duyệt &raquo;</a>
+                            <div class="content-button" >
+                                <a href="MainController?action=RejectPost&id=${requestScope.POST.postID}" class="previous">&laquo; Từ chối</a>
+                                <a href="MainController?action=ApprovePoPost&id=${requestScope.POST.postID}" class="next">Xét Duyệt &raquo;</a>
                             </div>
                         </div>
 

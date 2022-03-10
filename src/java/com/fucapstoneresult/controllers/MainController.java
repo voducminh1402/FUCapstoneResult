@@ -65,6 +65,15 @@ public class MainController extends HttpServlet {
     private static final String CHOOSE_INSTRUCTOR = "ChooseInstructorController";
     private static final String LOAD_STUDENT_LIST = "LoadStudentListController";
     private static final String DELETE_STUDENT = "DeleteStudentController";
+<<<<<<< HEAD
+    private static final String VIEW_MOD_INDEX_PAGE= "ViewModIndexPageController";
+    private static final String VIEW_MOD_REQUEST_PAGE = "ViewModRequestPageController";
+    private static final String VIEW_POPOST_DETAIL = "ViewPoPostDetailController";
+    private static final String APPROVE_POST= "ApprovePostController";
+    private static final String REJECT_POST= "RejectPostController";
+    private static final String EDIT_POPOST_BY_MOD = "EditPoPostByModController";
+    private static final String SUBMIT_EDITED_POPOST = "SubmitEditedPoPostController";
+=======
     private static final String SEARCH_USER_BY_NAME = "SearchUserByNameController";
     private static final String SEARCH_STUDENT_BY_NAME = "SearchStudentByNameController";
     private static final String LOAD_ALL_INSTRUCTOR = "LoadAllIntructorController";
@@ -74,6 +83,7 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_INSTRUCTOR = "SearchInstructorController";
     private static final String LOAD_ALL_PROJECT = "LoadAllProjectController";
     private static final String LAZY_LOAD_PROJECT = "LazyLoadProjectController";
+>>>>>>> anhlh
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -176,6 +186,23 @@ public class MainController extends HttpServlet {
                 url = LOAD_STUDENT_LIST;
             }else if ("DeleteStudent".equals(action)){
                 url = DELETE_STUDENT;
+<<<<<<< HEAD
+            }else if ("ViewModIndexPage".equals(action)){
+                url = VIEW_MOD_INDEX_PAGE;
+            }
+            else if ("ViewModRequestPage".equals(action)){
+                url = VIEW_MOD_REQUEST_PAGE;
+            }else if ("ViewPoPostDetail".equals(action)) {
+                url = VIEW_POPOST_DETAIL;
+            }else if ("ApprovePoPost".equals(action)){
+                url = APPROVE_POST;
+            }else if ("RejectPost".equals(action)) {
+                url = REJECT_POST;
+            }else if ("EditPoPost".equals(action)){
+                url = EDIT_POPOST_BY_MOD;
+            }else if ("SubmitEditedPoPost".equals(action)){
+                url = SUBMIT_EDITED_POPOST;
+=======
             }else if ("SearchUserByName".equals(action)){
                 url = SEARCH_USER_BY_NAME;
             }else if ("SearchStudentByName".equals(action)){
@@ -194,6 +221,7 @@ public class MainController extends HttpServlet {
                 url = LOAD_ALL_PROJECT;
             }else if ("LazyLoadProject".equals(action)){
                 url = LAZY_LOAD_PROJECT;
+>>>>>>> anhlh
             }
 
         } catch (Exception e) {

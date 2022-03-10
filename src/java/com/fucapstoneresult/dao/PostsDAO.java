@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.el.ELException;
 
 /**
  *
@@ -374,7 +375,7 @@ public class PostsDAO {
             conn = DBUtils.getConnection();
 
             if (conn != null) {
-                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=? "
+                String sql = " UPDATE Posts SET PostTitle=?, PostAuthor=?, PostContent=?, PostImage=?, LastEditedUser=?, ProjectID=?, PostStatusID=? "
                         + " WHERE PostID=? ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, post.getPostTitle());
@@ -383,12 +384,14 @@ public class PostsDAO {
                 stm.setString(4, post.getPostImage());
                 stm.setString(5, post.getLastEditedUser());
                 stm.setString(6, post.getProjectID());
+                stm.setInt(7, 2);
 //                stm.setString(6, post.getProjectID());
-                stm.setString(7, post.getPostID());
+                stm.setString(8, post.getPostID());
 
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (stm != null) {
                 stm.close();
@@ -654,6 +657,12 @@ public class PostsDAO {
     }
 
     public static void main(String[] args) throws SQLException {
+<<<<<<< HEAD
+        PostsDAO dao = new PostsDAO();
+        List<PostsDTO> l = dao.getListTop3Post("1");
+        for (PostsDTO l1 : l) {
+            System.out.println(l1);
+=======
         ProjectDAO projectDao = new ProjectDAO();
         PostsDAO dPost = new PostsDAO();
         List<String> listProjectID;
@@ -664,7 +673,120 @@ public class PostsDAO {
         List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
         for (PostsDTO postsDTO : listPost) {
             System.out.println(postsDTO);
+>>>>>>> anhlh
         }
+        System.out.println(dao.getUpVoteByProjectId("1"));
 
     }
+<<<<<<< HEAD
+
+    public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        List<PostsDTO> postList = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = " SELECT TOP 5 * FROM Posts "
+                        + " WHERE IsMainPost IS NOT NULL "
+                        + " ORDER BY -Upvote";
+
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+//                    String ProjectID = rs.getString("ProjectID");
+                    String isMainPost = rs.getString("isMainPost");
+                    String projectID = rs.getString("ProjectID");
+
+                    postList.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return postList;
+    }
+    
+    public boolean approvePost (String id) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = " UPDATE Posts"
+                        + " SET PostStatusID = ?"
+                        + " WHERE PostID = ?";
+                
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 1);
+                stm.setString(2, id);
+                
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+        public boolean rejectPost (String id) throws SQLException{
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try{
+            conn = DBUtils.getConnection();
+            if (conn != null){
+                String sql = " UPDATE Posts"
+                        + " SET PostStatusID = ?"
+                        + " WHERE PostID = ?";
+                
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 3);
+                stm.setString(2, id);
+                
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally{
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
+=======
+>>>>>>> anhlh
 }
