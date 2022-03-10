@@ -3,24 +3,26 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
 <<<<<<< HEAD
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-major.jsp</file>
-=======
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-post.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectInstructorDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/assets/css/styles.css</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/genfiles.properties</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-post.jsp</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-instructor-view.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project-instructor-view.html</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ChooseInstructorController.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/models/InstructorDTO.java</file>
-
->>>>>>> f646d2c6aff4cea8664fb709cfd1a3a05c634f23
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/project.properties</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectInstructorDTO.java</file>
+=======
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/user-info.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ShowUserDetailController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/student.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeleteStudentController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditUserInfoController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
+>>>>>>> 4334d62c239e087374dd502b519b66189400b262
         </group>
     </open-files>
 </project-private>
