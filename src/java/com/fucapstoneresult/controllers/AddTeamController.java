@@ -5,14 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.dao.TeamDAO;
+import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +18,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
+public class AddTeamController extends HttpServlet {
+
+    private static final String ERROR = "login.html";
+    private static final String SUCCESS = "mod-add-team.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,35 +33,27 @@ public class CommentPostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            boolean check = false;
+            String teamID = request.getParameter("team-id");
+            String teamName = request.getParameter("team-name");
             
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
+            TeamDAO dao = new TeamDAO();
+            
+            if(userLogin != null){
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
+                TeamDTO team = new TeamDTO(teamID, teamName);
+                boolean check = dao.insertTeam(team);
                 
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
+                if(check){
+                    url = SUCCESS;
+                }
+                
             }
             
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

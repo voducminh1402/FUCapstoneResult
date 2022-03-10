@@ -5,66 +5,45 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.models.ProjectDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author VODUCMINH
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
+public class LoadIndexController extends HttpServlet {
+    public static final String TARGET = "index.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            ProjectDAO projectDao = new ProjectDAO();
+            List<ProjectDTO> projectList = projectDao.getTop10Project();            
+            List<ProjectDTO> nearestList = projectDao.getNearestProject();
+
+            request.setAttribute("PROJECT_LIST", projectList);
+            request.setAttribute("NEAREST_LIST", nearestList);            
+            request.setAttribute("NEAREST_LIST_SIZE", nearestList.size());
             
-            boolean check = false;
+            System.out.println(nearestList.get(1).getSemesterID().toString());
+
             
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
-                
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
-                
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
-            }
-            
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
         } 
         catch (Exception e) {
-            request.getRequestDispatcher(url).forward(request, response);
+            System.out.println(e.toString());
         }
-        
+        finally {
+            request.getRequestDispatcher(TARGET).forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

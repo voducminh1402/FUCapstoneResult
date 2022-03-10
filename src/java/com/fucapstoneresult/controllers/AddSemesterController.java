@@ -5,14 +5,11 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +18,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
+public class AddSemesterController extends HttpServlet {
+    private static final String ERROR = "login.html";
+    private static final String SUCCESS = "mod-add-semester.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,35 +32,27 @@ public class CommentPostController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            boolean check = false;
+            String semesterID = request.getParameter("semester-id");
+            String semesterName = request.getParameter("semester-name");
             
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
+            SemesterDAO dao = new SemesterDAO();
+            
+            if(userLogin != null){
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
+                SemesterDTO semester = new  SemesterDTO(semesterID, semesterName);
+                boolean check = dao.insertSemester(semester);
                 
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
+                if(check){
+                    url = SUCCESS;
+                }
+                
             }
             
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

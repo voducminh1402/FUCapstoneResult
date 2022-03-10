@@ -5,66 +5,42 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.PostsDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author ADMIN
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
-    
+public class ApprovePostController extends HttpServlet {
+
+    private static final String ERROR = "mod-request-contents.jsp";
+    private static final String SUCCESS = "mod-request.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            /* TODO output your page here. You may use following sample code. */
+            String postID = request.getParameter("id");
+            PostsDAO postDao = new PostsDAO();
+            boolean check = postDao.approvePost(postID);
             
-            boolean check = false;
-            
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
-                
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
-                
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
+            if (check){
+                url = SUCCESS;
             }
             
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
-        } 
-        catch (Exception e) {
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

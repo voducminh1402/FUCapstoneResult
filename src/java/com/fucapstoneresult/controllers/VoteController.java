@@ -5,15 +5,12 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.VotesDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,50 +18,54 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author HP
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
-    
+@WebServlet(name = "VoteController", urlPatterns = {"/VoteController"})
+public class VoteController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+
         try {
             HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
-            boolean check = false;
-            
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            String postId = request.getParameter("id");
+            int vote = Integer.parseInt(request.getParameter("vote"));
+
+            if (user != null) {
+
+                String s = request.getParameter("add");
+                VotesDAO dao = new VotesDAO();
+                PostsDAO d = new PostsDAO();
                 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
-                
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
+                boolean add = false;
+                boolean check = dao.checkIfUserVote(user.getUserID(), postId);
+
+                if ("true".equals(s)) {
+                    add = true;
+                }
+                if (!check) {
+                    if (add) {
+                        dao.addVote(user.getUserID(), postId);
+                        vote++;
+                    } else {
+                        dao.removeVote(user.getUserID(), postId);
+                        vote--;
+                    }
+                } else {
+
+                    dao.removeVote(user.getUserID(), postId);
+                    vote--;
+                }
+                d.updateUpVoteByProjectId(postId, dao.countNumberVotes(postId));
+                response.getWriter().write(dao.countNumberVotes(postId) + "");
+            } else {
+                response.getWriter().write("fail");
             }
-            
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
-        } 
-        catch (Exception e) {
-            request.getRequestDispatcher(url).forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

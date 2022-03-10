@@ -5,65 +5,52 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.CommentDAO;
-import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.InstructorDAO;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
+import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.ProjectDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author VODUCMINH
+ * @author PhongVu
  */
-public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
-    private static final String LOGIN = "login.html"; //tam
+public class ChooseInstructorController extends HttpServlet {
+    
+    private static final String ERROR = "index.jsp";
+    private static final String SUCCESS = "project-instructor-view.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SUCCESS; 
+        
         try {
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+            String insID = request.getParameter("id");
+            InstructorDAO dao = new InstructorDAO();
+            ProjectInstructorDAO piDao = new ProjectInstructorDAO();
+            InstructorDTO ins = dao.getInstructorByID(insID);
+            List<ProjectDTO> projectList = piDao.getAllProjectByInstructorID(insID);
             
-            boolean check = false;
+            request.setAttribute("INS", ins);
+            request.setAttribute("LIST_PROJECT", projectList);
             
-            if (userLogin == null) {
-                url = LOGIN;
-            }
-            else {
-                UUID uuid = UUID.randomUUID();
-                String commentId = uuid.toString();
-                String commentDetail = request.getParameter("input-comment");
-                String postId = request.getParameter("id");
-                String userId = userLogin.getUserID();
-                
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-                LocalDateTime now = LocalDateTime.now();
-                String commentTime = dtf.format(now);
-                
-                CommentDTO comment = new CommentDTO(commentId, postId, userId, commentDetail, commentTime, 1);
-                CommentDAO dao = new CommentDAO();
-                check = dao.insertComment(comment);
-            }
             
-            if (check) {
-                response.getWriter().write("Post Comment Successfully");
-            }
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
+        
+        
+        
+        
         
     }
 
