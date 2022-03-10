@@ -92,6 +92,46 @@ public class TeamDAO {
         return team;
     }
     
+    public TeamDTO getTeamByName(String name) throws SQLException {
+        TeamDTO team = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT TeamID "
+                            + " FROM Teams "
+                            + " WHERE TeamName =?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, name);
+                rs = stm.executeQuery();
+                
+                if (rs.next()) {
+                    team = new TeamDTO(rs.getString("TeamID"), name);
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return team;
+    }
+    
     public boolean updateTeam(TeamDTO team) throws SQLException {
         boolean check = false;
         Connection conn = null;

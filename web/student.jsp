@@ -149,24 +149,32 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="filter">
-                                            <span>Hiển Thị</span>
-<!--                                            <select name="" id="">
-                                                <option value="">Tất Cả Người Dùng</option>
-                                                <option value="">Admin</option>
-                                                <option value="">Moderator</option>
-                                                <option value="">User</option>
-                                            </select>
-                                            <select name="" id="">
-                                                <option value="">Tất Cả Trạng Thái</option>
-                                                <option value="">Enable</option>
-                                                <option value="">Disable</option>
-                                            </select>
-                                            <button>Tìm Kiếm</button>-->
+                                            <!--                                            <span>Hiển Thị</span>
+                                                                                        <select name="" id="">
+                                                                                            <option value="">Tất Cả Người Dùng</option>
+                                                                                            <option value="">Admin</option>
+                                                                                            <option value="">Moderator</option>
+                                                                                            <option value="">User</option>
+                                                                                        </select>
+                                                                                        <select name="" id="">
+                                                                                            <option value="">Tất Cả Trạng Thái</option>
+                                                                                            <option value="">Enable</option>
+                                                                                            <option value="">Disable</option>
+                                                                                        </select>
+                                                                                        <button>Tìm Kiếm</button>-->
+                                            <!--<input type="file" id="fileUpload">-->
+                                            <form enctype="multipart/form-data" action="/upload" method="post">
+                                                <input id="image-file" type="file" />
+                                                <button type="submit">submit</button>
+                                            </form>
+
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <div class="manage-project">
                                             <div class="menu-search menu-search-project">
+                                                <form action="MainController">
+                                                </form>
                                                 <button>
                                                     <i class="fa fa-search" aria-hidden="true"></i>
                                                 </button>
@@ -176,14 +184,14 @@
                                                     placeholder="Tìm Kiếm Sinh Viên..."
                                                     />
                                             </div>
-                                            <button
-                                                type="button"
-                                                data-toggle="modal"
-                                                data-target="#addModal"
-                                                class="add-project"
-                                                >
-                                                <i class="fas fa-plus"></i>
-                                            </button>
+                                            <!--                                            <button
+                                                                                            type="button"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#addModal"
+                                                                                            class="add-project"
+                                                                                            >
+                                                                                            <i class="fas fa-plus"></i>
+                                                                                        </button>-->
                                         </div>
                                     </div>
                                 </div>
@@ -196,44 +204,55 @@
                                                 <th>No.</th>
                                                 <th>Mã số sinh viên</th>
                                                 <th>Tên</th>
-<!--                                                <th>Ngày Tạo</th>
-                                                <th>Phân Loại</th>
-                                                <th>Trạng Thái</th>-->
+                                                <!--                                                <th>Ngày Tạo</th>
+                                                                                                <th>Phân Loại</th>
+                                                                                                <th>Trạng Thái</th>-->
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Le Hong Anh</td>
-                                                <td>anhlhse150515@fpt.edu.vn</td>
-<!--                                                <td>01/01/2021</td>
-                                                <td>Admin</td>
-                                                <td>Enable</td>-->
-                                                <td class="last-type__menu">
-                                                    <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                    <div class="more-choice__menu">
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Xem Chi Tiết</span>
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
+                                            <c:if test="${requestScope.LIST_STUDENT==null}">
+                                                <c:redirect
+                                                    url="MainController?action=LoadAllStudent"
+                                                    ></c:redirect>
+                                            </c:if>
+                                            <c:forEach
+                                                items="${requestScope.LIST_STUDENT}"
+                                                var="o"
+                                                varStatus="counter"
+                                                >
+                                                <tr>
+                                                    <td>${counter.count}</td>
+                                                    <td>${o.studentID}</td>
+                                                    <td>${o.studentName}</td>
+                                                    <!--                                                <td>01/01/2021</td>
+                                                                                                    <td>Admin</td>
+                                                                                                    <td>Enable</td>-->
+                                                    <td class="last-type__menu">
+                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                        <div class="more-choice__menu">
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
+                                                                    <span>Xem Chi Tiết</span>
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
+                                                                    <span>Chỉnh Sửa</span>
+                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=DeleteStudent&id=${o.studentID}">
+                                                                    <span>Xóa</span>
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Chỉnh Sửa</span>
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Xóa</span>
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -254,62 +273,62 @@
                 </div>
             </div>
 
-            <div class="add-project-menu">
-                <h2>Thêm Người Dùng</h2>
-                <form action="MainController" id="form">
-                    <label for="name">Họ Và Tên</label><br />
-                    <p class="name-message"></p>
-                    <input name="name" type="text" id="name" />
-
-                    <label for="password">Mật Khẩu</label><br />
-                    <p class="password-message"></p>
-                    <input name="password" type="text" id="password" />
-
-                    <label for="email">Email</label><br />
-                    <p class="email-message"></p>
-                    <input name="email" type="email" id="email" />
-
-                    <label for="role">Phân Loại</label><br />
-                    <select name="role" id="role">
-                        <option value="3">Admin</option>
-                        <option value="2">Moderator</option>
-                        <option value="1">User</option>
-                    </select>
-                    <label for="status">Trạng Thái</label><br />
-                    <select name="status" id="status">
-                        <option value="2">Enable</option>
-                        <option value="3">Disable</option>
-                    </select>
-
-                    <label for="image">Ảnh</label>
-                    <div
-                        class="project-add-upload__image post-upload__image"
-                        style="background-color: none"
-                        >
-                        <label style="margin: 0" for="file"
-                               ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
-                        >
-                        <input
-                            type="file"
-                            name="file"
-                            id="file"
-                            placeholder="Tải Ảnh Lên"
-                            required
-                            /><br />
-                        <input type="hidden" id="mod-post__preview-input" name="image" />
-                        <a id="mod-post__preview-link" href="">
-                            <img id="mod-post__preview-image" src="" alt="" />
-                        </a>
-                    </div>
-
-                    <div class="add-project-submit">
-                        <button type="submit" name="action" value="Add a user">
-                            Lưu Lại
-                        </button>
-                        <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                    </div>
-                </form>
-            </div>
+            <!--            <div class="add-project-menu">
+                            <h2>Thêm Người Dùng</h2>
+                            <form action="MainController" id="form">
+                                <label for="name">Họ Và Tên</label><br />
+                                <p class="name-message"></p>
+                                <input name="name" type="text" id="name" />
+            
+                                <label for="password">Mật Khẩu</label><br />
+                                <p class="password-message"></p>
+                                <input name="password" type="text" id="password" />
+            
+                                <label for="email">Email</label><br />
+                                <p class="email-message"></p>
+                                <input name="email" type="email" id="email" />
+            
+                                <label for="role">Phân Loại</label><br />
+                                <select name="role" id="role">
+                                    <option value="3">Admin</option>
+                                    <option value="2">Moderator</option>
+                                    <option value="1">User</option>
+                                </select>
+                                <label for="status">Trạng Thái</label><br />
+                                <select name="status" id="status">
+                                    <option value="2">Enable</option>
+                                    <option value="3">Disable</option>
+                                </select>
+            
+                                <label for="image">Ảnh</label>
+                                <div
+                                    class="project-add-upload__image post-upload__image"
+                                    style="background-color: none"
+                                    >
+                                    <label style="margin: 0" for="file"
+                                           ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
+                                    >
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        id="file"
+                                        placeholder="Tải Ảnh Lên"
+                                        required
+                                        /><br />
+                                    <input type="hidden" id="mod-post__preview-input" name="image" />
+                                    <a id="mod-post__preview-link" href="">
+                                        <img id="mod-post__preview-image" src="" alt="" />
+                                    </a>
+                                </div>
+            
+                                <div class="add-project-submit">
+                                    <button type="submit" name="action" value="Add a user">
+                                        Lưu Lại
+                                    </button>
+                                    <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
+                                </div>
+                            </form>
+                        </div>-->
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
@@ -350,6 +369,15 @@
                     });
                 });
             </script>
+            <script type="text/javascript">
+                function getFilePath() {
+                    $('input[type=file]').change(function () {
+//                        var filePath = $('#fileUpload').val();
+//                        console.log($(filePath);
+                        console.log(this.files[0].mozFullPath);
+                    });
+                }
+            </script>
             <script>
                 CKEDITOR.plugins.addExternal(
                         "imgur",
@@ -371,50 +399,7 @@
                     console.log(data);
                 });
             </script>
-            <script>
-                $("document").ready(function () {
-                    $("input[type=file]").on("change", function () {
-                        var $files = $(this).get(0).files;
-                        if ($files.length) {
-                            if ($files[0].size > $(this).data("max-size") * 1024) {
-                                console.log("Vui lòng chọn file có dung lượng nhỏ hơn!");
-                                return false;
-                            }
 
-                            console.log("Đang upload hình ảnh lên imgur...");
-                            var apiUrl = "https://api.imgur.com/3/image";
-                            var apiKey = "dcd0ee22791c49d";
-                            var settings = {
-                                async: false,
-                                crossDomain: true,
-                                processData: false,
-                                contentType: false,
-                                type: "POST",
-                                url: apiUrl,
-                                headers: {
-                                    Authorization: "Client-ID " + apiKey,
-                                    Accept: "application/json",
-                                },
-                                mimeType: "multipart/form-data",
-                            };
-                            var formData = new FormData();
-                            formData.append("image", $files[0]);
-                            settings.data = formData;
-                            $.ajax(settings).done(function (response) {
-                                console.log(response);
-                                var obj = JSON.parse(response);
-                                document.getElementById("mod-post__preview-link").src =
-                                        obj.data.link;
-                                document.getElementById("mod-post__preview-image").src =
-                                        obj.data.link;
-                                document.getElementById("mod-post__preview-input").value =
-                                        obj.data.link;
-                                obj.data.link;
-                            });
-                        }
-                    });
-                });
-            </script>
             <script>
                 $(function () {
                     $("input, select")
