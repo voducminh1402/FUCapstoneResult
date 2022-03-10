@@ -608,11 +608,11 @@ public class PostsDAO {
 
     public static void main(String[] args) throws SQLException {
         PostsDAO dao = new PostsDAO();
-
         List<PostsDTO> l = dao.getListTop3Post("1");
         for (PostsDTO l1 : l) {
             System.out.println(l1);
         }
+        System.out.println(dao.getUpVoteByProjectId("1"));
 
     }
 
