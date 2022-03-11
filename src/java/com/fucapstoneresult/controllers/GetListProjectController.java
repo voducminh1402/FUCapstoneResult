@@ -59,11 +59,20 @@ public class GetListProjectController extends HttpServlet {
             List<TeamDTO> teamDefault = new ArrayList<>();
             ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
             
+            
+            
             for (TeamDTO team : ListTeam) {
                 if(dao.getProject(team.getTeamID()) == null){
                     teamDefault.add(team);
                 }
             }
+            
+            String page = request.getParameter("page");
+            request.setAttribute("PROJECT_LIST", list);
+            request.setAttribute("INSTRUCTOR_LIST", List);
+            request.setAttribute("TEAM_LIST", teamDefault);
+            request.setAttribute("VIEW_PROJECT", project);
+            request.setAttribute("SEMESTER_LIST", listSem);
             
             if (proID != null) {
                 
@@ -82,12 +91,7 @@ public class GetListProjectController extends HttpServlet {
             }
             
             
-            request.setAttribute("PROJECT_LIST", list);
-            String page = request.getParameter("page");
-            request.setAttribute("INSTRUCTOR_LIST", List);
-            request.setAttribute("TEAM_LIST", teamDefault);
-            request.setAttribute("VIEW_PROJECT", project);
-            request.setAttribute("SEMESTER_LIST", listSem);
+           
             
             
             if(page.equals("add-post")){
