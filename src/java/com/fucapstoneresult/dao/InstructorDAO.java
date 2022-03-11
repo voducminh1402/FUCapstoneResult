@@ -52,44 +52,6 @@ public class InstructorDAO {
         return check;
     }
 
-    public List<InstructorDTO> getInstructor(String instructorID) throws SQLException {
-        List<InstructorDTO> instructorList = new ArrayList<>();
-        Connection conn = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-
-        try {
-            conn = DBUtils.getConnection();
-
-            if (conn != null) {
-                String sql = "SELECT InstructorName, InstructorImage "
-                        + " FROM Instructors "
-                        + " WHERE InstructorID=?";
-                stm = conn.prepareStatement(sql);
-                stm.setString(1, instructorID);
-                rs = stm.executeQuery();
-
-                if (rs.next()) {
-                    instructorList.add(new InstructorDTO(instructorID, rs.getString("InstructorName"), rs.getString("InstructorImage")));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-
-        return instructorList;
-    }
-
     public boolean updateInstructor(InstructorDTO instructor) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -192,6 +154,48 @@ public class InstructorDAO {
 
         return List;
     }
+    
+    public List<InstructorDTO> getAllInstructorByName(String name) throws SQLException {
+        List<InstructorDTO> List = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = "SELECT InstructorID, InstructorName, InstructorImage "
+                        + " FROM Instructors "
+                        + " WHERE InstructorName like ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1,"%" + name + "%");
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String instructorID = rs.getString("InstructorID");
+                    String instructorName = rs.getString("InstructorName");
+                    String instructorImage = rs.getString("InstructorImage");
+
+                    List.add(new InstructorDTO(instructorID, instructorName, instructorImage));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return List;
+    }
 
     public InstructorDTO getInstructorByID(String instructorID) throws SQLException {
         InstructorDTO instructor = null;
@@ -232,5 +236,12 @@ public class InstructorDAO {
         }
 
         return instructor;
+    }
+    public static void main(String[] args) throws SQLException {
+        InstructorDAO dao = new InstructorDAO();
+        List<InstructorDTO> list = dao.getAllInstructorByName("a");
+        for (InstructorDTO instructorDTO : list) {
+            System.out.println(instructorDTO);
+        }
     }
 }

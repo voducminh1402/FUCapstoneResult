@@ -231,25 +231,28 @@ public class StudentDAO {
         return list;
     }
 
-    public StudentDTO getStudentbyName(String studentName) throws SQLException {
+    public List<StudentDTO> getStudentbyName(String studentName) throws SQLException {
+        studentName = studentName.toLowerCase();
         StudentDTO student = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-
+        List<StudentDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection();
 
             if (conn != null) {
-                String sql = " SELECT StudentID, MajorID, StudentImage, TeamID"
+                String sql = " SELECT StudentID, StudentName , MajorID, StudentImage, TeamID"
                         + " FROM Students "
-                        + " WHERE StudentName = ? ";
+                        + " WHERE StudentName like ? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, studentName);
+                stm.setString(1,"%" + studentName + "%");
                 rs = stm.executeQuery();
 
-                if (rs.next()) {
-                    student = new StudentDTO(rs.getString("StudentID"), rs.getString("MajorID"), rs.getString("StudentImage"), studentName, rs.getString("TeamID"));
+                while (rs.next()) {
+                    //(String studentID, String studentName, String majorID, String studentImage, String teamID)
+                    student = new StudentDTO(rs.getString("StudentID"), rs.getString("StudentName"), rs.getString("MajorID"), rs.getString("StudentImage"), rs.getString("TeamID"));
+                    list.add(student);
                 }
 
             }
@@ -266,7 +269,13 @@ public class StudentDAO {
                 rs.close();
             }
         }
-        return student;
+        return list;
     }
-
+    public static void main(String[] args) throws SQLException {
+        StudentDAO dao = new StudentDAO();
+        List<StudentDTO> list = dao.getStudentbyName("n");
+        for (StudentDTO studentDTO : list) {
+            System.out.println(studentDTO);
+        }
+    }
 }

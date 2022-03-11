@@ -6,12 +6,11 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.SemesterDTO;
-import com.google.gson.Gson;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,35 +23,21 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
-public class FilterPostController extends HttpServlet {
+@WebServlet(name = "LoadAllProjectController", urlPatterns = {"/LoadAllProjectController"})
+public class LoadAllProjectController extends HttpServlet {
 
     private static final String SUCCESS = "LazyLoadProjectController";
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
-            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
-            String id = request.getParameter("filter");
-            PostsDAO postDao = new PostsDAO();
-            List<PostsDTO> listPost;
             SemesterDAO dao = new SemesterDAO();
             List<SemesterDTO> list = dao.getAllSemester();
             request.setAttribute("LIST_SEMESTER", list);
-            request.setAttribute("FILTER", id);
-            if ("Học Kì".equals(id)) {
-
-                listPost = postDao.getAllPost();
-            } else {
-
-                ProjectDAO projectDao = new ProjectDAO();
-                List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(id);
-                listPost = postDao.getPostsByProjectID(listProjectID);
-            }
+            PostsDAO dPost = new PostsDAO();
+            List<PostsDTO> listPost = dPost.getAllMainPost();
             request.setAttribute("LIST_MAIN_POST", listPost);
         } catch (Exception e) {
             e.printStackTrace();

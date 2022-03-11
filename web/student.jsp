@@ -26,6 +26,29 @@
             <link rel="stylesheet" href="./assets/css/mod-post.css" />
             <link rel="stylesheet" href="./assets/css/styles.css" />
             <link rel="stylesheet" href="./assets/css/responsive.css" />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+                integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"
+                />
+            <style>
+                #label {
+                    background-color: #5dc282;
+                    padding: 0.5rem 1.5rem 0.5rem 1.2rem;
+                    border-radius: 5px;
+                    color: white;
+                    cursor: pointer;
+                }
+                #image-file {
+                    opacity: 0;
+                }
+                #icon {
+                    color: white;
+                    margin-right: 0.5rem;
+                }
+            </style>
         </head>
         <body>
             <div class="wrapper">
@@ -149,49 +172,34 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="filter">
-                                            <!--                                            <span>Hiển Thị</span>
-                                                                                        <select name="" id="">
-                                                                                            <option value="">Tất Cả Người Dùng</option>
-                                                                                            <option value="">Admin</option>
-                                                                                            <option value="">Moderator</option>
-                                                                                            <option value="">User</option>
-                                                                                        </select>
-                                                                                        <select name="" id="">
-                                                                                            <option value="">Tất Cả Trạng Thái</option>
-                                                                                            <option value="">Enable</option>
-                                                                                            <option value="">Disable</option>
-                                                                                        </select>
-                                                                                        <button>Tìm Kiếm</button>-->
-                                            <!--<input type="file" id="fileUpload">-->
+                                    
+
                                             <form enctype="multipart/form-data" action="/upload" method="post">
+                                                <label id="label" for="image-file"
+                                                       ><i id="icon" class="fas fa-file-import"></i>Import</label
+                                                >
+                                                <span id="file-name"></span>
                                                 <input id="image-file" type="file" />
-                                                <button type="submit">submit</button>
                                             </form>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <div class="manage-project">
-                                            <div class="menu-search menu-search-project">
-                                                <form action="MainController">
-                                                </form>
-                                                <button>
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                                </button>
-                                                <input
-                                                    class="mod-menu-input"
-                                                    type="text"
-                                                    placeholder="Tìm Kiếm Sinh Viên..."
-                                                    />
-                                            </div>
-                                            <!--                                            <button
-                                                                                            type="button"
-                                                                                            data-toggle="modal"
-                                                                                            data-target="#addModal"
-                                                                                            class="add-project"
-                                                                                            >
-                                                                                            <i class="fas fa-plus"></i>
-                                                                                        </button>-->
+                                            <form action="MainController">
+                                                <div class="menu-search menu-search-project">
+
+                                                    <button name="action" value="SearchStudentByName">
+                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                    </button>
+                                                    <input
+                                                        class="mod-menu-input"
+                                                        type="text"
+                                                        placeholder="Tìm Kiếm Sinh Viên..."
+                                                        name="name"
+                                                        />
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -273,62 +281,6 @@
                 </div>
             </div>
 
-            <!--            <div class="add-project-menu">
-                            <h2>Thêm Người Dùng</h2>
-                            <form action="MainController" id="form">
-                                <label for="name">Họ Và Tên</label><br />
-                                <p class="name-message"></p>
-                                <input name="name" type="text" id="name" />
-            
-                                <label for="password">Mật Khẩu</label><br />
-                                <p class="password-message"></p>
-                                <input name="password" type="text" id="password" />
-            
-                                <label for="email">Email</label><br />
-                                <p class="email-message"></p>
-                                <input name="email" type="email" id="email" />
-            
-                                <label for="role">Phân Loại</label><br />
-                                <select name="role" id="role">
-                                    <option value="3">Admin</option>
-                                    <option value="2">Moderator</option>
-                                    <option value="1">User</option>
-                                </select>
-                                <label for="status">Trạng Thái</label><br />
-                                <select name="status" id="status">
-                                    <option value="2">Enable</option>
-                                    <option value="3">Disable</option>
-                                </select>
-            
-                                <label for="image">Ảnh</label>
-                                <div
-                                    class="project-add-upload__image post-upload__image"
-                                    style="background-color: none"
-                                    >
-                                    <label style="margin: 0" for="file"
-                                           ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
-                                    >
-                                    <input
-                                        type="file"
-                                        name="file"
-                                        id="file"
-                                        placeholder="Tải Ảnh Lên"
-                                        required
-                                        /><br />
-                                    <input type="hidden" id="mod-post__preview-input" name="image" />
-                                    <a id="mod-post__preview-link" href="">
-                                        <img id="mod-post__preview-image" src="" alt="" />
-                                    </a>
-                                </div>
-            
-                                <div class="add-project-submit">
-                                    <button type="submit" name="action" value="Add a user">
-                                        Lưu Lại
-                                    </button>
-                                    <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                                </div>
-                            </form>
-                        </div>-->
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
@@ -379,56 +331,26 @@
                 }
             </script>
             <script>
-                CKEDITOR.plugins.addExternal(
-                        "imgur",
-                        "/FUCapstoneResult/ckeditor/plugins/imgur/",
-                        "plugin.js"
-                        );
-                var editor = CKEDITOR.replace("editor", {
-                    extraPlugins: "imgur",
-                });
-
-                CKEDITOR.editorConfig = function (config) {
-                    config.extraPlugins = "imgur";
-                    config.imgurClientID = "424e57033a8d4ea";
-                };
-
-                editor.on("change", function (evt) {
-                    var data = CKEDITOR.instances.editor.getData();
-                    document.getElementById("post-content").value = data;
-                    console.log(data);
-                });
-            </script>
-
-            <script>
-                $(function () {
-                    $("input, select")
-                            .on("change", function (event) {
-                                var $element = $(event.target),
-                                        $container = $element.closest(".example");
-
-                                if (!$element.data("tagsinput"))
-                                    return;
-
-                                var val = $element.val();
-                                if (val === null) {
-                                    val = "null";
-                                } else {
-                                    document.getElementById("post-tag-hidden").value = val;
-                                }
-
-                                $("code", $("pre.val", $container)).html(
-                                        $.isArray(val)
-                                        ? JSON.stringify(val)
-                                        : '"' + val.replace('"', '\\"') + '"'
-                                        );
-                                $("code", $("pre.items", $container)).html(
-                                        JSON.stringify($element.tagsinput("items"))
-                                        );
-                            })
-                            .trigger("change");
+                document.getElementById("image-file").addEventListener("change", () => {
+                    const element = document.getElementById("file-name");
+                    element.innerHTML = "";
+                    var input = document.querySelector("#image-file"),
+                            info = input.files[0].name;
+                    count = 0;
+                    var x = setInterval(function () {
+                        element.innerHTML += ". ";
+                        if (element.innerHTML === ". . . . ") {
+                            element.innerHTML = "";
+                        }
+                        if (count > 3) {
+                            clearInterval(x);
+                            element.innerHTML = info;
+                        }
+                        count++;
+                    }, 1000);
                 });
             </script>
+
             <script
                 src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
                 type="text/javascript"

@@ -5,13 +5,13 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
-import com.fucapstoneresult.dao.SemesterDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.SemesterDTO;
-import com.google.gson.Gson;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
+import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.InstructorDetailDTO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,36 +24,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
-public class FilterPostController extends HttpServlet {
+@WebServlet(name = "LoadAllIntructorController", urlPatterns = {"/LoadAllIntructorController"})
+public class LoadAllIntructorController extends HttpServlet {
 
-    private static final String SUCCESS = "LazyLoadProjectController";
-
+    private static final String SUCCESS = "instructor.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
-            //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
-            String id = request.getParameter("filter");
-            PostsDAO postDao = new PostsDAO();
-            List<PostsDTO> listPost;
-            SemesterDAO dao = new SemesterDAO();
-            List<SemesterDTO> list = dao.getAllSemester();
-            request.setAttribute("LIST_SEMESTER", list);
-            request.setAttribute("FILTER", id);
-            if ("Học Kì".equals(id)) {
-
-                listPost = postDao.getAllPost();
-            } else {
-
-                ProjectDAO projectDao = new ProjectDAO();
-                List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(id);
-                listPost = postDao.getPostsByProjectID(listProjectID);
+            InstructorDAO dao = new InstructorDAO();
+            ProjectInstructorDAO pDao = new ProjectInstructorDAO();
+            List<InstructorDTO> instructorList = dao.getAllInstructor();
+            List<InstructorDetailDTO> list = new ArrayList<>();
+            for (InstructorDTO o : instructorList) {
+                list.add(new InstructorDetailDTO(o.getInstructorID(), o.getInstructorName(), o.getInstructorImage(), pDao.getNumberProjectOfInstructor(o.getInstructorID())));
             }
-            request.setAttribute("LIST_MAIN_POST", listPost);
+
+            request.setAttribute("LIST_INSTRUCTOR_ALL", list);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

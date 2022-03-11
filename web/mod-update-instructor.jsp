@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,29 +105,33 @@
 
 
                 <div class="content-detail content-post add-post">
-                    <h2>Thêm Giảng Viên Hướng Dẫn</h2>
+                    <h2>Thông Tin Giảng Viên Hướng Dẫn</h2>
 
-                    <form action="MainController" method="POST">
-                        <label for="">Mã Giảng Viên</label><br>
-                        <input type="text" name="instructor-id" required>
-                        <label for="">Tên Giảng Viên</label><br>
-                        <input type="text" name="instructor-name" required>
-                        
-                        <label for="">Ảnh Giảng Viên</label>
-                        <div class="project-add-upload__image post-upload__image">
-                            <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
-                            <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" required><br>
-                            <input type="hidden" id="mod-post__preview-input" name="instructor-image">
-                            <a id="mod-post__preview-link" href="">
-                                <img id="mod-post__preview-image" src="" alt="">
-                            </a>
-                        </div>
 
-                        <div class="add-project-submit">
-                            <button type="submit" name="action" value="AddInstructor">Lưu</button>
-                            <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                        </div>
-                    </form>
+                    <c:if test="${requestScope.INSTRUCTOR_DETAIL ne null}">
+                        <form action="MainController" method="POST">
+                            <label for="">Mã Giảng Viên</label><br>
+                            <input type="text"  value="${requestScope.INSTRUCTOR_DETAIL.instructorID}" readonly="" name="id" required>
+                            <label for="">Tên Giảng Viên</label><br>
+                            <input type="text" name="name" value="${requestScope.INSTRUCTOR_DETAIL.instructorName}" required>
+
+                            <label for="">Ảnh Giảng Viên</label>
+                            <div class="project-add-upload__image post-upload__image">
+                                <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
+                                <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên"><br>
+                                <input type="hidden" name="image" value="${requestScope.INSTRUCTOR_DETAIL.instructorImage}">
+                                <a id="mod-post__preview-link" href="">
+                                    <img id="mod-post__preview-image" src="${requestScope.INSTRUCTOR_DETAIL.instructorImage}" alt="">
+                                </a>
+                            </div>
+
+                            <div class="add-project-submit">
+                                <button type="submit" name="action" value="UpdateInstructor">Lưu</button>
+                                <button class="cancel-add-btn" type="button" href="instructor.jsp">Hủy Bỏ</button>
+                            </div>
+                        </form>
+                    </c:if>
+
                 </div>
 
                 <script src="./ckeditor/ckeditor.js"></script>

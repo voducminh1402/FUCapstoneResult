@@ -57,8 +57,8 @@ public class AddPoPostController extends HttpServlet {
             String postID = request.getParameter("po-post-id");
             String authorInfo = userLogin.getUserName();
             StudentDAO studentDao = new StudentDAO();
-            StudentDTO student = studentDao.getStudentbyName(authorInfo); 
-            String teamID = student.getTeamID();
+            //StudentDTO student = studentDao.getStudentbyName(authorInfo); 
+            //String teamID = student.getTeamID();
             PostsDAO postDao = new PostsDAO();
             PostsDTO mainPost = new PostsDTO();
             mainPost = postDao.getPostWithID(postID);
