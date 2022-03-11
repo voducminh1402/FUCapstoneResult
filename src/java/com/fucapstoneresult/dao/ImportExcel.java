@@ -6,7 +6,6 @@
 package com.fucapstoneresult.dao;
 
 import com.fucapstoneresult.models.ObjectDTO;
-import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;

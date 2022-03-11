@@ -67,4 +67,9 @@ public class StudentDTO {
         this.teamID = teamID;
     }
 
+    @Override
+    public String toString() {
+        return "StudentDTO{" + "studentID=" + studentID + ", studentName=" + studentName + ", majorID=" + majorID + ", studentImage=" + studentImage + ", teamID=" + teamID + '}';
+    }
+
 }

@@ -30,63 +30,58 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-                <nav id="sidebar">
-                    <div class="sidebar-header">
-                        <h3>FPT University</h3>
-                        <strong>FU</strong>
-                    </div>
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>FPT University</h3>
+                    <strong>FU</strong>
+                </div>
+                <ul class="list-unstyled components">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mod-index.jsp">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Trang chủ</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
 
-                    <ul class="list-unstyled components">
-                        <li class="active">
-                            <a
-                                href="#homeSubmenu"
-                                data-toggle="collapse"
-                                aria-expanded="false"
-                                class="dropdown-toggle"
-                                >
-                                <i class="fas fa-home"></i>
-                                Home
-                            </a>
-                            <ul class="collapse list-unstyled" id="homeSubmenu">
-                                <li>
-                                    <a href="#">Home 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-briefcase"></i>
-                                About
-                            </a>
-                            <a
-                                href="#pageSubmenu"
-                                data-toggle="collapse"
-                                aria-expanded="false"
-                                class="dropdown-toggle"
-                                >
-                                <i class="fas fa-copy"></i>
-                                Pages
-                            </a>
-                            <ul class="collapse list-unstyled" id="pageSubmenu">
-                                <li>
-                                    <a href="#">Page 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Page 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Page 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+                    <li class="dropdown">
+                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                            <i class="fas fa-home"></i> Quản lí người dùng
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí đồ án
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
+                        </a>
+                    </li>
+                    <li>
+                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
+                        </a>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Bài đăng chính
+                        </a>
+                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-copy"></i> Bài viết của sinh viên
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -167,26 +162,32 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <div class="manage-project">
-                                            <div class="menu-search menu-search-project">
-                                                <button>
-                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                        <form action="MainController">
+                                            <div class="manage-project">
+                                                <div class="menu-search menu-search-project">
+
+
+                                                        <button name="action" value="SearchUserByName">
+                                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                                        </button>
+                                                        <input
+                                                            class="mod-menu-input"
+                                                            type="text"
+                                                            placeholder="Tìm Kiếm Người Dùng..."
+                                                            name="name"
+                                                            />
+                                                   
+                                                </div>
+                                                <button
+                                                    type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#addModal"
+                                                    class="add-project"
+                                                    >
+                                                    <i class="fas fa-plus"></i>
                                                 </button>
-                                                <input
-                                                    class="mod-menu-input"
-                                                    type="text"
-                                                    placeholder="Tìm Kiếm Người Dùng..."
-                                                    />
                                             </div>
-                                            <button
-                                                type="button"
-                                                data-toggle="modal"
-                                                data-target="#addModal"
-                                                class="add-project"
-                                                >
-                                                <i class="fas fa-plus"></i>
-                                            </button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +246,7 @@
                                                             </div>
                                                             <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.userID}&page=user">
-                                                                   <span>Chỉnh Sửa</span>
+                                                                    <span>Chỉnh Sửa</span>
                                                                     <i
                                                                         class="fa fa-pencil"
                                                                         aria-hidden="true"

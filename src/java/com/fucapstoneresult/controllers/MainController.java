@@ -72,7 +72,19 @@ public class MainController extends HttpServlet {
     private static final String REJECT_POST= "RejectPostController";
     private static final String EDIT_POPOST_BY_MOD = "EditPoPostByModController";
     private static final String SUBMIT_EDITED_POPOST = "SubmitEditedPoPostController";
+<<<<<<< HEAD
     private static final String LOGOUT = "LogoutController";
+=======
+    private static final String SEARCH_USER_BY_NAME = "SearchUserByNameController";
+    private static final String SEARCH_STUDENT_BY_NAME = "SearchStudentByNameController";
+    private static final String LOAD_ALL_INSTRUCTOR = "LoadAllIntructorController";
+    private static final String SHOW_INSTRUCTOR_DETAIL = "ShowInstructorDetailController";
+    private static final String UPDATE_INSTRUCTOR = "UpdateInstructorController";
+    private static final String DELETE_INSTRUCTOR = "DeleteInstructorController";
+    private static final String SEARCH_INSTRUCTOR = "SearchInstructorController";
+    private static final String LOAD_ALL_PROJECT = "LoadAllProjectController";
+    private static final String LAZY_LOAD_PROJECT = "LazyLoadProjectController";
+>>>>>>> 888235fee79b19291d54d75fb4a0a6331068c862
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -137,7 +149,7 @@ public class MainController extends HttpServlet {
 
             } else if ("Search".equals(action)) {
                 url = SEARCH_POSTS;
-            } else if ("Filter".equals(action)) {
+            } else if ("FilterPostBySemester".equals(action)) {
                 url = FILTER_POSTS;
 
             }else if ("LoadingIndex".equals(action)) {
@@ -190,6 +202,24 @@ public class MainController extends HttpServlet {
                 url = EDIT_POPOST_BY_MOD;
             }else if ("SubmitEditedPoPost".equals(action)){
                 url = SUBMIT_EDITED_POPOST;
+            }else if ("SearchUserByName".equals(action)){
+                url = SEARCH_USER_BY_NAME;
+            }else if ("SearchStudentByName".equals(action)){
+                url = SEARCH_STUDENT_BY_NAME;
+            }else if ("LoadListInstructors".equals(action)){
+                url = LOAD_ALL_INSTRUCTOR;
+            }else if ("showInstructorDetail".equals(action)){
+                url = SHOW_INSTRUCTOR_DETAIL;
+            }else if ("UpdateInstructor".equals(action)){
+                url = UPDATE_INSTRUCTOR;
+            }else if ("DeleteAInstructor".equals(action)){
+                url = DELETE_INSTRUCTOR;
+            }else if ("SearchInstructorByName".equals(action)){
+                url = SEARCH_INSTRUCTOR;
+            }else if ("LoadAllProject".equals(action)){
+                url = LOAD_ALL_PROJECT;
+            }else if ("LazyLoadProject".equals(action)){
+                url = LAZY_LOAD_PROJECT;
             }
             else if ("Logout".equals(action)) {
                 url = LOGOUT;

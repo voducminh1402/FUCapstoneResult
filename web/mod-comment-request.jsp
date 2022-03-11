@@ -38,47 +38,51 @@
                     <strong>FU</strong>
                 </div>
                 <ul class="list-unstyled components">
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
-                           class="dropdown-toggle">
-                            <i class="fas fa-home"></i>
-                            Home
+                    <li class="nav-item active">
+                        <a class="nav-link" href="mod-index.jsp">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Trang chủ</span></a>
+                    </li>
+                    <hr class="sidebar-divider">
+
+                    <li class="dropdown">
+                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                            <i class="fas fa-home"></i> Quản lí người dùng
                         </a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li>
-                                <a href="#">Home 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Home 3</a>
-                            </li>
-                        </ul>
+                    </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí đồ án
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
+                        </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="fas fa-briefcase"></i>
-                            About
+                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
                         </a>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                           class="dropdown-toggle">
-                            <i class="fas fa-copy"></i>
-                            Pages
-                        </a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
                     </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Bài đăng chính
+                        </a>
+                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-copy"></i> Bài viết của sinh viên
+                        </a>
+                    </li>
+
                 </ul>
+
             </nav>
             <!-- Page Content  -->
             <div id="content">
@@ -187,7 +191,7 @@
                                                                                 value="AddComment"
                                                                                 class="btn btn-primary btn-sm ">Xét
                                                                             Duyệt</button>
-                                                                        <li class="breadcrumb-item"><a
+                                                                    <li class="breadcrumb-item"><a
                                                                             href="MainController?action=DeleteComment&commentId=${o.commentId}"
                                                                             style="color:red">Xoá</a>
 
@@ -205,13 +209,18 @@
                                                                         <a href="MainController?action=Undo&commentId=${o.commentId}"
                                                                            style="color:red">Đã
                                                                             Xoá</a>
-                                                                    </c:if>
+                                                                        </c:if>
                                                             </ol>
                                                         </nav>
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <a href="blog-single.html">${o.postTitle}</a>
+                                                    <c:if test="${o.isMainPost eq null}">
+                                                        <a href="MainController?action=DetailProject&id=${o.postID}">${o.postTitle}</a>
+                                                    </c:if>
+                                                    <c:if test="${o.isMainPost ne null}">
+                                                        <a href="MainController?action=viewPoPost&id=${o.postID}">${o.postTitle}</a>
+                                                    </c:if>
                                                 </td>
                                             </tr> 
                                         </c:forEach>

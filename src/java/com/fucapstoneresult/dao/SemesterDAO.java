@@ -242,7 +242,10 @@ public class SemesterDAO {
     
     public static void main(String[] args) throws SQLException {
         SemesterDAO dao = new SemesterDAO();
-        System.out.println(dao.getSemester("1").getSemesterName());
+        List<SemesterDTO> list = dao.getAllSemester();
+        for (SemesterDTO semesterDTO : list) {
+            System.out.println(semesterDTO);
+        }
     }
     
 }
