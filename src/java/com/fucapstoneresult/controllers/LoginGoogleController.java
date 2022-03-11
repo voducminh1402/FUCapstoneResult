@@ -27,7 +27,9 @@ import javax.servlet.http.HttpSession;
 public class LoginGoogleController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String SUCCESS = "index.jsp";
+    private static final String USER = "index.jsp";
+    private static final String ADMIN = "admin.jsp";
+    private static final String FAIL = "error.html";
 
     public LoginGoogleController() {
         super();
@@ -36,7 +38,7 @@ public class LoginGoogleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = SUCCESS;
+        String url = FAIL;
         try {
             String code = request.getParameter("code");
             if (code == null || code.isEmpty()) {
@@ -55,6 +57,11 @@ public class LoginGoogleController extends HttpServlet {
                     userDTO = new UserDTO(id.toString(), user.getName(), createDate, 2, "", user.getEmail(), "", "", 1);
                     dao.addUser(userDTO);
                 }
+                if (userDTO.getUserStatus() != 3)
+                    if (userDTO.getRoleID() == 1)
+                        url = USER;
+                    else
+                        url = ADMIN;
                 HttpSession session = request.getSession();
                 session.setAttribute("USER", userDTO);
                 

@@ -47,4 +47,9 @@ public class InstructorDTO {
         this.instructorImage = instructorImage;
     }
 
+    @Override
+    public String toString() {
+        return "InstructorDTO{" + "instructorID=" + instructorID + ", instructorName=" + instructorName + ", instructorImage=" + instructorImage + '}';
+    }
+
 }

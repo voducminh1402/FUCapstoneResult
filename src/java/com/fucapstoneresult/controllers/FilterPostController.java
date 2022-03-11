@@ -9,17 +9,11 @@ import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.SemesterDTO;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.Scanner;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "FilterPostController", urlPatterns = {"/FilterPostController"})
 public class FilterPostController extends HttpServlet {
 
-    private static final String SUCCESS = "project-major.jsp";
+    private static final String SUCCESS = "LazyLoadProjectController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,28 +36,29 @@ public class FilterPostController extends HttpServlet {
         try {
             //da lay duoc du lieu tu database nghi cach tra ve trang html nua thoi
             //co the trả lại một tập json xong rồi dùng js để show ra tại vì còn lazy load nữa
-            String semesterName = request.getParameter("filterValue");
+            String id = request.getParameter("filter");
             PostsDAO postDao = new PostsDAO();
             List<PostsDTO> listPost;
-            if ("Học Kì".equals(semesterName)) {
-                
+            SemesterDAO dao = new SemesterDAO();
+            List<SemesterDTO> list = dao.getAllSemester();
+            request.setAttribute("LIST_SEMESTER", list);
+            request.setAttribute("FILTER", id);
+            if ("Học Kì".equals(id)) {
+
                 listPost = postDao.getAllPost();
             } else {
-                SemesterDAO semesterDao = new SemesterDAO();
-                String semesterID = semesterDao.getSemesterByName(semesterName);
 
                 ProjectDAO projectDao = new ProjectDAO();
                 List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(semesterID);
+                listProjectID = projectDao.getAllProjectIDBySemester(id);
                 listPost = postDao.getPostsByProjectID(listProjectID);
             }
-
-            String json = new Gson().toJson(listPost);
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(json);
+            request.setAttribute("LIST_MAIN_POST", listPost);
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

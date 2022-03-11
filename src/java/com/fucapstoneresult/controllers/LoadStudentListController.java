@@ -6,11 +6,8 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.StudentDAO;
-import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.StudentDTO;
-import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,12 +23,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoadStudentListController", urlPatterns = {"/LoadStudentListController"})
 public class LoadStudentListController extends HttpServlet {
 
-    private static final String ERROR = "student.jsp";
+    private static final String SUCCESS = "student.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR;
+        String url = SUCCESS;
         try {
             StudentDAO dao = new StudentDAO();
             List<StudentDTO> list = dao.getListStudent();
