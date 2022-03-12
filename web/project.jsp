@@ -4,6 +4,10 @@
     Author     : HP
 --%>
 
+<%@page import="com.fucapstoneresult.dao.PostsDAO"%>
+<%@page import="com.fucapstoneresult.models.PostsDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -79,7 +83,7 @@
                                     <a href="./index.jsp">Trang chủ</a>
                                 </li>
                                 <li>
-                                    <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                    <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                 </li>
                                 <li>
                                     <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -179,7 +183,7 @@
                                     <option value="Summer 2020">Summer 2020</option>
                                     <option value="Fall 2020">Fall 2020</option> -->
                                 </select>
-                                <button name="action" value="LazyLoadProject">Submit</button>
+                                <button class="filter-button" name="action" value="LazyLoadProject">Lọc</button>
                             </form>
                         </div>
                     </div>
@@ -193,12 +197,14 @@
                                     <div class="project-content-overlay">
                                         <img
                                             class="project-content-img"
-                                            src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg"
+                                            src="${o.postImage}"
                                             alt=""
                                             />
                                         <div class="project-content-text">
-                                            <span id="title">${o.postTitle}</span>
-                                            <h5>Web Development Framework</h5>
+                                            <span id="title">Software Engineering</span>
+                                            <h5>
+                                                <a href="MainController?action=DetailProject&id=${o.postID}">${o.postTitle}</a>
+                                            </h5>
                                             <span>View Project</span>
                                         </div>
                                     </div>
@@ -250,7 +256,7 @@
                     <div class="footer-content-detail col-md-2">
                         <span>Liên Kết Hỗ Trợ</span>
                         <div><a href="./index.jsp">Trang chủ</a></div>
-                        <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                        <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                         <div><a href="./blog-single.html">Bài viết</a></div>
                     </div>
                     <div class="footer-content-detail col-md-2">

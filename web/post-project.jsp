@@ -83,7 +83,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -287,15 +287,13 @@
                         <h3>Giảng viên hướng dẫn</h3>
                         <div class="line-break"></div>
                         <div class="instructor-all">
-                            <c:forEach items="${requestScope.INSTRUCTOR}" var="o">
-                                <div class="instructor-info">
-                                    <img
-                                        src="${o.instructorImage}"
-                                        alt="instructor image"
-                                        />
-                                    <div class="intructor-name">${o.instructorName}</div>
-                                </div>
-                            </c:forEach>
+                            <div class="instructor-info">
+                                <img
+                                    src="${requestScope.INSTRUCTOR.instructorImage}"
+                                    alt="instructor image"
+                                    />
+                                <div class="intructor-name">${requestScope.INSTRUCTOR.instructorName}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="tags left-col">
@@ -332,7 +330,7 @@
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
                             <div><a href="./index.jsp">Trang chủ</a></div>
-                            <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                            <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>
                         <div class="footer-content-detail col-md-2">

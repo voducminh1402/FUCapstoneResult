@@ -16,7 +16,6 @@ import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.CommentDTO;
 import com.fucapstoneresult.models.InstructorDTO;
 import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
@@ -65,11 +64,11 @@ public class DetailProjectController extends HttpServlet {
                 }
                 
                 String instructorId = projectInsDao.getProjectInstructor(projectID).getInstructorID();
-                InstructorDTO instructorList = instructorDao.getInstructorByID(instructorId);
+                InstructorDTO instructor = instructorDao.getInstructorByID(instructorId);
                 List<StudentDTO> teamList = studentDao.getListStudentWithTeam(projectID);
                 
                 request.setAttribute("POST", post);
-                request.setAttribute("INSTRUCTOR", instructorList);
+                request.setAttribute("INSTRUCTOR", instructor);
                 request.setAttribute("TEAM", teamList);
                 request.setAttribute("TAGS", tagDetailList);
                 request.setAttribute("COMMENTS", comments);

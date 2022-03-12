@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FUCapstoneResult/web/mod-add-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddStudentController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
         </group>
     </open-files>
 </project-private>
