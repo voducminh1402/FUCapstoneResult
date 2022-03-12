@@ -25,9 +25,14 @@
         <link rel="stylesheet" href="./assets/css/po-add-post.css">
     </head>
     <body>
+<<<<<<< HEAD
+        <div class="header-part">
+                    <header class="home-page-header">
+=======
         <div class="header-all">
             <div class="header-part">
                     <header class="home-page-header" style="background-color:#F26F21">
+>>>>>>> 888235fee79b19291d54d75fb4a0a6331068c862
                         <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
                             <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
@@ -77,7 +82,11 @@
                                             <a href="./login.html">Đăng nhập</a>
                                         </c:if>
                                         <c:if test="${sessionScope.USER ne null}">
-                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                            <a style="color: var(--main-orange); text-transform: uppercase">
+                                                <form action="MainController">
+                                                    <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                </form>
+                                            </a>
                                         </c:if>
                                     </li>
                                 </ul>
@@ -113,7 +122,6 @@
                         </div>
                     </div>
                 </div>
-        </div>
         <div class="wrapper" style="background-color: inherit; margin-top: 80px; border: none; max-width: 1400px;">
             <!-- Page Content  -->
             <div id="content" style="width: 100%;">

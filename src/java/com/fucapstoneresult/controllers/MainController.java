@@ -72,6 +72,9 @@ public class MainController extends HttpServlet {
     private static final String REJECT_POST= "RejectPostController";
     private static final String EDIT_POPOST_BY_MOD = "EditPoPostByModController";
     private static final String SUBMIT_EDITED_POPOST = "SubmitEditedPoPostController";
+<<<<<<< HEAD
+    private static final String LOGOUT = "LogoutController";
+=======
     private static final String SEARCH_USER_BY_NAME = "SearchUserByNameController";
     private static final String SEARCH_STUDENT_BY_NAME = "SearchStudentByNameController";
     private static final String LOAD_ALL_INSTRUCTOR = "LoadAllIntructorController";
@@ -81,6 +84,7 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_INSTRUCTOR = "SearchInstructorController";
     private static final String LOAD_ALL_PROJECT = "LoadAllProjectController";
     private static final String LAZY_LOAD_PROJECT = "LazyLoadProjectController";
+>>>>>>> 888235fee79b19291d54d75fb4a0a6331068c862
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -216,6 +220,9 @@ public class MainController extends HttpServlet {
                 url = LOAD_ALL_PROJECT;
             }else if ("LazyLoadProject".equals(action)){
                 url = LAZY_LOAD_PROJECT;
+            }
+            else if ("Logout".equals(action)) {
+                url = LOGOUT;
             }
 
         } catch (Exception e) {
