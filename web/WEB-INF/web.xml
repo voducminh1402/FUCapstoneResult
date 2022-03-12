@@ -158,6 +158,10 @@
         <servlet-name>SubmitEditedPoPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.SubmitEditedPoPostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LogoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -305,6 +309,10 @@
     <servlet-mapping>
         <servlet-name>SubmitEditedPoPostController</servlet-name>
         <url-pattern>/SubmitEditedPoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
