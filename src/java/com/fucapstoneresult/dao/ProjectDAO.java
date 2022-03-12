@@ -306,7 +306,7 @@ public class ProjectDAO {
     }
     
     public ProjectDTO getProject(String projectID) throws SQLException {
-        ProjectDTO project = new ProjectDTO();
+        ProjectDTO project = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
