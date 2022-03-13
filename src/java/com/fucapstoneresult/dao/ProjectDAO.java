@@ -152,6 +152,53 @@ public class ProjectDAO {
         return projectList;
     }
     
+    public List<ProjectDTO> getAllProjectByName(String projectName) throws SQLException {
+        List<ProjectDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql = "SELECT ProjectID, ProjectName, ProjectDescription, ProjectImage, ProjectScore, MajorID, SemesterID "
+                            + " FROM Projects "
+                            + " WHERE ProjectName like ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, projectName);
+                rs = stm.executeQuery();
+                
+                while (rs.next()) {
+                    String projectID = rs.getString("ProjectID");
+                    String projectDescription = rs.getString("ProjectDescription");
+                    String projectImage = rs.getString("ProjectImage");
+                    float projectScore = Float.parseFloat(rs.getString("ProjectScore"));
+                    String majorID = rs.getString("MajorID");
+                    String semesterID = rs.getString("SemesterID");
+                    
+                    projectList.add(new ProjectDTO(projectID, projectName, projectDescription, projectImage, projectScore, majorID, semesterID));
+                }
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectList;
+    }
+    
     public List<String> getAllProjectIDBySemester(String semesterID) throws SQLException {
         List<String> projectList = new ArrayList<>();
         Connection conn = null;
@@ -191,6 +238,7 @@ public class ProjectDAO {
         
         return projectList;
     }
+    
     
     public boolean updateProject(ProjectDTO project) throws SQLException {
         boolean check = false;
@@ -350,6 +398,8 @@ public class ProjectDAO {
         
         return project;
     }
+    
+    
     
     public List<ProjectDTO> getTop10Project() throws SQLException {
         List<ProjectDTO> projectList = new ArrayList<>();

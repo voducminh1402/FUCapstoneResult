@@ -162,6 +162,10 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -313,6 +317,10 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProjectController</servlet-name>
+        <url-pattern>/SearchProjectController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
