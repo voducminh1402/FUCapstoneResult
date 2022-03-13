@@ -5,15 +5,19 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.ProjectDAO;
-import com.fucapstoneresult.dao.SemesterDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.SemesterDTO;
+import static com.fucapstoneresult.dao.ImportExcel.addToDatabase;
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.dao.TeamDAO;
+import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.ObjectDTO;
+import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.models.TeamDTO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,59 +29,21 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "LazyLoadProjectController", urlPatterns = {"/LazyLoadProjectController"})
-public class LazyLoadProjectController extends HttpServlet {
-
-    private static final String SUCCESS = "project.jsp";
-
+@WebServlet(name = "LoadFileStudentController", urlPatterns = {"/LoadFileStudentController"})
+public class LoadFileStudentController extends HttpServlet {
+    
+    private static final String SUCCESS = "student.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String url = SUCCESS;
         try {
-            int step = 3;
-            int number = step;
-            String numberString = request.getParameter("number");
-            String id = request.getParameter("filter-id");
-            if (numberString != null) {
-                int numberRespone = Integer.parseInt(numberString);
-                number = numberRespone + step;
-            }
-            if (id == null) {
-                id = "Học Kì";
-            }
-
-            SemesterDAO dao = new SemesterDAO();
-            List<SemesterDTO> list = dao.getAllSemester();
-            PostsDAO dPost = new PostsDAO();
-            List<PostsDTO> listPost;
-            if ("Học Kì".equals(id)) {
-
-                listPost = dPost.getAllMainPost();
-            } else {
-
-                ProjectDAO projectDao = new ProjectDAO();
-                List<String> listProjectID;
-                listProjectID = projectDao.getAllProjectIDBySemester(id);
-                listPost = dPost.getPostsByProjectID(listProjectID);
-            }
-            if (listPost.size() < number) {
-
-                number = listPost.size();
-            }
-
-            List<PostsDTO> listP = new ArrayList<>();
-            for (int i = 0; i < number; i++) {
-                listP.add(listPost.get(i));
-            }
-            request.setAttribute("LIST_SEMESTER", list);
-            request.setAttribute("FILTER", id);
-            request.setAttribute("NUMBER", number);
-            request.setAttribute("LIST_MAIN_POST", listP);
+            addToDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+            response.sendRedirect(url);
         }
     }
 

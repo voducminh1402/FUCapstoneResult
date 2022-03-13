@@ -169,7 +169,7 @@
                                         <div class="filter">
                                     
 
-                                            <form enctype="multipart/form-data" action="/upload" method="post">
+                                            <form id="load-file" enctype="multipart/form-data" action="MainController?action=LoadFileStudent" method="post">
                                                 <label id="label" for="image-file"
                                                        ><i id="icon" class="fas fa-file-import"></i>Import</label
                                                 >
@@ -307,7 +307,6 @@
                 crossorigin="anonymous"
                 referrerpolicy="no-referrer"
             ></script>
-            <script src="./assets/js/app.js"></script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -316,18 +315,11 @@
                     });
                 });
             </script>
-            <script type="text/javascript">
-                function getFilePath() {
-                    $('input[type=file]').change(function () {
-//                        var filePath = $('#fileUpload').val();
-//                        console.log($(filePath);
-                        console.log(this.files[0].mozFullPath);
-                    });
-                }
-            </script>
+
             <script>
                 document.getElementById("image-file").addEventListener("change", () => {
                     const element = document.getElementById("file-name");
+                    
                     element.innerHTML = "";
                     var input = document.querySelector("#image-file"),
                             info = input.files[0].name;
@@ -343,6 +335,7 @@
                         }
                         count++;
                     }, 1000);
+                    document.getElementById("load-file").submit();
                 });
             </script>
 
@@ -354,7 +347,7 @@
                 src="https://cdn.tiny.cloud/1/m862mtwmvofelufcxf6kpr7rr30u4mh13bb09ks2g0xg8gdf/tinymce/5/tinymce.min.js"
                 referrerpolicy="origin"
             ></script>
-            <script
+<!--            <script
                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
                 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
                 crossorigin="anonymous"
@@ -375,7 +368,7 @@
                 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
                 crossorigin="anonymous"
             ></script>
-            <script src="./assets/js/app.js"></script>
+            <script src="./assets/js/app.js"></script>-->
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -394,6 +387,5 @@
                     content_css: "./assets/css/mod-project.css",
                 });
             </script>
-            <script src="./assets/js/admin.js"></script>
         </body>
     </html>
