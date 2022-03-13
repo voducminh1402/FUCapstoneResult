@@ -32,8 +32,7 @@
     <body >
         <div class="home-page-wrapper">
             <div class="container-fluid">
-                <div class="header-all">
-                    <div class="header-part">
+                <div class="header-part">
                     <header class="home-page-header">
                         <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
@@ -68,7 +67,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -84,7 +83,11 @@
                                             <a href="./login.html">Đăng nhập</a>
                                         </c:if>
                                         <c:if test="${sessionScope.USER ne null}">
-                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                            <a style="color: var(--main-orange); text-transform: uppercase">
+                                                <form action="MainController">
+                                                    <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                </form>
+                                            </a>
                                         </c:if>
                                     </li>
                                 </ul>
@@ -120,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+                <div class="overlay-page" id="overlay-page"></div>
                 <section class="projects-major" >
                     <div class="container">
                         <div class="projects-header">
@@ -160,7 +163,6 @@
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.postID}">Xem</a>
                                                         <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
@@ -183,7 +185,7 @@
                             <div class="footer-content-detail col-md-2">
                                 <span>Liên Kết Hỗ Trợ</span>
                                 <div><a href="./index.jsp">Trang chủ</a></div>
-                                <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                                <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                                 <div><a href="./blog-single.html">Bài viết</a></div>
                             </div>
                             <div class="footer-content-detail col-md-2">

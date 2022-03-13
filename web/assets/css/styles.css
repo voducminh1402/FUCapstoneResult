@@ -466,11 +466,12 @@ header {
 .good-capstone-text {
     width: 100%;
     position: absolute;
-    bottom: -100px;
+    /*bottom: -100px;*/
     color: white;
     z-index: 4;
     padding: 30px 15px;
     transition: ease-in 0.3s;
+    bottom: 0;
 }
 
 .good-capstone:hover .good-capstone-text {
@@ -1352,4 +1353,35 @@ article{
 .menu-login a {
     color: var(--main-orange);
     text-decoration: none;
+}
+
+.button-logout {
+  display: inline-block;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  font: inherit;
+  line-height: normal;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}   
+
+.filter-button {
+    background-color: var(--main-orange);
+    color: var(--main-white);
+    padding: 10px 25px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
 }

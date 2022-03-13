@@ -31,25 +31,32 @@ public class ViewPoPostController extends HttpServlet {
 
     private static final String ERROR = "po-view-post.jsp";
     private static final String SUCCESS = "po-view-post.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try{
+        try {
             /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+
             PostsDAO post = new PostsDAO();
-            List<PostsDTO> postListCheck = post.getAllPost();
+            List<PostsDTO> postListCheck = post.getAllPoPost();
             List<PostsDTO> postList = new ArrayList<>();
-            for (PostsDTO postItem : postListCheck){
-                if (postItem.getIsMainPost() != null){
-                    postList.add(postItem);
+
+            if (userLogin != null) {
+                for (PostsDTO postItem : postListCheck) {
+                    if (userLogin.getUserID().equals(postItem.getLastEditedUser())) {
+                        postList.add(postItem);
+                    }
                 }
             }
-            
+
             request.setAttribute("POPOST_LIST", postList);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

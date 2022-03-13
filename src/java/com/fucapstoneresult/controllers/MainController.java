@@ -65,7 +65,10 @@ public class MainController extends HttpServlet {
     private static final String CHOOSE_INSTRUCTOR = "ChooseInstructorController";
     private static final String LOAD_STUDENT_LIST = "LoadStudentListController";
     private static final String DELETE_STUDENT = "DeleteStudentController";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
     private static final String VIEW_MOD_INDEX_PAGE= "ViewModIndexPageController";
     private static final String VIEW_MOD_REQUEST_PAGE = "ViewModRequestPageController";
     private static final String VIEW_POPOST_DETAIL = "ViewPoPostDetailController";
@@ -73,7 +76,11 @@ public class MainController extends HttpServlet {
     private static final String REJECT_POST= "RejectPostController";
     private static final String EDIT_POPOST_BY_MOD = "EditPoPostByModController";
     private static final String SUBMIT_EDITED_POPOST = "SubmitEditedPoPostController";
+<<<<<<< HEAD
 
+=======
+    private static final String LOGOUT = "LogoutController";
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
     private static final String SEARCH_USER_BY_NAME = "SearchUserByNameController";
     private static final String SEARCH_STUDENT_BY_NAME = "SearchStudentByNameController";
     private static final String LOAD_ALL_INSTRUCTOR = "LoadAllIntructorController";
@@ -83,8 +90,14 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_INSTRUCTOR = "SearchInstructorController";
     private static final String LOAD_ALL_PROJECT = "LoadAllProjectController";
     private static final String LAZY_LOAD_PROJECT = "LazyLoadProjectController";
+<<<<<<< HEAD
     private static final String LOAD_FILE_STUDENT = "LoadFileStudentController";
 
+=======
+    private static final String SEAR_POPOST_BY_NAME= "SearchPoPostByNameController";
+    private static final String FILTER_POPOST_BY_STATUS= "FilterPoPostByStatusController";
+    private static final String SEARCH_PROJECT = "SearchProjectController";
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -187,7 +200,10 @@ public class MainController extends HttpServlet {
                 url = LOAD_STUDENT_LIST;
             }else if ("DeleteStudent".equals(action)){
                 url = DELETE_STUDENT;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
             }else if ("ViewModIndexPage".equals(action)){
                 url = VIEW_MOD_INDEX_PAGE;
             }
@@ -203,7 +219,10 @@ public class MainController extends HttpServlet {
                 url = EDIT_POPOST_BY_MOD;
             }else if ("SubmitEditedPoPost".equals(action)){
                 url = SUBMIT_EDITED_POPOST;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
             }else if ("SearchUserByName".equals(action)){
                 url = SEARCH_USER_BY_NAME;
             }else if ("SearchStudentByName".equals(action)){
@@ -223,8 +242,20 @@ public class MainController extends HttpServlet {
             }else if ("LazyLoadProject".equals(action)){
                 url = LAZY_LOAD_PROJECT;
             }
+<<<<<<< HEAD
             else if ("LoadFileStudent".equals(action)){
                 url = LOAD_FILE_STUDENT;
+=======
+            else if ("Logout".equals(action)) {
+                url = LOGOUT;
+            }else if ("SearchPoPostByName".equals(action)) {
+                url= SEAR_POPOST_BY_NAME;
+            }else if ("filterPostByStatus".equals(action)){
+                url = FILTER_POPOST_BY_STATUS;
+            }
+            else if ("SearchProjectByName".equals(action)) {
+                url = SEARCH_PROJECT;
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
             }
 
         } catch (Exception e) {

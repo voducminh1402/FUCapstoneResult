@@ -158,6 +158,23 @@
         <servlet-name>SubmitEditedPoPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.SubmitEditedPoPostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+<<<<<<< HEAD
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchPoPostByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.FilterPoPostByStatusController</servlet-class>
+=======
+        <servlet-name>SearchProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
+>>>>>>> 3e8645c29e827c1dfef29a33315f5a93c9212113
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -305,6 +322,23 @@
     <servlet-mapping>
         <servlet-name>SubmitEditedPoPostController</servlet-name>
         <url-pattern>/SubmitEditedPoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+<<<<<<< HEAD
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <url-pattern>/SearchPoPostByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <url-pattern>/FilterPoPostByStatusController</url-pattern>
+=======
+        <servlet-name>SearchProjectController</servlet-name>
+        <url-pattern>/SearchProjectController</url-pattern>
+>>>>>>> 3e8645c29e827c1dfef29a33315f5a93c9212113
     </servlet-mapping>
     <session-config>
         <session-timeout>

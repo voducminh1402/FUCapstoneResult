@@ -66,7 +66,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -82,7 +82,11 @@
                                             <a href="./login.html">Đăng nhập</a>
                                         </c:if>
                                         <c:if test="${sessionScope.USER ne null}">
-                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                            <a style="color: var(--main-orange); text-transform: uppercase">
+                                                <form action="MainController">
+                                                    <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                </form>
+                                            </a>
                                         </c:if>
                                     </li>
                                 </ul>
@@ -306,7 +310,7 @@
                 <div class="footer-content-detail col-md-2">
                     <span>Liên Kết Hỗ Trợ</span>
                     <div><a href="./index.jsp">Trang chủ</a></div>
-                    <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                    <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                     <div><a href="./blog-single.html">Bài viết</a></div>
                 </div>
                 <div class="footer-content-detail col-md-2">
