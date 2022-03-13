@@ -32,8 +32,7 @@
     <body >
         <div class="home-page-wrapper">
             <div class="container-fluid">
-                <div class="header-all">
-                    <div class="header-part">
+                <div class="header-part">
                     <header class="home-page-header">
                         <a href="./index.jsp" class="home-page-header__logo">
                             <img src="./assets/images/logo.png" alt="">
@@ -84,7 +83,11 @@
                                             <a href="./login.html">Đăng nhập</a>
                                         </c:if>
                                         <c:if test="${sessionScope.USER ne null}">
-                                            <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                            <a style="color: var(--main-orange); text-transform: uppercase">
+                                                <form action="MainController">
+                                                    <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                </form>
+                                            </a>
                                         </c:if>
                                     </li>
                                 </ul>
@@ -120,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+                <div class="overlay-page" id="overlay-page"></div>
                 <section class="projects-major" >
                     <div class="container">
                         <div class="projects-header">
