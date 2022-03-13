@@ -125,21 +125,25 @@
                                 <div class="col-md-8 col-sm-12">
                                     <div class="filter">
                                         <span>Hiển thị</span>
-                                        <select name="" id="">
-                                            <option value="">Tất cả trạng thái</option>
-                                            <option value="">Đã duyệt</option>
-                                            <option value="">Đang chờ xét duyệt</option>
-                                            <option value="">Đã xóa</option>
-                                        </select>
-                                        <button>Tìm kiếm</button>
+                                        <form action="MainController">
+                                            <select name="status" id="">
+                                                <option value="0">Tất cả trạng thái</option>
+                                                <option value="1">Đã duyệt</option>
+                                                <option value="2">Đang chờ xét duyệt</option>
+                                                <option value="3">Đã xóa</option>
+                                            </select>
+                                            <button name="action" value="filterPostByStatus">Tìm kiếm</button>
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="manage-project">
-                                        <div class="menu-search menu-search-project">
-                                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            <input class="mod-menu-input" type="text" placeholder="Tìm kiếm bài đăng...">
-                                        </div>
+                                        <form action="MainController">
+                                            <div class="menu-search menu-search-project">
+                                                <button name="action" value="SearchPoPostByName"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                <input name="name" class="mod-menu-input" type="text" placeholder="Tìm kiếm bài đăng...">
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -168,10 +172,10 @@
                                             <c:if test="${o.postStatusID eq 2}">
                                                 <tr>
                                                     <td>${counter.count}</td>
-                                                    <td>${o.postAuthor}</td>
-                                                    <td>PhamDucHuy@gmail.com</td>
+                                                    <td>${o.userName}</td>
+                                                    <td>${o.userEmail}</td>
                                                     <td>
-                                                        ${o.postTitle}
+                                                        ${o.postName}
                                                     </td>
                                                     <td>${o.postDate}</td>
                                                     <td></td>
@@ -210,10 +214,10 @@
                                             <c:if test="${o.postStatusID eq 1}">
                                                 <tr>
                                                     <td>${counter.count}</td>
-                                                    <td>${o.postAuthor}</td>
-                                                    <td>PhamDucHuy@gmail.com</td>
+                                                    <td>${o.userName}</td>
+                                                    <td>${o.userEmail}</td>
                                                     <td>
-                                                        ${o.postTitle}
+                                                        ${o.postName}
                                                     </td>
                                                     <td>${o.postDate}</td>
                                                     <td></td>

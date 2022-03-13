@@ -53,7 +53,7 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-                <nav id="sidebar">
+            <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>FPT University</h3>
                     <strong>FU</strong>

@@ -163,7 +163,6 @@
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.postID}">Xem</a>
                                                         <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>

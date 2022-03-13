@@ -302,12 +302,13 @@ public class CommentDAO {
             if (conn != null) {
                 String sql = " Select Num = COUNT(PostID)"
                         + " From Comments "
-                        + " where PostID = ? ";
+                        + " where PostID = ? and CommentStatusID = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, postId);
+                stm.setInt(2, 2);
                 rs = stm.executeQuery();
-                if (rs != null) {
-                    num = rs.getInt("Num");
+                while (rs.next()) {
+                    num = Integer.parseInt(rs.getString("Num")) ;
                 }
             }
         } catch (Exception e) {

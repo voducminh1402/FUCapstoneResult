@@ -27,9 +27,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.sqljdbc4.jar}</file>
-                </library>
-                <library dirs="200">
                     <file>${libs.javaee-web-api-7.0.classpath}</file>
                 </library>
                 <library dirs="200">
@@ -37,8 +34,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.sqljdbc4.jar-1}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
+                    <file>${file.reference.sqljdbc4.jar}</file>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.poi-5.2.1.jar}</file>
