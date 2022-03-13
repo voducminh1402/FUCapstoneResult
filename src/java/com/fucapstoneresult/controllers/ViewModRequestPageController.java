@@ -10,6 +10,7 @@ import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.models.UserPostDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -34,18 +35,10 @@ public class ViewModRequestPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
-            PostsDAO postDao = new PostsDAO();
-            UserDAO userDao = new UserDAO();
-            List<PostsDTO> postListCheck = postDao.getAllPost();
-            List<PostsDTO> postList = new ArrayList<>();
-            List<UserDTO> userList = new ArrayList<>();
-            for (PostsDTO postItem : postListCheck) {
-                if (postItem.getIsMainPost() != null) {
-                    postList.add(postItem);
-                }
-            }
-            if (postList != null) {
-                request.setAttribute("POPOST_LIST", postList);
+            PostsDAO postDao = new PostsDAO();              
+            List<UserPostDTO> postListCheck = postDao.getAllPoPostWithUserInfo();
+            if (postListCheck != null) {
+                request.setAttribute("POPOST_LIST", postListCheck);
                 url = SUCCESS;
             }
         } catch (Exception e) {

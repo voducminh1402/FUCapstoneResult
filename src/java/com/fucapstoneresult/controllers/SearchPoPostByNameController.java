@@ -6,57 +6,36 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.models.UserPostDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author ADMIN
  */
-public class ViewPoPostController extends HttpServlet {
+public class SearchPoPostByNameController extends HttpServlet {
 
-    private static final String ERROR = "po-view-post.jsp";
-    private static final String SUCCESS = "po-view-post.jsp";
-
+    private static final String ERROR = "mod-request.jsp";
+    private static final String SUCCESS = "mod-request.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
             /* TODO output your page here. You may use following sample code. */
-            HttpSession session = request.getSession();
-            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-
-            PostsDAO post = new PostsDAO();
-            List<PostsDTO> postListCheck = post.getAllPoPost();
-            List<PostsDTO> postList = new ArrayList<>();
-
-            if (userLogin != null) {
-                for (PostsDTO postItem : postListCheck) {
-                    if (userLogin.getUserID().equals(postItem.getLastEditedUser())) {
-                        postList.add(postItem);
-                    }
-                }
-            }
-
+            String name = request.getParameter("name");
+            PostsDAO postDao = new PostsDAO();
+            List<UserPostDTO> postList = postDao.searchPostByName(name);
+            
             request.setAttribute("POPOST_LIST", postList);
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
-        } finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
@@ -73,11 +52,7 @@ public class ViewPoPostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewPoPostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -91,11 +66,7 @@ public class ViewPoPostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewPoPostController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
