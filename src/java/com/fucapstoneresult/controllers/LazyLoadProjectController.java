@@ -34,12 +34,13 @@ public class LazyLoadProjectController extends HttpServlet {
             throws ServletException, IOException {
         String url = SUCCESS;
         try {
-            int number = 3;
+            int step = 3;
+            int number = step;
             String numberString = request.getParameter("number");
-            String id = request.getParameter("filter");
+            String id = request.getParameter("filter-id");
             if (numberString != null) {
                 int numberRespone = Integer.parseInt(numberString);
-                number = numberRespone + 3;
+                number = numberRespone + step;
             }
             if (id == null) {
                 id = "Học Kì";

@@ -159,10 +159,11 @@
                             <c:if test="${requestScope.LIST_SEMESTER eq null}">
                                 <c:redirect url="MainController?action=LazyLoadProject"></c:redirect>
                             </c:if>
-                            <form action="MainController">
-                                <select class="filter-semester" name="filter" id="filter">
+                            <form id="form-lazy" action="MainController">
+                                <input type="hidden" name="action" value="LazyLoadProject"/>
+                                <select class="filter-semester" name="filter-id" id="filter-id">
                                     <option selected value="Học Kì">Tất Cả Học Kì</option>
-
+                                    
                                     <c:forEach var="o" items="${requestScope.LIST_SEMESTER}">
                                         <c:if test="${requestScope.FILTER eq o.semesterID}">
                                             <option selected="" value="${o.semesterID}">${o.semesterName}</option>
@@ -172,15 +173,8 @@
                                         </c:if>
                                     </c:forEach>
 
-                                    <!-- <option value="Spring 2019">Spring 2019</option>
-                                    <option value="Summer 2019">Summer 2019</option>
-                                    <option value="Fall 2019">Fall 2019</option>
-                                    <option value="Spring 2021">Spring 2021</option>
-                                    <option value="Summer 2020">Summer 2020</option>
-                                    <option value="Fall 2020">Fall 2020</option> -->
                                 </select>
-                                <button name="action" value="LazyLoadProject">Submit</button>
-                                
+
                             </form>
                         </div>
                     </div>
@@ -307,7 +301,12 @@
                 <div class="loading__letter">.</div>
             </div>
         </div>
-
+        <script>
+            document.getElementById("filter-id").addEventListener("change", () => {
+                console.log("da change");
+                document.getElementById("form-lazy").submit(); 
+            });
+        </script>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
@@ -328,6 +327,7 @@
         ></script>
         <script src="./assets/js/app.js"></script>
         <script src="./assets/js/projects.js"></script>
+
 
     </body>
 </html>
