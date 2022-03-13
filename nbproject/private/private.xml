@@ -3,18 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/genfiles.properties</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/ant-deploy.xml</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/WEB-INF/web.xml</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/private/private.xml</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/project.properties</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddStudentController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/project.xml</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/private/private.properties</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-=======
-            <file>file:/D:/FUCapstoneResult/web/mod-add-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/JsonTimelineDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/JsonSlideDAO.java</file>
->>>>>>> 31f04dc6521d94ebaac2d591f4912b5a0ade436d
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>

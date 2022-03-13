@@ -73,7 +73,6 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-<<<<<<< HEAD
                     <file>${file.reference.commons-io-2.11.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -91,9 +90,7 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.log4j-api-2.17.1.jar}</file>
-=======
                     <file>${file.reference.gson-2.8.0.jar}</file>
->>>>>>> 31f04dc6521d94ebaac2d591f4912b5a0ade436d
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
