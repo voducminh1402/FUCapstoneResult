@@ -3,10 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/genfiles.properties</file>
-=======
->>>>>>> a3ba220d1d44fdbe7ad7dbc3bf2d2fa33befa457
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/ant-deploy.xml</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/WEB-INF/web.xml</file>
@@ -18,10 +15,7 @@
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/mod-add-project.jsp</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/private/private.properties</file>
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetListProjectController.java</file>
-<<<<<<< HEAD
             <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/nbproject/build-impl.xml</file>
-=======
->>>>>>> a3ba220d1d44fdbe7ad7dbc3bf2d2fa33befa457
         </group>
         <group/>
     </open-files>

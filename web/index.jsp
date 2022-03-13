@@ -371,7 +371,7 @@
                                         <img style="width: 100%" src="${o.instructorImage}" alt="">
                                         <div class="lecturer-info">
                                             <h3>
-                                                <a href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
+                                                <a style="color: white" href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
                                             </h3>
                                             <span>Giảng Viên Khối Ngành SE</span>
                                         </div>

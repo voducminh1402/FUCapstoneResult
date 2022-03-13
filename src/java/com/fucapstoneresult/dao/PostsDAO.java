@@ -826,7 +826,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost"
                         + " FROM Posts "
-                        + " WHERE ProjectID=? AND IsMainPost IS NULL";
+                        + " WHERE ProjectID= ? AND IsMainPost IS NOT NULL";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
 
