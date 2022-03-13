@@ -47,6 +47,10 @@ public class ImportExcel {
 
     public static void main(String[] args) throws IOException, SQLException {        
 
+        addToDatabase();
+    }
+
+    public static void addToDatabase() throws IOException, SQLException{
         final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
@@ -71,8 +75,6 @@ public class ImportExcel {
             System.out.println(object);
         }
     }
-
-
     public static List<ObjectDTO> readExcel(String excelFilePath) throws FileNotFoundException, IOException {
         List<ObjectDTO> listObject = new ArrayList<>();
 

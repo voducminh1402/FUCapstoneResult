@@ -657,28 +657,29 @@ public class PostsDAO {
     }
 
     public static void main(String[] args) throws SQLException {
-<<<<<<< HEAD
+
         PostsDAO dao = new PostsDAO();
         List<PostsDTO> l = dao.getListTop3Post("1");
         for (PostsDTO l1 : l) {
             System.out.println(l1);
-=======
-        ProjectDAO projectDao = new ProjectDAO();
-        PostsDAO dPost = new PostsDAO();
-        List<String> listProjectID;
-        listProjectID = projectDao.getAllProjectIDBySemester("1");
-        for (String string : listProjectID) {
-            System.out.println(string);
+
+            ProjectDAO projectDao = new ProjectDAO();
+            PostsDAO dPost = new PostsDAO();
+            List<String> listProjectID;
+            listProjectID = projectDao.getAllProjectIDBySemester("1");
+            for (String string : listProjectID) {
+                System.out.println(string);
+            }
+            List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
+            for (PostsDTO postsDTO : listPost) {
+                System.out.println(postsDTO);
+
+            }
+            System.out.println(dao.getUpVoteByProjectId("1"));
+
         }
-        List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
-        for (PostsDTO postsDTO : listPost) {
-            System.out.println(postsDTO);
->>>>>>> anhlh
-        }
-        System.out.println(dao.getUpVoteByProjectId("1"));
 
     }
-<<<<<<< HEAD
 
     public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {
         Connection conn = null;
@@ -728,27 +729,27 @@ public class PostsDAO {
         }
         return postList;
     }
-    
-    public boolean approvePost (String id) throws SQLException{
+
+    public boolean approvePost(String id) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
-        try{
+        try {
             conn = DBUtils.getConnection();
-            if (conn != null){
+            if (conn != null) {
                 String sql = " UPDATE Posts"
                         + " SET PostStatusID = ?"
                         + " WHERE PostID = ?";
-                
+
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, 1);
                 stm.setString(2, id);
-                
+
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -758,26 +759,27 @@ public class PostsDAO {
         }
         return check;
     }
-        public boolean rejectPost (String id) throws SQLException{
+
+    public boolean rejectPost(String id) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
-        try{
+        try {
             conn = DBUtils.getConnection();
-            if (conn != null){
+            if (conn != null) {
                 String sql = " UPDATE Posts"
                         + " SET PostStatusID = ?"
                         + " WHERE PostID = ?";
-                
+
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, 3);
                 stm.setString(2, id);
-                
+
                 check = stm.executeUpdate() > 0 ? true : false;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
+        } finally {
             if (stm != null) {
                 stm.close();
             }
@@ -787,6 +789,5 @@ public class PostsDAO {
         }
         return check;
     }
-=======
->>>>>>> anhlh
+
 }

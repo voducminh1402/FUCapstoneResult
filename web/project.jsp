@@ -180,6 +180,7 @@
                                     <option value="Fall 2020">Fall 2020</option> -->
                                 </select>
                                 <button name="action" value="LazyLoadProject">Submit</button>
+                                
                             </form>
                         </div>
                     </div>
