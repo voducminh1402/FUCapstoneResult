@@ -162,6 +162,14 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchPoPostByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.FilterPoPostByStatusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -313,6 +321,14 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <url-pattern>/SearchPoPostByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <url-pattern>/FilterPoPostByStatusController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
