@@ -43,21 +43,66 @@
         </style>
     </head>
     <body>
-        <div class="home-page-wrapper">
-            <div class="container-fluid">
-                <div class="header-all">
-                    <div class="header-part">
-                        <header class="home-page-header" style="background-color:#F26F21">
-                            <a href="./index.jsp" class="home-page-header__logo">
-                                <img src="./assets/images/logo.png" alt="">
-                                <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
-                            </a>
-                        </header>
-                        <div class="menu-right">
-                            <div class="menu-icon">
-                                <div class="menu-icon-line1"></div>
-                                <div class="menu-icon-line2"></div>
-                                <div class="menu-icon-line3"></div>
+        <div class="header-all">
+            <div class="header-part">
+                    <header class="home-page-header" style="background-color:#F26F21">
+                        <a href="./index.jsp" class="home-page-header__logo">
+                            <img src="./assets/images/logo.png" alt="">
+                            <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
+                        </a>
+                    </header>
+                    <div class="menu-right">
+                                <div class="menu-icon">
+                                    <div class="menu-icon-line1"></div>
+                                    <div class="menu-icon-line2"></div>
+                                    <div class="menu-icon-line3"></div>
+                                </div>
+                            </div>
+                    <div class="menu-detail">
+                        <div class="menu-wrap">
+                            <div class="menu-close-button">
+                                
+                            </div>
+                            <div class="menu-search">
+                                <form action="MainController">
+                                    <div class="menu-search-wrap">
+                                        <input name="searchValue" type="text" placeholder="Tìm kiếm">
+                                        <button name="action" value="Search" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="menu-items">
+                                <ul>
+                                    <li>
+                                        <a href="./index.jsp">Trang chủ</a>
+                                    </li>
+                                    <li>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
+                                    </li>
+                                    <li>
+                                        <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
+                                    </li>
+                                    <li>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                    </li>
+                                    <li>
+                                        <a href="./contact.html">Liên hệ</a>
+                                    </li>
+                                    <li>
+                                        <c:if test="${sessionScope.USER eq null}">
+                                            <a href="./login.html">Đăng nhập</a>
+                                        </c:if>
+                                        <c:if test="${sessionScope.USER ne null}">
+                                            <a style="color: var(--main-orange); text-transform: uppercase">
+                                                <form action="MainController">
+                                                    <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                </form>
+                                            </a>
+                                        </c:if>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <div class="menu-detail">

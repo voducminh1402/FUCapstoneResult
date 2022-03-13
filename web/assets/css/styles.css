@@ -471,6 +471,7 @@ header {
     z-index: 4;
     padding: 30px 15px;
     transition: ease-in 0.3s;
+    bottom: 0;
 }
 
 .good-capstone:hover .good-capstone-text {
@@ -1375,3 +1376,12 @@ article{
   -ms-user-select: none;
   user-select: none;
 }   
+
+.filter-button {
+    background-color: var(--main-orange);
+    color: var(--main-white);
+    padding: 10px 25px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+}

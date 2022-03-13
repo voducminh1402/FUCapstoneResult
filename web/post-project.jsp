@@ -83,7 +83,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -322,6 +322,31 @@
                                     excepturi, odio ipsam voluptate. Optio, ullam illum. Magnam,
                                     consectetur.
                                 </p>
+                    <div class="team-members left-col">
+                        <h3>Các thành viên của nhóm</h3>
+                        <div class="line-break"></div>
+                        <ul>
+                            <c:forEach items="${requestScope.TEAM}" var="o">
+                                <li>
+                                    <img
+                                        src="${o.studentImage}"
+                                        alt="team member image"
+                                        />
+                                    <p>${o.studentName}</p>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                    <div class="instructor left-col">
+                        <h3>Giảng viên hướng dẫn</h3>
+                        <div class="line-break"></div>
+                        <div class="instructor-all">
+                            <div class="instructor-info">
+                                <img
+                                    src="${requestScope.INSTRUCTOR.instructorImage}"
+                                    alt="instructor image"
+                                    />
+                                <div class="intructor-name">${requestScope.INSTRUCTOR.instructorName}</div>
                             </div>
                         </div>
                     </div>
@@ -360,6 +385,42 @@
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </div>
+=======
+            </div>
+            </div>
+            <div class="footer">
+                <div class="container">
+                   <div class="footer-content row">
+                        <div class="footer-content-first col-md-4">
+                            <h3>Về Đại Học FPT</h3>
+                            <p>Đại học FPT hướng tới xây dựng mô hình của một trường Đại học thế hệ mới; gắn liền đào tạo với thực tiễn cuộc sống và nhu cầu nhân lực của đất nước, góp phần đưa Giáo dục Việt Nam tiến tới ngang tầm các nước trên thế giới.</p>
+                            <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
+                        </div>
+                        <div class="footer-content-detail col-md-2">
+                            <span>Liên Kết Hỗ Trợ</span>
+                            <div><a href="./index.jsp">Trang chủ</a></div>
+                            <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
+                            <div><a href="./blog-single.html">Bài viết</a></div>
+                        </div>
+                        <div class="footer-content-detail col-md-2">
+                            <span>Tính Năng</span>
+                            <div><a href="">Đăng Ký</a></div>
+                            <div><a href="">Đăng Nhập</a></div>
+                            <div><a href="./contact.html">Liên hệ</a></div>
+                        </div>
+                        <div class="col-md-4">
+                            <span>Theo Dõi Trường Đại Học FPT Tại: </span>
+                            <p>Cung cấp năng lực cạnh tranh toàn cầu cho đông đảo người học, góp phần mở mang bờ cõi trí tuệ đất nước</p>
+                            <div class="social">
+                                <a href="">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
                             </div>
                         </div>
                     </div>

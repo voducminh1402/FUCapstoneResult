@@ -24,8 +24,8 @@ import javax.servlet.http.HttpSession;
  * @author VODUCMINH
  */
 public class CommentPostController extends HttpServlet {
-    private static final String ERROR = "projects.html"; //tam
-    private static final String SUCCESS = "projects.html"; //tam
+    private static final String ERROR = "project.jsp"; //tam
+    private static final String SUCCESS = "project.jsp"; //tam
     private static final String LOGIN = "login.html"; //tam
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

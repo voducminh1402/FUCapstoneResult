@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController extends HttpServlet {
 
     private static final String USER = "index.jsp";
-    private static final String ADMIN = "admin.jsp";
+    private static final String ADMIN = "mod-index.jsp";
     private static final String FAIL = "login.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
