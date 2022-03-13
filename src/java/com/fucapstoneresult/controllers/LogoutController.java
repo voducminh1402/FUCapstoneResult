@@ -5,11 +5,9 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,40 +15,26 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author VODUCMINH
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
-
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
-
+public class LogoutController extends HttpServlet {
+    private static final String SUCCESS = "index.jsp";
+    private static final String ERROR = "login.html";
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = ERROR;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
-                }
-
+            HttpSession session = request.getSession();
+            session.removeAttribute("USER");
+            if (session.getAttribute("USER") == null) {
+                url = SUCCESS;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+        } 
+        catch (Exception e) {
+        }
+        finally {
             response.sendRedirect(url);
         }
     }

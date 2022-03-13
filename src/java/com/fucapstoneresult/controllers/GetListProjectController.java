@@ -7,13 +7,16 @@ package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.ProjectInstructorDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.models.InstructorDTO;
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.ProjectInstructorDTO;
 import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +29,7 @@ import javax.servlet.http.HttpSession;
  * @author VODUCMINH
  */
 public class GetListProjectController extends HttpServlet {
-    private static final String TARGET = "mod-add-post.jsp";
+        private static final String TARGET = "mod-add-post.jsp";
     private static final String ADD_TEAM = "mod-add-team.jsp";
     private static final String ADD_PROJECT_INSTRUCTOR = "mod-add-project-instructor.jsp";
     private static final String ADD_STUDENT = "mod-add-student.jsp";
@@ -53,13 +56,43 @@ public class GetListProjectController extends HttpServlet {
             List<TeamDTO> ListTeam = DAOteam.getAllTeam();
             SemesterDAO DAOSemester = new SemesterDAO();
             List<SemesterDTO> listSem = DAOSemester.getAllSemester();
+            List<TeamDTO> teamDefault = new ArrayList<>();
+            ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
             
-            request.setAttribute("PROJECT_LIST", list);
+            
+            
+            for (TeamDTO team : ListTeam) {
+                if(dao.getProject(team.getTeamID()) == null){
+                    teamDefault.add(team);
+                }
+            }
+            
             String page = request.getParameter("page");
+            request.setAttribute("PROJECT_LIST", list);
             request.setAttribute("INSTRUCTOR_LIST", List);
-            request.setAttribute("TEAM_LIST", ListTeam);
+            request.setAttribute("TEAM_LIST", teamDefault);
             request.setAttribute("VIEW_PROJECT", project);
             request.setAttribute("SEMESTER_LIST", listSem);
+            
+            if (proID != null) {
+                
+                
+                TeamDTO team = DAOteam.getTeam(proID);
+                
+                request.setAttribute("TEAM_NAME", team.getTeamName());
+                ProjectInstructorDTO proins = proinsdao.getProjectInstructor(team.getTeamID());
+                
+                InstructorDTO displayInsName = DAO.getInstructorByID(proins.getInstructorID());
+                request.setAttribute("INSTRUCTOR_NAME", displayInsName.getInstructorName());
+
+                SemesterDTO displaysem = DAOSemester.getSemester(project.getSemesterID());
+                request.setAttribute("SEMESTER_NAME", displaysem.getSemesterName());
+                request.setAttribute("VIEW_PROJECT", project);
+            }
+            
+            
+           
+            
             
             if(page.equals("add-post")){
                 url = TARGET;

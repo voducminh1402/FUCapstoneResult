@@ -5,53 +5,48 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.models.UserPostDTO;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+public class FilterPoPostByStatusController extends HttpServlet {
 
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
+    private static final String ERROR = "mod-request.jsp";
+    private static final String SUCCESS = "mod-request.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = ERROR;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
-                }
+            int status = Integer.parseInt(request.getParameter("status"));
+            List<UserPostDTO> postList = new ArrayList<>();
+            PostsDAO postDao = new PostsDAO();
 
+            if (status == 0) {
+                postList = postDao.getAllPoPostWithUserInfo();
+            } else {
+                postList = postDao.filterPostByStatus(status);
+            }
+
+            if (postList != null) {
+                request.setAttribute("POPOST_LIST", postList);
+                url = SUCCESS;
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

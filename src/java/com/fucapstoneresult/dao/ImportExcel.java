@@ -47,11 +47,15 @@ public class ImportExcel {
 
     public static void main(String[] args) throws IOException, SQLException {        
 
+<<<<<<< HEAD
         addToDatabase();
     }
 
     public static void addToDatabase() throws IOException, SQLException{
         final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
+=======
+        final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
         UserDAO user = new UserDAO();
