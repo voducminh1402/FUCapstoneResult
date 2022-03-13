@@ -73,10 +73,26 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD
+                    <file>${file.reference.xmlbeans-5.0.3.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+=======
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
                     <file>${file.reference.commons-collections4-4.4.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD
+                    <file>${file.reference.log4j-api-2.17.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-compress-1.21.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+=======
                     <file>${file.reference.commons-compress-1.21.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -89,6 +105,7 @@
                     <file>${file.reference.gson-2.8.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
