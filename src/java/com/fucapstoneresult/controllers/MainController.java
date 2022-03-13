@@ -82,6 +82,8 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_INSTRUCTOR = "SearchInstructorController";
     private static final String LOAD_ALL_PROJECT = "LoadAllProjectController";
     private static final String LAZY_LOAD_PROJECT = "LazyLoadProjectController";
+    private static final String SEAR_POPOST_BY_NAME= "SearchPoPostByNameController";
+    private static final String FILTER_POPOST_BY_STATUS= "FilterPoPostByStatusController";
     private static final String SEARCH_PROJECT = "SearchProjectController";
 
 
@@ -221,6 +223,10 @@ public class MainController extends HttpServlet {
             }
             else if ("Logout".equals(action)) {
                 url = LOGOUT;
+            }else if ("SearchPoPostByName".equals(action)) {
+                url= SEAR_POPOST_BY_NAME;
+            }else if ("filterPostByStatus".equals(action)){
+                url = FILTER_POPOST_BY_STATUS;
             }
             else if ("SearchProjectByName".equals(action)) {
                 url = SEARCH_PROJECT;

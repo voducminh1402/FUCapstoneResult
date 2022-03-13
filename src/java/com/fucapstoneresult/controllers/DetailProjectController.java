@@ -20,6 +20,7 @@ import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -43,15 +45,27 @@ public class DetailProjectController extends HttpServlet {
         String url = ERROR;
         try {
             String projectID = request.getParameter("id");
+            int check = 0;
+            
+            HttpSession session = request.getSession();
+            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
             PostsDAO postDao = new PostsDAO();
-            PostsDTO post = postDao.getPostWithProjectId(projectID);
+            PostsDTO post = postDao.getMainPostWithProjectId(projectID);
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             ProjectInstructorDAO projectInsDao = new ProjectInstructorDAO();
             InstructorDAO instructorDao = new InstructorDAO();
             StudentDAO studentDao = new StudentDAO();
             List<PostsDTO> top3Post = postDao.getListTop3Post(projectID);
+            List<StudentDTO> studentList = studentDao.getListStudentWithTeam(projectID);
+            
+            if (userLogin != null){
+            for (StudentDTO studentDTO : studentList) {
+                if (userLogin.getUserName().equals(studentDTO.getStudentName()))
+                    check = 1;
+            }
+            }
             
             if (post != null) {
                 CommentDAO cmtDao = new CommentDAO();
@@ -75,6 +89,7 @@ public class DetailProjectController extends HttpServlet {
                 request.setAttribute("COMMENTS", comments);
                 request.setAttribute("COUNT_CMT", comments.size());
                 request.setAttribute("TOP_POST", top3Post);
+                request.setAttribute("IS_STUDENT", check);
                 url = SUCCESS;
             }
         } 

@@ -56,9 +56,6 @@ public class AddPoPostController extends HttpServlet {
             //PostsDTO post =  (PostsDTO) session.getAttribute("POST");
             String postID = request.getParameter("po-post-id");
             String authorInfo = userLogin.getUserName();
-            StudentDAO studentDao = new StudentDAO();
-            //StudentDTO student = studentDao.getStudentbyName(authorInfo); 
-            //String teamID = student.getTeamID();
             PostsDAO postDao = new PostsDAO();
             PostsDTO mainPost = new PostsDTO();
             mainPost = postDao.getPostWithID(postID);
@@ -82,7 +79,7 @@ public class AddPoPostController extends HttpServlet {
                         checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailID));
                     }
                     if (checkTagDetail && checkTag){
-                        request.setAttribute("POST", mainPost);
+                        request.setAttribute("POST_ID", postID);
                         url = SUCCESS;
                     }
                 }
