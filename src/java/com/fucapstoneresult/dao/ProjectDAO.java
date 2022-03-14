@@ -370,7 +370,7 @@ public class ProjectDAO {
                 stm.setString(1, projectID);
                 rs = stm.executeQuery();
                 
-                while (rs.next()) {
+                if (rs.next()) {
                     String projectName = rs.getString("ProjectName");
                     String projectDes = rs.getString("ProjectDescription");
                     String projectImage = rs.getString("ProjectImage");
@@ -411,9 +411,10 @@ public class ProjectDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null) {
-                String sql = "SELECT TOP 10 ProjectID, ProjectName, ProjectDescription, ProjectImage "
-                            + " FROM Projects "
-                            + " ORDER BY ProjectScore DESC";
+                String sql = "SELECT TOP 10 pr.ProjectID, ProjectName, ProjectDescription, ProjectImage " +
+                            "FROM Projects pr, Posts p " +
+                            "WHERE pr.ProjectID = p.ProjectID AND p.IsMainPost IS NOT NULL " +
+                            "ORDER BY ProjectScore DESC";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 

@@ -47,7 +47,7 @@ public class UpdatePostController extends HttpServlet {
             String postTitle = request.getParameter("post-title");
             String postAuthor = request.getParameter("post-author");
             String postImage = request.getParameter("post-thumbnail");
-            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />");
+            String postContent = request.getParameter("post-content").replace("src=\"", "src='").replace("\" />", "' />").replaceAll("\"", "'");;
             String[] postTags = request.getParameter("post-tag").split(",");
             String projectID = request.getParameter("project-name");
             String isMainPost= null;
