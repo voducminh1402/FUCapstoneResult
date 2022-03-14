@@ -9,11 +9,16 @@ import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.ProjectInstructorDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.dao.TagDetailsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.ProjectInstructorDTO;
 import com.fucapstoneresult.models.SemesterDTO;
+import com.fucapstoneresult.models.TagDetailsDTO;
+import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,7 +62,10 @@ public class GetListProjectController extends HttpServlet {
             SemesterDAO DAOSemester = new SemesterDAO();
             List<SemesterDTO> listSem = DAOSemester.getAllSemester();
             List<TeamDTO> teamDefault = new ArrayList<>();
+            List<TeamDTO> teamEdit = new ArrayList<>();
             ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
+            TagsDAO tagDao = new TagsDAO();
+            TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             
             
             
@@ -67,10 +75,27 @@ public class GetListProjectController extends HttpServlet {
                 }
             }
             
+            for (TeamDTO team : ListTeam) {
+                if(dao.getProject(team.getTeamID()) == null || team.getTeamID().equals(proID) ){
+                    teamEdit.add(team);
+                }
+            }
+            
+            List<TagDetailsDTO> listDetailTag = new ArrayList<>();
+            List<TagsDTO> listTag = tagDao.getListTag(proID);
+            
+            for (TagsDTO tagsDTO : listTag) {
+                listDetailTag.add(tagDetailDao.getTagDetails(tagsDTO.getTagdetailID()));
+            }
+            
+            
+            request.setAttribute("DETAIL_TAG", listDetailTag);
+            
             String page = request.getParameter("page");
             request.setAttribute("PROJECT_LIST", list);
             request.setAttribute("INSTRUCTOR_LIST", List);
             request.setAttribute("TEAM_LIST", teamDefault);
+            request.setAttribute("TEAM_EDIT", teamEdit);
             request.setAttribute("VIEW_PROJECT", project);
             request.setAttribute("SEMESTER_LIST", listSem);
             
@@ -89,10 +114,6 @@ public class GetListProjectController extends HttpServlet {
                 request.setAttribute("SEMESTER_NAME", displaysem.getSemesterName());
                 request.setAttribute("VIEW_PROJECT", project);
             }
-            
-            
-           
-            
             
             if(page.equals("add-post")){
                 url = TARGET;

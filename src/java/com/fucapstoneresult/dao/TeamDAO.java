@@ -167,6 +167,41 @@ public class TeamDAO {
         return check;
     }
     
+    public boolean updateTeamWithProject(String teamID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "UPDATE Teams "
+                            + " SET TeamID=? "
+                            + " WHERE TeamID=?";
+                stm = conn.prepareStatement(sql);
+                
+                stm.setString(1, teamID);
+                stm.setString(2, teamID);
+                
+                check = stm.executeUpdate() > 0;
+                
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return check;
+    }
+    
     public boolean deleteTeam(String teamID) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -197,6 +232,8 @@ public class TeamDAO {
         
         return check;
     }
+    
+    
      
     
     public List<TeamDTO> getAllTeam() throws SQLException {

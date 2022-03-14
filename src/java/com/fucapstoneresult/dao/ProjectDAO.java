@@ -370,7 +370,7 @@ public class ProjectDAO {
                 stm.setString(1, projectID);
                 rs = stm.executeQuery();
                 
-                while (rs.next()) {
+                if (rs.next()) {
                     String projectName = rs.getString("ProjectName");
                     String projectDes = rs.getString("ProjectDescription");
                     String projectImage = rs.getString("ProjectImage");

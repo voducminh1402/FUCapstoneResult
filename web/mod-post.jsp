@@ -145,9 +145,9 @@
                                         <button><i class="fa fa-search" aria-hidden="true"></i></button>
                                         <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Bài Đăng...">
                                     </div>
-                                    <a href="mod-add-post.jsp" class="link-add-project">
+<!--                                    <a href="mod-add-post.jsp" class="link-add-project">
                                         <i class="fas fa-plus"></i>
-                                    </a>
+                                    </a>-->
                                 </div>
                             </div>
                         </div>

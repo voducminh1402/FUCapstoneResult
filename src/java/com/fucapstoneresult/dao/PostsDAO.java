@@ -658,7 +658,6 @@ public class PostsDAO {
         return success;
     }
 
-<<<<<<< HEAD
     public static void main(String[] args) throws SQLException {
 
         PostsDAO dao = new PostsDAO();
@@ -684,8 +683,6 @@ public class PostsDAO {
 
     }
 
-=======
->>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
     public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
@@ -795,8 +792,6 @@ public class PostsDAO {
         return check;
     }
 
-<<<<<<< HEAD
-=======
     public List<PostsDTO> getAllPoPost() throws SQLException {
         List<PostsDTO> listPost = new ArrayList<>();
         Connection conn = null;
@@ -991,10 +986,11 @@ public class PostsDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null){
-                String sql = " Select Users.UserID, Users.Email, Users.UserName, Posts.PostID, Posts.PostTitle, Posts.PostStatusID, Posts.PostDate "
+                String sql = " Select Users.UserID, Users.Email, Users.UserName, Posts.PostID, Posts.PostTitle, Posts.PostStatusID, Posts.PostDate, isMainPost "
                         + " from Posts "
                         + " join Users "
-                        + "  on Posts.LastEditedUser = Users.UserID ";
+                        + "  on Posts.LastEditedUser = Users.UserID "
+                        + " Where IsMainPost IS NOT NULL";
                 stm  = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()){
@@ -1024,5 +1020,4 @@ public class PostsDAO {
         }
         return list;
     }
->>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
 }
