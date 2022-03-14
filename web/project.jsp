@@ -178,11 +178,6 @@
                                     </c:forEach>
 
                                 </select>
-<<<<<<< HEAD
-
-=======
-                                <button class="filter-button" name="action" value="LazyLoadProject">Lọc</button>
->>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
                             </form>
                         </div>
                     </div>

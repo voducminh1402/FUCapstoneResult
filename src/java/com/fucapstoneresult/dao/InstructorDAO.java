@@ -85,6 +85,38 @@ public class InstructorDAO {
 
         return check;
     }
+    
+    public boolean updateInstructor(String projectID, String instructorID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "UPDATE ProjectInstructor "
+                        + " SET ProjectID=?, InstructorID=? ";
+                stm = conn.prepareStatement(sql);
+
+                stm.setString(1, projectID);
+                stm.setString(2, instructorID);
+
+                check = stm.executeUpdate() > 0;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
 
     public boolean deleteInstructor(String instructorID) throws SQLException {
         boolean check = false;
