@@ -20,7 +20,11 @@ public class DBUtils {
                 + "localhost:1433;"
                 + "databaseName=FUCapstoneResult";
 
-        Connection con = DriverManager.getConnection(url, "sa", "Nktnguyen2001");    
+<<<<<<< HEAD
+        Connection con = DriverManager.getConnection(url, "sa", "lehonganh01112001");    
+=======
+        Connection con = DriverManager.getConnection(url, "sa", "Minh1402");    
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
 
         return con;
     }

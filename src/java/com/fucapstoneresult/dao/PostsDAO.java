@@ -84,7 +84,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID "
                         + " FROM Posts "
-                        + " WHERE IsMainPost is null ";
+                        + " WHERE IsMainPost is not null ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -658,6 +658,34 @@ public class PostsDAO {
         return success;
     }
 
+<<<<<<< HEAD
+    public static void main(String[] args) throws SQLException {
+
+        PostsDAO dao = new PostsDAO();
+        List<PostsDTO> l = dao.getListTop3Post("1");
+        for (PostsDTO l1 : l) {
+            System.out.println(l1);
+
+            ProjectDAO projectDao = new ProjectDAO();
+            PostsDAO dPost = new PostsDAO();
+            List<String> listProjectID;
+            listProjectID = projectDao.getAllProjectIDBySemester("1");
+            for (String string : listProjectID) {
+                System.out.println(string);
+            }
+            List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
+            for (PostsDTO postsDTO : listPost) {
+                System.out.println(postsDTO);
+
+            }
+            System.out.println(dao.getUpVoteByProjectId("1"));
+
+        }
+
+    }
+
+=======
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
     public static List<PostsDTO> getTop5Post() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
@@ -767,6 +795,8 @@ public class PostsDAO {
         return check;
     }
 
+<<<<<<< HEAD
+=======
     public List<PostsDTO> getAllPoPost() throws SQLException {
         List<PostsDTO> listPost = new ArrayList<>();
         Connection conn = null;
@@ -994,4 +1024,5 @@ public class PostsDAO {
         }
         return list;
     }
+>>>>>>> 844809c5277f52a4d13a7aa8b01937155abdc5e3
 }
