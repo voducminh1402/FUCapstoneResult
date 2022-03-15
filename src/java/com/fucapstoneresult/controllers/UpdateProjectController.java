@@ -5,7 +5,9 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
@@ -35,13 +37,22 @@ public class UpdateProjectController extends HttpServlet {
             
             String projectID = request.getParameter("project-id");
             String projectName = request.getParameter("project-name");
-            String projectDescription = request.getParameter("project-des").replace("src=\"", "src='").replace("\" />", "' />").replaceAll("\"", "'");
             String projectImage = request.getParameter("project-image");
             String projectScore = request.getParameter("project-score");
-            String semesterID = request.getParameter("semester-id");
+            String semesterID = request.getParameter("semester-id");            
+            String instructorID = request.getParameter("instructor-id");
+            String teamID = request.getParameter("team-id");
+
+
             
             ProjectDAO dao = new ProjectDAO();
-            ProjectDTO pro = new ProjectDTO(projectID, projectName, projectDescription, projectImage, Float.parseFloat(projectScore), "1", semesterID);
+            ProjectDTO pro = new ProjectDTO(projectID, projectName, "", projectImage, Float.parseFloat(projectScore), "1", semesterID);
+            
+            InstructorDAO insDao = new InstructorDAO();
+            insDao.updateInstructor(projectID, instructorID);
+            
+            TeamDAO teamDao = new TeamDAO();
+            teamDao.updateTeamWithProject(teamID);
             
             boolean check = dao.updateProject(pro);
             
