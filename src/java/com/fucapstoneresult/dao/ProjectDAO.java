@@ -576,6 +576,96 @@ public class ProjectDAO {
         return project;
     }
     
+    public boolean deteleProjectByID(String projectID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = " DELETE FROM Tags  WHERE PostID IN (select PostID from Posts where ProjectID =? )"
+                            +" DELETE FROM Comments  WHERE PostID IN (select PostID from Posts where ProjectID =? ) "
+                            +" DELETE FROM Votes  WHERE PostID IN (select PostID from Posts where ProjectID =? ) "
+                            +" DELETE FROM ProjectInstructor where ProjectID =? "
+                            +" DELETE FROM Posts where ProjectID =? "
+                            +" DELETE FROM Projects where ProjectID =? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, projectID);
+                stm.setString(2, projectID);
+                stm.setString(3, projectID);
+                stm.setString(4, projectID);
+                stm.setString(5, projectID);
+                stm.setString(6, projectID);
+
+                check = stm.executeUpdate() > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean updateProjectByTeamID(ProjectDTO project, String TeamID) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE Tags SET PostID =?  WHERE PostID IN (select PostID from Posts where ProjectID =? )"
+                            +" UPDATE Comments SET PostID =?  WHERE PostID IN (select PostID from Posts where ProjectID =? ) "
+                            +" UPDATE Votes SET PostID =? WHERE PostID IN (select PostID from Posts where ProjectID =? ) "
+                            +" UPDATE ProjectInstructor SET ProjectID =? where ProjectID =? "
+                            +" UPDATE Posts SET PostID =? where ProjectID =? "
+                            +" UPDATE Posts SET ProjectID =? where ProjectID =? "
+                            +" UPDATE Projects SET ProjectID =? where ProjectID =? ";
+                stm = conn.prepareStatement(sql);
+
+                stm.setString(1, TeamID);
+                stm.setString(2, project.getProjectID());
+                stm.setString(3, TeamID);
+                stm.setString(4, project.getProjectID());
+                stm.setString(5, TeamID);
+                stm.setString(6, project.getProjectID());
+                stm.setString(7, TeamID);
+                stm.setString(8, project.getProjectID());
+                stm.setString(9, TeamID);
+                stm.setString(10, project.getProjectID());
+                stm.setString(11, TeamID);
+                stm.setString(12, project.getProjectID());
+                stm.setString(13, TeamID);
+                stm.setString(14, project.getProjectID());
+                
+
+                check = stm.executeUpdate() > 0;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+
+    
     public static void main(String[] args) throws SQLException {
         ProjectDAO dao = new ProjectDAO();
         

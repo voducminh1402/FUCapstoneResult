@@ -82,7 +82,7 @@ public class AddProjectController extends HttpServlet {
                 ProjectInstructorDTO proins = new ProjectInstructorDTO(teamID, instructorID);
                 boolean checkproins = proinsdao.insertProjectInstructor(proins);
 
-                PostsDTO post = new PostsDTO(teamID, projectName, currentDate, postAuthor, projectDescription, projectImage, userID, 0, 1, null, teamID);
+                PostsDTO post = new PostsDTO(teamID, projectName, currentDate, postAuthor, projectDescription, projectImage, userID, 0, 1, teamID, teamID);
                 boolean checkPost = postdao.insert(post);
                 boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
 
