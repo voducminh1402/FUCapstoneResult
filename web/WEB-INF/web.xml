@@ -171,8 +171,12 @@
         <servlet-class>com.fucapstoneresult.controllers.FilterPoPostByStatusController</servlet-class>
     </servlet>
     <servlet>
-         <servlet-name>SearchProjectController</servlet-name>
+        <servlet-name>SearchProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveProjectController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -333,11 +337,14 @@
     <servlet-mapping>
         <servlet-name>FilterPoPostByStatusController</servlet-name>
         <url-pattern>/FilterPoPostByStatusController</url-pattern>
-        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchProjectController</servlet-name>
         <url-pattern>/SearchProjectController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveProjectController</servlet-name>
+        <url-pattern>/RemoveProjectController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
