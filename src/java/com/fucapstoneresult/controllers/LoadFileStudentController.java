@@ -30,6 +30,7 @@ public class LoadFileStudentController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     public static final String SAVE_DIRECTORY = "upload";
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = SUCCESS;
