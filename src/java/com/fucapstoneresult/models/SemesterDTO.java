@@ -16,6 +16,11 @@ public class SemesterDTO {
     public SemesterDTO() {
     }
 
+    public SemesterDTO(String semesterID) {
+        this.semesterID = semesterID;
+        this.semesterName = "";
+    }
+
     public SemesterDTO(String semesterID, String semesterName) {
         this.semesterID = semesterID;
         this.semesterName = semesterName;
@@ -36,4 +41,10 @@ public class SemesterDTO {
     public void setSemesterName(String semesterName) {
         this.semesterName = semesterName;
     }
+
+    @Override
+    public String toString() {
+        return "SemesterDTO{" + "semesterID=" + semesterID + ", semesterName=" + semesterName + '}';
+    }
+    
 }

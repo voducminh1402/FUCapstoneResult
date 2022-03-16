@@ -8,6 +8,10 @@
   font-size: 1rem;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
   position: relative;
 }
@@ -18,8 +22,12 @@
 
 .container .picture .logo {
   position: absolute;
-  top: 5%;
-  left: 5%;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.container .picture .logo img {
+  width: 250px;
 }
 
 .container .picture .background {
@@ -59,7 +67,7 @@
 
 .container .content .content-main input.width-100 {
   width: 100%;
-  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  padding: 0.6rem 0.6rem 0.6rem 2rem;
   margin-bottom: 0.5rem;
   border: none;
   background-color: #eeeded;
@@ -201,7 +209,44 @@
     margin-bottom: 2rem;
   }
   .container .content .content-main .anotherway-login {
-    padding: 3rem 0 8rem 0;
+    padding: 3rem 0 3rem 0;
   }
+}
+.google-btn {
+  width: 200px;
+  height: 42px;
+  background-color: #4285f4;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.google-btn .google-icon-wrapper {
+  position: absolute;
+  margin-top: 1px;
+  margin-left: 1px;
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+.google-btn .google-icon {
+  position: absolute;
+  margin-top: 11px;
+  margin-left: 11px;
+  width: 18px;
+  height: 18px;
+}
+.google-btn .btn-text {
+  float: right;
+  margin: 11px 11px 0 0;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+  font-family: "Roboto";
+}
+.google-btn:hover {
+  box-shadow: 0 0 6px #4285f4;
+}
+.google-btn:active {
+  background: #1669f2;
 }
 /*# sourceMappingURL=login.css.map */

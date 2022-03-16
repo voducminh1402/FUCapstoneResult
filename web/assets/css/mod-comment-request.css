@@ -1,0 +1,35 @@
+.breadcrumb-item a {
+    color: blue;
+}
+
+.table tbody td a {
+    color: blue;
+}
+
+input[type=submit] {
+    background-color: #2975e6;
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+.accepted {
+    background-color: green;
+}
+
+.accepted:hover {
+    background-color: green;
+}
+
+.deleted {
+    background-color: red;
+    border-color: red;
+}
+
+.deleted:hover {
+    background-color: red;
+}
