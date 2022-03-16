@@ -124,34 +124,22 @@
                         <div class="content-filter">
                             <div class="row">
                                 <div class="col-md-8 col-sm-12">
-                                    <div class="filter">
-                                        <span>Hiển Thị</span> 
-                                        <select name="" id="">
-                                            <option value="Học Kì">Tất Cả Học Kì</option>
-                                            <option value="Spring 2019">Spring 2019</option>
-                                            <option value="Summer 2019">Summer 2019</option>
-                                            <option value="Fall 2019">Fall 2019</option>
-                                            <option value="Spring 2020">Spring 2020</option>
-                                            <option value="Summer 2020">Summer 2020</option>
-                                            <option value="Fall 2020">Fall 2020</option>
-                                        </select>
-                                        <button>Tìm Kiếm</button>
-                                    </div>
+                                    
                                 </div>
                                 <div class="col-md-4 col-sm-12">
-                                    <form action="MainController">
+                                   
                                     <div class="manage-project">
                                         <div class="menu-search menu-search-project">
                                             <button name="action" value="SearchProjectByName">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </button>
-                                            <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Đồ Án..." name="name">
+                                            <input class="mod-menu-input" type="text" placeholder="Thêm Đồ Án" name="name" readonly>
                                         </div>
                                         <a href="mod-add-project.jsp" class="link-add-project">
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
-                                    </form>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -212,8 +200,8 @@
                                                         </a>
                                                     </div>
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=GetListProject&id=<%= pro.getProjectID() %>&page=delete-project">
-                                                            <span>Delete</span>
+                                                        <a href="MainController?action=RemoveProject&id=<%= pro.getProjectID() %>">
+                                                            <span>Xóa</span>
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                                         </a>
                                                     </div>        
