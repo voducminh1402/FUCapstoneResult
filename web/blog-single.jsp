@@ -11,7 +11,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/post-project.css" />
     <link rel="stylesheet" href="./assets/css/styles.css">
-    
+     <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+            integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+            />
    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
@@ -66,7 +72,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -127,6 +133,11 @@
         <div class="container container-fluid">
             <div class="row tip-row" style="margin-top: 150px !important">
                 <div class="left-column col-md-8 pr-md-4">
+                    <div class="route">
+                            <span>
+                                <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
+                            </span> <i class="fas fa-angle-right"></i> <span>Bài đăng chi tiết</span>
+                        </div>
                     <article class="tip-content">
                         <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
                             <img src="${requestScope.POST.postImage}"
@@ -310,7 +321,7 @@
                 <div class="footer-content-detail col-md-2">
                     <span>Liên Kết Hỗ Trợ</span>
                     <div><a href="./index.jsp">Trang chủ</a></div>
-                    <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                    <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                     <div><a href="./blog-single.html">Bài viết</a></div>
                 </div>
                 <div class="footer-content-detail col-md-2">

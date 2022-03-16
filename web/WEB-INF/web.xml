@@ -163,7 +163,15 @@
         <servlet-class>com.fucapstoneresult.controllers.LogoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SearchProjectController</servlet-name>
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchPoPostByNameController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.FilterPoPostByStatusController</servlet-class>
+    </servlet>
+    <servlet>
+         <servlet-name>SearchProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -317,6 +325,15 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPoPostByNameController</servlet-name>
+        <url-pattern>/SearchPoPostByNameController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterPoPostByStatusController</servlet-name>
+        <url-pattern>/FilterPoPostByStatusController</url-pattern>
+        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchProjectController</servlet-name>

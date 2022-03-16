@@ -32,12 +32,12 @@ public class GetPostController extends HttpServlet {
             PostsDAO postDao = new PostsDAO();
             List<PostsDTO> postList = postDao.getAllPost();
             List<PostsDTO> postList1 = new ArrayList<>();
-            for (PostsDTO postsDTO : postList) {
-                if(postsDTO.getIsMainPost() == null){
-                    postList1.add(postsDTO);
-                }
-            }
-            request.setAttribute("POST_LIST", postList1);
+//            for (PostsDTO postsDTO : postList) {
+//                if(postsDTO.getIsMainPost() == null){
+//                    postList1.add(postsDTO);
+//                }
+//            }
+            request.setAttribute("POST_LIST", postList);
         } 
         catch (Exception e) {
             System.out.println(e.toString());

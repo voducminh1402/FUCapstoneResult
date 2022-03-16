@@ -159,7 +159,7 @@
                         <input id="post-tag" data-role="tagsinput" type="text" required>
                         <input id="post-tag-hidden" type="hidden" name="post-tag">
 
-                        <label for="">Mô Tả Đồ Án</label><br>
+                        <label for="">Nội Dung Bài Viết</label><br>
                         <textarea id="editor" cols="30" rows="50" required>
                         </textarea>
                         <input id="project-description" type="hidden" name="project-description"/>

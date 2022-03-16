@@ -105,40 +105,71 @@
                 <div class="content-detail content-post add-post">
                     <h2>Sửa Thông Tin Đồ Án</h2>
                     <form action="MainController" method="POST">
-                        <label for="">Mã Đồ Án Đang Sửa</label><br>
-                        <input name="project-id" value="${requestScope.VIEW_PROJECT.projectID}" readonly="">
-                        <c:if test="${requestScope.SEMESTER_LIST == null}">
-                            <c:redirect url="MainController?action=GetListProject&page=update-project"></c:redirect>
+                        <input type="hidden" name="project-id" value="${requestScope.VIEW_PROJECT.projectID}">
+                        <label for="">Tên Đồ Án</label><br>
+                        <input type="text" name="project-name" value="${VIEW_PROJECT.projectName}" required>
+                        <c:if test="${requestScope.TEAM_EDIT == null}">
+                            <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
                         </c:if>
-                        <label for="">Sửa Kì Học Đồ Án</label><br>
-                        <select name="semester-id" id="" required>
-                            <option disabled selected>Lựa Chọn Kì Cho Đồ Án</option>
-                            <c:forEach items="${requestScope.SEMESTER_LIST}" var="o">
-                                <option value="${o.semesterID}">${o.semesterName}</option>
+                        <label for="">Nhóm Thực Hiện</label><br>
+                        <select name="team-id" id="" required>
+                            <option disabled selected>Lựa Chọn Nhóm Thực Hiện Đồ Án</option>
+                            <c:forEach items="${requestScope.TEAM_EDIT}" var="o">
+                                <c:if test="${requestScope.VIEW_PROJECT.projectID eq o.teamID}">
+                                    <option selected="" value="${o.teamID}">${o.teamName}</option>
+                                </c:if>
+                                <c:if test="${requestScope.VIEW_PROJECT.projectID ne o.teamID}">
+                                    <option value="${o.teamID}">${o.teamName}</option>
+                                </c:if>
                             </c:forEach>
                         </select>
                         <br>
-                        <label for="">Sửa Tên Đồ Án</label><br>
-                        <input type="text" name="project-name" value="${requestScope.VIEW_PROJECT.projectName}" >
-                        <label for="">Sửa Mô Tả Đồ Án</label><br>
-                        <textarea id="editor" cols="30" rows="50" ></textarea>
-                        <input id="post-content" type="hidden" name="project-des" value="${requestScope.VIEW_PROJECT.projectDescription}">
-                        <label for="">Sửa Điểm Số Đồ Án</label><br>
-                        <input type="number" step="0.05" min="0" max="10" name="project-score" value="${requestScope.VIEW_PROJECT.projectScore}">
-                        <label for="">Sửa Ảnh Bìa Đồ Án</label>
+                        <label for="">Giảng Viên Hướng Dẫn</label><br>
+                        <select name="instructor-id" id="" required>
+                            <option disabled selected>Lựa Chọn Giảng Viên Hướng Dẫn Cho Đồ Án</option>
+                            <c:forEach items="${requestScope.INSTRUCTOR_LIST}" var="o">
+                                <option value="${o.instructorID}">${o.instructorName}</option>
+                            </c:forEach>
+                        </select>
+                        <br>
+                        <label for="">Học Kì</label><br>
+                        <select name="semester-id" id="" required>
+                            <option disabled selected>Lựa Chọn Kì Cho Đồ Án</option>
+                            <c:forEach items="${requestScope.SEMESTER_LIST}" var="o">
+                                <c:if test="${requestScope.VIEW_PROJECT.semesterID eq o.semesterID}">
+                                    <option selected="" value="${o.semesterID}">${o.semesterName}</option>
+                                </c:if>
+                                <c:if test="${requestScope.VIEW_PROJECT.semesterID ne o.semesterID}">
+                                    <option value="${o.semesterID}">${o.semesterName}</option>
+                                </c:if>
+                            </c:forEach>
+                        </select>
+                        <br>
+                        <label for="">Điểm Số Đồ Án</label><br>
+                        <input type="number" value="${requestScope.VIEW_PROJECT.projectScore}" step="0.05" min="0" max="10" name="project-score">
+                        <label for="">Ảnh Bìa Đồ Án</label>
                         <div class="project-add-upload__image post-upload__image">
                             <label style="margin: 0;" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
-                            <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên" ><br>
-                            <input value="${requestScope.VIEW_PROJECT.projectImage}" id="mod-post__preview-input" name="project-image">
+                            <input type="file" name="file" id="file" placeholder="Tải Ảnh Lên"><br>
+                            <input type="hidden" id="mod-post__preview-input" value="${requestScope.VIEW_PROJECT.projectImage}" name="project-image">
                             <a id="mod-post__preview-link" href="">
                                 <img id="mod-post__preview-image" src="${requestScope.VIEW_PROJECT.projectImage}" alt="">
                             </a>
                         </div>
+<!--                        <label for="">Thêm Tag Của Bài Viết</label><br>
+                        <input id="post-tag" data-role="tagsinput" type="text" required>
+                        <input id="post-tag-hidden" type="hidden" name="post-tag">
 
-                        <div class="add-project-submit add-post-submit">
-                            <button type="submit" name="action" value="UpdateProject">Cập Nhật</button>
+                        <label for="">Nội Dung Bài Viết</label><br>
+                        <textarea id="editor" cols="30" rows="50" required>
+                        </textarea>
+                        <input id="project-description" type="hidden" name="project-description"/>
+                        <input id="post-content" type="hidden" name="post-content" value="${requestScope.VIEW_PROJECT.projectDescription}">
+                        <br>-->
+                        <div class="add-project-submit">
+                            <button type="submit" name="action" value="UpdateProject">Lưu</button>
                             <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                        </div> 
+                        </div>
                     </form>
                 </div>
             </div>

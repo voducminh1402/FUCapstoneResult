@@ -5,49 +5,41 @@
  */
 package com.fucapstoneresult.controllers;
 
+import static com.fucapstoneresult.dao.ImportExcel.addToDatabase;
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.dao.TeamDAO;
 import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.ObjectDTO;
+import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.UUID;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
-
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
-
+@WebServlet(name = "LoadFileStudentController", urlPatterns = {"/LoadFileStudentController"})
+public class LoadFileStudentController extends HttpServlet {
+    
+    private static final String SUCCESS = "student.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = SUCCESS;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
-                }
-
-            }
+            addToDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

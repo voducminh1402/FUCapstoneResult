@@ -19,7 +19,6 @@ import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;

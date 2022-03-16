@@ -67,7 +67,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -163,7 +163,6 @@
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none"; href="MainController?action=viewPoPost&id=${o.postID}">Xem</a>
                                                         <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
@@ -186,7 +185,7 @@
                             <div class="footer-content-detail col-md-2">
                                 <span>Liên Kết Hỗ Trợ</span>
                                 <div><a href="./index.jsp">Trang chủ</a></div>
-                                <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                                <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                                 <div><a href="./blog-single.html">Bài viết</a></div>
                             </div>
                             <div class="footer-content-detail col-md-2">

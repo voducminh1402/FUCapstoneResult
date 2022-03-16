@@ -72,7 +72,7 @@
                                         <a href="./index.jsp">Trang chủ</a>
                                     </li>
                                     <li>
-                                        <a href="projects.html">Top Các Đồ Án Xuất Sắc</a>
+                                        <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                     </li>
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
@@ -371,7 +371,7 @@
                                         <img style="width: 100%" src="${o.instructorImage}" alt="">
                                         <div class="lecturer-info">
                                             <h3>
-                                                <a href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
+                                                <a style="color: white" href="MainController?action=InstructorDetail&id=${o.instructorID}">${o.instructorName}</a>
                                             </h3>
                                             <span>Giảng Viên Khối Ngành SE</span>
                                         </div>
@@ -484,7 +484,7 @@
                         <div class="footer-content-detail col-md-2">
                             <span>Liên Kết Hỗ Trợ</span>
                             <div><a href="./index.jsp">Trang chủ</a></div>
-                            <div><a href="./project.html">Đồ án tốt nghiệp</a></div>
+                            <div><a href="./project.jsp">Đồ án tốt nghiệp</a></div>
                             <div><a href="./blog-single.html">Bài viết</a></div>
                         </div>
                         <div class="footer-content-detail col-md-2">
