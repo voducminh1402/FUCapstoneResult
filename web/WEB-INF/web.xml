@@ -175,8 +175,13 @@
         <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
     </servlet>
     <servlet>
+
         <servlet-name>DeletePoPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.DeletePoPostController</servlet-class>
+
+        <servlet-name>RemoveProjectController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveProjectController</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -343,8 +348,12 @@
         <url-pattern>/SearchProjectController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>DeletePoPostController</servlet-name>
         <url-pattern>/DeletePoPostController</url-pattern>
+        <servlet-name>RemoveProjectController</servlet-name>
+        <url-pattern>/RemoveProjectController</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

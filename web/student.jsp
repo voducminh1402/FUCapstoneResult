@@ -169,12 +169,13 @@
                                         <div class="filter">
                                     
 
-                                            <form id="load-file" enctype="multipart/form-data" action="MainController?action=LoadFileStudent" method="post">
+                                            <form id="load-file" method="post" action="LoadFileStudentController" enctype="multipart/form-data">
                                                 <label id="label" for="image-file"
                                                        ><i id="icon" class="fas fa-file-import"></i>Import</label
                                                 >
                                                 <span id="file-name"></span>
-                                                <input id="image-file" type="file" />
+                                                <input id="image-file" type="file" name="file" size="60" />
+           
                                             </form>
 
                                         </div>
@@ -318,23 +319,7 @@
 
             <script>
                 document.getElementById("image-file").addEventListener("change", () => {
-                    const element = document.getElementById("file-name");
                     
-                    element.innerHTML = "";
-                    var input = document.querySelector("#image-file"),
-                            info = input.files[0].name;
-                    count = 0;
-                    var x = setInterval(function () {
-                        element.innerHTML += ". ";
-                        if (element.innerHTML === ". . . . ") {
-                            element.innerHTML = "";
-                        }
-                        if (count > 3) {
-                            clearInterval(x);
-                            element.innerHTML = info;
-                        }
-                        count++;
-                    }, 1000);
                     document.getElementById("load-file").submit();
                 });
             </script>

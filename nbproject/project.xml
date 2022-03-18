@@ -55,6 +55,7 @@
                 </library>
                 <library dirs="200">
                     <file>${&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD}</file>
+
                 </library>
                 <library dirs="200">
                     <file>${file.reference.sqljdbc4.jar-1}</file>
@@ -62,6 +63,11 @@
                 </library>
                 <library dirs="200">
                     <file>${libs.javaee-web-api-7.0.classpath}</file>
+
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.sqljdbc4.jar-1}</file>
+
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
@@ -69,11 +75,27 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+
                     <file>${file.reference.httpclient-4.5.5.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
                     <file>${file.reference.httpcore-4.4.9.jar}</file>
+
+                    <file>${file.reference.commons-compress-1.21.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-io-2.11.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.log4j-api-2.17.1.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.xmlbeans-5.0.3.jar}</file>
+
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
