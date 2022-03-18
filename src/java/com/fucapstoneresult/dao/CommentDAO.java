@@ -326,6 +326,32 @@ public class CommentDAO {
         }
         return num;
     }
+    
+    public boolean deleteCmtByPostId(String id) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " DELETE FROM Comments WHERE PostID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
 
 //     public static void main(String[] args) throws SQLException {
 //        CommentDAO dao = new CommentDAO();

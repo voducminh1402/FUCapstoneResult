@@ -246,7 +246,7 @@ public class StudentDAO {
                         + " FROM Students "
                         + " WHERE StudentName like ? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1,"%" + studentName + "%");
+                stm.setString(1, "%" + studentName + "%");
                 rs = stm.executeQuery();
 
                 while (rs.next()) {
@@ -271,6 +271,43 @@ public class StudentDAO {
         }
         return list;
     }
+
+    public StudentDTO getStudentById(String id) throws SQLException {
+        StudentDTO stu = new StudentDTO();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = " SELECT StudentID, StudentName , MajorID, StudentImage, TeamID"
+                        + " FROM Students "
+                        + " WHERE StudentID = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    stu = new StudentDTO(rs.getString("StudentID"), rs.getString("StudentName"), rs.getString("MajorID"), rs.getString("StudentImage"), rs.getString("TeamID"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return stu;
+    }
+
     public static void main(String[] args) throws SQLException {
         StudentDAO dao = new StudentDAO();
         List<StudentDTO> list = dao.getStudentbyName("n");

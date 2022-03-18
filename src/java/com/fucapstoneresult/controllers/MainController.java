@@ -87,6 +87,7 @@ public class MainController extends HttpServlet {
     private static final String SEAR_POPOST_BY_NAME= "SearchPoPostByNameController";
     private static final String FILTER_POPOST_BY_STATUS= "FilterPoPostByStatusController";
     private static final String SEARCH_PROJECT = "SearchProjectController";
+    private static final String DELETE_POPOST = "DeletePoPostController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -235,6 +236,8 @@ public class MainController extends HttpServlet {
             }
             else if ("SearchProjectByName".equals(action)) {
                 url = SEARCH_PROJECT;
+            }else if ("DeletePoPost".equals(action)){
+                url = DELETE_POPOST;                
             }
 
         } catch (Exception e) {
