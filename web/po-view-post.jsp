@@ -40,16 +40,16 @@
                         </a>
                     </header>
                     <div class="menu-right">
-                                <div class="menu-icon">
-                                    <div class="menu-icon-line1"></div>
-                                    <div class="menu-icon-line2"></div>
-                                    <div class="menu-icon-line3"></div>
-                                </div>
-                            </div>
+                        <div class="menu-icon">
+                            <div class="menu-icon-line1"></div>
+                            <div class="menu-icon-line2"></div>
+                            <div class="menu-icon-line3"></div>
+                        </div>
+                    </div>
                     <div class="menu-detail">
                         <div class="menu-wrap">
                             <div class="menu-close-button">
-                                
+
                             </div>
                             <div class="menu-search">
                                 <form action="MainController">
@@ -92,15 +92,15 @@
                                     </li>
                                 </ul>
                             </div>
-<!--                            <div class="menu-login">
-                                <a href="login.html">LOGIN</a>
-                                <div>
-                                    <form>
-                                        <span>Xin chào ${sessionScope.USER.userName}</span>
-                                        <button style="vertical-align: initial" type="submit">LOG OUT</button>
-                                    </form>
-                                </div>
-                            </div>-->
+                            <!--                            <div class="menu-login">
+                                                            <a href="login.html">LOGIN</a>
+                                                            <div>
+                                                                <form>
+                                                                    <span>Xin chào ${sessionScope.USER.userName}</span>
+                                                                    <button style="vertical-align: initial" type="submit">LOG OUT</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>-->
                             <div class="menu-contact">
                                 <div>
                                     <a href="tel:02873005588">(028) 73005588</a>
@@ -131,10 +131,14 @@
                                 <div class="col-md-12">
                                     <h1 style="text-align: center; font-size: 40px" class="projects-header__content">Bài viết của bạn</h1>
                                     <div class="devider" style="width: 30%; margin: 0 auto"></div>
+                                        <a href="MainController?action=ViewAddPoPostPage&id=${requestScope.POST.postID}" 
+                                           style="width: 20%; padding: 10px 10px 10px 10px; background-color: #F26F21; border: none;  text-transform: uppercase; color: white; font-weight: 700; border-radius: 4px; text-decoration: none; text-align: center; margin-left: 40%; display: block; margin-top: 10px; margin-bottom: -20px">Đăng
+                                            tải bài viết mới
+                                        </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="project-major-content">
+                        <div class="project-major-content">                          
                             <div class="row">
                                 <c:if test="${requestScope.POPOST_LIST == null}">
                                     <c:redirect url="MainController?action=GetListPoPost"></c:redirect>
@@ -163,16 +167,16 @@
                                                     <div class="project-content-text">
                                                         <h1 class="po-post-status" style="color: yellow; font-size: 15px">Đang chờ xét duyệt</h1>
                                                         <h5 style="font-size: 30px; font-weight: 700">${o.postTitle}</h5>
-                                                        <a class="edit-post" style="text-decoration: none; margin-left: 8px" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
+                                                        <a class="edit-post" style="text-decoration: none;" href="MainController?action=viewUpdatePoPage&id=${o.postID}">Chỉnh sửa</a>
                                                     </div>
                                                 </div>
                                             </div> 
                                         </div>            
-                                        </c:if>
-                                    </c:forEach>
-                                </div>
+                                    </c:if>
+                                </c:forEach>
                             </div>
                         </div>
+                    </div>
                 </section>
                 <div class="footer">
                     <div class="container">

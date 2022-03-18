@@ -234,11 +234,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">'
-                            <c:if test="${requestScope.IS_STUDENT == 1}">
-                                <a href="MainController?action=ViewAddPoPostPage&id=${requestScope.POST.postID}" 
-                                   style="width: 100%; padding-top: 5px; padding-bottom: 5px; background-color: #F26F21; border: none;  text-transform: uppercase; color: white; font-weight: 700; border-radius: 4px; margin-bottom: 50px; text-decoration: none; display: block; text-align: center;">Đăng
-                                    tải bài viết của bạn</a>
-                                </c:if>
+                            
                             <div class="search">
                                 <form action="MainController">
                                     <input

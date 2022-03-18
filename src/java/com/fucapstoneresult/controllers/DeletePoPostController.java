@@ -5,63 +5,46 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.StudentDAO;
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.StudentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.CommentDAO;
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.TagsDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author ADMIN
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+public class DeletePoPostController extends HttpServlet {
 
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
-
+    private static final String ERROR = "mod-request.jsp";
+    private static final String SUCCESS = "mod-request.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
-        try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
+        String url = ERROR;
+        try  {
+            String id = request.getParameter("id");
             
-            StudentDAO stuDao = new StudentDAO();
-            StudentDTO stu = stuDao.getStudentById(user.getUserID());
+            CommentDAO cmtDao = new CommentDAO();
+            boolean check1 = cmtDao.deleteCmtByPostId(id);
             
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
-                }
-
+            TagsDAO tagDao = new TagsDAO();
+            boolean check2 = tagDao.delete(id);
+            
+            PostsDAO postDao = new PostsDAO();
+            boolean check = postDao.deletePoPost(id);          
+            
+            if (check1 && check && check2){
+                url = SUCCESS;
             }
-            
-            if (stu != null ){
-                int check = 1;
-                request.setAttribute("IS_STUDENT", check);
-            }
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
-        } finally {
+        }finally{
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

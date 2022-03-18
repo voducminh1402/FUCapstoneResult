@@ -5,12 +5,18 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.PostsDAO;
+import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.models.PostsDTO;
+import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,13 +32,23 @@ public class ViewAddPoPostPageController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
+            HttpSession session = request.getSession();
+            UserDTO userLogin = (UserDTO) session.getAttribute("USER");
+
+            StudentDAO stuDao = new StudentDAO();
+            StudentDTO stu = stuDao.getStudentById(userLogin.getUserID());
+
+            PostsDAO postDao = new PostsDAO();
+            PostsDTO post = postDao.getMainPostWithProjectId(stu.getTeamID());
+
             String postID = request.getParameter("id");
-                request.setAttribute("POSTID", postID);
-                url = SUCCESS;
+            request.setAttribute("POSTID", postID);
+            request.setAttribute("POST_ID", post.getPostID());
+            url = SUCCESS;
         } catch (Exception e) {
             System.out.println(e.toString());
         } finally {
-          request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
