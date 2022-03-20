@@ -2,7 +2,61 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
         <group/>
+=======
+        <group>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-view-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeletePoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/filters/CharacterEncodingFilter.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-request.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
+        </group>
+        <group>
+
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-view-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeletePoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewPoPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/filters/CharacterEncodingFilter.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-request.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewAddPoPostPageController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
+
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemoveProjectController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-project.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+
+        </group>
+>>>>>>> 1faea09c372b776862aa34ff698256256d06d26e
     </open-files>
 </project-private>

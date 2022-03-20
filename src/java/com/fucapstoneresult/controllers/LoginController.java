@@ -5,7 +5,9 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.UserDAO;
+import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -35,6 +37,10 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLoginUser(email, password);
+            
+            StudentDAO stuDao = new StudentDAO();
+            StudentDTO stu = stuDao.getStudentById(user.getUserID());
+            
             if (user != null) {
                 if (user.getUserStatus() != 3) {
                     
@@ -48,10 +54,15 @@ public class LoginController extends HttpServlet {
                 }
 
             }
+            
+            if (stu != null ){
+                int check = 1;
+                request.setAttribute("IS_STUDENT", check);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            response.sendRedirect(url);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -851,7 +851,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost"
                         + " FROM Posts "
-                        + " WHERE ProjectID= ? AND IsMainPost IS NOT NULL";
+                        + " WHERE ProjectID= ? AND IsMainPost IS NULL";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
 
@@ -986,7 +986,7 @@ public class PostsDAO {
             conn = DBUtils.getConnection();
             
             if (conn != null){
-                String sql = " Select Users.UserID, Users.Email, Users.UserName, Posts.PostID, Posts.PostTitle, Posts.PostStatusID, Posts.PostDate, isMainPost "
+                String sql = " Select Users.UserID, Users.Email, Posts.PostAuthor, Posts.PostID, Posts.PostTitle, Posts.PostStatusID, Posts.PostDate, Posts.isMainPost "
                         + " from Posts "
                         + " join Users "
                         + "  on Posts.LastEditedUser = Users.UserID "
@@ -996,7 +996,7 @@ public class PostsDAO {
                 while (rs.next()){
                     String userID = rs.getString("UserID");
                     String email = rs.getString("Email");
-                    String userName = rs.getString("UserName");
+                    String userName = rs.getString("PostAuthor");
                     String postID = rs.getString("PostID");
                     String postTitle = rs.getString("PostTitle");
                     String postStatusID = rs.getString("PostStatusID");
@@ -1019,5 +1019,79 @@ public class PostsDAO {
             }
         }
         return list;
+    }
+    public boolean deletePoPost(String id) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " DELETE FROM Posts WHERE PostID = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, id);
+
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+        public static List<PostsDTO> getTop3RequestPost() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        List<PostsDTO> postList = new ArrayList<>();
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = " SELECT TOP 3 * FROM Posts "
+                        + " WHERE IsMainPost IS NOT NULL AND PostStatusID = ?";
+
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 2);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+//                    String ProjectID = rs.getString("ProjectID");
+                    String isMainPost = rs.getString("isMainPost");
+                    String projectID = rs.getString("ProjectID");
+
+                    postList.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return postList;
     }
 }

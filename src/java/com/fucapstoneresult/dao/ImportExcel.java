@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-import static javax.servlet.SessionTrackingMode.URL;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -49,8 +47,8 @@ public class ImportExcel {
 
     }
 
-    public static void addToDatabase() throws IOException, SQLException{
-        final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
+    public static void addToDatabase(String path) throws IOException, SQLException{
+        final String excelFilePath = path;
 //        final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
