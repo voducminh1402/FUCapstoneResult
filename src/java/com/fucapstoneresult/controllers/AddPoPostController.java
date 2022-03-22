@@ -19,6 +19,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,18 +37,19 @@ import javax.servlet.http.HttpSession;
 public class AddPoPostController extends HttpServlet {
 
     private static final String ERROR = "index.jsp";
-    private static final String SUCCESS = "post-project.jsp";
+    private static final String SUCCESS = "po-view-post.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
+
             DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             String currentDate = dateTime.format(now);
-            
+
             UUID uuid = UUID.randomUUID();
             String popostID = uuid.toString();
             String popostTitle = request.getParameter("po-post-title");
@@ -56,38 +59,43 @@ public class AddPoPostController extends HttpServlet {
             //PostsDTO post =  (PostsDTO) session.getAttribute("POST");
             String postID = request.getParameter("po-post-id");
             String authorInfo = userLogin.getUserName();
+
             PostsDAO postDao = new PostsDAO();
             PostsDTO mainPost = new PostsDTO();
             mainPost = postDao.getPostWithID(postID);
             String projectID = mainPost.getProjectID();
-            
-            
-            if (userLogin != null){
+
+            if (userLogin != null) {
                 String userID = userLogin.getUserID();
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
-                
-                PostsDTO post = new PostsDTO(popostID, popostTitle, currentDate,  authorInfo,  popostContent, popostImage, userID, 0, 2, postID, projectID);
+
+                PostsDTO post = new PostsDTO(popostID, popostTitle, currentDate, authorInfo, popostContent, popostImage, userID, 0, 2, postID, projectID);
                 boolean check = postDao.insert(post);
-                boolean checkTagDetail = false, checkTag = false;
-                
-                if(check){
-                    for (String postTag : popostTags){
-                        UUID newUuid = UUID.randomUUID();
-                        String tagDetailID = newUuid.toString();
-                        checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailID, postTag));
-                        checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailID));
+                boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
+
+                if (check) {
+                    for (String postTag : popostTags) {
+                        if (tagDetailDao.getTagDetailsWithName(postTag) != null) {
+                            String tagDetailId = tagDetailDao.getTagDetailsWithName(postTag).getTagDetailID();
+                            checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailId));
+                            checkTagNotAdd = true;
+                        } else {
+                            UUID newUuid = UUID.randomUUID();
+                            String tagDetailId = newUuid.toString();
+                            checkTagDetail = tagDetailDao.insert(new TagDetailsDTO(tagDetailId, postTag));
+                            checkTag = tagDao.insert(new TagsDTO(popostID, tagDetailId));
+                        }
+
                     }
-                    if (checkTagDetail && checkTag){
-                        request.setAttribute("POST_ID", postID);
+                    if ((checkTagDetail && checkTag) || (checkTagNotAdd && checkTag)) {
                         url = SUCCESS;
                     }
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
-        }
-        finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

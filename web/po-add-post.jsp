@@ -145,12 +145,12 @@
                         </div>
                         <div class="content-detail content-post add-post" style="border-radius: 15px; margin-bottom: 30px">
                             <form action="MainController" method="POST">     
-                                <input type="hidden" name="po-post-id" value="${requestScope.POSTID}">
+                                <input type="hidden" name="po-post-id" value="${requestScope.POST_ID}">
                                 <label for="">Tiêu Đề Bài Đăng</label><br>
                                 <input type="text" name="po-post-title"  style="margin-bottom: 5px" required>
                                 <label for="">Thêm Tag Của Bài Viết</label><br>
-                                <input id="post-tag" data-role="tagsinput" type="text" style="margin-bottom: 5px" required> 
-                                <input id="post-tag-hidden" type="hidden" name="po-post-tag">
+                                <input id="post-tag" data-role="tagsinput" type="text" required>
+                                <input id="post-tag-hidden" type="hidden" name="post-tag">
                                 <label for="">Ảnh Bìa Bài Đăng</label>
                                 <div class="project-add-upload__image post-upload__image" >
                                     <label style="margin: 0; background-color: #F26F21" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>

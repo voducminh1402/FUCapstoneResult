@@ -53,6 +53,9 @@ public class ViewModIndexPageController extends HttpServlet {
             List<PostsDTO> top5Post = PostsDAO.getTop5Post();
             List<PostCommentDTO> postWithComment = new ArrayList<>();
             
+            List<PostsDTO> top3RequestPost = postDao.getTop3RequestPost();
+            
+            
             ProjectDAO projectDao = new ProjectDAO();
             List<ProjectDTO> projectList = projectDao.getAllProject();
            
@@ -84,6 +87,7 @@ public class ViewModIndexPageController extends HttpServlet {
             request.setAttribute("NUM_OF_PROJECT", numOfProject);
             request.setAttribute("TOP_POST", postWithComment);
             request.setAttribute("COMMENT_LIST", cmtList);
+            request.setAttribute("TOP3_REQUEST_POST", top3RequestPost);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

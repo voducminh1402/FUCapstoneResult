@@ -98,11 +98,18 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
-                                        <a class="nav-link" href="#" id="alertsDropdown" role="button"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-bell fa-fw"></i>
-                                            <!-- Counter - Alerts -->
-                                        </a>
+                                        <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
+                                        <div class="more-choice__menu" style="margin-top: 18%; margin-right: 5%">
+                                            <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
+                                                <div class="more-choice__item" style="margin-top: -2px">
+                                                    <h4 style="text-align: left; display: block; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
+                                                    <a href="mod-request.jsp">
+                                                        <span style=" margin-top: -10px; display: block; font-size: 0.5rem; color: grey">${o.postTitle}</span>
+                                                    </a>
+                                                </div>
+                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                            </c:forEach>
+                                        </div>
                                         <!-- Dropdown - Alerts -->
                                         <div class="info-login">
                                             <img src="${requestScope.USER.userImage}" alt="">
@@ -131,7 +138,7 @@
                                             </i>
                                         </div>
                                         <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
-                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-post.jsp">Bài đăng chính</a>
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.25rem; display: block" href="mod-post.jsp">Bài đăng chính</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_POST}</span>
                                             <span style="color: gray; font-size: 0.85rem;">bài viết</span>
                                         </div>
@@ -153,7 +160,7 @@
                                             </i>
                                         </div>
                                         <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
-                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-request.jsp">Bài viết của sinh viên</a>
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.25rem; display: block" href="mod-request.jsp">Bài viết của sinh viên</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_POPOST}</span>
                                             <span style="color: gray; font-size: 0.85rem;">bài viết đang chờ</span>
                                         </div>
@@ -175,7 +182,7 @@
                                             </i>
                                         </div>
                                         <div class="col-9" style="padding-top: 4px; margin-left: -20px;">
-                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.5rem; display: block" href="mod-project.jsp">Đồ án</a>
+                                            <a style="margin-top: -5px; margin-bottom: -8px; font-weight: 600; font-size: 1.25rem; display: block" href="mod-project.jsp">Đồ án</a>
                                             <span style="color: gray; font-size: 0.85rem;">${requestScope.NUM_OF_PROJECT}</span>
                                             <span style="color: gray; font-size: 0.85rem;">Đồ án</span>
                                         </div>
@@ -242,7 +249,7 @@
                                                 <h6 style="margin-left: 60px; margin-top: 5px;">${a.commentDetail}</h6>
                                             </div> 
                                         </c:forEach>  
-                                        <div style="width: 40%">
+                                        <div style="width: 50%; display: flex;">
                                             <a style="font-size: 1rem" href="mod-comment-request.jsp" class="approve-comment">Xét duyệt ngay</a>
                                         </div>
                                     </div>
