@@ -130,7 +130,7 @@
                                                 <option value="0">Tất cả trạng thái</option>
                                                 <option value="1">Đã duyệt</option>
                                                 <option value="2">Đang chờ xét duyệt</option>
-                                                <option value="3">Đã xóa</option>
+                                                <option value="3">Đã từ chối</option>
                                             </select>
                                             <button name="action" value="filterPostByStatus">Tìm kiếm</button>
                                         </form>
@@ -196,13 +196,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=ViewPoPostDetail&id=${o.postID}">
-                                                                    <span>Chỉnh sửa</span>
-                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="more-choice__item">
-                                                                <a href="MainController?action=RejectPost&id=${o.postID}">
+                                                                <a href="MainController?action=DeletePoPost&id=${o.postID}">
                                                                     <span>Xóa</span>
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </a>
@@ -244,7 +238,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=RejectPost&id=${o.postID}">
+                                                                <a href="MainController?action=DeletePoPost&id=${o.postID}">
                                                                     <span>Xóa</span>
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </a>
@@ -256,16 +250,16 @@
                                             <c:if test="${o.postStatusID eq 3}">
                                                 <tr>
                                                     <td>${counter.count}</td>
-                                                    <td>${o.postAuthor}</td>
-                                                    <td>PhamDucHuy@gmail.com</td>
+                                                    <td>${o.userName}</td>
+                                                    <td>${o.userEmail}</td>
                                                     <td>
-                                                        ${o.postTitle}
+                                                        ${o.postName}
                                                     </td>
                                                     <td>${o.postDate}</td>
                                                     <td></td>
                                                     <td>
                                                         <span style="color: red">
-                                                            Đã xóa
+                                                            Đã từ chối
                                                         </span>
                                                     </td>
                                                     <td>
@@ -274,7 +268,7 @@
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=ViewPoPostDetail&id=${o.postID}">
+                                                                <a href="MainController?action=EditPoPost&id=${o.postID}">
                                                                     <span>Xem chi tiết</span>
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </a>
@@ -286,7 +280,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=RejectPost&id=${o.postID}">
+                                                                <a href="MainController?action=DeletePoPost&id=${o.postID}">
                                                                     <span>Xóa</span>
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </a>
