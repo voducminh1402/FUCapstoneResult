@@ -10,11 +10,21 @@
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
         </group>
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/student.jsp</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadFileStudentController.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
             <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/StudentDAO.java</file>
+=======
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemoveProjectController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-project.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+>>>>>>> bdc7a98b929b12678065a6f6c643298e184a28c5
         </group>
     </open-files>
 </project-private>
