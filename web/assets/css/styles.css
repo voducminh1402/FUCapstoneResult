@@ -69,7 +69,7 @@ input {
    
   /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--main-light-grey);
+    background-color: var(--main-orange);
 }
   
 
@@ -616,14 +616,13 @@ header {
 }
 
 .time {
-    width: 20%;
+    width: 30%;
     font-weight: bold;
     margin-right: 15px;
     z-index: 9;
 }
 
 .title {
-    text-align: center;
     width: 60%;
     font-weight: bold;
     z-index: 9;
@@ -1384,4 +1383,230 @@ article{
     border: none;
     outline: none;
     margin-left: 15px;
+}
+
+.event-btn {
+    background: linear-gradient(90deg, rgba(228,37,127,1) 0%, rgba(242,82,33,1) 0%, rgba(242,141,33,1) 89%);
+    display: inline-block;
+    padding: 10px 20px;
+    padding-right: 30px;
+    color: white;
+    cursor: pointer;
+    top: 50%;
+    position: fixed;
+    border-radius: 20px;
+    right: -20px;
+    transition: ease-in 0.2s;
+}
+
+.event-content {
+    background-image: url(https://daihoc.fpt.edu.vn/media/2016/12/4-fpt-hcm.jpg);
+    height: 650px;
+    width: 1200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    position: fixed;
+    top: 15%;
+    left: 20%;
+    border-radius: 10px;
+    z-index: 9;
+}
+
+.event-content-overlay {
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    height: 100%;
+    border-radius: 10px;
+}
+
+.event-content-list {
+    position: absolute;
+}
+
+.event-content-text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: 410px;
+    margin-top: 22%;
+    margin-right: 40px;
+    color: white;
+}
+
+.body{
+    margin: 0;
+    padding: 0;
+    background-color:#ff6d6d;
+    font-family: arial
+}
+
+.box{
+    height: 630px;
+    overflow-y: scroll;
+    padding: 0px 60px;
+    height: 100%;
+    display: inline-block;
+}
+
+.box::-webkit-scrollbar {
+    color: transparent !important;
+    background-color: transparent !important;
+}
+
+.box ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    transition: all 0.5s linear;
+    top:0;
+    display: inline-block !important;
+}
+
+.box ul:last-of-type{top:15px; bottom: 15px;}
+
+.box ul:before{
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    border:1px dashed #fff;
+    position: absolute;
+    top:0;
+    left:30px
+}
+
+.box ul li{
+    margin: 20px 60px 60px;
+    position: relative;
+    padding: 10px 20px;
+    background:rgba(255, 255, 255, 0.3);
+    color:#fff;
+    border-radius: 10px;
+    line-height: 20px;
+    width: 50%;
+    display: inline-block;
+}
+
+
+.box ul li > span{
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    border:1px solid #fff;
+    position: absolute;
+    top:0;
+    left:-30px
+}
+
+.box ul li > span:before,.box ul li > span:after{
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background:#ff6d6d;
+    border:2px solid #fff;
+    position: absolute;
+    left:-7.5px
+}
+
+.box ul li > span:before{top:-10px}
+.box ul li > span:after{top:95%}
+
+.box .title{
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 5px
+}
+
+.box .info:first-letter{text-transform: capitalize;line-height: 1.7}
+
+.box .name{
+    margin-top: 10px;
+    text-transform: capitalize;
+    font-style: italic;
+    text-align: right;
+    margin-right: 20px
+}
+
+
+.box .time span{
+    /* position: absolute; */
+    left: -100px;
+    color:#fff;
+    font-size:80%;
+    font-weight: bold;
+}
+.box .time span:first-child{top:-16px}
+.box .time span:last-child{top:94%}
+
+
+.arrow{
+    position: absolute;
+    top: 105%;
+    left: 22%;
+    cursor: pointer;
+  height:20px;
+  width:20px
+}
+
+.arrow:hover{
+    -webkit-animation: arrow 1s linear infinite;
+       -moz-animation: arrow 1s linear infinite;
+         -o-animation: arrow 1s linear infinite;
+            animation: arrow 1s linear infinite;
+}
+
+.box ul:last-of-type .arrow{
+    position: absolute;
+    top: 105%;
+    left: 22%;
+    transform: rotateX(180deg);
+    cursor: pointer;
+}
+
+svg{
+    width: 20px;
+    height: 20px
+}
+
+@keyframes arrow{
+    0%,100%{
+        top:105%
+    }
+    50%{
+        top:106%
+    }
+}
+
+@-webkit-keyframes arrow{
+    0%,100%{
+        top:105%
+    }
+    50%{
+        top:106%
+    }
+}
+
+@-moz-keyframes arrow{
+    0%,100%{
+        top:105%
+    }
+    50%{
+        top:106%
+    }
+}
+
+@-o-keyframes arrow{
+    0%,100%{
+        top:105%
+    }
+    50%{
+        top:106%
+    }
 }

@@ -10,6 +10,7 @@ import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,8 @@ public class AddSemesterController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
             
-            String semesterID = request.getParameter("semester-id");
+            UUID uuid = UUID.randomUUID();
+            String semesterID = uuid.toString();
             String semesterName = request.getParameter("semester-name");
             
             SemesterDAO dao = new SemesterDAO();
