@@ -15,18 +15,16 @@ public class ObjectDTO {
     private String name;
     private String image;
     private String team;
-    private String semester;
 
     public ObjectDTO() {
     }
 
-    public ObjectDTO(String id, String email, String name, String image, String team, String semester) {
+    public ObjectDTO(String id, String email, String name, String image, String team) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.image = image;
         this.team = team;
-        this.semester = semester;
     }
 
     public String getId() {
@@ -69,18 +67,8 @@ public class ObjectDTO {
         this.team = team;
     }
 
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
-    }
-
     @Override
     public String toString() {
-        return "ObjectDTO{" + "id=" + id + ", email=" + email + ", name=" + name + ", image=" + image + ", team=" + team + ", semester=" + semester + '}';
+        return "ObjectDTO{" + "id=" + id + ", email=" + email + ", name=" + name + ", image=" + image + ", team=" + team + '}';
     }
-
-    
 }

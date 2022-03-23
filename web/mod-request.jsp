@@ -41,7 +41,7 @@
 
                     <li class="dropdown">
                         <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản lí người dùng
+                            <i class="fas fa-home"></i> Quản Lí Người Dùng
                         </a>
                     </li>
 
@@ -49,18 +49,27 @@
 
                     <li>
                         <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí đồ án
+                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
                         </a>
                     </li>
-
+                    <li>
+                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                        </a>
+                    </li>
                     <li>
                         <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
+                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
                         </a>
                     </li>
                     <li>
                         <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
+                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
                         </a>
                     </li>
 
@@ -68,10 +77,10 @@
 
                     <li>
                         <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài đăng chính
+                            <i class="fas fa-briefcase"></i> Bài Đăng Chính
                         </a>
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài viết của sinh viên
+                            <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
 

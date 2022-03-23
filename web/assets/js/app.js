@@ -154,3 +154,27 @@ moreChoiceDot.forEach((ele, index) =>
     }
   })
 );
+
+document.getElementById("event-btn").addEventListener("click", () => {
+  let content = document.getElementById("event-content");
+
+  if (content.style.display === "none") {
+    content.style.display = "block";
+    document.getElementById("event-btn").innerHTML = "Đóng"
+    content.style.transition = "ease-in 0.2s"
+    
+  }
+  else {
+    document.getElementById("event-btn").innerHTML = "Sự Kiện Nổi Bật"
+    content.style.display = "none";
+    content.style.transition = "ease-in 0.2s"
+    localStorage.setItem("event-post-status", "true")
+  }
+})
+
+window.onload = () => {
+  if(localStorage.getItem('event-post-status') === 'true') {
+    document.getElementById("event-content").style.display = "none"
+    document.getElementById("event-btn").innerHTML = "Sự Kiện Nổi Bật"
+  }
+}
