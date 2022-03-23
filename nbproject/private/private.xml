@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
-        <file>
-            <url>src/java/com/fucapstoneresult/controllers/UpdateTeamController.java</url>
-            <bookmark id="1">
-                <name/>
-                <line>24</line>
-                <key/>
-            </bookmark>
-        </file>
-    </editor-bookmarks>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/FUCapstoneResult/web/mod-semester.jsp</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-team.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/InstructorDAO.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadTeamController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadSemesterController.java</file>
         </group>
     </open-files>
 </project-private>
