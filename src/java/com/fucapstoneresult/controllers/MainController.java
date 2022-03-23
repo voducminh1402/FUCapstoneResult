@@ -89,7 +89,13 @@ public class MainController extends HttpServlet {
     private static final String SEARCH_PROJECT = "SearchProjectController";
     private static final String DELETE_POPOST = "DeletePoPostController";
     private static final String REMOVE_PROJECT = "RemoveProjectController";
-
+    
+    private static final String GET_TEAM_LIST = "LoadTeamController";
+    private static final String UPDATE_TEAM = "UpdateTeamController";
+    private static final String REMOVE_TEAM = "RemoveTeamController";
+    private static final String GET_SEMESTER_LIST = "LoadSemesterController";
+    private static final String UPDATE_SEMESTER = "UpdateSemesterController";
+    private static final String REMOVE_SEMESTER = "RemoveSemesterController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -243,6 +249,25 @@ public class MainController extends HttpServlet {
             else if ("RemoveProject".equals(action)) {
                 url = REMOVE_PROJECT;
             }
+            else if ("LoadTeamController".equals(action)) {
+                url = GET_TEAM_LIST;
+            }
+            else if ("UpdateTeamController".equals(action)) {
+                url = UPDATE_TEAM;
+            }
+            else if ("RemoveTeamController".equals(action)) {
+                url = REMOVE_TEAM;
+            }
+            else if ("LoadSemesterController".equals(action)) {
+                url = GET_SEMESTER_LIST;
+            }
+            else if ("UpdateSemesterController".equals(action)) {
+                url = UPDATE_SEMESTER;
+            }
+            else if ("RemoveSemesterController".equals(action)) {
+                url = REMOVE_SEMESTER;
+            }
+            
 
         } catch (Exception e) {
             e.printStackTrace();

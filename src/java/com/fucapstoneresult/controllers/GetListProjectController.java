@@ -43,6 +43,8 @@ public class GetListProjectController extends HttpServlet {
     private static final String UPDATE_PROJECT = "mod-update-project.jsp";
     private static final String ERROR = "login.html";
     private static final String ADD_PROJECT = "mod-add-project.jsp";
+    private static final String EDIT_TEAM = "mod-edit-team.jsp";
+    private static final String EDIT_SEMESTER = "mod-edit-semester.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -51,6 +53,8 @@ public class GetListProjectController extends HttpServlet {
         try {
             
             String proID = request.getParameter("id");
+            String teamID = request.getParameter("team-id");
+            String semesterID = request.getParameter("semester-id");
             
             ProjectDAO dao = new ProjectDAO();
             List<ProjectDTO> list = dao.getAllProject();
@@ -66,6 +70,8 @@ public class GetListProjectController extends HttpServlet {
             ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
             TagsDAO tagDao = new TagsDAO();
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
+            TeamDTO editteam = DAOteam.getTeam(teamID);
+            SemesterDTO editsemester = DAOSemester.getSemester(semesterID);
             
             
             
@@ -90,6 +96,8 @@ public class GetListProjectController extends HttpServlet {
             
             
             request.setAttribute("DETAIL_TAG", listDetailTag);
+            request.setAttribute("TEAM_EDIT_NAME", editteam);
+            request.setAttribute("SEMESTER_EDIT_NAME", editsemester);
             
             String page = request.getParameter("page");
             request.setAttribute("PROJECT_LIST", list);
@@ -131,6 +139,10 @@ public class GetListProjectController extends HttpServlet {
                 url = UPDATE_PROJECT;
             }else if(page.equals("add-project")){
                 url = ADD_PROJECT;
+            }else if(page.equals("edit-team")){
+                url = EDIT_TEAM;
+            }else if(page.equals("edit-semester")){
+                url = EDIT_SEMESTER;
             }
             
         } 

@@ -6,7 +6,6 @@
 package com.fucapstoneresult.dao;
 
 import com.fucapstoneresult.models.ObjectDTO;
-import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
@@ -43,7 +42,6 @@ public class ImportExcel {
     public static final int COLUMN_INDEX_NAME = 2;
     public static final int COLUMN_INDEX_IMAGE = 3;
     public static final int COLUMN_INDEX_TEAM = 4;
-    public static final int COLUMN_INDEX_SEMESTER = 5;
 
     public static void main(String[] args) throws IOException, SQLException {        
 
@@ -51,12 +49,11 @@ public class ImportExcel {
 
     public static void addToDatabase(String path) throws IOException, SQLException{
         final String excelFilePath = path;
-        //final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
+//        final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
         UserDAO user = new UserDAO();
         StudentDAO student = new StudentDAO();
-        SemesterDAO semester = new SemesterDAO();
 
         for (ObjectDTO object : objects) {
             UUID uuid = UUID.randomUUID();
@@ -65,9 +62,6 @@ public class ImportExcel {
             String createDate = now.toString();
             String teamId = uuid.toString();
 
-            if (semester.getSemesterByName(object.getSemester()) == null){
-                semester.insertSemester(new SemesterDTO(teamId, object.getSemester()));
-            }
             if (team.getTeamByName(object.getTeam()) == null) {
                 team.insertTeam(new TeamDTO(teamId, object.getTeam()));
             }
@@ -127,9 +121,6 @@ public class ImportExcel {
                         String teamName = (String) getCellValue(cell);
                         object.setTeam(teamName);
                         break;
-                    case COLUMN_INDEX_SEMESTER:
-                        String semesterName = (String) getCellValue(cell);
-                        object.setSemester(semesterName);
                     default:
                         break;
                 }

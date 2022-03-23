@@ -10,6 +10,7 @@ import com.fucapstoneresult.models.TeamDTO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class AddTeamController extends HttpServlet {
 
     private static final String ERROR = "login.html";
     private static final String SUCCESS = "mod-add-team.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -32,26 +33,27 @@ public class AddTeamController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
-            
-            String teamID = request.getParameter("team-id");
+
+            UUID uuid = UUID.randomUUID();
+            String teamID = uuid.toString();
             String teamName = request.getParameter("team-name");
-            
+
             TeamDAO dao = new TeamDAO();
-            
-            if(userLogin != null){
-                
+
+            if (userLogin != null) {
+
                 TeamDTO team = new TeamDTO(teamID, teamName);
                 boolean check = dao.insertTeam(team);
-                
-                if(check){
+
+                if (check) {
                     url = SUCCESS;
                 }
-                
+
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
