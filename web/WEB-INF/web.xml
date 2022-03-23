@@ -175,13 +175,36 @@
         <servlet-class>com.fucapstoneresult.controllers.SearchProjectController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>DeletePoPostController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.DeletePoPostController</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>RemoveProjectController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemoveProjectController</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>LoadTeamController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadTeamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTeamController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdateTeamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveTeamController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveTeamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadSemesterController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadSemesterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSemesterController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.UpdateSemesterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveSemesterController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveSemesterController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -348,12 +371,36 @@
         <url-pattern>/SearchProjectController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>DeletePoPostController</servlet-name>
         <url-pattern>/DeletePoPostController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RemoveProjectController</servlet-name>
         <url-pattern>/RemoveProjectController</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadTeamController</servlet-name>
+        <url-pattern>/LoadTeamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTeamController</servlet-name>
+        <url-pattern>/UpdateTeamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveTeamController</servlet-name>
+        <url-pattern>/RemoveTeamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadSemesterController</servlet-name>
+        <url-pattern>/LoadSemesterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSemesterController</servlet-name>
+        <url-pattern>/UpdateSemesterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveSemesterController</servlet-name>
+        <url-pattern>/RemoveSemesterController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

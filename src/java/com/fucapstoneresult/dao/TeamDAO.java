@@ -141,7 +141,7 @@ public class TeamDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE Teams "
-                            + " SET Teamname=? "
+                            + " SET TeamName=? "
                             + " WHERE TeamID=?";
                 stm = conn.prepareStatement(sql);
                 

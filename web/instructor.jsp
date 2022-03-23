@@ -44,58 +44,67 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản lí người dùng
-                        </a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                <i class="fas fa-home"></i> Quản Lí Người Dùng
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí đồ án
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí sinh viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí giảng viên
-                        </a>
-                    </li>
+                        <hr class="sidebar-divider">
 
-                    <hr class="sidebar-divider">
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài đăng chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài viết của sinh viên
-                        </a>
-                    </li>
+                    </ul>
 
-                </ul>
-
-            </nav>
+                </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -125,16 +134,26 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+
                                         <div class="right-side-info">
+                                            <div>
+                                                <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
+                                            </div>
+                                            <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
+                                                <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
+                                                    <div class="more-choice__item" style="margin-top: -2px">
+                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
+                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
+                                                        <a href="mod-request.jsp">
+                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                                </c:forEach>
+                                            </div>
+                                            <!-- Dropdown - Alerts -->
                                             <div class="info-login">
-                                                <img
-                                                    src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg"
-                                                    alt=""
-                                                    />
-                                                <span
-                                                    >Xin Chào, Admin 1
-                                                    <i class="fa fa-caret-down" aria-hidden="true"></i
-                                                    ></span>
+                                                <img src="${requestScope.USER.userImage}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -196,7 +215,7 @@
                                                 <th>No.</th>
                                                 <th>Tên</th>
                                                 <th>Số lượng đồ án đã hướng dẫn</th>
-                                                
+
                                                 <th></th>
                                             </tr>
                                         </thead>

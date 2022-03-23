@@ -3,47 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TeamDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/TagsDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-view-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/UserDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DeletePoPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewPoPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/filters/CharacterEncodingFilter.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewAddPoPostPageController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/instructor.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemoveProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-add-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-project.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginGoogleController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/assets/css/styles.css</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/project.properties</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
         </group>
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/project.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/genfiles.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/build-impl.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-index.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginGoogleController.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/PostsDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/assets/css/styles.css</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/project.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModIndexPageController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
         </group>
     </open-files>
 </project-private>
