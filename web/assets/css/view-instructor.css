@@ -1,0 +1,165 @@
+/* Khi dùng file CSS
+- Không xóa CSS của người khác
+- Tự tạo các class để CSS riêng
+- Nếu cần có thể tách ra file khác (không khuyến khích) hoặc có thể dùng internal CSS 
+- Đặt tên chuẩn BEM (anh em lưu ý đọc phần này nha)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300&family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-orange: #F26F21;
+    --main-sub-orange: #f1c6ad;
+    --main-bold-orange: #a33c00;
+    --main-white: #ffffff;
+    --main-light-grey: #a5adb4;
+    --main-mod-input: #F8FAFB;
+    --main-mod-header: #44566C;
+    --main-light-white: #e2e2e2;
+    --main-bold-white: #b4b2b2;
+    --main-bold-white-text: #e9e8e8;
+    --main-bold-white-shadow: #d4d3d3;
+    --main-text-header: #121212;
+    --main-mod-background: rgb(248,250,251);
+    --main-mod-border: #EAEDF0;
+    --main-mod-border-bold: #c0c1c4;
+    --main-text: #545454;
+    --main-yellow: #F4D60B;
+    --main-blue: #0DCAF0;
+    --main-blue-shadow: #adedfa;
+    --main-blue-bold: #0da1be;
+    --main-shadow: rgb(148, 147, 147);
+    --size-text: 16px;
+    --size-header: 35px;
+}
+
+.no-pd {
+    padding: 0 !important;
+}
+
+
+
+.display-block {
+    display: block !important;
+}
+
+html {
+    font-family: 'Mulish', sans-serif;
+    overflow-x: hidden !important;
+}
+
+body {
+    overflow-x: hidden !important;
+}
+
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 50px !important;
+}
+
+input {
+    outline: none !important;
+}
+
+   
+  /* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-light-grey);
+}
+  
+
+/* Custom Boostrap */
+.container-fluid {
+    padding: 0;
+}
+
+.instructor {
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.instructor-list {
+    border: 0.5px solid var(--main-sub-orange);
+    max-width: 90%;
+    border-radius: 3px;
+}
+
+.instructor-list ul {
+    padding: 0px 25px;
+    margin: 0;
+}
+
+.instructor-list ul li {
+    list-style: none;
+    padding: 15px;
+    border-bottom: 0.5px solid var(--main-sub-orange);
+    display: flex;
+    justify-content: space-between;
+}
+
+.instructor-list ul li span:last-of-type {
+    background-color: var(--main-orange);
+    display: inline-block;
+    padding: 3px 6px;
+    color: var(--main-white);
+    border-radius: 3px;
+}
+
+.instructor-list ul li:last-of-type {
+    border-bottom: none;
+}
+
+.instructor-left {
+    padding: 0 !important;
+}
+
+.instructor-right {
+    padding: 0;
+}
+
+.instructor-background {
+    height: 441px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    z-index: 8;
+}
+
+.instructor-background-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 9;
+}
+
+.instructor-info {
+    z-index: 10;
+    position: absolute;
+    top: 40%;
+    margin-left: 30px;
+    color: var(--main-white);
+}
+
+.instructor-project {
+    margin-bottom: 100px;
+}
+
+.instructor-project__header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.instructor-project__header p {
+    margin-top: 25px;
+}
+
