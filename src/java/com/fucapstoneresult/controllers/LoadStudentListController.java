@@ -31,7 +31,7 @@ public class LoadStudentListController extends HttpServlet {
         String url = SUCCESS;
         try {
             StudentDAO dao = new StudentDAO();
-            List<StudentDTO> list = dao.getListStudent();
+            List<StudentDTO> list = dao.getListStudentInStudentPage();
 
             request.setAttribute("LIST_STUDENT", list);
 
