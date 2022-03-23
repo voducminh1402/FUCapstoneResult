@@ -239,6 +239,91 @@ public class ProjectDAO {
         return projectList;
     }
     
+    public float getProjectScoreBySemesterID (String semesterID) throws SQLException {
+        float projectScore = 0;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql =  " SELECT ProjectScore "
+                            + " FROM Projects "
+                            + " WHERE SemesterID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, semesterID);
+                rs = stm.executeQuery();
+                
+                if(rs.next()){
+                    projectScore = Float.parseFloat(rs.getString("ProjectScore"));
+                }
+                
+                
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectScore;
+    }
+    
+    public String getProjectBySemesterID (String semesterID) throws SQLException {
+        ProjectDTO Pro = new ProjectDTO();
+        String projectName = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+            conn = DBUtils.getConnection();
+            
+            if (conn != null) {
+                String sql =  " SELECT ProjectName "
+                            + " FROM Projects "
+                            + " WHERE SemesterID=? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, semesterID);
+                rs = stm.executeQuery();
+                
+                if(rs.next()){
+                    projectName = rs.getString("ProjectName");
+                }
+                
+                
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
+        return projectName;
+    }
+    
     
     public boolean updateProject(ProjectDTO project) throws SQLException {
         boolean check = false;
