@@ -3,6 +3,12 @@
     Created on : Jan 18, 2022, 11:07:37 PM
     Author     : VODUCMINH
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.fucapstoneresult.models.SemesterDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fucapstoneresult.models.ProjectDTO"%>
+<%@page import="com.fucapstoneresult.dao.ProjectDAO"%>
+<%@page import="com.fucapstoneresult.dao.SemesterDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,24 +110,10 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
-                                        <div>
-                                            <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                        </div>
-                                        <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                            <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                <div class="more-choice__item" style="margin-top: -2px">
-                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                    <a href="mod-request.jsp">
-                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                            </c:forEach>
-                                        </div>
-                                        <!-- Dropdown - Alerts -->
                                         <div class="info-login">
-                                            <img src="${requestScope.USER.userImage}" alt="">
+                                            <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
+                                            <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -168,36 +160,73 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên Kỳ Thực Hiện Đồ Án</th>
+
+                                            <th>Số Lượng Đồ Án Trong Kỳ</th>
+                                            <th>Điểm Số Trung Bình</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:if test="${requestScope.SEMESTER_LIST == null}">
-                                            <c:redirect url="MainController?action=LoadSemesterController"></c:redirect>
-                                        </c:if>
-                                        <c:forEach items="${requestScope.SEMESTER_LIST}" var="o" varStatus="counter">
-                                            <tr>
-                                                <td>${counter.count}</td>
-                                                <td>${o.semesterName}</td>
-                                                <td class="last-type__menu">
-                                                    <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                    <div class="more-choice__menu">
-                                                        <div class="more-choice__item">
-                                                            <a href="MainController?action=GetListProject&semester-id=${o.semesterID}&page=edit-semester">
-                                                                <span>Chỉnh Sửa</span>
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="MainController?action=RemoveSemesterController&id=${o.semesterID}">
-                                                                <span>Xóa</span>
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
+
+                                        <%
+                                            ProjectDAO prodao = new ProjectDAO();
+                                            ProjectDTO proDTO = new ProjectDTO();
+                                            List<ProjectDTO> listPro = new ArrayList<>();
+                                            String proName = null;
+                                            SemesterDAO semeDAO = new SemesterDAO();
+                                            int count = 1;
+                                            int countPro = 0;
+                                            float avgScore = 0;
+
+                                            List<SemesterDTO> listSem = new ArrayList<>();
+                                            listSem = semeDAO.getAllSemester();
+
+                                            for (SemesterDTO Sem : listSem) {
+                                                listPro = prodao.getAllProjectBySemester(Sem.getSemesterID());
+
+                                                if (listPro != null) {
+                                                    for (ProjectDTO countProject : listPro) {
+                                                        countPro++;
+                                                        avgScore += countProject.getProjectScore();
+                                                    }
+                                                } else {
+                                                    countPro = 0;
+                                                    avgScore = 0;
+                                                }
+
+                                        %>
+
+
+                                        <tr>
+                                            <td><%= count++%></td>
+                                            <td><%= Sem.getSemesterName()%></td>
+                                            <td><%= countPro%></td>
+                                            <td><%= avgScore / countPro%></td>
+                                            <td class="last-type__menu">
+                                                <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                <div class="more-choice__menu">
+                                                    <div class="more-choice__item">
+                                                        <a href="MainController?action=GetListProject&semester-id=<%= Sem.getSemesterID()%>&page=edit-semester">
+                                                            <span>Chỉnh Sửa</span>
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </a>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
+                                                    <div class="more-choice__item">
+                                                        <a href="MainController?action=RemoveSemesterController&id=<%= Sem.getSemesterID()%>">
+                                                            <span>Xóa</span>
+                                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <%
+                                                countPro = 0;
+                                                avgScore = 0;
+                                            }
+                                        %>
+
                                     </tbody>
                                 </table>
                             </div>

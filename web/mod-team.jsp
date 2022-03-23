@@ -3,6 +3,17 @@
     Created on : Jan 18, 2022, 11:07:37 PM
     Author     : VODUCMINH
 --%>
+<%@page import="com.fucapstoneresult.models.ProjectDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fucapstoneresult.dao.InstructorDAO"%>
+<%@page import="com.fucapstoneresult.models.InstructorDTO"%>
+<%@page import="com.fucapstoneresult.dao.ProjectInstructorDAO"%>
+<%@page import="com.fucapstoneresult.models.ProjectInstructorDTO"%>
+<%@page import="com.fucapstoneresult.models.TeamDTO"%>
+<%@page import="com.fucapstoneresult.dao.TeamDAO"%>
+<%@page import="com.fucapstoneresult.dao.TeamDAO"%>
+<%@page import="com.fucapstoneresult.dao.ProjectDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -104,24 +115,10 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
-                                        <div>
-                                            <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                        </div>
-                                        <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                            <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                <div class="more-choice__item" style="margin-top: -2px">
-                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                    <a href="mod-request.jsp">
-                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                            </c:forEach>
-                                        </div>
-                                        <!-- Dropdown - Alerts -->
                                         <div class="info-login">
-                                            <img src="${requestScope.USER.userImage}" alt="">
+                                            <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
+                                            <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -168,28 +165,68 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên Nhóm Thực Hiện Đồ Án</th>
+
+                                            <th>Tên Đồ Án Đã Thực Hiện</th>
+                                            <th>Tên Giảng Viên Hướng Dẫn</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:if test="${requestScope.TEAM_LIST == null}">
-                                            <c:redirect url="MainController?action=LoadTeamController"></c:redirect>
-                                        </c:if>
-                                        <c:forEach items="${requestScope.TEAM_LIST}" var="o" varStatus="counter">
+
+                                        <%
+                                            ProjectDAO prodao = new ProjectDAO();
+                                            ProjectDTO proDTO = new ProjectDTO();
+                                            TeamDAO teamDAO = new TeamDAO();
+                                            ProjectInstructorDTO proins = new ProjectInstructorDTO();
+                                            ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
+                                            InstructorDTO ins = new InstructorDTO();
+                                            InstructorDAO insdao = new InstructorDAO();
+                                            
+                                            List<TeamDTO> listTeam = new ArrayList<>();
+                                            listTeam = teamDAO.getAllTeam();
+                                            
+                                            int count = 1;
+                                            for (TeamDTO Team : listTeam) {
+                                                proDTO = prodao.getProject(Team.getTeamID());
+                                                if(proDTO == null){
+                                                    proDTO = new ProjectDTO("None", "Trống", "None", "None", 0, "1", "1");
+                                                }
+                                                proins = proinsdao.getProjectInstructor(Team.getTeamID());
+                                                if(proins == null){
+                                                    proins = new ProjectInstructorDTO("None", "None");
+                                                }
+                                                ins = insdao.getInstructorByID(proins.getInstructorID());
+                                                
+                                                if(ins == null){
+                                                    ins = new InstructorDTO("None", "Trống", "None");
+                                                }
+                                                
+                                                
+                                        %>
+                                       
                                             <tr>
-                                                <td>${counter.count}</td>
-                                                <td>${o.teamName}</td>
+                                                <td><%= count++%></td>
+                                                <td><%= Team.getTeamName() %></td>
+                                                <td><%= proDTO.getProjectName() %></td>
+                                                <td><%= ins.getInstructorName() %></td>
+                                                <td></td>
+
                                                 <td class="last-type__menu">
                                                     <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                     <div class="more-choice__menu">
                                                         <div class="more-choice__item">
-                                                            <a href="MainController?action=GetListProject&team-id=${o.teamID}&page=edit-team">
+
+                                                            <a href="MainController?action=GetListProject&team-id=<%= Team.getTeamID() %>&page=edit-team">
+
                                                                 <span>Chỉnh Sửa</span>
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                         <div class="more-choice__item">
-                                                            <a href="MainController?action=RemoveTeamController&id=${o.teamID}">
+
+                                                            <a href="MainController?action=RemoveTeamController&id=<%= Team.getTeamID() %>">
+
                                                                 <span>Xóa</span>
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </a>
@@ -197,7 +234,12 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </c:forEach>
+
+                                        
+                                            <%
+                                                }
+                                            %>
+
                                     </tbody>
                                 </table>
                             </div>
