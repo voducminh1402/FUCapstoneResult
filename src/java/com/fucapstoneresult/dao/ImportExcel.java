@@ -46,14 +46,14 @@ public class ImportExcel {
     public static final int COLUMN_INDEX_SEMESTER = 5;
 
     public static void main(String[] args) throws IOException, SQLException {
-
+        //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
     }
 
     public static void addToDatabase(String path) throws IOException, SQLException {
-        //final String excelFilePath = path;
+        final String excelFilePath = path;
 
         //final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
-        final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
+        //final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
         final List<ObjectDTO> objects = readExcel(excelFilePath);
         TeamDAO team = new TeamDAO();
         UserDAO user = new UserDAO();
@@ -77,14 +77,13 @@ public class ImportExcel {
             if (team.getTeamByName(teamName) == null) {
 
                 team.insertTeam(new TeamDTO(teamId, teamName));
-
-                if (student.getStudent(object.getId()) == null) {
-
-                    student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
-                    user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
-                }
-                System.out.println(object);
             }
+            if (student.getStudent(object.getId()) == null) {
+
+                student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
+                user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
+            }
+            System.out.println(object);
         }
     }
 
@@ -138,7 +137,7 @@ public class ImportExcel {
                         break;
                     case COLUMN_INDEX_SEMESTER:
                         String semester = (String) getCellValue(cell);
-                        object.setTeam(semester);
+                        object.setSemester(semester);
                         break;
                     default:
                         break;
