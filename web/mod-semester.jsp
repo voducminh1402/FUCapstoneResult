@@ -108,10 +108,12 @@
                                     </div>   
                                 </div>
                                 <div class="col-md-6">
+
                                     <div class="right-side-info">
                                         <div class="info-login">
                                             <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
                                             <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -158,12 +160,15 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên Kỳ Thực Hiện Đồ Án</th>
+
                                             <th>Số Lượng Đồ Án Trong Kỳ</th>
                                             <th>Điểm Số Trung Bình</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <%
                                             ProjectDAO prodao = new ProjectDAO();
                                             ProjectDTO proDTO = new ProjectDTO();
@@ -221,6 +226,7 @@
                                                 avgScore = 0;
                                             }
                                         %>
+
                                     </tbody>
                                 </table>
                             </div>

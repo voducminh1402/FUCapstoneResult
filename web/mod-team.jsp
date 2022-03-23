@@ -113,10 +113,12 @@
                                     </div>   
                                 </div>
                                 <div class="col-md-6">
+
                                     <div class="right-side-info">
                                         <div class="info-login">
                                             <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
                                             <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
+
                                         </div>
                                     </div>
                                 </div>
@@ -163,12 +165,15 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên Nhóm Thực Hiện Đồ Án</th>
+
                                             <th>Tên Đồ Án Đã Thực Hiện</th>
                                             <th>Tên Giảng Viên Hướng Dẫn</th>
+
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <%
                                             ProjectDAO prodao = new ProjectDAO();
                                             ProjectDTO proDTO = new ProjectDTO();
@@ -206,17 +211,22 @@
                                                 <td><%= proDTO.getProjectName() %></td>
                                                 <td><%= ins.getInstructorName() %></td>
                                                 <td></td>
+
                                                 <td class="last-type__menu">
                                                     <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                     <div class="more-choice__menu">
                                                         <div class="more-choice__item">
+
                                                             <a href="MainController?action=GetListProject&team-id=<%= Team.getTeamID() %>&page=edit-team">
+
                                                                 <span>Chỉnh Sửa</span>
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
                                                         <div class="more-choice__item">
+
                                                             <a href="MainController?action=RemoveTeamController&id=<%= Team.getTeamID() %>">
+
                                                                 <span>Xóa</span>
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </a>
@@ -224,10 +234,12 @@
                                                     </div>
                                                 </td>
                                             </tr>
+
                                         
                                             <%
                                                 }
                                             %>
+
                                     </tbody>
                                 </table>
                             </div>
