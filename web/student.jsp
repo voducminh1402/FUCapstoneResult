@@ -53,67 +53,67 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                <i class="fas fa-home"></i> Quản Lí Người Dùng
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>
 
-                </ul>
+                    </ul>
 
-            </nav>
+                </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -143,16 +143,26 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+
                                         <div class="right-side-info">
+                                            <div>
+                                                <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
+                                            </div>
+                                            <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
+                                                <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
+                                                    <div class="more-choice__item" style="margin-top: -2px">
+                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
+                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
+                                                        <a href="mod-request.jsp">
+                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                                </c:forEach>
+                                            </div>
+                                            <!-- Dropdown - Alerts -->
                                             <div class="info-login">
-                                                <img
-                                                    src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg"
-                                                    alt=""
-                                                    />
-                                                <span
-                                                    >Xin Chào, Admin 1
-                                                    <i class="fa fa-caret-down" aria-hidden="true"></i
-                                                    ></span>
+                                                <img src="${requestScope.USER.userImage}" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -176,7 +186,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="filter">
-                                    
+
 
                                             <form id="load-file" method="post" action="LoadFileStudentController" enctype="multipart/form-data">
                                                 <label id="label" for="image-file"
@@ -184,7 +194,7 @@
                                                 >
                                                 <span id="file-name"></span>
                                                 <input id="image-file" type="file" name="file" size="60" />
-           
+
                                             </form>
 
                                         </div>
@@ -217,6 +227,7 @@
                                                 <th>No.</th>
                                                 <th>Mã số sinh viên</th>
                                                 <th>Tên</th>
+                                                <th>Chuyên ngành</th>
                                                 <!--                                                <th>Ngày Tạo</th>
                                                                                                 <th>Phân Loại</th>
                                                                                                 <th>Trạng Thái</th>-->
@@ -238,18 +249,19 @@
                                                     <td>${counter.count}</td>
                                                     <td>${o.studentID}</td>
                                                     <td>${o.studentName}</td>
+                                                    <td>${o.majorID}</td>
                                                     <!--                                                <td>01/01/2021</td>
                                                                                                     <td>Admin</td>
                                                                                                     <td>Enable</td>-->
                                                     <td class="last-type__menu">
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
-                                                            <div class="more-choice__item">
+<!--                                                            <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
                                                                     <span>Xem Chi Tiết</span>
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </a>
-                                                            </div>
+                                                            </div>-->
                                                             <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
                                                                     <span>Chỉnh Sửa</span>
@@ -328,7 +340,7 @@
 
             <script>
                 document.getElementById("image-file").addEventListener("change", () => {
-                    
+
                     document.getElementById("load-file").submit();
                 });
             </script>
@@ -341,7 +353,8 @@
                 src="https://cdn.tiny.cloud/1/m862mtwmvofelufcxf6kpr7rr30u4mh13bb09ks2g0xg8gdf/tinymce/5/tinymce.min.js"
                 referrerpolicy="origin"
             ></script>
-<!--            <script
+<<<<<<< HEAD
+            <script
                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
                 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
                 crossorigin="anonymous"
@@ -362,7 +375,31 @@
                 integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
                 crossorigin="anonymous"
             ></script>
-            <script src="./assets/js/app.js"></script>-->
+            <script src="./assets/js/app.js"></script>
+=======
+            <!--            <script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                            crossorigin="anonymous"
+                            referrerpolicy="no-referrer"
+                        ></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                            crossorigin="anonymous"
+                        ></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+                            crossorigin="anonymous"
+                        ></script>
+                        <script
+                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+                            crossorigin="anonymous"
+                        ></script>
+                        <script src="./assets/js/app.js"></script>-->
+>>>>>>> 1e7586740eda83076eeca9423261f17da5ccd7b7
 
             <script type="text/javascript">
                 $(document).ready(function () {
