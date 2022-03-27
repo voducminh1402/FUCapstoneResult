@@ -206,6 +206,14 @@
         <servlet-name>RemoveSemesterController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemoveSemesterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddNewSlideController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -401,6 +409,14 @@
     <servlet-mapping>
         <servlet-name>RemoveSemesterController</servlet-name>
         <url-pattern>/RemoveSemesterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSlideController</servlet-name>
+        <url-pattern>/AddSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewSlideController</servlet-name>
+        <url-pattern>/AddNewSlideController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

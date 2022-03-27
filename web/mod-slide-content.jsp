@@ -26,27 +26,18 @@
             <link rel="stylesheet" href="./assets/css/mod-post.css" />
             <link rel="stylesheet" href="./assets/css/styles.css" />
             <link rel="stylesheet" href="./assets/css/responsive.css" />
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-                integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-                crossorigin="anonymous"
-                referrerpolicy="no-referrer"
-                />
             <style>
-                #label {
-                    background-color: #5dc282;
-                    padding: 0.5rem 1.5rem 0.5rem 1.2rem;
-                    border-radius: 5px;
-                    color: white;
+                #show-user-detail-info{
+                    padding: 0; 
+                    margin-left: 0; 
+                    background-color: #fff; 
+                    border-radius: 0; 
+                    outline: none; 
+                    border: none; 
+                    color: black; 
+                    box-shadow: none; 
+                    transition: none;
                     cursor: pointer;
-                }
-                #image-file {
-                    opacity: 0;
-                }
-                #icon {
-                    color: white;
-                    margin-right: 0.5rem;
                 }
             </style>
         </head>
@@ -149,20 +140,18 @@
                                                 <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
                                             </div>
                                             <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                                <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
                                                     <div class="more-choice__item" style="margin-top: -2px">
-                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
+                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
                                                         <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
                                                         <a href="mod-request.jsp">
-                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
+                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
                                                         </a>
                                                     </div>
                                                     <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                                </c:forEach>
                                             </div>
                                             <!-- Dropdown - Alerts -->
                                             <div class="info-login">
-                                                <img src="${requestScope.USER.userImage}" alt="">
+                                                <img src="" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -174,11 +163,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2>Quản Lí Sinh Viên</h2>
+                                    <h2>Quản Lí Slide</h2>
                                     <div class="direct-link">
                                         <i class="fas fa-home"></i>
                                         <i class="fas fa-chevron-right"></i>
-                                        <span>Quản Lí Sinh Viên</span>
+                                        <span>Quản Lí Slide</span>
                                     </div>
                                 </div>
                             </div>
@@ -186,36 +175,33 @@
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <div class="filter">
-
-
-                                            <form id="load-file" method="post" action="LoadFileStudentController" enctype="multipart/form-data">
-                                                <label id="label" for="image-file"
-                                                       ><i id="icon" class="fas fa-file-import"></i>Import</label
-                                                >
-                                                <span id="file-name"></span>
-                                                <input id="image-file" type="file" name="file" size="60" />
-
-                                            </form>
-
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <div class="manage-project">
-                                            <form action="MainController">
+                                        <form action="MainController">
+                                            <div class="manage-project">
                                                 <div class="menu-search menu-search-project">
 
-                                                    <button name="action" value="SearchStudentByName">
+                                                    <button name="action" value="SearchInstructorByName">
                                                         <i class="fa fa-search" aria-hidden="true"></i>
                                                     </button>
                                                     <input
                                                         class="mod-menu-input"
                                                         type="text"
-                                                        placeholder="Tìm Kiếm Sinh Viên..."
+                                                        placeholder="Tìm Kiếm Slide..."
                                                         name="name"
                                                         />
                                                 </div>
-                                            </form>
-                                        </div>
+                                                <button
+                                                    type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#addModal"
+                                                    class="add-project"
+                                                    >
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -225,51 +211,35 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Mã số sinh viên</th>
-                                                <th>Tên</th>
-                                                <th>Chuyên ngành</th>
-                                                <!--                                                <th>Ngày Tạo</th>
-                                                                                                <th>Phân Loại</th>
-                                                                                                <th>Trạng Thái</th>-->
+                                                <th>Tiêu đề</th>
+                                                <th>URL hình ảnh</th>
+                                                <th>URL liên kết bài đăng</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:if test="${requestScope.LIST_STUDENT==null}">
-                                                <c:redirect
-                                                    url="MainController?action=LoadAllStudent"
-                                                    ></c:redirect>
-                                            </c:if>
-                                            <c:forEach
-                                                items="${requestScope.LIST_STUDENT}"
-                                                var="o"
-                                                varStatus="counter"
-                                                >
                                                 <tr>
-                                                    <td>${counter.count}</td>
-                                                    <td>${o.studentID}</td>
-                                                    <td>${o.studentName}</td>
-                                                    <td>${o.majorID}</td>
-                                                    <!--                                                <td>01/01/2021</td>
-                                                                                                    <td>Admin</td>
-                                                                                                    <td>Enable</td>-->
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+
                                                     <td class="last-type__menu">
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
-<!--                                                            <div class="more-choice__item">
-                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
-                                                                    <span>Xem Chi Tiết</span>
-                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>-->
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
+                                                                <a href="MainController?action=showInstructorDetail&id=">
                                                                     <span>Chỉnh Sửa</span>
-                                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                                    <i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"
+                                                                        ></i>
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=DeleteStudent&id=${o.studentID}">
+                                                                <a
+                                                                    href="MainController?action=DeleteAInstructor&id=${o.instructorID}"
+                                                                    >
                                                                     <span>Xóa</span>
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                                 </a>
@@ -277,7 +247,6 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -298,6 +267,45 @@
                 </div>
             </div>
 
+            <div class="add-project-menu">
+                <h2 id="title">Thêm Slide</h2>
+                <form action="MainController" method="POST" id="form">
+                    <label for="name">Tiêu đề</label><br />
+                    <input name="title" type="text" id="name" />
+                    
+                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
+                    <input name="url" type="text" id="name" />
+
+                    <label for="image">Ảnh</label>
+                    <div
+                        class="project-add-upload__image post-upload__image"
+                        style="background-color: none"
+                        >
+                        <label style="margin: 0" for="file"
+                               ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
+                        >
+                        <input
+                            type="file"
+                            name="file"
+                            id="file"
+                            placeholder="Tải Ảnh Lên"
+                            required
+                            /><br />
+                        <input type="hidden" id="mod-post__preview-input" name="image" />
+                        <a id="mod-post__preview-link" href="">
+                            <img id="mod-post__preview-image" src="" alt="" />
+                        </a>
+                    </div>
+                    
+
+                    <div class="add-project-submit">
+                        <button type="submit" name="action" value="AddSlide">
+                            Lưu Lại
+                        </button>
+                        <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
+                    </div>
+                </form>
+            </div>
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
@@ -329,6 +337,7 @@
                 crossorigin="anonymous"
                 referrerpolicy="no-referrer"
             ></script>
+            <script src="./assets/js/app.js"></script>
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -337,14 +346,100 @@
                     });
                 });
             </script>
-
             <script>
-                document.getElementById("image-file").addEventListener("change", () => {
+                CKEDITOR.plugins.addExternal(
+                        "imgur",
+                        "/FUCapstoneResult/ckeditor/plugins/imgur/",
+                        "plugin.js"
+                        );
+                var editor = CKEDITOR.replace("editor", {
+                    extraPlugins: "imgur",
+                });
 
-                    document.getElementById("load-file").submit();
+                CKEDITOR.editorConfig = function (config) {
+                    config.extraPlugins = "imgur";
+                    config.imgurClientID = "424e57033a8d4ea";
+                };
+
+                editor.on("change", function (evt) {
+                    var data = CKEDITOR.instances.editor.getData();
+                    document.getElementById("post-content").value = data;
+                    console.log(data);
                 });
             </script>
+            <script>
+                $("document").ready(function () {
+                    $("input[type=file]").on("change", function () {
+                        var $files = $(this).get(0).files;
+                        if ($files.length) {
+                            if ($files[0].size > $(this).data("max-size") * 1024) {
+                                console.log("Vui lòng chọn file có dung lượng nhỏ hơn!");
+                                return false;
+                            }
 
+                            console.log("Đang upload hình ảnh lên imgur...");
+                            var apiUrl = "https://api.imgur.com/3/image";
+                            var apiKey = "dcd0ee22791c49d";
+                            var settings = {
+                                async: false,
+                                crossDomain: true,
+                                processData: false,
+                                contentType: false,
+                                type: "POST",
+                                url: apiUrl,
+                                headers: {
+                                    Authorization: "Client-ID " + apiKey,
+                                    Accept: "application/json",
+                                },
+                                mimeType: "multipart/form-data",
+                            };
+                            var formData = new FormData();
+                            formData.append("image", $files[0]);
+                            settings.data = formData;
+                            $.ajax(settings).done(function (response) {
+                                console.log(response);
+                                var obj = JSON.parse(response);
+                                document.getElementById("mod-post__preview-link").src =
+                                        obj.data.link;
+                                document.getElementById("mod-post__preview-image").src =
+                                        obj.data.link;
+                                document.getElementById("mod-post__preview-input").value =
+                                        obj.data.link;
+                                obj.data.link;
+                            });
+                        }
+                    });
+                });
+            </script>
+            <script>
+                $(function () {
+                    $("input, select")
+                            .on("change", function (event) {
+                                var $element = $(event.target),
+                                        $container = $element.closest(".example");
+
+                                if (!$element.data("tagsinput"))
+                                    return;
+
+                                var val = $element.val();
+                                if (val === null) {
+                                    val = "null";
+                                } else {
+                                    document.getElementById("post-tag-hidden").value = val;
+                                }
+
+                                $("code", $("pre.val", $container)).html(
+                                        $.isArray(val)
+                                        ? JSON.stringify(val)
+                                        : '"' + val.replace('"', '\\"') + '"'
+                                        );
+                                $("code", $("pre.items", $container)).html(
+                                        JSON.stringify($element.tagsinput("items"))
+                                        );
+                            })
+                            .trigger("change");
+                });
+            </script>
             <script
                 src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
                 type="text/javascript"
@@ -375,28 +470,6 @@
                 crossorigin="anonymous"
             ></script>
             <script src="./assets/js/app.js"></script>
-            <!--            <script
-                            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-                            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-                            crossorigin="anonymous"
-                            referrerpolicy="no-referrer"
-                        ></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-                            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-                            crossorigin="anonymous"
-                        ></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-                            crossorigin="anonymous"
-                        ></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-                            crossorigin="anonymous"
-                        ></script>
-                        <script src="./assets/js/app.js"></script>-->
 
             <script type="text/javascript">
                 $(document).ready(function () {
@@ -415,5 +488,6 @@
                     content_css: "./assets/css/mod-project.css",
                 });
             </script>
+            <script src="./assets/js/admin.js"></script>
         </body>
     </html>

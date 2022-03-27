@@ -10,42 +10,43 @@ package com.fucapstoneresult.models;
  * @author VODUCMINH
  */
 public class ContentDTO {
-    private String indexContent;
-    private String timelineContent;
-    private String slideContent;
+   private ContentIndexDTO contentIndex;
+   private TimelineDTO timeline;
+   private SlideDTO slide;
 
     public ContentDTO() {
     }
 
-    public ContentDTO(String indexContent, String timelineContent, String slideContent) {
-        this.indexContent = indexContent;
-        this.timelineContent = timelineContent;
-        this.slideContent = slideContent;
+    public ContentDTO(ContentIndexDTO contentIndex, TimelineDTO timeline, SlideDTO slide) {
+        this.contentIndex = contentIndex;
+        this.timeline = timeline;
+        this.slide = slide;
     }
 
-    public String getIndexContent() {
-        return indexContent;
+    public ContentIndexDTO getContentIndex() {
+        return contentIndex;
     }
 
-    public void setIndexContent(String indexContent) {
-        this.indexContent = indexContent;
+    public void setContentIndex(ContentIndexDTO contentIndex) {
+        this.contentIndex = contentIndex;
     }
 
-    public String getTimelineContent() {
-        return timelineContent;
+    public TimelineDTO getTimeline() {
+        return timeline;
     }
 
-    public void setTimelineContent(String timelineContent) {
-        this.timelineContent = timelineContent;
+    public void setTimeline(TimelineDTO timeline) {
+        this.timeline = timeline;
     }
 
-    public String getSlideContent() {
-        return slideContent;
+    public SlideDTO getSlide() {
+        return slide;
     }
 
-    public void setSlideContent(String slideContent) {
-        this.slideContent = slideContent;
+    public void setSlide(SlideDTO slide) {
+        this.slide = slide;
     }
-    
+   
+   
             
 }

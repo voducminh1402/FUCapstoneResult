@@ -96,6 +96,10 @@ public class MainController extends HttpServlet {
     private static final String GET_SEMESTER_LIST = "LoadSemesterController";
     private static final String UPDATE_SEMESTER = "UpdateSemesterController";
     private static final String REMOVE_SEMESTER = "RemoveSemesterController";
+    
+    private static final String ADD_SLIDE = "AddNewSlideController";
+    
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -266,6 +270,9 @@ public class MainController extends HttpServlet {
             }
             else if ("RemoveSemesterController".equals(action)) {
                 url = REMOVE_SEMESTER;
+            }
+            else if ("AddSlide".equals(action)) {
+                url = ADD_SLIDE;
             }
             
 
