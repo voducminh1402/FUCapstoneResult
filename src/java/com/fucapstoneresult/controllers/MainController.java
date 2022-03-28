@@ -101,6 +101,7 @@ public class MainController extends HttpServlet {
     private static final String GET_SLIDE = "GetSlideContentController";
     private static final String EDIT_SLIDE = "EditSlideController";
     private static final String REMOVE_SLIDE = "RemoveSlideController";
+    private static final String FILTER_POSTS_BY_TAG = "FilterPostsByTagController";
     
     
 
@@ -285,6 +286,8 @@ public class MainController extends HttpServlet {
             }
             else if ("RemoveSlide".equals(action)) {
                 url = REMOVE_SLIDE;
+            }else if ("FilterPostsByTag".equals(action)){
+                url = FILTER_POSTS_BY_TAG;
             }
             
 
