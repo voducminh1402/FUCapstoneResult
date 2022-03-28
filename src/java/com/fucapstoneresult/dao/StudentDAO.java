@@ -230,6 +230,44 @@ public class StudentDAO {
 
         return list;
     }
+    
+    public List<StudentDTO> getListStudentInStudentPage() throws SQLException {
+        List<StudentDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        MajorDAO dao = new MajorDAO();
+
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = "SELECT StudentID, StudentName, MajorID, StudentImage, TeamID "
+                        + " FROM Students ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String majorName = dao.getMajor(rs.getString("MajorID")).getMajorName();
+                    list.add(new StudentDTO(rs.getString("StudentID"), rs.getString("StudentName"), majorName, rs.getString("StudentImage"), rs.getString("TeamID")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return list;
+    }
 
     public List<StudentDTO> getStudentbyName(String studentName) throws SQLException {
         studentName = studentName.toLowerCase();

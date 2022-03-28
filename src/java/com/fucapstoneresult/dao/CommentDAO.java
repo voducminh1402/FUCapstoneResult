@@ -6,7 +6,6 @@
 package com.fucapstoneresult.dao;
 
 import com.fucapstoneresult.models.CommentDTO;
-import com.fucapstoneresult.models.PostCommentDTO;
 import com.fucapstoneresult.models.UserCommentDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
