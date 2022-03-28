@@ -103,6 +103,16 @@ public class MainController extends HttpServlet {
     private static final String REMOVE_SLIDE = "RemoveSlideController";
     private static final String FILTER_POSTS_BY_TAG = "FilterPostsByTagController";
     
+    private static final String ADD_CONTEXTINDEX = "AddNewContextIndexController";
+    private static final String GET_CONTEXTINDEX = "GetContextIndexController";
+    private static final String EDIT_CONTEXTINDEX = "EditContextIndexController";
+    private static final String REMOVE_CONTEXTINDEX = "RemoveContextIndexController";
+    
+     private static final String ADD_TIMELINE = "AddNewTimelineController";
+    private static final String GET_TIMELINE = "GetTimelineController";
+    private static final String EDIT_TIMELINE = "EditTimelineController";
+    private static final String REMOVE_TIMELINE = "RemoveTimelineController";
+    
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -288,6 +298,30 @@ public class MainController extends HttpServlet {
                 url = REMOVE_SLIDE;
             }else if ("FilterPostsByTag".equals(action)){
                 url = FILTER_POSTS_BY_TAG;
+            }
+            else if ("AddContextIndex".equals(action)) {
+                url = ADD_CONTEXTINDEX;
+            }
+            else if ("GetContextIndex".equals(action)) {
+                url = GET_CONTEXTINDEX;
+            }
+            else if ("EditContextIndex".equals(action)) {
+                url = EDIT_CONTEXTINDEX;
+            }
+            else if ("RemoveContextIndex".equals(action)) {
+                url = REMOVE_CONTEXTINDEX;
+            }
+            else if ("AddTimeline".equals(action)) {
+                url = ADD_TIMELINE;
+            }
+            else if ("GetTimeline".equals(action)) {
+                url = GET_TIMELINE;
+            }
+            else if ("EditTimeline".equals(action)) {
+                url = EDIT_TIMELINE;
+            }
+            else if ("RemoveTimeline".equals(action)) {
+                url = REMOVE_TIMELINE;
             }
             
 
