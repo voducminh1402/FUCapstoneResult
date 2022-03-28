@@ -77,3 +77,4 @@
         .classList.remove("show-user-detail-disappear");
     });
 })();
+
