@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.dao;
 
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
@@ -19,26 +20,26 @@ import java.util.List;
  * @author PhongVu
  */
 public class TagDetailsDAO {
-    public List<TagDetailsDTO> getListTagDetails(String search) throws SQLException{
-        List<TagDetailsDTO> listtagdetail = new ArrayList<>();
+    public TagDetailsDTO getTagDetails(String tagID) throws SQLException{
+        TagDetailsDTO tagDetail = null;
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         
         try {
-           conn=com.fucapstoneresult.utils.DBUtils.getConnection();
+           conn = DBUtils.getConnection();
            if(conn!=null){
                 String sql = " SELECT TagDetailID, TagDetailName "
                             +" FROM TagDetails "
-                            +" WHERE TagDetailID like ? ";
+                            +" WHERE TagDetailID = ? ";
                 stm = conn.prepareStatement(sql);
-                stm.setString(1, "%"+search+"%");
+                stm.setString(1, tagID);
                 rs = stm.executeQuery();
-                while(rs.next()){
+                if(rs.next()){
                     String TagDetailID = rs.getString("TagDetailID");
                     String TagdetailName = rs.getString("TagDetailName");
                     
-                    listtagdetail.add(new TagDetailsDTO(TagDetailID, TagdetailName));
+                    tagDetail = new TagDetailsDTO(TagDetailID, TagdetailName);
                 }
             } 
        } catch (Exception e) {
@@ -50,9 +51,42 @@ public class TagDetailsDAO {
         }
         
         
-        return listtagdetail;
+        return tagDetail;
    }
     
+    
+    public TagDetailsDTO getTagDetailsWithName(String name) throws SQLException{
+        TagDetailsDTO tagDetail = null;
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        
+        try {
+           conn = DBUtils.getConnection();
+           if(conn!=null){
+                String sql = " SELECT TagDetailID, TagDetailName "
+                            +" FROM TagDetails "
+                            +" WHERE TagDetailName = ? ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, name);
+                rs = stm.executeQuery();
+                if(rs.next()){
+                    String TagDetailID = rs.getString("TagDetailID");
+                    String TagdetailName = rs.getString("TagDetailName");
+                    
+                    tagDetail = new TagDetailsDTO(TagDetailID, TagdetailName);
+                }
+            } 
+       } catch (Exception e) {
+           e.printStackTrace();
+       }finally{
+            if(rs!=null) rs.close();
+            if(stm!=null) stm.close();
+            if(conn!=null) conn.close();  
+        }
+        
+        return tagDetail;
+   }
    
     public boolean update(TagDetailsDTO tagdetail) throws SQLException{
         boolean check = false;
@@ -123,5 +157,51 @@ public class TagDetailsDAO {
         
         
         return check;
+    }
+    
+    public List<TagDetailsDTO> getTagsByName(String name) throws SQLException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<TagDetailsDTO> list = new ArrayList<>();
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "SELECT TagDetailID "
+                        + " FROM TagDetails "
+                        + " WHERE TagDetailName like ? ";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, "%" + name + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    list.add(new TagDetailsDTO(rs.getString("TagDetailID")));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) 
+                rs.close();
+            if (stm != null) 
+                stm.close();
+            if (con != null) 
+                con.close();
+        }
+        return list;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        TagDetailsDAO dao = new TagDetailsDAO();
+        PostsDAO d = new PostsDAO();
+        List<TagDetailsDTO> list = dao.getTagsByName("o");
+        List<PostsDTO> l;
+        List<PostsDTO> listPosts = new ArrayList<>();
+        int count = 0;
+        
+        System.out.println(count);
+        for (PostsDTO listPost : listPosts) {
+            System.out.println(listPost);
+        }
+        System.out.println(listPosts.size());
     }
 }
