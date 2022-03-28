@@ -479,7 +479,7 @@ public class PostsDAO {
         return df.format(convertDate);
     }
 
-    public List<PostsDTO> getPostsByTagID(String id) throws SQLException {
+    public List<PostsDTO> getPostsByTagName(String tag) throws SQLException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -488,13 +488,21 @@ public class PostsDAO {
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                String sql = "SELECT Posts.PostID, Posts.PostTitle, Posts.PostDate, Posts.PostAuthor, Posts.PostContent, Posts.PostImage, Posts.LastEditedUser, IsMainPost, ProjectID "
-                        + "Posts.Upvote, Posts.PostStatusId, Posts.ProjectID "
-                        + " FROM Tags "
-                        + " JOIN Posts ON Posts.PostID = Tags.PostID "
-                        + " WHERE TagDetailID = ?";
+                String sql = "SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, IsMainPost, ProjectID, "
+                        + " Upvote, PostStatusId, ProjectID "
+                        + " FROM Posts "
+                        + "  WHERE PostID IN "
+                        + "  (SELECT PostID "
+                        + "  FROM Tags "
+                        + "  WHERE TagDetailID IN "
+                        + "  ( "
+                        + "  SELECT TagDetailID  "
+                        + "  FROM TagDetails "
+                        + "  WHERE TagDetailName LIKE ? "
+                        + "  ) "
+                        + "  ) ";
                 stm = con.prepareStatement(sql);
-                stm.setString(1, id);
+                stm.setString(1, "%" + tag + "%");
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String PostID = rs.getString("PostID");
@@ -506,11 +514,10 @@ public class PostsDAO {
                     String LastEditedUser = rs.getString("LastEditedUser");
                     int Upvote = Integer.parseInt(rs.getString("Upvote"));
                     int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
-                    String ProjectID = rs.getString("ProjectID");
                     String isMainPost = rs.getString("IsMainPost");
                     String projectID = rs.getString("ProjectID");
 
-                    if (PostStatusID == 1) {
+                    if (PostStatusID == 1 && isMainPost != null) {
                         list.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
                     }
                 }
@@ -661,24 +668,9 @@ public class PostsDAO {
     public static void main(String[] args) throws SQLException {
 
         PostsDAO dao = new PostsDAO();
-        List<PostsDTO> l = dao.getListTop3Post("1");
-        for (PostsDTO l1 : l) {
-            System.out.println(l1);
-
-            ProjectDAO projectDao = new ProjectDAO();
-            PostsDAO dPost = new PostsDAO();
-            List<String> listProjectID;
-            listProjectID = projectDao.getAllProjectIDBySemester("1");
-            for (String string : listProjectID) {
-                System.out.println(string);
-            }
-            List<PostsDTO> listPost = dPost.getPostsByProjectID(listProjectID);
-            for (PostsDTO postsDTO : listPost) {
-                System.out.println(postsDTO);
-
-            }
-            System.out.println(dao.getUpVoteByProjectId("1"));
-
+        List<PostsDTO> list = dao.getPostsByTagName("o");
+        for (PostsDTO postsDTO : list) {
+            System.out.println(postsDTO);
         }
 
     }

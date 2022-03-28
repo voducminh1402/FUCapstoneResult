@@ -302,7 +302,7 @@
                                 <div class="line-break"></div>
                                 <ul>
                                     <c:forEach items="${requestScope.TAGS}" var="o">
-                                        <li><a href="#">${o.tagDetailName}</a></li>
+                                        <li><a href="MainController?action=FilterPostsByTag&tag=${o.tagDetailName}">${o.tagDetailName}</a></li>
                                         </c:forEach>
                                 </ul>
                             </div>
