@@ -218,35 +218,53 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-
-                                                    <td class="last-type__menu">
-                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                        <div class="more-choice__menu">
-                                                            <div class="more-choice__item">
-                                                                <a href="MainController?action=showInstructorDetail&id=">
-                                                                    <span>Chỉnh Sửa</span>
-                                                                    <i
-                                                                        class="fa fa-pencil"
-                                                                        aria-hidden="true"
-                                                                        ></i>
-                                                                </a>
+                                                <c:if test="${requestScope.SLIDE == null}">
+                                                    <c:redirect url="MainController?action=GetSlide"></c:redirect>
+                                                </c:if>
+                                                <c:forEach items="${requestScope.SLIDE}" var="o" varStatus="status">
+                                                    <tr>
+                                                        <td>${status.count}</td>
+                                                        <td>${o.title}</td>
+                                                        <td>
+                                                            <a href="${o.image}" target="_blank">Xem hình ảnh</a
+                                                        </td>
+                                                        <td>
+                                                            <a href="${o.url}" target="_blank">Xem nội dung đường dẫn</a>
+                                                        </td>
+                                                        <td class="last-type__menu">
+                                                            <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                            <div class="more-choice__menu">
+                                                                <div class="more-choice__item content-item">
+                                                                    <button
+                                                                        data-id="${o.id}"
+                                                                        data-title="${o.title}"
+                                                                        data-image="${o.image}"
+                                                                        data-url="${o.url}"
+                                                                        type="button"
+                                                                        data-toggle="modal"
+                                                                        data-target="#editModal"
+                                                                        class="edit-slide"
+                                                                        >
+                                                                        <span>Chỉnh Sửa</span>
+                                                                        <i
+                                                                            class="fa fa-pencil"
+                                                                            aria-hidden="true"
+                                                                            ></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="more-choice__item content-item">
+                                                                    <form action="MainController" method="POST">
+                                                                            <input type="hidden" name="id" value="${o.id}">
+                                                                            <button type="submit" name="action" value="RemoveSlide" style="display: flex; justify-content: space-between; width: 100%">
+                                                                                <span>Xóa</span>
+                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                </div>
                                                             </div>
-                                                            <div class="more-choice__item">
-                                                                <a
-                                                                    href="MainController?action=DeleteAInstructor&id=${o.instructorID}"
-                                                                    >
-                                                                    <span>Xóa</span>
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -267,7 +285,7 @@
                 </div>
             </div>
 
-            <div class="add-project-menu">
+            <div class="add-project-menu" id="add-project-menu">
                 <h2 id="title">Thêm Slide</h2>
                 <form action="MainController" method="POST" id="form">
                     <label for="name">Tiêu đề</label><br />
@@ -303,6 +321,46 @@
                             Lưu Lại
                         </button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="add-project-menu" id="edit-slide-menu">
+                <h2 id="title">Chỉnh Sửa Slide</h2>
+                <form action="MainController" method="POST" id="form">
+                    <input type="hidden" name="id" type="text" id="id-edit" />
+                    <label for="name">Tiêu đề</label><br />
+                    <input name="title" type="text" id="title-edit" />
+                    
+                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
+                    <input name="url" type="text" id="url-edit" />
+
+                    <label for="image">Ảnh</label>
+                    <div
+                        class="project-add-upload__image post-upload__image"
+                        style="background-color: none"
+                        >
+                        <label style="margin: 0" for="file"
+                               ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
+                        >
+                        <input
+                            type="file"
+                            name="file"
+                            id="file"
+                            placeholder="Tải Ảnh Lên"
+                            /><br />
+                        <input type="hidden" id="image-inp-edit" name="image" />
+                        <a id="image-link-edit" href="">
+                            <img id="image-img-edit" src="" alt="" />
+                        </a>
+                    </div>
+                    
+
+                    <div class="add-project-submit">
+                        <button type="submit" name="action" value="EditSlide">
+                            Lưu Lại
+                        </button>
+                        <button class="cancel-edit-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
             </div>
@@ -399,13 +457,18 @@
                             $.ajax(settings).done(function (response) {
                                 console.log(response);
                                 var obj = JSON.parse(response);
-                                document.getElementById("mod-post__preview-link").src =
+                                document.getElementById("mod-post__preview-link").href =
                                         obj.data.link;
                                 document.getElementById("mod-post__preview-image").src =
                                         obj.data.link;
                                 document.getElementById("mod-post__preview-input").value =
                                         obj.data.link;
-                                obj.data.link;
+                                document.getElementById("image-inp-edit").value =
+                                        obj.data.link;
+                                document.getElementById("image-link-edit").href =
+                                        obj.data.link;
+                                document.getElementById("image-img-edit").src =
+                                        obj.data.link;
                             });
                         }
                     });

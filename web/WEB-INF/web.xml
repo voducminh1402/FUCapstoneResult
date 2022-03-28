@@ -214,6 +214,18 @@
         <servlet-name>AddNewSlideController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.AddNewSlideController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetSlideContentController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetSlideContentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.EditSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveSlideController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -417,6 +429,18 @@
     <servlet-mapping>
         <servlet-name>AddNewSlideController</servlet-name>
         <url-pattern>/AddNewSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSlideContentController</servlet-name>
+        <url-pattern>/GetSlideContentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSlideController</servlet-name>
+        <url-pattern>/EditSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveSlideController</servlet-name>
+        <url-pattern>/RemoveSlideController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
