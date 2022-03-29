@@ -178,6 +178,8 @@
                                             int count = 1;
                                             int countPro = 0;
                                             float avgScore = 0;
+                                            float Score = 0;
+                                            String none;
 
                                             List<SemesterDTO> listSem = new ArrayList<>();
                                             listSem = semeDAO.getAllSemester();
@@ -202,7 +204,20 @@
                                             <td><%= count++%></td>
                                             <td><%= Sem.getSemesterName()%></td>
                                             <td><%= countPro%></td>
-                                            <td><%= avgScore / countPro%></td>
+                                            <%
+                                                Score = avgScore / countPro;
+                                                if (Float.isNaN(Score)) {
+                                                    none = "Chưa Có Số Liệu";
+                                            %>
+                                                <td><%= none%></td>
+                                            <%
+                                                }else{
+                                            %>
+                                                   <td><%= Score%></td> 
+                                            <%
+                                                }
+                                            %>
+
                                             <td class="last-type__menu">
                                                 <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                 <div class="more-choice__menu">

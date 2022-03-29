@@ -10,7 +10,7 @@ package com.fucapstoneresult.models;
  * @author VODUCMINH
  */
 public class TimelineDTO {
-    private static String title;
+    private String title;
     private String name;
     private String time;
     private String group;
@@ -20,7 +20,8 @@ public class TimelineDTO {
     public TimelineDTO() {
     }
 
-    public TimelineDTO(String name, String time, String group, String description, String place) {
+    public TimelineDTO(String title, String name, String time, String group, String description, String place) {
+        this.title = title;
         this.name = name;
         this.time = time;
         this.group = group;
@@ -28,13 +29,17 @@ public class TimelineDTO {
         this.place = place;
     }
 
-    public static String getTitle() {
+    
+
+    public String getTitle() {
         return title;
     }
 
-    public static void setTitle(String title) {
-        TimelineDTO.title = title;
+    public void setTitle(String title) {
+        this.title = title;
     }
+
+    
 
     public String getName() {
         return name;
