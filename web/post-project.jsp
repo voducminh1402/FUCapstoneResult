@@ -32,7 +32,8 @@
             />
         <link rel="stylesheet" href="./assets/css/post-project.css" />
         <link rel="stylesheet" href="./assets/css/styles.css">
-        <link rel="stylesheet" href="./assets/css/responsive.css">
+
+        
         <style>
             .home-page-header {
                 position: fixed;
@@ -88,9 +89,11 @@
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                     </li>
-                                    <li>
-                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
-                                    </li>
+                                    <c:if test="${sessionScope.IS_STUDENT == 1}">
+                                        <li>
+                                            <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                        </li>
+                                    </c:if>
                                     <li>
                                         <a href="./contact.html">Liên hệ</a>
                                     </li>
@@ -221,7 +224,8 @@
                             </div>
                             <div class="leave-comment">
                                 <h5>Để lại Bình luận</h5>
-                                <form action="#">
+                                <form action="MainController">
+                                    <input type="hidden" name="id" value="${requestScope.POST.postID}">
                                     <textarea
                                         name="input-comment"
                                         id="comment"
