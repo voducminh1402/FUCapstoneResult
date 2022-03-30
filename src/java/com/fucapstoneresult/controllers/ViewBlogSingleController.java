@@ -42,7 +42,7 @@ public class ViewBlogSingleController extends HttpServlet {
             PostsDAO postDao = new PostsDAO();
             PostsDTO post = postDao.getPostWithID(postID);
             List<PostsDTO> top3Post = postDao.getListTop3Post(postID);
-            PostsDTO mainPost = postDao.getMainPostWithProjectId(post.getProjectID());
+            PostsDTO mainPost = postDao.getModPostWithProjectId(post.getProjectID());
             
             String studentName = post.getPostAuthor();
             
@@ -50,6 +50,8 @@ public class ViewBlogSingleController extends HttpServlet {
             TagDetailsDAO tagDetailDao = new TagDetailsDAO();
             
             if (post != null) {
+                CommentDAO cmtDao = new CommentDAO();
+                List<CommentDTO> comments = cmtDao.getListCommentsByPost(post.getPostID());
                 List<TagsDTO> tagList = tagDao.getListTag(postID);
                 List<TagDetailsDTO> tagDetailList = new ArrayList<>();
                 
@@ -60,8 +62,10 @@ public class ViewBlogSingleController extends HttpServlet {
                 request.setAttribute("POST", post);
                 request.setAttribute("STUDENT_NAME", studentName);
                 request.setAttribute("TOP_POST", top3Post);
-                request.setAttribute("TAG", tagDetailList);
+                request.setAttribute("TAGS", tagDetailList);
                 request.setAttribute("MAIN_POST", mainPost);
+                request.setAttribute("COMMENTS", comments);
+                request.setAttribute("COUNT_CMT", comments.size());
                 url = SUCCESS;
             }
         } catch (Exception e) {

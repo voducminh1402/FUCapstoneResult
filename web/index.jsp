@@ -77,7 +77,7 @@
                                         <li>
                                             <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                         </li>
-                                        <c:if test="${requestScope.IS_STUDENT == 1}">
+                                        <c:if test="${sessionScope.IS_STUDENT == 1}">
                                             <li>
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
