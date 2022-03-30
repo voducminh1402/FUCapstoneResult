@@ -5,8 +5,10 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.dao.TeamDAO;
+import com.fucapstoneresult.models.ProjectDTO;
 import com.fucapstoneresult.models.SemesterDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,6 +39,7 @@ public class LoadSemesterController extends HttpServlet {
             
             for (SemesterDTO semeDTO : list) {
                 semesterlist.add(semeDTO);
+                
             }
            
             

@@ -227,6 +227,7 @@
                                                 <th>No.</th>
                                                 <th>Mã số sinh viên</th>
                                                 <th>Tên</th>
+                                                <th>Chuyên ngành</th>
                                                 <!--                                                <th>Ngày Tạo</th>
                                                                                                 <th>Phân Loại</th>
                                                                                                 <th>Trạng Thái</th>-->
@@ -248,18 +249,19 @@
                                                     <td>${counter.count}</td>
                                                     <td>${o.studentID}</td>
                                                     <td>${o.studentName}</td>
+                                                    <td>${o.majorID}</td>
                                                     <!--                                                <td>01/01/2021</td>
                                                                                                     <td>Admin</td>
                                                                                                     <td>Enable</td>-->
                                                     <td class="last-type__menu">
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
-                                                            <div class="more-choice__item">
+<!--                                                            <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
                                                                     <span>Xem Chi Tiết</span>
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </a>
-                                                            </div>
+                                                            </div>-->
                                                             <div class="more-choice__item">
                                                                 <a href="MainController?action=showUserDetail&id=${o.studentID}&page=student">
                                                                     <span>Chỉnh Sửa</span>
@@ -351,6 +353,28 @@
                 src="https://cdn.tiny.cloud/1/m862mtwmvofelufcxf6kpr7rr30u4mh13bb09ks2g0xg8gdf/tinymce/5/tinymce.min.js"
                 referrerpolicy="origin"
             ></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+                integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"
+            ></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"
+            ></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+                crossorigin="anonymous"
+            ></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+                crossorigin="anonymous"
+            ></script>
+            <script src="./assets/js/app.js"></script>
             <!--            <script
                             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
                             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="

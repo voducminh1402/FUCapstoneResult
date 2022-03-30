@@ -411,6 +411,19 @@ a.article:hover {
     z-index: 11;
 }
 
+#edit-slide-menu {
+    width: 600px;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    background-color: var(--main-white);
+    padding: 40px 40px;
+    overflow-y: scroll;
+    display: none;
+    z-index: 11;
+}
+
 .add-project-menu.active {
     display: block;
 }

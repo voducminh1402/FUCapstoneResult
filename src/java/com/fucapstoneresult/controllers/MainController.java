@@ -96,6 +96,24 @@ public class MainController extends HttpServlet {
     private static final String GET_SEMESTER_LIST = "LoadSemesterController";
     private static final String UPDATE_SEMESTER = "UpdateSemesterController";
     private static final String REMOVE_SEMESTER = "RemoveSemesterController";
+    
+    private static final String ADD_SLIDE = "AddNewSlideController";
+    private static final String GET_SLIDE = "GetSlideContentController";
+    private static final String EDIT_SLIDE = "EditSlideController";
+    private static final String REMOVE_SLIDE = "RemoveSlideController";
+    private static final String FILTER_POSTS_BY_TAG = "FilterPostsByTagController";
+    
+    private static final String ADD_CONTEXTINDEX = "AddNewContextIndexController";
+    private static final String GET_CONTEXTINDEX = "GetContextIndexController";
+    private static final String EDIT_CONTEXTINDEX = "EditContextIndexController";
+    private static final String REMOVE_CONTEXTINDEX = "RemoveContextIndexController";
+    
+     private static final String ADD_TIMELINE = "AddNewTimelineController";
+    private static final String GET_TIMELINE = "GetTimelineController";
+    private static final String EDIT_TIMELINE = "EditTimelineController";
+    private static final String REMOVE_TIMELINE = "RemoveTimelineController";
+    
+    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -266,6 +284,44 @@ public class MainController extends HttpServlet {
             }
             else if ("RemoveSemesterController".equals(action)) {
                 url = REMOVE_SEMESTER;
+            }
+            else if ("AddSlide".equals(action)) {
+                url = ADD_SLIDE;
+            }
+            else if ("GetSlide".equals(action)) {
+                url = GET_SLIDE;
+            }
+            else if ("EditSlide".equals(action)) {
+                url = EDIT_SLIDE;
+            }
+            else if ("RemoveSlide".equals(action)) {
+                url = REMOVE_SLIDE;
+            }else if ("FilterPostsByTag".equals(action)){
+                url = FILTER_POSTS_BY_TAG;
+            }
+            else if ("AddContextIndex".equals(action)) {
+                url = ADD_CONTEXTINDEX;
+            }
+            else if ("GetContextIndex".equals(action)) {
+                url = GET_CONTEXTINDEX;
+            }
+            else if ("EditContextIndex".equals(action)) {
+                url = EDIT_CONTEXTINDEX;
+            }
+            else if ("RemoveContextIndex".equals(action)) {
+                url = REMOVE_CONTEXTINDEX;
+            }
+            else if ("AddTimeline".equals(action)) {
+                url = ADD_TIMELINE;
+            }
+            else if ("GetTimeline".equals(action)) {
+                url = GET_TIMELINE;
+            }
+            else if ("EditTimeline".equals(action)) {
+                url = EDIT_TIMELINE;
+            }
+            else if ("RemoveTimeline".equals(action)) {
+                url = REMOVE_TIMELINE;
             }
             
 

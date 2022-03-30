@@ -206,6 +206,58 @@
         <servlet-name>RemoveSemesterController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemoveSemesterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddNewSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSlideContentController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetSlideContentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.EditSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveSlideController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveSlideController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewContextIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddNewContextIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditContextIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.EditContextIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetContextIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetContextIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveContextIndexController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveContextIndexController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddNewTimelineController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.AddNewTimelineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditTimelineController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.EditTimelineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetTimelineController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.GetTimelineController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveTimelineController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.RemoveTimelineController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -401,6 +453,58 @@
     <servlet-mapping>
         <servlet-name>RemoveSemesterController</servlet-name>
         <url-pattern>/RemoveSemesterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSlideController</servlet-name>
+        <url-pattern>/AddSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewSlideController</servlet-name>
+        <url-pattern>/AddNewSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSlideContentController</servlet-name>
+        <url-pattern>/GetSlideContentController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSlideController</servlet-name>
+        <url-pattern>/EditSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveSlideController</servlet-name>
+        <url-pattern>/RemoveSlideController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewContextIndexController</servlet-name>
+        <url-pattern>/AddNewContextIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditContextIndexController</servlet-name>
+        <url-pattern>/EditContextIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetContextIndexController</servlet-name>
+        <url-pattern>/GetContextIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveContextIndexController</servlet-name>
+        <url-pattern>/RemoveContextIndexController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewTimelineController</servlet-name>
+        <url-pattern>/AddNewTimelineController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditTimelineController</servlet-name>
+        <url-pattern>/EditTimelineController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetTimelineController</servlet-name>
+        <url-pattern>/GetTimelineController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveTimelineController</servlet-name>
+        <url-pattern>/RemoveTimelineController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
