@@ -79,13 +79,21 @@
 
                     <li>
                         <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            <i class="fas fa-file"></i> Bài Đăng Chính
                         </a>
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-
+                    
+                    <hr class="sidebar-divider">
+                    
+                     <li>
+                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-arrow-left"></i> Đăng xuất
+                        </a>
+                    </li>                
+                    
                 </ul>
 
             </nav>
@@ -101,10 +109,6 @@
                                         <button type="button" id="sidebarCollapse" class="btn btn-info">
                                             <i class="fas fa-align-left"></i>
                                         </button>
-                                        <div class="menu-search">
-                                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
-                                        </div>
                                     </div>   
                                 </div>
                                 <div class="col-md-6">
@@ -178,6 +182,8 @@
                                             int count = 1;
                                             int countPro = 0;
                                             float avgScore = 0;
+                                            float Score = 0;
+                                            String none;
 
                                             List<SemesterDTO> listSem = new ArrayList<>();
                                             listSem = semeDAO.getAllSemester();
@@ -202,7 +208,20 @@
                                             <td><%= count++%></td>
                                             <td><%= Sem.getSemesterName()%></td>
                                             <td><%= countPro%></td>
-                                            <td><%= avgScore / countPro%></td>
+                                            <%
+                                                Score = avgScore / countPro;
+                                                if (Float.isNaN(Score)) {
+                                                    none = "Chưa Có Số Liệu";
+                                            %>
+                                                <td><%= none%></td>
+                                            <%
+                                                }else{
+                                            %>
+                                                   <td><%= Score%></td> 
+                                            <%
+                                                }
+                                            %>
+
                                             <td class="last-type__menu">
                                                 <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                 <div class="more-choice__menu">

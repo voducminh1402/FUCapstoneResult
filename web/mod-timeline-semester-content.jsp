@@ -1,4 +1,8 @@
 <%-- Document : admin Created on : Jan 18, 2022, 11:06:28 PM Author : HP --%>
+<%@page import="com.fucapstoneresult.models.SemesterDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.fucapstoneresult.dao.SemesterDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%@page
     contentType="text/html" pageEncoding="UTF-8"%>
     <!DOCTYPE html>
@@ -44,75 +48,67 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                <i class="fas fa-home"></i> Quản Lí Người Dùng
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
-                    
-                </ul>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>
 
-            </nav>
+                    </ul>
+
+                </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -129,6 +125,16 @@
                                                 >
                                                 <i class="fas fa-align-left"></i>
                                             </button>
+                                            <div class="menu-search">
+                                                <button>
+                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                                </button>
+                                                <input
+                                                    class="mod-menu-input"
+                                                    type="text"
+                                                    placeholder="Tìm Kiếm..."
+                                                    />
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -138,14 +144,14 @@
                                                 <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
                                             </div>
                                             <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                                    <div class="more-choice__item" style="margin-top: -2px">
-                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
-                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                        <a href="mod-request.jsp">
-                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                                <div class="more-choice__item" style="margin-top: -2px">
+                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
+                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
+                                                    <a href="mod-request.jsp">
+                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
                                             </div>
                                             <!-- Dropdown - Alerts -->
                                             <div class="info-login">
@@ -161,11 +167,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2>Quản Lí Slide</h2>
+                                    <h2>Quản Lí Timeline</h2>
                                     <div class="direct-link">
                                         <i class="fas fa-home"></i>
                                         <i class="fas fa-chevron-right"></i>
-                                        <span>Quản Lí Slide</span>
+                                        <span>Quản Lí Timeline</span>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +184,7 @@
                                     <div class="col-md-4 col-sm-12">
                                         <form action="MainController">
                                             <div class="manage-project">
-                                                <div class="menu-search menu-search-project">
+<!--                                                <div class="menu-search menu-search-project">
 
                                                     <button name="action" value="SearchInstructorByName">
                                                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -186,8 +192,9 @@
                                                     <input
                                                         class="mod-menu-input"
                                                         type="text"
-                                                        placeholder="Tìm Kiếm Slide..."
+                                                        placeholder="Thêm Timeline..."
                                                         name="name"
+                                                        readonly
                                                         />
                                                 </div>
                                                 <button
@@ -197,7 +204,7 @@
                                                     class="add-project"
                                                     >
                                                     <i class="fas fa-plus"></i>
-                                                </button>
+                                                </button>-->
                                             </div>
                                         </form>
                                     </div>
@@ -209,60 +216,38 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tiêu đề</th>
-                                                <th>URL hình ảnh</th>
-                                                <th>URL liên kết bài đăng</th>
+                                                <th>Kỳ Học</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <c:if test="${requestScope.SLIDE == null}">
-                                                    <c:redirect url="MainController?action=GetSlide"></c:redirect>
-                                                </c:if>
-                                                <c:forEach items="${requestScope.SLIDE}" var="o" varStatus="status">
-                                                    <tr>
-                                                        <td>${status.count}</td>
-                                                        <td>${o.title}</td>
-                                                        <td>
-                                                            <a href="${o.image}" target="_blank">Xem hình ảnh</a
-                                                        </td>
-                                                        <td>
-                                                            <a href="${o.url}" target="_blank">Xem nội dung đường dẫn</a>
-                                                        </td>
-                                                        <td class="last-type__menu">
-                                                            <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                            <div class="more-choice__menu">
-                                                                <div class="more-choice__item content-item">
-                                                                    <button
-                                                                        data-id="${o.id}"
-                                                                        data-title="${o.title}"
-                                                                        data-image="${o.image}"
-                                                                        data-url="${o.url}"
-                                                                        type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#editModal"
-                                                                        class="edit-slide"
-                                                                        >
-                                                                        <span>Chỉnh Sửa</span>
-                                                                        <i
-                                                                            class="fa fa-pencil"
-                                                                            aria-hidden="true"
-                                                                            ></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="more-choice__item content-item">
-                                                                    <form action="MainController" method="POST">
-                                                                            <input type="hidden" name="id" value="${o.id}">
-                                                                            <button type="submit" name="action" value="RemoveSlide" style="display: flex; justify-content: space-between; width: 100%">
-                                                                                <span>Xóa</span>
-                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                </div>
+                                                <%
+                                                    SemesterDAO semeDAO = new SemesterDAO();
+                                                    List<SemesterDTO> listSem = new ArrayList<>();
+                                                    listSem = semeDAO.getAllSemester();
+                                                    int count = 1;
+                                                    for (SemesterDTO Sem : listSem) {
+
+
+                                                %>
+                                                <tr>
+                                                    <td><%= count++%></td>
+                                                    <td><%= Sem.getSemesterName() %></td>
+                                                    <td class="last-type__menu">
+                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                        <div class="more-choice__menu">
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=GetTimeline&id=<%= Sem.getSemesterID() %>">
+                                                                    <span>Xem Chi Tiết</span>
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                </a>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% 
+                                                    }
+                                                %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -283,85 +268,79 @@
                 </div>
             </div>
 
-            <div class="add-project-menu" id="add-project-menu">
-                <h2 id="title">Thêm Slide</h2>
+<!--            <div class="add-project-menu" id="add-project-menu">
+                <h2 id="title">Thêm Timeline</h2>
                 <form action="MainController" method="POST" id="form">
                     <label for="name">Tiêu đề</label><br />
                     <input name="title" type="text" id="name" />
-                    
-                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
-                    <input name="url" type="text" id="name" />
 
-                    <label for="image">Ảnh</label>
-                    <div
-                        class="project-add-upload__image post-upload__image"
-                        style="background-color: none"
-                        >
-                        <label style="margin: 0" for="file"
-                               ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
-                        >
-                        <input
-                            type="file"
-                            name="file"
-                            id="file"
-                            placeholder="Tải Ảnh Lên"
-                            required
-                            /><br />
-                        <input type="hidden" id="mod-post__preview-input" name="image" />
-                        <a id="mod-post__preview-link" href="">
-                            <img id="mod-post__preview-image" src="" alt="" />
-                        </a>
-                    </div>
+                    <label for="name">Tên</label><br />
+                    <input name="name" type="text" id="name" />
+
+                    <label for="name">Thời Gian</label><br />
+                    <input name="time" type="date" id="name" />
+
+                    <label for="name">Nhóm</label><br />
+                    <input name="group" type="text" id="name" />
+
+                    <label for="name">Nội Dung</label><br />
+                    <input name="description" type="text" id="name" />
+
+                    <label for="name">Địa Điểm</label><br />
+                    <input name="place" type="text" id="name" />
                     
+                    <label for="">Học Kì</label><br>
+                    <select name="semester-id" id="" required>
+                        <option disabled selected>Lựa Chọn Kì Cho Timeline</option>
+                        <%
+                            for (SemesterDTO Sem : listSem) {
+                        %>
+                        <option value="<%= Sem.getSemesterID() %>"><%= Sem.getSemesterName() %></option>
+                        <%
+                            }
+                        %>
+                        
+                    </select>
 
                     <div class="add-project-submit">
-                        <button type="submit" name="action" value="AddSlide">
+                        <button type="submit" name="action" value="AddTimeline">
                             Lưu Lại
                         </button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
             </div>
-            
+
             <div class="add-project-menu" id="edit-slide-menu">
-                <h2 id="title">Chỉnh Sửa Slide</h2>
+                <h2 id="title">Chỉnh Sửa Timeline</h2>
                 <form action="MainController" method="POST" id="form">
-                    <input type="hidden" name="id" type="text" id="id-edit" />
                     <label for="name">Tiêu đề</label><br />
                     <input name="title" type="text" id="title-edit" />
-                    
-                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
-                    <input name="url" type="text" id="url-edit" />
 
-                    <label for="image">Ảnh</label>
-                    <div
-                        class="project-add-upload__image post-upload__image"
-                        style="background-color: none"
-                        >
-                        <label style="margin: 0" for="file"
-                               ><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label
-                        >
-                        <input
-                            type="file"
-                            name="file"
-                            id="file"
-                            placeholder="Tải Ảnh Lên"
-                            /><br />
-                        <input type="hidden" id="image-inp-edit" name="image" />
-                        <a id="image-link-edit" href="">
-                            <img id="image-img-edit" src="" alt="" />
-                        </a>
-                    </div>
-                    
+                    <label for="name">Tên</label><br />
+                    <input name="name" type="text" id="name" />
+
+                    <label for="name">Thời Gian</label><br />
+                    <input name="time" type="date" id="name" />
+
+                    <label for="name">Nhóm</label><br />
+                    <input name="group" type="text" id="name" />
+
+                    <label for="name">Nội Dung</label><br />
+                    <input name="description" type="text" id="name" />
+
+                    <label for="name">Địa Điểm</label><br />
+                    <input name="place" type="text" id="name" />
+
 
                     <div class="add-project-submit">
-                        <button type="submit" name="action" value="EditSlide">
+                        <button type="submit" name="action" value="EditTimeline">
                             Lưu Lại
                         </button>
                         <button class="cancel-edit-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
-            </div>
+            </div>-->
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>

@@ -73,12 +73,20 @@
 
                     <li>
                         <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            <i class="fas fa-file"></i> Bài Đăng Chính
                         </a>
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
+
+                    <hr class="sidebar-divider">
+
+                    <li>
+                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-arrow-left"></i> Đăng xuất
+                        </a>
+                    </li>                
 
                 </ul>
 
@@ -98,10 +106,7 @@
                                         <button type="button" id="sidebarCollapse" class="btn btn-info">
                                             <i class="fas fa-align-left"></i>
                                         </button>
-                                        <div class="menu-search">
-                                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm...">
-                                        </div>
+                                        <h1 style="display: inline; font-size: 1.5rem; font-weight: 700; margin-left: 15px; padding-top: 5px">Xin chào moderator, ${sessionScope.USER.userName}!</h1>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

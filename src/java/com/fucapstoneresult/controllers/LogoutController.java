@@ -28,7 +28,8 @@ public class LogoutController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             session.removeAttribute("USER");
-            if (session.getAttribute("USER") == null) {
+            session.removeAttribute("IS_STUDENT");
+            if (session.getAttribute("USER") == null && session.getAttribute("IS_STUDENT") == null) {
                 url = SUCCESS;
             }
         } 
