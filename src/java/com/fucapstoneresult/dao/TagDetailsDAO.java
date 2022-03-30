@@ -197,15 +197,7 @@ public class TagDetailsDAO {
         List<PostsDTO> l;
         List<PostsDTO> listPosts = new ArrayList<>();
         int count = 0;
-        for (TagDetailsDTO tagDetailsDTO : list) {
-            l = d.getPostsByTagID(tagDetailsDTO.getTagDetailID());
-//            for (PostsDTO postsDTO : l) {
-//                count++;
-//                System.out.println(postsDTO);
-//            }
-//            System.out.println(l.size());
-            listPosts.addAll(l);
-        }
+        
         System.out.println(count);
         for (PostsDTO listPost : listPosts) {
             System.out.println(listPost);

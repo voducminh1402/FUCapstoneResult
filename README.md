@@ -66,4 +66,4 @@ Contact me to contribute or you have questions:
 <br>[Linkedin](https://www.linkedin.com/in/minhvd0406/)
 
 ## License
-Developed by Vo Duc Minh - Le Hong Anh - Nguyen Khac Trung Nguyen - Tran Quang Quyen @ 2021
+Developed by Vo Duc Minh - Le Hong Anh - Nguyen Khac Trung Nguyen - Tran Quang Quyen @ 2022

@@ -42,8 +42,6 @@
             </style>
         </head>
         <body>
-            <div class="wrapper">
-                <!-- Sidebar  -->
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>FPT University</h3>
@@ -138,14 +136,14 @@
                                                 <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
                                             </div>
                                             <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                                    <div class="more-choice__item" style="margin-top: -2px">
-                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
-                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                        <a href="mod-request.jsp">
-                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                                <div class="more-choice__item" style="margin-top: -2px">
+                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
+                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
+                                                    <a href="mod-request.jsp">
+                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
                                             </div>
                                             <!-- Dropdown - Alerts -->
                                             <div class="info-login">
@@ -161,11 +159,11 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2>Quản Lí Slide</h2>
+                                    <h2>Quản Lí Context Index</h2>
                                     <div class="direct-link">
                                         <i class="fas fa-home"></i>
                                         <i class="fas fa-chevron-right"></i>
-                                        <span>Quản Lí Slide</span>
+                                        <span>Quản Lí Context Index</span>
                                     </div>
                                 </div>
                             </div>
@@ -186,8 +184,9 @@
                                                     <input
                                                         class="mod-menu-input"
                                                         type="text"
-                                                        placeholder="Tìm Kiếm Slide..."
+                                                        placeholder="Thêm Context Index..."
                                                         name="name"
+                                                        readonly
                                                         />
                                                 </div>
                                                 <button
@@ -209,60 +208,55 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tiêu đề</th>
                                                 <th>URL hình ảnh</th>
-                                                <th>URL liên kết bài đăng</th>
+                                                <th>Nội Dung</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <c:if test="${requestScope.SLIDE == null}">
-                                                    <c:redirect url="MainController?action=GetSlide"></c:redirect>
-                                                </c:if>
-                                                <c:forEach items="${requestScope.SLIDE}" var="o" varStatus="status">
-                                                    <tr>
-                                                        <td>${status.count}</td>
-                                                        <td>${o.title}</td>
-                                                        <td>
-                                                            <a href="${o.image}" target="_blank">Xem hình ảnh</a
-                                                        </td>
-                                                        <td>
-                                                            <a href="${o.url}" target="_blank">Xem nội dung đường dẫn</a>
-                                                        </td>
-                                                        <td class="last-type__menu">
-                                                            <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                            <div class="more-choice__menu">
-                                                                <div class="more-choice__item content-item">
-                                                                    <button
-                                                                        data-id="${o.id}"
-                                                                        data-title="${o.title}"
-                                                                        data-image="${o.image}"
-                                                                        data-url="${o.url}"
-                                                                        type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#editModal"
-                                                                        class="edit-slide"
-                                                                        >
-                                                                        <span>Chỉnh Sửa</span>
-                                                                        <i
-                                                                            class="fa fa-pencil"
-                                                                            aria-hidden="true"
-                                                                            ></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="more-choice__item content-item">
-                                                                    <form action="MainController" method="POST">
-                                                                            <input type="hidden" name="id" value="${o.id}">
-                                                                            <button type="submit" name="action" value="RemoveSlide" style="display: flex; justify-content: space-between; width: 100%">
-                                                                                <span>Xóa</span>
-                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                </div>
+                                            <c:if test="${requestScope.CONTEXT_INDEX == null}">
+                                                <c:redirect url="MainController?action=GetContextIndex"></c:redirect>
+                                            </c:if>
+                                            <c:forEach items="${requestScope.CONTEXT_INDEX}" var="o" varStatus="status">
+                                                <tr>
+                                                    <td>${status.count}</td>
+
+                                                    <td>
+                                                        <a href="${o.image}" target="_blank">Xem hình ảnh</a
+                                                    </td>
+                                                    <td>${o.content}</td>
+                                                    <td class="last-type__menu">
+                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                        <div class="more-choice__menu">
+                                                            <div class="more-choice__item content-item">
+                                                                <button
+                                                                    data-image="${o.image}"
+                                                                    data-title="${o.content}"
+                                                                    type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#editModal"
+                                                                    class="edit-slide"
+                                                                    >
+                                                                    <span>Chỉnh Sửa</span>
+                                                                    <i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"
+                                                                        ></i>
+                                                                </button>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
+                                                            <div class="more-choice__item content-item">
+                                                                <form action="MainController" method="POST">
+                                                                    <input type="hidden" name="image" value="${o.image}">
+                                                                    <button type="submit" name="action" value="RemoveContextIndex" style="display: flex; justify-content: space-between; width: 100%">
+                                                                        <span>Xóa</span>
+                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -284,13 +278,12 @@
             </div>
 
             <div class="add-project-menu" id="add-project-menu">
-                <h2 id="title">Thêm Slide</h2>
+                <h2 id="title">Thêm Context Index</h2>
                 <form action="MainController" method="POST" id="form">
-                    <label for="name">Tiêu đề</label><br />
-                    <input name="title" type="text" id="name" />
-                    
-                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
-                    <input name="url" type="text" id="name" />
+                    <label for="name">Nội Dung</label><br />
+                    <input name="content" type="text" id="name" />
+
+
 
                     <label for="image">Ảnh</label>
                     <div
@@ -312,26 +305,23 @@
                             <img id="mod-post__preview-image" src="" alt="" />
                         </a>
                     </div>
-                    
+
 
                     <div class="add-project-submit">
-                        <button type="submit" name="action" value="AddSlide">
+                        <button type="submit" name="action" value="AddContextIndex">
                             Lưu Lại
                         </button>
                         <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
             </div>
-            
+
             <div class="add-project-menu" id="edit-slide-menu">
-                <h2 id="title">Chỉnh Sửa Slide</h2>
+                <h2 id="title">Chỉnh Sửa Context Index</h2>
                 <form action="MainController" method="POST" id="form">
-                    <input type="hidden" name="id" type="text" id="id-edit" />
-                    <label for="name">Tiêu đề</label><br />
-                    <input name="title" type="text" id="title-edit" />
-                    
-                    <label for="name">URL liên kết bài đăng (không bắt buộc)</label><br />
-                    <input name="url" type="text" id="url-edit" />
+                    <input name="contentOld" type="hidden" id="title-edit"/>
+                    <label for="name">Nội Dung</label><br />
+                    <input name="content" type="text" id="title-edit"/>
 
                     <label for="image">Ảnh</label>
                     <div
@@ -352,10 +342,10 @@
                             <img id="image-img-edit" src="" alt="" />
                         </a>
                     </div>
-                    
+
 
                     <div class="add-project-submit">
-                        <button type="submit" name="action" value="EditSlide">
+                        <button type="submit" name="action" value="EditContextIndex">
                             Lưu Lại
                         </button>
                         <button class="cancel-edit-btn" type="button">Hủy Bỏ</button>

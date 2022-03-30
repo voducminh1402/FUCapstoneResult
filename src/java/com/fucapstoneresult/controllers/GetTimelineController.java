@@ -5,66 +5,69 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.StudentDAO;
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.StudentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.SemesterDTO;
+import com.fucapstoneresult.models.SlideDTO;
+import com.fucapstoneresult.models.TimelineDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author PhongVu
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+public class GetTimelineController extends HttpServlet {
 
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
-
+    private static final String TARGET = "mod-timeline-content.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
             
-            StudentDAO stuDao = new StudentDAO();
-            StudentDTO stu = stuDao.getStudentById(user.getUserID());
-                        
-            if (stu != null ){
-                int check = 1;
-                HttpSession session = request.getSession();
-                session.setAttribute("IS_STUDENT", check);
+            String semesterID = request.getParameter("id");
+            request.setAttribute("SEMESTER_ID", semesterID);
+            
+            List<TimelineDTO> timelineList = null;
+            List<TimelineDTO> timelineListInSem = null;
+            List<SemesterDTO> listSem = null;
+            ContentDAO dao = new ContentDAO();
+            SemesterDAO daoSem = new SemesterDAO();
+            String jsonFromTable = dao.getTimeline();
+            listSem = daoSem.getAllSemester();
+            timelineListInSem = new ArrayList<>();
+            
+            if (jsonFromTable.equals("[]")) {
+                timelineList = new ArrayList<>();
             }
-            
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
+            else {
+                Type type = new TypeToken<List<TimelineDTO>>(){}.getType();
+                timelineList = new Gson().fromJson(jsonFromTable, type);
+                for (TimelineDTO timelineInSem : timelineList) {
+                    if(timelineInSem.getSemester().equals(semesterID)){
+                    timelineListInSem.add(timelineInSem);
+                    }
                 }
-
             }
             
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.setAttribute("TIMELINE", timelineListInSem);
+            request.setAttribute("LIST_SEMESTER", listSem);
+        } 
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(TARGET).forward(request, response);
         }
     }
 

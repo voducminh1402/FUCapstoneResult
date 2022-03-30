@@ -5,66 +5,59 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.StudentDAO;
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.StudentDTO;
-import com.fucapstoneresult.models.UserDTO;
+import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.models.ContentIndexDTO;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author HP
+ * @author PhongVu
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+public class AddNewContextIndexController extends HttpServlet {
 
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
-
+    private static final String TARGET = "mod-context-index.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
             
-            StudentDAO stuDao = new StudentDAO();
-            StudentDTO stu = stuDao.getStudentById(user.getUserID());
-                        
-            if (stu != null ){
-                int check = 1;
-                HttpSession session = request.getSession();
-                session.setAttribute("IS_STUDENT", check);
+            String content = request.getParameter("content");
+            String image = request.getParameter("image");
+            List<ContentIndexDTO> contextindexList = null;
+            
+            ContentDAO dao = new ContentDAO();
+            String jsonFromTable = dao.getIndex();
+            
+            if (jsonFromTable.equals("[]")) {
+                contextindexList = new ArrayList<>();
+            }
+            else {
+                Type type = new TypeToken<List<ContentIndexDTO>>(){}.getType();
+                contextindexList = new Gson().fromJson(jsonFromTable, type);
             }
             
-            if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
-                }
-
-            }
+            contextindexList.add(new ContentIndexDTO(image, content));
+            JsonArray jsonList = (JsonArray) new Gson().toJsonTree(contextindexList);
+            dao.updateIndex(jsonList.toString());
             
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            System.out.println(e.toString());
+        }
+        finally {
+            request.getRequestDispatcher(TARGET).forward(request, response);
         }
     }
 
