@@ -49,7 +49,7 @@ public class ImportExcel {
         //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
     }
 
-    public static void addToDatabase(String path) throws IOException, SQLException {
+    public static void addToDatabase(String path) throws IOException, SQLException, ClassNotFoundException {
         final String excelFilePath = path;
 
         //final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
@@ -79,9 +79,13 @@ public class ImportExcel {
                 team.insertTeam(new TeamDTO(teamId, teamName));
             }
             if (student.getStudent(object.getId()) == null) {
+                if (user.searchUserByEmail(object.getEmail()) != null) {
+                    user.updateUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
+                } else {
+                    student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
+                    user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
+                }
 
-                student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
-                user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
             }
             System.out.println(object);
         }

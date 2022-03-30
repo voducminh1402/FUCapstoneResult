@@ -77,7 +77,7 @@
                                         <li>
                                             <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                         </li>
-                                        <c:if test="${requestScope.IS_STUDENT == 1}">
+                                        <c:if test="${sessionScope.IS_STUDENT == 1}">
                                             <li>
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
@@ -573,7 +573,8 @@
              Đóng
         </div>
 
-        <div id="event-content" class="event-content">
+        <div class="event-content-wrap">
+            <div id="event-content" class="event-content">
             <div class="event-content-overlay">
                 <div class="box event-content-list">
                     <ul id="first-list">
@@ -633,6 +634,7 @@
             <div class="event-content-text">
                 <h2>THỜI GIAN DỰ KIẾN BẢO VỆ ĐỒ ÁN TỐT NGHIỆP KỲ SPRING 2022</h2>
             </div>
+        </div>
         </div>
         <div id="loader" class="loader">
             <div class="loading">

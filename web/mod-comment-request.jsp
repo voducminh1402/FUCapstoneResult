@@ -83,13 +83,21 @@
 
                     <li>
                         <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                            <i class="fas fa-file"></i> Bài Đăng Chính
                         </a>
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-
+                    
+                    <hr class="sidebar-divider">
+                    
+                     <li>
+                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-arrow-left"></i> Đăng xuất
+                        </a>
+                    </li>                
+                    
                 </ul>
 
             </nav>
