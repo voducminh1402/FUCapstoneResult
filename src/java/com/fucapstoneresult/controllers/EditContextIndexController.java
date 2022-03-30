@@ -31,6 +31,7 @@ public class EditContextIndexController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String contentOld = request.getParameter("contentOld");
             String content = request.getParameter("content");
             String image = request.getParameter("image");
             List<ContentIndexDTO> contextindexList = null;
@@ -42,7 +43,7 @@ public class EditContextIndexController extends HttpServlet {
             contextindexList = new Gson().fromJson(jsonFromTable, type);
             
             for (ContentIndexDTO ContentIndexDTO : contextindexList) {
-                if (ContentIndexDTO.getImage().equals(image)) {
+                if (ContentIndexDTO.getContent().equals(contentOld)) {
                     ContentIndexDTO.setContent(content);
                     ContentIndexDTO.setImage(image);
                 }

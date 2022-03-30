@@ -3,24 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
-        </group>
-        <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-comment-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserCommentDTO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddCommentController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-timeline-content.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditTimelineController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-slide-content.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewSlideController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-add-student.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetTimelineController.java</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditContextIndexController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-context-index.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewTimelineController.java</file>
         </group>
     </open-files>
 </project-private>

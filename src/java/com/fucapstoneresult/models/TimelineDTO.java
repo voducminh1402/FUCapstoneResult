@@ -16,18 +16,30 @@ public class TimelineDTO {
     private String group;
     private String description;
     private String place;
+    private String semester;
 
     public TimelineDTO() {
     }
 
-    public TimelineDTO(String title, String name, String time, String group, String description, String place) {
+    public TimelineDTO(String title, String name, String time, String group, String description, String place, String semester) {
         this.title = title;
         this.name = name;
         this.time = time;
         this.group = group;
         this.description = description;
         this.place = place;
+        this.semester = semester;
     }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+    
 
     
 
