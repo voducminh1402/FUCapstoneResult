@@ -113,7 +113,7 @@ public class CommentDAO {
 
                 String sql = "SELECT CommentID, UserID, CommentDetail, CommentTime "
                         + " FROM Comments "
-                        + " WHERE PostID = ? AND CommentStatusID=2 ";
+                        + " WHERE PostID = ? AND CommentStatusID = 2 ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
                 rs = stm.executeQuery();
@@ -340,6 +340,38 @@ public class CommentDAO {
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+        public boolean approveComment(String id) throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " UPDATE Comments"
+                        + " SET CommentStatusID = ?"
+                        + " WHERE CommentID = ?";
+
+                stm = conn.prepareStatement(sql);
+                stm.setInt(1, 2);
+                stm.setString(2, id);
+
+                check = stm.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             if (stm != null) {
                 stm.close();

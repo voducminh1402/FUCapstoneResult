@@ -143,7 +143,7 @@
                     <div class="prj-content" style=" height: 100px; text-overflow: ellipsis;   overflow: hidden; margin-bottom: 15px; margin-top: 10px">
                         <p> ${requestScope.MAIN_POST.postContent}</p>
                     </div>
-                        <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="padding: 5px 10px 5px 10px; background-color: #F26F21; text-decoration: none; color: white; font-weight: 600">Xem thêm</a>
+                    <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="padding: 5px 10px 5px 10px; background-color: #F26F21; text-decoration: none; color: white; font-weight: 600">Xem thêm</a>
                     <div class="devider" style="width: 100%"></div>
                 </div>
                 <div class="row tip-row" style="margin-top: 50px !important">
@@ -189,7 +189,7 @@
                                             d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                         </svg>
                                     </i>
-                                    <span>05 bình luận</span>
+                                    <span>${requestScope.COUNT_CMT} bình luận</span>
                                 </div>
                             </div>
                             <div class="tip-content__body">
@@ -197,6 +197,7 @@
                                     ${requestScope.POST.postContent}
                                 </p>
                             </div>
+                              <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
                         </article>
                         <div class="main__content">
                             <div class="comment">
@@ -228,7 +229,7 @@
                             </div>
                             <div class="leave-comment">
                                 <h5>Để lại Bình luận</h5>
-                                <form action="#">
+                                <form action="MainController">
                                     <textarea
                                         name="input-comment"
                                         id="comment"
@@ -245,9 +246,9 @@
                         <aside>
                             <div class="row" style="padding-bottom: 50px;">
                                 <div class="search col-12" >
-                                    <form action="#">
-                                        <input type="text" placeholder="Search" name="search" class="search-box">
-                                        <button class="search-btn" type="submit">
+                                    <form action="MainController">
+                                        <input type="text" placeholder="Tìm kiếm..." name="searchValue" id="search" class="search-box">
+                                        <button class="search-btn" type="submit" name="action" value="Search">
                                             <i class="bi bi-search">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -285,34 +286,13 @@
                                 <div class="devider"></div>
                                 <div class="tag-list">
                                     <div class="tag-list__item">
-                                        <a href="#">IoT</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">Kỹ thuật phần mềm</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">C#</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">Trí tuệ nhân tạo</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">An toàn thông tin</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">Java</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">HTML</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">Boostrap 5</a>
-                                    </div>
-                                    <div class="tag-list__item">
-                                        <a href="#">Spring boot</a>
+                                        <c:forEach items="${requestScope.TAGS}" var="o">
+                                            <div class="tag-list__item">
+                                                <a href="MainController?action=FilterPostsByTag&tag=${o.tagDetailName}">${o.tagDetailName}</a>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
-                            </div>
                         </aside>
                     </div>
                 </div>
@@ -389,8 +369,48 @@
             </div>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"
+        ></script>
+        <script src="./assets/js/post-project.js"></script>
         <script src="./assets/js/app.js"></script>
+        <script>
+            const submit = document.getElementById("submit");
+            const inputComment = document.getElementById("comment");
+            const post = document.getElementById("post-id");
+
+            submit.addEventListener("click", () => {
+                let input = inputComment.value;
+                let postId = post.value;
+                console.log("A");
+                $.ajax({
+                    type: "POST",
+                    url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
+                    data: input,
+                    dataType: "text",
+                    success: function (response) {
+                        if (response.length > 1) {
+                            console.log(response);
+                        } else {
+                            console.log("fail");
+                        }
+                    },
+                });
+            });
+        </script>
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip({
