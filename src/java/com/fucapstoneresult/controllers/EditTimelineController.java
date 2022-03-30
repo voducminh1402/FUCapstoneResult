@@ -26,18 +26,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EditTimelineController extends HttpServlet {
 
-    private static final String TARGET = "mod-timeline-content.jsp";
+    private static final String TARGET = "mod-timeline-semester-content.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            String titleOld = request.getParameter("titleOld");
             String title = request.getParameter("title");
             String name = request.getParameter("name");
             String time = request.getParameter("time");
             String group = request.getParameter("group");
             String description = request.getParameter("description");
             String place = request.getParameter("place");
+            String semesterid = request.getParameter("semester-id");
             List<TimelineDTO> timelineList = null;
             
             ContentDAO dao = new ContentDAO();
@@ -47,13 +49,14 @@ public class EditTimelineController extends HttpServlet {
             timelineList = new Gson().fromJson(jsonFromTable, type);
             
             for (TimelineDTO TimelineDTO : timelineList) {
-                if (TimelineDTO.getTitle().equals(title)) {
+                if (TimelineDTO.getTitle().equals(titleOld)) {
                     TimelineDTO.setTitle(title);
                     TimelineDTO.setName(name);
                     TimelineDTO.setTime(time);
                     TimelineDTO.setGroup(group);
                     TimelineDTO.setDescription(description);
                     TimelineDTO.setPlace(place);
+                    TimelineDTO.setSemester(semesterid);
                 }
             }
             

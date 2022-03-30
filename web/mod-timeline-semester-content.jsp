@@ -184,7 +184,7 @@
                                     <div class="col-md-4 col-sm-12">
                                         <form action="MainController">
                                             <div class="manage-project">
-                                                <div class="menu-search menu-search-project">
+<!--                                                <div class="menu-search menu-search-project">
 
                                                     <button name="action" value="SearchInstructorByName">
                                                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -204,7 +204,7 @@
                                                     class="add-project"
                                                     >
                                                     <i class="fas fa-plus"></i>
-                                                </button>
+                                                </button>-->
                                             </div>
                                         </form>
                                     </div>
@@ -216,58 +216,38 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tiêu đề</th>
-                                                <th>Tên</th>
-                                                <th>Thời Gian</th>
-                                                <th>Nhóm</th>
-                                                <th>Nội Dung</th>
-                                                <th>Địa Điểm</th>
+                                                <th>Kỳ Học</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
-                                            <c:forEach items="${requestScope.TIMELINE}" var="o" varStatus="status">
+                                                <%
+                                                    SemesterDAO semeDAO = new SemesterDAO();
+                                                    List<SemesterDTO> listSem = new ArrayList<>();
+                                                    listSem = semeDAO.getAllSemester();
+                                                    int count = 1;
+                                                    for (SemesterDTO Sem : listSem) {
+
+
+                                                %>
                                                 <tr>
-                                                    <td>${status.count}</td>
-                                                    <td>${o.title}</td>
-                                                    <td>${o.name}</td>
-                                                    <td>${o.time}</td>
-                                                    <td>${o.group}</td>
-                                                    <td>${o.description}</td>
-                                                    <td>${o.place}</td>
+                                                    <td><%= count++%></td>
+                                                    <td><%= Sem.getSemesterName() %></td>
                                                     <td class="last-type__menu">
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
-                                                            <div class="more-choice__item content-item">
-                                                                <button
-                                                                    data-title="${o.title}"
-                                                                    data-name="${o.name}"
-                                                                    type="button"
-                                                                    data-toggle="modal"
-                                                                    data-target="#editModal"
-                                                                    class="edit-slide"
-                                                                    >
-                                                                    <span>Chỉnh Sửa</span>
-                                                                    <i
-                                                                        class="fa fa-pencil"
-                                                                        aria-hidden="true"
-                                                                        ></i>
-                                                                </button>
-                                                            </div>
-                                                            <div class="more-choice__item content-item">
-                                                                <form action="MainController" method="POST">
-                                                                    <input type="hidden" name="title" value="${o.title}">
-                                                                    <button type="submit" name="action" value="RemoveTimeline" style="display: flex; justify-content: space-between; width: 100%">
-                                                                        <span>Xóa</span>
-                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                    </button>
-                                                                </form>
+                                                            <div class="more-choice__item">
+                                                                <a href="MainController?action=GetTimeline&id=<%= Sem.getSemesterID() %>">
+                                                                    <span>Xem Chi Tiết</span>
+                                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            </c:forEach>
+                                                <% 
+                                                    }
+                                                %>
                                         </tbody>
                                     </table>
                                 </div>
@@ -288,7 +268,7 @@
                 </div>
             </div>
 
-            <div class="add-project-menu" id="add-project-menu">
+<!--            <div class="add-project-menu" id="add-project-menu">
                 <h2 id="title">Thêm Timeline</h2>
                 <form action="MainController" method="POST" id="form">
                     <label for="name">Tiêu đề</label><br />
@@ -308,23 +288,19 @@
 
                     <label for="name">Địa Điểm</label><br />
                     <input name="place" type="text" id="name" />
-
+                    
                     <label for="">Học Kì</label><br>
                     <select name="semester-id" id="" required>
                         <option disabled selected>Lựa Chọn Kì Cho Timeline</option>
                         <%
-                            SemesterDAO semeDAO = new SemesterDAO();
-                            List<SemesterDTO> listSem = new ArrayList<>();
-                            listSem = semeDAO.getAllSemester();
                             for (SemesterDTO Sem : listSem) {
                         %>
-                        <option value="<%= Sem.getSemesterID()%>"><%= Sem.getSemesterName()%></option>
+                        <option value="<%= Sem.getSemesterID() %>"><%= Sem.getSemesterName() %></option>
                         <%
                             }
                         %>
-
+                        
                     </select>
-
 
                     <div class="add-project-submit">
                         <button type="submit" name="action" value="AddTimeline">
@@ -338,7 +314,6 @@
             <div class="add-project-menu" id="edit-slide-menu">
                 <h2 id="title">Chỉnh Sửa Timeline</h2>
                 <form action="MainController" method="POST" id="form">
-                    <input name="titleOld" type="hidden" id="title-edit" />
                     <label for="name">Tiêu đề</label><br />
                     <input name="title" type="text" id="title-edit" />
 
@@ -356,19 +331,7 @@
 
                     <label for="name">Địa Điểm</label><br />
                     <input name="place" type="text" id="name" />
-                    
-                    <label for="name">Học Kì</label><br>
-                    <select name="semester-id" id="" required>
-                        <option disabled selected>Lựa Chọn Kì Cho Timeline</option>
-                        <%
-                            for (SemesterDTO Sem : listSem) {
-                        %>
-                        <option value="<%= Sem.getSemesterID() %>"><%= Sem.getSemesterName() %></option>
-                        <%
-                            }
-                        %>
-                        
-                    </select>
+
 
                     <div class="add-project-submit">
                         <button type="submit" name="action" value="EditTimeline">
@@ -377,7 +340,7 @@
                         <button class="cancel-edit-btn" type="button">Hủy Bỏ</button>
                     </div>
                 </form>
-            </div>
+            </div>-->
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>

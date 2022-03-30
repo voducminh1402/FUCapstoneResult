@@ -6,6 +6,8 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.SemesterDTO;
 import com.fucapstoneresult.models.SlideDTO;
 import com.fucapstoneresult.models.TimelineDTO;
 import com.google.gson.Gson;
@@ -32,10 +34,18 @@ public class GetTimelineController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            List<TimelineDTO> timelineList = null;
             
+            String semesterID = request.getParameter("id");
+            request.setAttribute("SEMESTER_ID", semesterID);
+            
+            List<TimelineDTO> timelineList = null;
+            List<TimelineDTO> timelineListInSem = null;
+            List<SemesterDTO> listSem = null;
             ContentDAO dao = new ContentDAO();
+            SemesterDAO daoSem = new SemesterDAO();
             String jsonFromTable = dao.getTimeline();
+            listSem = daoSem.getAllSemester();
+            timelineListInSem = new ArrayList<>();
             
             if (jsonFromTable.equals("[]")) {
                 timelineList = new ArrayList<>();
@@ -43,9 +53,15 @@ public class GetTimelineController extends HttpServlet {
             else {
                 Type type = new TypeToken<List<TimelineDTO>>(){}.getType();
                 timelineList = new Gson().fromJson(jsonFromTable, type);
+                for (TimelineDTO timelineInSem : timelineList) {
+                    if(timelineInSem.getSemester().equals(semesterID)){
+                    timelineListInSem.add(timelineInSem);
+                    }
+                }
             }
             
-            request.setAttribute("TIMELINE", timelineList);
+            request.setAttribute("TIMELINE", timelineListInSem);
+            request.setAttribute("LIST_SEMESTER", listSem);
         } 
         catch (Exception e) {
             System.out.println(e.toString());

@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FUCapstoneResult/web/mod-semester.jsp</file>
             <file>file:/D:/FUCapstoneResult/web/mod-timeline-content.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewContextIndexController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ContentDAO.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditTimelineController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-slide-content.jsp</file>
+            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewSlideController.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-context-index.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/models/TimelineDTO.java</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditContextIndexController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemoveContextIndexController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/RemoveTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetContextIndexController.java</file>
+            <file>file:/D:/FUCapstoneResult/web/mod-context-index.jsp</file>
             <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewTimelineController.java</file>
         </group>
     </open-files>

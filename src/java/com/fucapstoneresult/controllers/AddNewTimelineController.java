@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AddNewTimelineController extends HttpServlet {
 
-    private static final String TARGET = "mod-timeline-content.jsp";
+    private static final String TARGET = "mod-timeline-semester-content.jsp";
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,6 +40,7 @@ public class AddNewTimelineController extends HttpServlet {
             String group = request.getParameter("group");
             String description = request.getParameter("description");
             String place = request.getParameter("place");
+            String semesterid = request.getParameter("semester-id");
             List<TimelineDTO> timelineList = null;
             
             ContentDAO dao = new ContentDAO();
@@ -53,7 +54,7 @@ public class AddNewTimelineController extends HttpServlet {
                 timelineList = new Gson().fromJson(jsonFromTable, type);
             }
             
-            timelineList.add(new TimelineDTO(title, name, time, group, description, place));
+            timelineList.add(new TimelineDTO(title, name, time, group, description, place, semesterid));
             JsonArray jsonList = (JsonArray) new Gson().toJsonTree(timelineList);
             dao.updateTimeline(jsonList.toString());
             
