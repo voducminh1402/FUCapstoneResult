@@ -219,3 +219,13 @@ window.onload = () => {
     document.getElementById("event-btn").innerHTML = "Sự Kiện Nổi Bật"
   }
 }
+
+window.addEventListener("scroll", () => {
+    console.log(window.pageYOffset)
+    let datn = document.getElementById("do-an-tot-nghiep")
+    
+    if (datn == 843) {
+        
+    }
+    
+})
