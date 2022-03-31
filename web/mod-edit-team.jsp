@@ -139,7 +139,7 @@
                         <label for="">Mã Nhóm Đồ Án</label><br>
                         <input type="text" name="id" value="${requestScope.TEAM_EDIT_NAME.teamID}" readonly>
                         <label for="">Tên Nhóm Đồ Án</label><br>
-                        <input type="text" name="team-name" required>
+                        <input type="text" name="team-name" value="${requestScope.TEAM_EDIT_NAME.teamName}" required>
 
                         <div class="add-project-submit">
                             <button type="submit" name="action" value="UpdateTeamController">Lưu</button>

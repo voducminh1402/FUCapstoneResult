@@ -33,12 +33,15 @@ public class DeleteInstructorController extends HttpServlet {
             String id = request.getParameter("id");
             
             InstructorDAO dao = new InstructorDAO();
-            dao.deleteInstructor(id);
+            boolean check = dao.deleteInstructor(id);
+            if (check == false){
+                request.setAttribute("REMOVE_FAIL", "fail");
+            }
             
         } catch (Exception e) {
             e.printStackTrace();
         }finally{
-            RequestDispatcher rd = request.getRequestDispatcher(url);
+            RequestDispatcher rd = request.getRequestDispatcher("LoadAllIntructorController");
             rd.forward(request, response);
         }
     }

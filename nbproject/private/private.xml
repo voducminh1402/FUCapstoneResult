@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FUCapstoneResult/web/mod-timeline-content.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-slide-content.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewSlideController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-add-student.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditContextIndexController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-context-index.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewTimelineController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/assets/js/app.js</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadFileStudentController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-project.jsp</file>
         </group>
     </open-files>
 </project-private>

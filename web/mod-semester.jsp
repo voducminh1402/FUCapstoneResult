@@ -150,9 +150,9 @@
                                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                                             <input class="mod-menu-input" type="text" placeholder="Thêm Kỳ Học" readonly>
                                         </div>
-                                        <a href="mod-add-semester.jsp" class="link-add-project">
+<!--                                        <a href="mod-add-semester.jsp" class="link-add-project">
                                             <i class="fas fa-plus"></i>
-                                        </a>
+                                        </a>-->
                                     </div>
                                 </div>
                             </div>

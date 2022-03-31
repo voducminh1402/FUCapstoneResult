@@ -337,7 +337,7 @@ public class UserDAO {
             if (con != null) {
                 String sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                         + " FROM Users "
-                        + " WHERE Email = ? AND Password like ? AND UserStatusID = 2 ";
+                        + " WHERE Email = ? AND Password like ? ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, email);
                 stm.setString(2, password);
