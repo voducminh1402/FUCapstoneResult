@@ -72,9 +72,9 @@
                                 <form action="MainController">
                                     <div class="menu-search-wrap">
                                         <input name="searchValue" type="text" placeholder="Tìm kiếm">
-                                        <button name="action" value="Search" type="submit">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                        
+                                            <i class="fas fa-search"><input name="action" value="Search" type="submit"></i>
+                                    
                                     </div>
                                 </form>
                             </div>
