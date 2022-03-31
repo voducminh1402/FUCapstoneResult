@@ -85,15 +85,15 @@
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-                    
+
                     <hr class="sidebar-divider">
-                    
-                     <li>
+
+                    <li>
                         <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-arrow-left"></i> Đăng xuất
                         </a>
                     </li>                
-                    
+
                 </ul>
 
             </nav>
@@ -148,11 +148,11 @@
                                     <div class="manage-project">
                                         <div class="menu-search menu-search-project">
                                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            <input class="mod-menu-input" type="text" placeholder="Thêm Kỳ Học" readonly>
+                                            <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Kỳ Học" readonly>
                                         </div>
-<!--                                        <a href="mod-add-semester.jsp" class="link-add-project">
-                                            <i class="fas fa-plus"></i>
-                                        </a>-->
+                                        <!--                                        <a href="mod-add-semester.jsp" class="link-add-project">
+                                                                                    <i class="fas fa-plus"></i>
+                                                                                </a>-->
                                     </div>
                                 </div>
                             </div>
@@ -213,11 +213,11 @@
                                                 if (Float.isNaN(Score)) {
                                                     none = "Chưa Có Số Liệu";
                                             %>
-                                                <td><%= none%></td>
+                                            <td><%= none%></td>
                                             <%
-                                                }else{
+                                            } else {
                                             %>
-                                                   <td><%= Score%></td> 
+                                            <td><%= Score%></td> 
                                             <%
                                                 }
                                             %>
@@ -232,10 +232,19 @@
                                                         </a>
                                                     </div>
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=RemoveSemesterController&id=<%= Sem.getSemesterID()%>">
-                                                            <span>Xóa</span>
+
+
+
+                                                        <form action="MainController" method="POST">
+                                                            <button style="    border-radius: 0;
+                                                                    border: none;
+                                                                    background: white;
+                                                                    float: left;" type="submit" name="action" value="RemoveSemesterController">
+                                                                <span>Xóa</span>
+                                                            </button>
+                                                            <input type="hidden" name="id" value="<%= Sem.getSemesterID()%>">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </a>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>

@@ -37,11 +37,13 @@ public class EditUserInfoController extends HttpServlet {
             String id = request.getParameter("id");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
+            String subEmail = request.getParameter("sub-email");
             String page = request.getParameter("page");
+            String img = request.getParameter("img");
             int role = Integer.parseInt(request.getParameter("role"));
             int status = Integer.parseInt(request.getParameter("status"));
-
-            UserDTO user = new UserDTO(id, name, "", status, "", email, "", "", role);
+//(,   String subEmail, String password, String OTP, int roleID) {
+            UserDTO user = new UserDTO(id, name, "", status, "", email, subEmail, "", "", role);
             if (page.equals("student")) {
                 StudentDAO studentDao = new StudentDAO();
                 StudentDTO student = studentDao.getStudent(id);
