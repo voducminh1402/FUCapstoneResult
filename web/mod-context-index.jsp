@@ -42,6 +42,7 @@
             </style>
         </head>
         <body>
+            <div class="wrapper">
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>FPT University</h3>
@@ -276,7 +277,8 @@
                     </div>
                 </div>
             </div>
-
+            </div>
+            
             <div class="add-project-menu" id="add-project-menu">
                 <h2 id="title">Thêm Context Index</h2>
                 <form action="MainController" method="POST" id="form">
