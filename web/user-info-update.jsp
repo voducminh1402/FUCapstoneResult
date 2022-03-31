@@ -41,16 +41,16 @@
             />
         <link rel="stylesheet" href="./assets/css/user-detail.css" />
         <style>
-        .home-page-header {
-            position: fixed;
-            top: 0;
-            background-color: var(--main-orange);
-        }
+            .home-page-header {
+                position: fixed;
+                top: 0;
+                background-color: var(--main-orange);
+            }
 
-        .home-page-header__logo img {
-            background-color: var(--main-white);
-        }
-    </style>
+            .home-page-header__logo img {
+                background-color: var(--main-white);
+            }
+        </style>
     </head>
     <body>
         <div class="header-all">
@@ -91,14 +91,12 @@
                                 <li>
                                     <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                 </li>
-                                <li>
-                                    <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
-                                </li>
                                 <c:if test="${sessionScope.IS_STUDENT == 1}">
                                     <li>
                                         <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                     </li>
                                 </c:if>
+
                                 <li>
                                     <a href="./contact.html">Liên hệ</a>
                                 </li>
@@ -107,7 +105,22 @@
                                         <a href="./login.html">Đăng nhập</a>
                                     </c:if>
                                     <c:if test="${sessionScope.USER ne null}">
-                                        <a style="color: var(--main-orange); text-transform: uppercase"><button style="text-transform: uppercase">Đăng xuất</button></a>
+                                        <a style="color: var(--main-orange); text-transform: uppercase">
+                                            <form action="MainController">
+                                                <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                            </form>
+                                        </a>
+                                    </c:if>
+                                </li>
+                                <li>
+                                    <c:if test="${sessionScope.USER ne null}">
+                                        <a style="color: var(--main-orange); text-transform: uppercase">
+                                            <form action="MainController">
+                                                <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
+                                                <input type="hidden" name="page" value="index">
+                                                <input type="hidden" name="id" value="${sessionScope.USER.userID}">
+                                            </form>
+                                        </a>
                                     </c:if>
                                 </li>
                             </ul>
@@ -204,21 +217,21 @@
 
 
                             </div>
-                            
-                        </div>
-                       
-                        <div class="py-3 pb-4 border-top">
-                                <button
-                                    class="btn btn-primary mr-3"
-                                    name="action"
-                                    value="UpdateInfoUserByUser"
-                                    >
-                                    Lưu
-                                </button>
 
-                                <a href="index.jsp" class="btn border button">Hủy bỏ</a>
-                                <input type="hidden" value="user" name="page">
-                            
+                        </div>
+
+                        <div class="py-3 pb-4 border-top">
+                            <button
+                                class="btn btn-primary mr-3"
+                                name="action"
+                                value="UpdateInfoUserByUser"
+                                >
+                                Lưu
+                            </button>
+
+                            <a href="index.jsp" class="btn border button">Hủy bỏ</a>
+                            <input type="hidden" value="user" name="page">
+
                         </div>
                     </div>
                 </form>
