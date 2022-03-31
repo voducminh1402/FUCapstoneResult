@@ -229,11 +229,19 @@
                                                         </div>
                                                         <div class="more-choice__item">
 
-                                                            <a href="MainController?action=RemoveTeamController&id=<%= Team.getTeamID() %>">
-
-                                                                <span>Xóa</span>
+                               
+                                                            
+                                                            <form action="MainController" method="POST">
+                                                                <button style="    border-radius: 0;
+                                                                    border: none;
+                                                                    background: white;
+                                                                    float: left;" type="submit" name="action" value="RemoveTeamController">
+                                                                    <span>Xóa</span>
+                                                                </button>
+                                                                <input type="hidden" name="id" value="<%= Team.getTeamID()%>">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
+                                                            </form>
+                                                            
                                                         </div>
                                                     </div>
                                                 </td>
