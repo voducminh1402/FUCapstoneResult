@@ -42,6 +42,7 @@
             </style>
         </head>
         <body>
+            <div class="wrapper">
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h3>FPT University</h3>
@@ -124,6 +125,7 @@
                                     </div>
                                 <div class="col-md-6">
 
+<<<<<<< HEAD
                                     <div class="right-side-info">
                                         <!-- Dropdown - Alerts -->
                                         <div class="info-login">
@@ -133,6 +135,26 @@
                                             <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
                                                 Đăng xuất
                                             </a>
+=======
+                                        <div class="right-side-info">
+                                            <div>
+                                                <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
+                                            </div>
+                                            <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
+                                                <div class="more-choice__item" style="margin-top: -2px">
+                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;"></h4>
+                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
+                                                    <a href="mod-request.jsp">
+                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black"></span>
+                                                    </a>
+                                                </div>
+                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
+                                            </div>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="info-login">
+                                                <img src="" alt="">
+                                            </div>
+>>>>>>> 2290ea9d17c3d92440f826bd363c08e6cf1da558
                                         </div>
                                     </div>
                                 </div>
@@ -169,8 +191,9 @@
                                                     <input
                                                         class="mod-menu-input"
                                                         type="text"
-                                                        placeholder="Tìm Kiếm Context Index..."
+                                                        placeholder="Thêm Context Index..."
                                                         name="name"
+                                                        readonly
                                                         />
                                                 </div>
                                                 <button
@@ -198,49 +221,49 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <c:if test="${requestScope.CONTEXT_INDEX == null}">
-                                                    <c:redirect url="MainController?action=GetContextIndex"></c:redirect>
-                                                </c:if>
-                                                <c:forEach items="${requestScope.CONTEXT_INDEX}" var="o" varStatus="status">
-                                                    <tr>
-                                                        <td>${status.count}</td>
-                                                        
-                                                        <td>
-                                                            <a href="${o.image}" target="_blank">Xem hình ảnh</a
-                                                        </td>
-                                                        <td>${o.content}</td>
-                                                        <td class="last-type__menu">
-                                                            <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                            <div class="more-choice__menu">
-                                                                <div class="more-choice__item content-item">
-                                                                    <button
-                                                                        data-image="${o.image}"
-                                                                        data-content="${o.content}"
-                                                                        type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#editModal"
-                                                                        class="edit-slide"
-                                                                        >
-                                                                        <span>Chỉnh Sửa</span>
-                                                                        <i
-                                                                            class="fa fa-pencil"
-                                                                            aria-hidden="true"
-                                                                            ></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="more-choice__item content-item">
-                                                                    <form action="MainController" method="POST">
-                                                                            <input type="hidden" name="image" value="${o.image}">
-                                                                            <button type="submit" name="action" value="RemoveContextIndex" style="display: flex; justify-content: space-between; width: 100%">
-                                                                                <span>Xóa</span>
-                                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                </div>
+                                            <c:if test="${requestScope.CONTEXT_INDEX == null}">
+                                                <c:redirect url="MainController?action=GetContextIndex"></c:redirect>
+                                            </c:if>
+                                            <c:forEach items="${requestScope.CONTEXT_INDEX}" var="o" varStatus="status">
+                                                <tr>
+                                                    <td>${status.count}</td>
+
+                                                    <td>
+                                                        <a href="${o.image}" target="_blank">Xem hình ảnh</a
+                                                    </td>
+                                                    <td>${o.content}</td>
+                                                    <td class="last-type__menu">
+                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                        <div class="more-choice__menu">
+                                                            <div class="more-choice__item content-item">
+                                                                <button
+                                                                    data-image="${o.image}"
+                                                                    data-title="${o.content}"
+                                                                    type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#editModal"
+                                                                    class="edit-slide"
+                                                                    >
+                                                                    <span>Chỉnh Sửa</span>
+                                                                    <i
+                                                                        class="fa fa-pencil"
+                                                                        aria-hidden="true"
+                                                                        ></i>
+                                                                </button>
                                                             </div>
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
+                                                            <div class="more-choice__item content-item">
+                                                                <form action="MainController" method="POST">
+                                                                    <input type="hidden" name="image" value="${o.image}">
+                                                                    <button type="submit" name="action" value="RemoveContextIndex" style="display: flex; justify-content: space-between; width: 100%">
+                                                                        <span>Xóa</span>
+                                                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -260,14 +283,15 @@
                     </div>
                 </div>
             </div>
-
+            </div>
+            
             <div class="add-project-menu" id="add-project-menu">
                 <h2 id="title">Thêm Context Index</h2>
                 <form action="MainController" method="POST" id="form">
                     <label for="name">Nội Dung</label><br />
                     <input name="content" type="text" id="name" />
-                    
-                    
+
+
 
                     <label for="image">Ảnh</label>
                     <div
@@ -289,7 +313,7 @@
                             <img id="mod-post__preview-image" src="" alt="" />
                         </a>
                     </div>
-                    
+
 
                     <div class="add-project-submit">
                         <button type="submit" name="action" value="AddContextIndex">
@@ -299,12 +323,13 @@
                     </div>
                 </form>
             </div>
-            
+
             <div class="add-project-menu" id="edit-slide-menu">
                 <h2 id="title">Chỉnh Sửa Context Index</h2>
                 <form action="MainController" method="POST" id="form">
+                    <input name="contentOld" type="hidden" id="title-edit"/>
                     <label for="name">Nội Dung</label><br />
-                    <input name="content" type="text" id="title-edit" />
+                    <input name="content" type="text" id="title-edit"/>
 
                     <label for="image">Ảnh</label>
                     <div
@@ -325,7 +350,7 @@
                             <img id="image-img-edit" src="" alt="" />
                         </a>
                     </div>
-                    
+
 
                     <div class="add-project-submit">
                         <button type="submit" name="action" value="EditContextIndex">

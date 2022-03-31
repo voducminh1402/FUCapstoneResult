@@ -590,7 +590,7 @@ header {
 }
 
 .timeline-background {
-    background-image: url('https://daihoc.fpt.edu.vn/media/2018/08/1_92842.jpg');
+    background-image: url('https://i.imgur.com/Yq431j4.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -1396,11 +1396,12 @@ article{
     position: fixed;
     border-radius: 20px;
     right: -20px;
+    z-index: 10;
     transition: ease-in 0.2s;
 }
 
 .event-content {
-    background-image: url(https://daihoc.fpt.edu.vn/media/2016/12/4-fpt-hcm.jpg);
+    background-image: url(https://i.imgur.com/sahZiEC.jpg);
     height: 650px;
     width: 1200px;
     background-repeat: no-repeat;
@@ -1586,6 +1587,9 @@ svg{
   text-decoration: none;
   cursor: pointer;
   color: black;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
 }
 
 @keyframes arrow{

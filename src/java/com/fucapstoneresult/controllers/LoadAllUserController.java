@@ -8,7 +8,6 @@ package com.fucapstoneresult.controllers;
 import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

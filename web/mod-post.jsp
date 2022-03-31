@@ -182,22 +182,19 @@
                                                     <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                     <div class="more-choice__menu">
                                                         <div class="more-choice__item">
-                                                            <a href="">
-                                                                <span>Xem Chi Tiết</span>
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div class="more-choice__item">
                                                             <a href="MainController?action=EditPost&id=${o.postID}">
                                                                 <span>Chỉnh Sửa</span>
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </div>
-                                                        <div class="more-choice__item">
-                                                            <a href="MainController?action=RemovePost&id=${o.postID}">
-                                                                <span>Xóa</span>
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
+                                                        <div class="more-choice__item content-item">
+                                                            <form action="MainController">
+                                                                <button type="submit" name="action" value="RemovePost">
+                                                                    <input type="hidden" value="${o.postID}">
+                                                                    <span>Xóa</span>
+                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>
