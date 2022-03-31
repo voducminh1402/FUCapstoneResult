@@ -1587,6 +1587,9 @@ svg{
   text-decoration: none;
   cursor: pointer;
   color: black;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
 }
 
 @keyframes arrow{

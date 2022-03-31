@@ -120,8 +120,10 @@ public class AuthorizationFilter implements Filter {
             }
             
             if (resource.contains("mod") || resource.contains("student.jsp") || resource.contains("mod-project.jsp") || resource.contains("mod-index.jsp") || resource.contains("mod-comment-request.jsp")
+                || resource.contains("mod-team.jsp") || resource.contains("mod-semester.jsp") || resource.contains("mod-post.jsp") || resource.contains("mod-request.jsp")
                 || pathAction.equals("ViewModIndexPage") || pathAction.equals("LoadComments") || pathAction.equals("SearchUser") 
-                || pathAction.equals("showUserDetail") || pathAction.equals("GetListProject")
+                || pathAction.equals("showUserDetail") || pathAction.equals("GetListProject") || pathAction.equals("LoadAllStudent")
+                || pathAction.equals("GetListPost") || pathAction.contains("ViewModRequestPage") || pathAction.contains("EditPost") || pathAction.contains("EditPoPost")
                     ) {
                 if (userLogin != null) {
                     if (AD == (userLogin.getRoleID()) || MOD == (userLogin.getRoleID())) {
@@ -150,7 +152,7 @@ public class AuthorizationFilter implements Filter {
                     res.sendRedirect(LOGIN);
                 }
             }
-            else if (resource.isEmpty() || resource.contains("index.jsp") || pathAction.contains("DetailProject")
+            else if (resource.isEmpty() || resource.contains("index.jsp")
                     || pathAction.equals("InstructorDetail") || pathAction.equals("viewPoPost") || pathAction.equals("LazyLoadProject")) {
                 if (userLogin != null) {
                     if (US == (userLogin.getRoleID())) {
