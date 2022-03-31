@@ -30,75 +30,75 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
+                        <li class="dropdown">
+                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                <i class="fas fa-home"></i> Quản Lí Người Dùng
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
-                    
-                </ul>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>
 
-            </nav>
+                        <hr class="sidebar-divider">
+
+                        <li>
+                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-arrow-left"></i> Đăng xuất
+                            </a>
+                        </li>                
+
+                    </ul>
+
+                </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -271,12 +271,19 @@
                                                                 </a>
                                                             </div>
                                                             <div class="more-choice__item">
-                                                                <a
-                                                                    href="MainController?action=DeleteAUser&id=${o.userID}"
-                                                                    >
-                                                                    <span>Xóa</span>
+
+                                                                <form action="MainController" method="POST">
+                                                                    <button style="    border-radius: 0;
+                                                                            border: none;
+                                                                            background: white;
+                                                                            float: left;" type="submit" name="action" value="DeleteAUser">
+                                                                        <span>Xóa</span>
+                                                                    </button>
+                                                                    <input type="hidden" name="id" value="${o.userID}">
                                                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
+                                                                </form>
+
+
                                                             </div>
                                                         </div>
                                                     </td>
@@ -359,7 +366,11 @@
                     </div>
                 </form>
             </div>
+            <c:if test="${requestScope.REMOVE_FAIL ne null}">
+                <input type="hidden" id="remove-fail" value="${requestScope.REMOVE_FAIL}">
 
+
+            </c:if>
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
             <script src="./ckeditor/ckeditor.js"></script>
@@ -393,10 +404,19 @@
             <script src="./assets/js/app.js"></script>
 
             <script type="text/javascript">
+                window.addEventListener('load', (event) => {
+                    let remove = document.getElementById("remove-fail").value;
+
+                    if (remove === "fail") {
+                        alert("Can not delete login moderator!");
+                    }
+                    console.log(remove);
+                });
                 $(document).ready(function () {
                     $("#sidebarCollapse").on("click", function () {
                         $("#sidebar").toggleClass("active");
                     });
+
                 });
             </script>
             <script>

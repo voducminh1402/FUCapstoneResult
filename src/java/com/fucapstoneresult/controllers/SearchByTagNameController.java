@@ -39,14 +39,8 @@ public class SearchByTagNameController extends HttpServlet {
             if (searchValue == null || searchValue.isEmpty()) {
                 url = "index.jsp";
             }
-//            TagDetailsDAO tagDetaiDdao = new TagDetailsDAO();
-//            PostsDAO postDao = new PostsDAO();
-//            List<TagDetailsDTO> listTags = tagDetaiDdao.getTagsByName(searchValue);
-//            List<PostsDTO> listPosts = new ArrayList<>();
-//            
-//            for (TagDetailsDTO tagDetailsDTO : listTags) {
-//                listPosts.addAll(postDao.getPostsByTagID(tagDetailsDTO.getTagDetailID()));
-//            }
+
+            
             PostsDAO postDao = new PostsDAO();
             List<PostsDTO> listPosts = postDao.getListPost(searchValue);
 
