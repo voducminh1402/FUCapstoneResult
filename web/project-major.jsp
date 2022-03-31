@@ -136,7 +136,13 @@
                     <div class="projects-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="projects-header__content">Chuyên ngành: Kỹ thuật phần mềm</h1>
+                                <div class="route">
+                                    <h3>  
+                            <span>
+                                <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
+                            </span> <i class="fas fa-angle-right"></i> <span>Đồ án tốt nghiệp</span>
+                            </h3>  
+                        </div>
                             </div>
                         </div>
                     </div>

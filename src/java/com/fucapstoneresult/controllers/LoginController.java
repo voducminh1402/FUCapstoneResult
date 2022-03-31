@@ -26,7 +26,8 @@ public class LoginController extends HttpServlet {
 
     private static final String USER = "index.jsp";
     private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login.html";
+    private static final String FAIL = "login-fail.jsp";
+    private static final String ERROR = "login-not-allowed.html";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,30 +38,39 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("password");
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLoginUser(email, password);
+
             
-            StudentDAO stuDao = new StudentDAO();
-            StudentDTO stu = stuDao.getStudentById(user.getUserID());
-                        
-            if (stu != null ){
-                int check = 1;
-                HttpSession session = request.getSession();
-                session.setAttribute("IS_STUDENT", check);
-            }
-            
+
             if (user != null) {
-                if (user.getUserStatus() != 3) {
-                    
+                
+                StudentDAO stuDao = new StudentDAO();
+                StudentDTO stu = stuDao.getStudentById(user.getUserID());
+
+                if (stu != null) {
+                    int check = 1;
                     HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
-                    
+                    session.setAttribute("IS_STUDENT", check);
                 }
 
+                if (user.getUserStatus() != 3) {
+
+                    HttpSession session = request.getSession();
+                    session.setAttribute("USER", user);
+                    if (user.getRoleID() == 1) {
+                        url = USER;
+                    } else {
+                        url = ADMIN;
+                    }
+
+                } else {
+                    request.setAttribute("LOGIN_FAIL", "You can not allowed to access!");
+                    url = ERROR;
+                }
+
+            } else {
+                request.setAttribute("LOGIN_FAIL", "Incorrect email or password!");
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
