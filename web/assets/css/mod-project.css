@@ -612,3 +612,19 @@ tr:nth-last-of-type(-n + 3) .last-type__menu .more-choice__menu {
 .infor-image{
     width: 50%;
 }
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.bootstrap-select {
+    width: 100% !important;
+        outline: none;
+    border: none;
+    padding: 10px 10px;
+    width: 100%;
+    background-color: var(--main-white);
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+}
