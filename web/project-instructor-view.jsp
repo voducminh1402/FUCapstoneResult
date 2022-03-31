@@ -154,38 +154,14 @@
                         <div class="col-md-4 instructor-left">
                             <div class="instructor-list ">
                                 <ul>
-                                    <li>
-                                        <span>Thầy Lâm Hữu Khánh Phương</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Thầy Kiều Trọng Khánh</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Cô Võ Thị Thanh Vân</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Thầy Đoàn Nguyễn Thành Hòa</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Thầy Ngô Đặng Hà An</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Cô Thân Thị Ngọc Vân</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Cô Trương Thị Mỹ Ngọc</span>
-                                        <span>01</span>
-                                    </li>
-                                    <li>
-                                        <span>Thầy Thân Văn Sử</span>
-                                        <span>01</span>
-                                    </li>
+                                    <c:forEach items="${requestScope.LIST_INS_INFO}" var="o">
+                                        <li>
+                                            <a href="MainController?action=InstructorDetail&id=${o.instructorID}">
+                                                <span>${o.instructorName}</span>
+                                                <span>${o.number}</span>
+                                            </a>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>

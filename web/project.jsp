@@ -291,6 +291,8 @@
                 </div>
             </div>
         </div>
+                                                                
+        <div class="overlay-page" id="overlay-page"></div>
 
         <div id="loader" class="loader">
             <div class="loading">

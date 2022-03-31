@@ -2,20 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-            <file>file:/D:/FUCapstoneResult/web/mod-timeline-content.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-slide-content.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewSlideController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-add-student.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetTimelineController.java</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditContextIndexController.java</file>
-            <file>file:/D:/FUCapstoneResult/web/mod-context-index.jsp</file>
-            <file>file:/D:/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddNewTimelineController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/assets/js/app.js</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/filters/AuthorizationFilter.java</file>
         </group>
->>>>>>> d226ff70eeb4c236901e6c07d5692542451c5933
     </open-files>
 </project-private>

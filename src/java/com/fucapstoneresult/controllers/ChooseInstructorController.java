@@ -8,6 +8,7 @@ package com.fucapstoneresult.controllers;
 import com.fucapstoneresult.dao.InstructorDAO;
 import com.fucapstoneresult.dao.ProjectInstructorDAO;
 import com.fucapstoneresult.models.InstructorDTO;
+import com.fucapstoneresult.models.InstructorDetailDTO;
 import com.fucapstoneresult.models.ProjectDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,9 +38,11 @@ public class ChooseInstructorController extends HttpServlet {
             ProjectInstructorDAO piDao = new ProjectInstructorDAO();
             InstructorDTO ins = dao.getInstructorByID(insID);
             List<ProjectDTO> projectList = piDao.getAllProjectByInstructorID(insID);
+            List<InstructorDetailDTO> detailInfo = piDao.getNumberOfProject();
             
             request.setAttribute("INS", ins);
             request.setAttribute("LIST_PROJECT", projectList);
+            request.setAttribute("LIST_INS_INFO", detailInfo);
             
             
         } catch (Exception e) {
