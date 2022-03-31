@@ -84,15 +84,15 @@
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-                    
+
                     <hr class="sidebar-divider">
-                    
-                     <li>
+
+                    <li>
                         <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-arrow-left"></i> Đăng xuất
                         </a>
                     </li>                
-                    
+
                 </ul>
 
             </nav>
@@ -153,10 +153,10 @@
                         <div class="content-filter">
                             <div class="row">
                                 <div class="col-md-8 col-sm-12">
-                                    
+
                                 </div>
                                 <div class="col-md-4 col-sm-12">
-                                   
+
                                     <div class="manage-project">
                                         <div class="menu-search menu-search-project">
                                             <button name="action" value="SearchProjectByName">
@@ -168,7 +168,7 @@
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -198,41 +198,50 @@
                                             ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
                                             InstructorDTO ins = new InstructorDTO();
                                             InstructorDAO insdao = new InstructorDAO();
-                                            
+
                                             int count = 1;
                                             for (ProjectDTO pro : ListPro) {
-                                                
-                                            team = teamDAO.getTeam(pro.getProjectID());
-                                            proins = proinsdao.getProjectInstructor(team.getTeamID());
-                                            ins = insdao.getInstructorByID(proins.getInstructorID());
-                                            
+
+                                                team = teamDAO.getTeam(pro.getProjectID());
+                                                proins = proinsdao.getProjectInstructor(team.getTeamID());
+                                                ins = insdao.getInstructorByID(proins.getInstructorID());
+
                                         %>
                                         <tr>
                                             <td><%= count++%></td>
                                             <td><%= pro.getProjectName()%></td>
-                                            <td><%= team.getTeamName() %></td>
-                                            <td><%= ins.getInstructorName() %></td>
-                                            <td><%= pro.getProjectScore() %></td>
+                                            <td><%= team.getTeamName()%></td>
+                                            <td><%= ins.getInstructorName()%></td>
+                                            <td><%= pro.getProjectScore()%></td>
                                             <td class="last-type__menu">
                                                 <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                 <div class="more-choice__menu">
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=DetailProject&id=<%= pro.getProjectID() %>">
+                                                        <a href="MainController?action=DetailProject&id=<%= pro.getProjectID()%>">
                                                             <span>Xem Chi Tiết</span>
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
                                                     </div>
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=GetListProject&id=<%= pro.getProjectID() %>&page=update-project">
+                                                        <a href="MainController?action=GetListProject&id=<%= pro.getProjectID()%>&page=update-project">
                                                             <span>Chỉnh Sửa</span>
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </a>
                                                     </div>
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=RemoveProject&id=<%= pro.getProjectID() %>">
-                                                            <span>Xóa</span>
+
+
+                                                        <form action="MainController" method="POST">
+                                                            <button style="    border-radius: 0;
+                                                                    border: none;
+                                                                    background: white;
+                                                                    float: left;" type="submit" name="action" value="RemoveProject">
+                                                                <span>Xóa</span>
+                                                            </button>
+                                                            <input type="hidden" name="id" value="<%= pro.getProjectID()%>">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </a>
+                                                        </form>
+
                                                     </div>        
                                                 </div>
                                             </td>

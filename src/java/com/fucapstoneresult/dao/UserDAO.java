@@ -188,14 +188,15 @@ public class UserDAO {
         try {
             conn = DBUtils.getConnection();
             if (conn != null) {
-                String sql = " UPDATE Users SET UserStatusID=?, RoleID=?, UserName = ?, Email = ? "
+                String sql = " UPDATE Users SET UserStatusID=?, RoleID=?, UserName = ?, Email = ?, SubEmail = ? "
                         + " WHERE UserID=? ";
                 stm = conn.prepareCall(sql);
                 stm.setInt(1, User.getUserStatus());
                 stm.setInt(2, User.getRoleID());
                 stm.setString(3, User.getUserName());
                 stm.setString(4, User.getEmail());
-                stm.setString(5, User.getUserID());
+                stm.setString(5, User.getSubEmail());
+                stm.setString(6, User.getUserID());
                 check = stm.executeUpdate() > 0 ? true : false;
             }
 
@@ -250,7 +251,7 @@ public class UserDAO {
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                String sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
+                String sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, SubEmail, Password , OTP , RoleID "
                         + " FROM Users "
                         + " WHERE UserID = ? ";
                 stm = con.prepareStatement(sql);
@@ -262,10 +263,11 @@ public class UserDAO {
                     int userStatus = rs.getInt("UserStatusID");
                     String userImage = rs.getString("UserImage");
                     String email = rs.getString("Email");
+                    String subEmail = rs.getString("SubEmail");
                     String password = rs.getString("Password");
                     String OTP = rs.getString("OTP");
                     int roleID = rs.getInt("RoleID");
-                    user = new UserDTO(userID, userName, dateCreated, userStatus, userImage, email, password, OTP, roleID);
+                    user = new UserDTO(userID, userName, dateCreated, userStatus, userImage, email, subEmail, password, OTP, roleID);
                 }
             }
         } catch (Exception e) {
