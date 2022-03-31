@@ -88,9 +88,11 @@
                                 <li>
                                     <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                 </li>
-                                <li>
-                                    <a href="./po-view-post.jsp">Nội dung của bạn</a>
-                                </li>
+                                <c:if test="${sessionScope.IS_STUDENT == 1}">
+                                    <li>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                    </li>
+                                </c:if>
                                 <li>
                                     <a href="./contact.html">Liên hệ</a>
                                 </li>
@@ -167,7 +169,7 @@
                                 <input type="hidden" name="action" value="LazyLoadProject"/>
                                 <select class="filter-semester" name="filter-id" id="filter-id">
                                     <option selected value="Học Kì">Tất Cả Học Kì</option>
-                                    
+
                                     <c:forEach var="o" items="${requestScope.LIST_SEMESTER}">
                                         <c:if test="${requestScope.FILTER eq o.semesterID}">
                                             <option selected="" value="${o.semesterID}">${o.semesterName}</option>
@@ -309,7 +311,7 @@
         <script>
             document.getElementById("filter-id").addEventListener("change", () => {
                 console.log("da change");
-                document.getElementById("form-lazy").submit(); 
+                document.getElementById("form-lazy").submit();
             });
         </script>
         <script

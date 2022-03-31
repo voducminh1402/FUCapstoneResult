@@ -40,6 +40,12 @@ public class LoginController extends HttpServlet {
             
             StudentDAO stuDao = new StudentDAO();
             StudentDTO stu = stuDao.getStudentById(user.getUserID());
+                        
+            if (stu != null ){
+                int check = 1;
+                HttpSession session = request.getSession();
+                session.setAttribute("IS_STUDENT", check);
+            }
             
             if (user != null) {
                 if (user.getUserStatus() != 3) {
@@ -55,10 +61,6 @@ public class LoginController extends HttpServlet {
 
             }
             
-            if (stu != null ){
-                int check = 1;
-                request.setAttribute("IS_STUDENT", check);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
