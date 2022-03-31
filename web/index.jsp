@@ -74,14 +74,12 @@
                                         <li>
                                             <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                         </li>
-                                        <li>
-                                            <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
-                                        </li>
                                         <c:if test="${sessionScope.IS_STUDENT == 1}">
                                             <li>
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
                                         </c:if>
+                                        
                                         <li>
                                             <a href="./contact.html">Liên hệ</a>
                                         </li>
@@ -93,6 +91,17 @@
                                                 <a style="color: var(--main-orange); text-transform: uppercase">
                                                     <form action="MainController">
                                                         <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                    </form>
+                                                </a>
+                                            </c:if>
+                                        </li>
+                                        <li>
+                                            <c:if test="${sessionScope.USER ne null}">
+                                                <a style="color: var(--main-orange); text-transform: uppercase">
+                                                    <form action="MainController">
+                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
+                                                        <input type="hidden" name="page" value="index">
+                                                        <input type="hidden" name="id" value="${sessionScope.USER.userID}">
                                                     </form>
                                                 </a>
                                             </c:if>
@@ -570,71 +579,71 @@
             </div>
         </div>
         <div onselectstart="return false;" oncopy="return false" oncut="return false" onpaste="return false" id="event-btn" class="event-btn">
-             Đóng
+            Đóng
         </div>
 
         <div class="event-content-wrap">
             <div id="event-content" class="event-content">
-            <div class="event-content-overlay">
-                <div class="box event-content-list">
-                    <ul id="first-list">
-                        <li>
-                            <span></span>
-                            <div class="title">comment #01</div>
-                            <div class="info">the best animation , the best toturials you would ever see .</div>
-                            <div class="name">- dr. mohamed -</div>
-                            <div class="time">
-                                <span>JUN, 17<sup>th</sup></span>
-                                <span>12:00 AM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">summery #01</div>
-                            <div class="info">the best animation , the best toturials you would ever see here only . you can learn how to animate and how to use SVG . even else you can add your own animations .</div>
-                            <div class="name">- eng. amr -</div>
-                            <div class="time">
-                                <span>JUN, 29<sup>th</sup></span>
-                                <span>11:36 AM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="event-content-overlay">
+                    <div class="box event-content-list">
+                        <ul id="first-list">
+                            <li>
+                                <span></span>
+                                <div class="title">comment #01</div>
+                                <div class="info">the best animation , the best toturials you would ever see .</div>
+                                <div class="name">- dr. mohamed -</div>
+                                <div class="time">
+                                    <span>JUN, 17<sup>th</sup></span>
+                                    <span>12:00 AM</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span></span>
+                                <div class="title">summery #01</div>
+                                <div class="info">the best animation , the best toturials you would ever see here only . you can learn how to animate and how to use SVG . even else you can add your own animations .</div>
+                                <div class="name">- eng. amr -</div>
+                                <div class="time">
+                                    <span>JUN, 29<sup>th</sup></span>
+                                    <span>11:36 AM</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span></span>
+                                <div class="title">comment #02</div>
+                                <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
+                                <div class="name">- dr. ahmed -</div>
+                                <div class="time">
+                                    <span>FEB, 2<sup>nd</sup></span>
+                                    <span>02:00 PM</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span></span>
+                                <div class="title">comment #02</div>
+                                <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
+                                <div class="name">- dr. ahmed -</div>
+                                <div class="time">
+                                    <span>FEB, 2<sup>nd</sup></span>
+                                    <span>02:00 PM</span>
+                                </div>
+                            </li>
+                            <li>
+                                <span></span>
+                                <div class="title">comment #02</div>
+                                <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
+                                <div class="name">- dr. ahmed -</div>
+                                <div class="time">
+                                    <span>FEB, 2<sup>nd</sup></span>
+                                    <span>02:00 PM</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-content-text">
+                    <h2>THỜI GIAN DỰ KIẾN BẢO VỆ ĐỒ ÁN TỐT NGHIỆP KỲ SPRING 2022</h2>
                 </div>
             </div>
-            <div class="event-content-text">
-                <h2>THỜI GIAN DỰ KIẾN BẢO VỆ ĐỒ ÁN TỐT NGHIỆP KỲ SPRING 2022</h2>
-            </div>
-        </div>
         </div>
         <div id="loader" class="loader">
             <div class="loading">

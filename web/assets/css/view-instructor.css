@@ -99,11 +99,17 @@ input {
     list-style: none;
     padding: 15px;
     border-bottom: 0.5px solid var(--main-sub-orange);
-    display: flex;
     justify-content: space-between;
 }
 
-.instructor-list ul li span:last-of-type {
+.instructor-list ul li a{
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+}   
+
+.instructor-list ul li a span:last-of-type {
     background-color: var(--main-orange);
     display: inline-block;
     padding: 3px 6px;

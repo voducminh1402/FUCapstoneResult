@@ -3,24 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
-        </group>
-        <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-comment-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserCommentDTO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddCommentController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
+<<<<<<< HEAD
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoginController.java</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/project.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/assets/js/app.js</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/filters/AuthorizationFilter.java</file>
+=======
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ImportExcel.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/instructor.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-add-project.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/assets/js/app.js</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddProjectController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LoadFileStudentController.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/utils/DBUtils.java</file>
+            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/mod-project.jsp</file>
+>>>>>>> 8314c655cddebe1fbbe75c5da37f940663d6af0f
         </group>
     </open-files>
 </project-private>

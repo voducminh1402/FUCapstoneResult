@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./assets/css/mod-project.css">    
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/responsive.css">
@@ -84,15 +85,15 @@
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-                    
+
                     <hr class="sidebar-divider">
-                    
-                     <li>
+
+                    <li>
                         <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-arrow-left"></i> Đăng xuất
                         </a>
                     </li>                
-                    
+
                 </ul>
 
             </nav>
@@ -153,10 +154,9 @@
                         <div class="content-filter">
                             <div class="row">
                                 <div class="col-md-8 col-sm-12">
-                                    
                                 </div>
                                 <div class="col-md-4 col-sm-12">
-                                   
+
                                     <div class="manage-project">
                                         <div class="menu-search menu-search-project">
                                             <button name="action" value="SearchProjectByName">
@@ -168,7 +168,7 @@
                                             <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -198,41 +198,50 @@
                                             ProjectInstructorDAO proinsdao = new ProjectInstructorDAO();
                                             InstructorDTO ins = new InstructorDTO();
                                             InstructorDAO insdao = new InstructorDAO();
-                                            
+
                                             int count = 1;
                                             for (ProjectDTO pro : ListPro) {
-                                                
-                                            team = teamDAO.getTeam(pro.getProjectID());
-                                            proins = proinsdao.getProjectInstructor(team.getTeamID());
-                                            ins = insdao.getInstructorByID(proins.getInstructorID());
-                                            
+
+                                                team = teamDAO.getTeam(pro.getProjectID());
+                                                proins = proinsdao.getProjectInstructor(team.getTeamID());
+                                                ins = insdao.getInstructorByID(proins.getInstructorID());
+
                                         %>
                                         <tr>
                                             <td><%= count++%></td>
                                             <td><%= pro.getProjectName()%></td>
-                                            <td><%= team.getTeamName() %></td>
-                                            <td><%= ins.getInstructorName() %></td>
-                                            <td><%= pro.getProjectScore() %></td>
+                                            <td><%= team.getTeamName()%></td>
+                                            <td><%= ins.getInstructorName()%></td>
+                                            <td><%= pro.getProjectScore()%></td>
                                             <td class="last-type__menu">
                                                 <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                 <div class="more-choice__menu">
-                                                    <div class="more-choice__item">
-                                                        <a href="MainController?action=DetailProject&id=<%= pro.getProjectID() %>">
+<!--                                                    <div class="more-choice__item">
+                                                        <a href="MainController?action=DetailProject&id=<%= pro.getProjectID()%>">
                                                             <span>Xem Chi Tiết</span>
                                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                                         </a>
-                                                    </div>
+                                                    </div>-->
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=GetListProject&id=<%= pro.getProjectID() %>&page=update-project">
+                                                        <a href="MainController?action=GetListProject&id=<%= pro.getProjectID()%>&page=update-project">
                                                             <span>Chỉnh Sửa</span>
                                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                                         </a>
                                                     </div>
                                                     <div class="more-choice__item">
-                                                        <a href="MainController?action=RemoveProject&id=<%= pro.getProjectID() %>">
-                                                            <span>Xóa</span>
+
+
+                                                        <form action="MainController" method="POST">
+                                                            <button style="    border-radius: 0;
+                                                                    border: none;
+                                                                    background: white;
+                                                                    float: left;" type="submit" name="action" value="RemoveProject">
+                                                                <span>Xóa</span>
+                                                            </button>
+                                                            <input type="hidden" name="id" value="<%= pro.getProjectID()%>">
                                                             <i class="fa fa-trash" aria-hidden="true"></i>
-                                                        </a>
+                                                        </form>
+
                                                     </div>        
                                                 </div>
                                             </td>
@@ -320,8 +329,11 @@
         crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="./assets/js/app.js"></script>
 
+        
+        
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {
