@@ -3,24 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddCommentController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewAddPoPostPageController.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddPoPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
         </group>
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/post-project.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectSemesterDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetPostController.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-comment-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/UserCommentDTO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/DetailProjectController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/blog-single.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/AddCommentController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/CommentPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/CommentDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/po-add-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-post.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LazyLoadProjectController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-request.jsp</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/SemesterDTO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SearchPostByNameController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SearchPoPostByNameController.java</file>
+            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
         </group>
     </open-files>
 </project-private>

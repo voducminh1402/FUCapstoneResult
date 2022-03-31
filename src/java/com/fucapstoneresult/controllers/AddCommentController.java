@@ -38,7 +38,7 @@ public class AddCommentController extends HttpServlet {
 
             CommentDAO dao = new CommentDAO();
             UserCommentDTO user = new UserCommentDTO(commentId, poPostId, userId, commentDetail, commentTime, commentStatusId);
-            check = dao.approveComment(commentId);
+            check = dao.approveComment(commentId);  
 
             if (check) {
                 url = SUCCESS;

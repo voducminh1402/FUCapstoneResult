@@ -85,14 +85,7 @@
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
+                                  
                     
                 </ul>
 
@@ -114,10 +107,14 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
+                                        <!-- Dropdown - Alerts -->
                                         <div class="info-login">
-                                            <img src="https://cdn2.mhpbooks.com/2014/03/test_ttp_big.jpg" alt="">
-                                            <span>Xin Chào, Moderator 1 <i class="fa fa-caret-down" aria-hidden="true"></i></span>
-
+                                            <img src="${sessionScope.USER.userImage}" alt="">
+                                        </div>
+                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

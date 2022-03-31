@@ -258,6 +258,10 @@
         <servlet-name>RemoveTimelineController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemoveTimelineController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchPostByNameController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchPostByNameController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -505,6 +509,10 @@
     <servlet-mapping>
         <servlet-name>RemoveTimelineController</servlet-name>
         <url-pattern>/RemoveTimelineController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPostByNameController</servlet-name>
+        <url-pattern>/SearchPostByNameController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
