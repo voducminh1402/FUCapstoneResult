@@ -68,7 +68,7 @@
                             <div class="col-md-12">
                                 <p style="color: red">${requestScope.EMAIL_DUPLICATED}</p>
                                 <label for="email">Địa chỉ email</label>
-                                <input class="bg-light form-control" value="${requestScope.USER_DETAIL.email}" name="email">
+                                <input class="bg-light form-control" value="${requestScope.USER_DETAIL.email}" name="email" readonly="">
 
 
                             </div>

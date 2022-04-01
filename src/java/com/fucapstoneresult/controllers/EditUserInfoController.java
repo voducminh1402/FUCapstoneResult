@@ -45,13 +45,10 @@ public class EditUserInfoController extends HttpServlet {
 //(,   String subEmail, String password, String OTP, int roleID) {
             UserDAO dao = new UserDAO();
             UserDTO user;
-            
+
             if (dao.searchUserByEmail(subEmail) != null) {
                 request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
-            }
-            else if (dao.searchUserByEmail(email) != null){
-                request.setAttribute("EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
-            }else {
+            } else {
                 user = new UserDTO(id, name, "", status, "", email, subEmail, "", "", role);
                 if (page.equals("student")) {
                     StudentDAO studentDao = new StudentDAO();

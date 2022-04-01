@@ -3,29 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/UpdateInfoUserByUserController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ShowUserDetailController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/index.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/user-info-update.jsp</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/EditUserInfoController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/C:/Users/HP/Desktop/SWP391/FUCapstoneResult/web/admin.jsp</file>
-=======
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/project.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-comment-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/build-impl.xml</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
-        </group>
-        <group>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/user-info-update.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/po-update-post.jsp</file>
-            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/filters/AuthorizationFilter.java</file>
->>>>>>> cf2d65bb92603b2a2eef9423d9e14906d3b6928a
+            <file>file:/C:/Users/HP/Desktop/anh%20vui%20ve/FUCapstoneResult/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/HP/Desktop/anh%20vui%20ve/FUCapstoneResult/src/java/com/fucapstoneresult/filters/AuthorizationFilter.java</file>
+            <file>file:/C:/Users/HP/Desktop/anh%20vui%20ve/FUCapstoneResult/web/student.jsp</file>
         </group>
     </open-files>
 </project-private>

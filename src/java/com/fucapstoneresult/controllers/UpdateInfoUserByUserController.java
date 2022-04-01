@@ -43,8 +43,6 @@ public class UpdateInfoUserByUserController extends HttpServlet {
             UserDTO user;
             if (dao.searchUserByEmail(subEmail) != null) {
                 request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
-            } else if (dao.searchUserByEmail(email) != null) {
-                request.setAttribute("EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
             } else {
                 user = new UserDTO(id, name, "", 2, "", email, subEmail, "", "", 1);
                 if (!dao.updateUserByAdmin(user)) {

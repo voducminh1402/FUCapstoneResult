@@ -45,12 +45,13 @@ public class ImportExcel {
     public static final int COLUMN_INDEX_TEAM = 4;
     public static final int COLUMN_INDEX_SEMESTER = 5;
 
-    public static void main(String[] args) throws IOException, SQLException {
-        //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+       //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
     }
 
     public static void addToDatabase(String path) throws IOException, SQLException, ClassNotFoundException {
-        final String excelFilePath = path;
+        final String excelFilePath = path.replace('\\', '/');
+        
 
         //final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
         //final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
@@ -79,15 +80,17 @@ public class ImportExcel {
                 team.insertTeam(new TeamDTO(teamId, teamName));
             }
             if (student.getStudent(object.getId()) == null) {
-                if (user.searchUserByEmail(object.getEmail()) != null) {
-                    user.updateUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
-                } else {
-                    student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
+                student.insertStudent(new StudentDTO(object.getId(), object.getName(), "1", object.getImage(), team.getTeamByName(teamName).getTeamID()));
+                if (user.searchUserByEmail(object.getEmail()) == null) {
                     user.addUser(new UserDTO(object.getId(), object.getName(), createDate, 2, object.getImage(), object.getEmail(), "123456", null, 1));
                 }
 
             }
-            System.out.println(object);
+            List<StudentDTO> studentlist = student.getListStudent();
+            for (StudentDTO studentDTO : studentlist) {
+                System.out.println(studentDTO);
+            }
+            //System.out.println(object);
         }
     }
 
