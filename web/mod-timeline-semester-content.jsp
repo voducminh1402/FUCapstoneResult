@@ -60,14 +60,16 @@
                                 <span>Trang chủ</span></a>
                         </li>
                         <hr class="sidebar-divider">
+                        <c:if test="${sessionScope.USER.roleID eq 3}">
+                            <li class="dropdown">
+                                <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                    <i class="fas fa-home"></i> Quản Lí Người Dùng
+                                </a>
+                            </li>
 
-                        <li class="dropdown">
-                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                                <i class="fas fa-home"></i> Quản Lí Người Dùng
-                            </a>
-                        </li>
 
-                        <hr class="sidebar-divider">
+                            <hr class="sidebar-divider">
+                        </c:if>
 
                         <li>
                             <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
@@ -81,7 +83,7 @@
                         </li>
                         <li>
                             <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                                <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
                             </a>
                         </li>
                         <li>
@@ -99,12 +101,21 @@
 
                         <li>
                             <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-briefcase"></i> Bài Đăng Chính
+                                <i class="fas fa-file"></i> Bài Đăng Chính
                             </a>
                             <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-copy"></i> Bài Viết Của Sinh Viên
+                                <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                             </a>
-                        </li>
+                        </li>       
+                        <hr class="sidebar-divider">
+                        <li>
+                            <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Slide
+                            </a>
+                            <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                            </a>
+                        </li>     
 
                     </ul>
 
@@ -184,27 +195,27 @@
                                     <div class="col-md-4 col-sm-12">
                                         <form action="MainController">
                                             <div class="manage-project">
-<!--                                                <div class="menu-search menu-search-project">
-
-                                                    <button name="action" value="SearchInstructorByName">
-                                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                                    </button>
-                                                    <input
-                                                        class="mod-menu-input"
-                                                        type="text"
-                                                        placeholder="Thêm Timeline..."
-                                                        name="name"
-                                                        readonly
-                                                        />
-                                                </div>
-                                                <button
-                                                    type="button"
-                                                    data-toggle="modal"
-                                                    data-target="#addModal"
-                                                    class="add-project"
-                                                    >
-                                                    <i class="fas fa-plus"></i>
-                                                </button>-->
+                                                <!--                                                <div class="menu-search menu-search-project">
+                                                
+                                                                                                    <button name="action" value="SearchInstructorByName">
+                                                                                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                                                                                    </button>
+                                                                                                    <input
+                                                                                                        class="mod-menu-input"
+                                                                                                        type="text"
+                                                                                                        placeholder="Thêm Timeline..."
+                                                                                                        name="name"
+                                                                                                        readonly
+                                                                                                        />
+                                                                                                </div>
+                                                                                                <button
+                                                                                                    type="button"
+                                                                                                    data-toggle="modal"
+                                                                                                    data-target="#addModal"
+                                                                                                    class="add-project"
+                                                                                                    >
+                                                                                                    <i class="fas fa-plus"></i>
+                                                                                                </button>-->
                                             </div>
                                         </form>
                                     </div>
@@ -217,27 +228,26 @@
                                             <tr>
                                                 <th>No.</th>
                                                 <th>Kỳ Học</th>
+                                                <th>Số timeline</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <%
-                                                    SemesterDAO semeDAO = new SemesterDAO();
-                                                    List<SemesterDTO> listSem = new ArrayList<>();
-                                                    listSem = semeDAO.getAllSemester();
-                                                    int count = 1;
-                                                    for (SemesterDTO Sem : listSem) {
 
 
-                                                %>
+                                            <c:if test="${requestScope.TIME_LINE_CONTENT == null}">
+                                                <c:redirect url="MainController?action=GetTimeLineContent"></c:redirect>
+                                            </c:if>
+                                            <c:forEach items="${requestScope.TIME_LINE_CONTENT}" var="o" varStatus="status">
                                                 <tr>
-                                                    <td><%= count++%></td>
-                                                    <td><%= Sem.getSemesterName() %></td>
+                                                    <td>${status.count}</td>
+                                                    <td>${o.semesterName}</td>
+                                                    <td>${o.numberItem}</td>
                                                     <td class="last-type__menu">
                                                         <i class="fas fa-ellipsis-h more-choice__dot"></i>
                                                         <div class="more-choice__menu">
                                                             <div class="more-choice__item">
-                                                                <a href="MainController?action=GetTimeline&id=<%= Sem.getSemesterID() %>">
+                                                                <a href="MainController?action=GetTimeline&id=${o.semesterID}">
                                                                     <span>Xem Chi Tiết</span>
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </a>
@@ -245,14 +255,14 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <% 
-                                                    }
-                                                %>
+                                            </c:forEach>
+
+                                            
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="content-project-pagination">
+<!--                            <div class="content-project-pagination">
                                 <div class="pagination">
                                     <span><i class="fas fa-chevron-left"></i></span>
                                     <span class="active-pagination">1</span>
@@ -262,85 +272,12 @@
                                     <span>10</span>
                                     <span><i class="fas fa-chevron-right"></i></span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
 
-<!--            <div class="add-project-menu" id="add-project-menu">
-                <h2 id="title">Thêm Timeline</h2>
-                <form action="MainController" method="POST" id="form">
-                    <label for="name">Tiêu đề</label><br />
-                    <input name="title" type="text" id="name" />
-
-                    <label for="name">Tên</label><br />
-                    <input name="name" type="text" id="name" />
-
-                    <label for="name">Thời Gian</label><br />
-                    <input name="time" type="date" id="name" />
-
-                    <label for="name">Nhóm</label><br />
-                    <input name="group" type="text" id="name" />
-
-                    <label for="name">Nội Dung</label><br />
-                    <input name="description" type="text" id="name" />
-
-                    <label for="name">Địa Điểm</label><br />
-                    <input name="place" type="text" id="name" />
-                    
-                    <label for="">Học Kì</label><br>
-                    <select name="semester-id" id="" required>
-                        <option disabled selected>Lựa Chọn Kì Cho Timeline</option>
-                        <%
-                            for (SemesterDTO Sem : listSem) {
-                        %>
-                        <option value="<%= Sem.getSemesterID() %>"><%= Sem.getSemesterName() %></option>
-                        <%
-                            }
-                        %>
-                        
-                    </select>
-
-                    <div class="add-project-submit">
-                        <button type="submit" name="action" value="AddTimeline">
-                            Lưu Lại
-                        </button>
-                        <button class="cancel-add-btn" type="button">Hủy Bỏ</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="add-project-menu" id="edit-slide-menu">
-                <h2 id="title">Chỉnh Sửa Timeline</h2>
-                <form action="MainController" method="POST" id="form">
-                    <label for="name">Tiêu đề</label><br />
-                    <input name="title" type="text" id="title-edit" />
-
-                    <label for="name">Tên</label><br />
-                    <input name="name" type="text" id="name" />
-
-                    <label for="name">Thời Gian</label><br />
-                    <input name="time" type="date" id="name" />
-
-                    <label for="name">Nhóm</label><br />
-                    <input name="group" type="text" id="name" />
-
-                    <label for="name">Nội Dung</label><br />
-                    <input name="description" type="text" id="name" />
-
-                    <label for="name">Địa Điểm</label><br />
-                    <input name="place" type="text" id="name" />
-
-
-                    <div class="add-project-submit">
-                        <button type="submit" name="action" value="EditTimeline">
-                            Lưu Lại
-                        </button>
-                        <button class="cancel-edit-btn" type="button">Hủy Bỏ</button>
-                    </div>
-                </form>
-            </div>-->
 
 
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>

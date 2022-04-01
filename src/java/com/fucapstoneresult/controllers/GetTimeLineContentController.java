@@ -5,11 +5,20 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.StudentDAO;
-import com.fucapstoneresult.dao.UserDAO;
-import com.fucapstoneresult.models.StudentDTO;
+import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
+import com.fucapstoneresult.models.SemesterDTO;
+import com.fucapstoneresult.models.TimelineDTO;
+import com.fucapstoneresult.models.TimelineViewDTO;
 import com.fucapstoneresult.models.UserDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,54 +30,50 @@ import javax.servlet.http.HttpSession;
  *
  * @author HP
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "GetTimeLineContentController", urlPatterns = {"/GetTimeLineContentController"})
+public class GetTimeLineContentController extends HttpServlet {
 
-    private static final String USER = "index.jsp";
-    private static final String ADMIN = "mod-index.jsp";
-    private static final String FAIL = "login-fail.jsp";
-    private static final String ERROR = "login-not-allowed.html";
+    private static final String SUCCESS = "mod-timeline-semester-content.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String url = FAIL;
+        String url = SUCCESS;
         try {
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLoginUser(email, password);
+            
+            SemesterDAO semeDAO = new SemesterDAO();
+            List<SemesterDTO> listSem = semeDAO.getAllSemester();
+            
+            List<TimelineViewDTO> list = new ArrayList<>();
+            
+            for (SemesterDTO semesterDTO : listSem) {
+                List<TimelineDTO> timelineList = null;
 
-            if (user != null) {
-                
+                ContentDAO dao = new ContentDAO();
 
-                if (!dao.checkUserIsAStudent(user.getUserID()).isEmpty()) {
-                    int check = 1;
-                    HttpSession session = request.getSession();
-                    session.setAttribute("IS_STUDENT", check);
-                }
+                String jsonFromTable = dao.getTimeline();
 
-                if (user.getUserStatus() != 3) {
+                List<TimelineDTO> timelineListInSem = new ArrayList<>();
 
-                    HttpSession session = request.getSession();
-                    session.setAttribute("USER", user);
-                    if (user.getRoleID() == 1) {
-                        url = USER;
-                    } else {
-                        url = ADMIN;
-                    }
-
+                if (jsonFromTable.equals("[]")) {
+                    timelineList = new ArrayList<>();
                 } else {
-                    request.setAttribute("LOGIN_FAIL", "You can not allowed to access!");
-                    url = ERROR;
+                    Type type = new TypeToken<List<TimelineDTO>>() {
+                    }.getType();
+                    timelineList = new Gson().fromJson(jsonFromTable, type);
+                    for (TimelineDTO timelineInSem : timelineList) {
+                        if (timelineInSem.getSemester().equals(semesterDTO.getSemesterID())) {
+                            timelineListInSem.add(timelineInSem);
+                        }
+                    }
                 }
 
-            } else {
-                request.setAttribute("LOGIN_FAIL", "Incorrect email or password!");
+                list.add(new TimelineViewDTO(semesterDTO.getSemesterID(), semesterDTO.getSemesterName(), timelineListInSem.size()));
             }
 
+            request.setAttribute("TIME_LINE_CONTENT", list);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

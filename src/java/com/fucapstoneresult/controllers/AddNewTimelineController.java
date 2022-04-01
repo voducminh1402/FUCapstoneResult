@@ -6,6 +6,7 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.dao.SemesterDAO;
 import com.fucapstoneresult.models.SlideDTO;
 import com.fucapstoneresult.models.TimelineDTO;
 import com.google.gson.Gson;
@@ -54,7 +55,9 @@ public class AddNewTimelineController extends HttpServlet {
                 timelineList = new Gson().fromJson(jsonFromTable, type);
             }
             
-            timelineList.add(new TimelineDTO(title, name, time, group, description, place, semesterid));
+            SemesterDAO daoSem = new SemesterDAO();
+            
+            timelineList.add(new TimelineDTO(title, name, time, group, description, place, daoSem.getSemesterByName(semesterid)));
             JsonArray jsonList = (JsonArray) new Gson().toJsonTree(timelineList);
             dao.updateTimeline(jsonList.toString());
             

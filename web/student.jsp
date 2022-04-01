@@ -65,14 +65,16 @@
                                 <span>Trang chủ</span></a>
                         </li>
                         <hr class="sidebar-divider">
+                        <c:if test="${sessionScope.USER.roleID eq 3}">
+                            <li class="dropdown">
+                                <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                    <i class="fas fa-home"></i> Quản Lí Người Dùng
+                                </a>
+                            </li>
 
-                        <li class="dropdown">
-                            <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                                <i class="fas fa-home"></i> Quản Lí Người Dùng
-                            </a>
-                        </li>
 
-                        <hr class="sidebar-divider">
+                            <hr class="sidebar-divider">
+                        </c:if>
 
                         <li>
                             <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
@@ -86,7 +88,7 @@
                         </li>
                         <li>
                             <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                                <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
                             </a>
                         </li>
                         <li>
@@ -101,35 +103,24 @@
                         </li>
 
                         <hr class="sidebar-divider">
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-                    
-                    <hr class="sidebar-divider">
-                                  
-                    
-                </ul>
-               <li>
+
+                        <li>
                             <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
                                 <i class="fas fa-file"></i> Bài Đăng Chính
                             </a>
                             <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
                                 <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                             </a>
-                        </li>
-
+                        </li>       
                         <hr class="sidebar-divider">
-
                         <li>
-                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                                <i class="fas fa-arrow-left"></i> Đăng xuất
+                            <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Slide
                             </a>
-                        </li>                
+                            <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                            </a>
+                        </li>     
 
                     </ul>
 
@@ -291,7 +282,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="content-project-pagination">
+<!--                            <div class="content-project-pagination">
                                 <div class="pagination">
                                     <span><i class="fas fa-chevron-left"></i></span>
                                     <span class="active-pagination">1</span>
@@ -301,7 +292,7 @@
                                     <span>10</span>
                                     <span><i class="fas fa-chevron-right"></i></span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

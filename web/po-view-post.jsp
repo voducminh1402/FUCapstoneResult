@@ -142,8 +142,9 @@
                                 <div class="col-md-12">
                                     <h1 style="text-align: center; font-size: 40px" class="projects-header__content">Bài viết của bạn</h1>
                                     <div class="devider" style="width: 30%; margin: 0 auto"></div>
-                                        <a href="MainController?action=ViewAddPoPostPage&id=${requestScope.POST.postID}" 
-                                           style="width: 20%; padding: 10px 10px 10px 10px; background-color: #F26F21; border: none;  text-transform: uppercase; color: white; font-weight: 700; border-radius: 4px; text-decoration: none; text-align: center; margin-left: 40%; display: block; margin-top: 10px; margin-bottom: -20px">Đăng
+                                        <a href="MainController?action=ViewAddPoPostPage" 
+                                           style="width: 20%; padding: 10px 10px 10px 10px; background-color: #F26F21; border: none;  text-transform: uppercase; color: white; font-weight: 700; border-radius: 4px; text-decoration: none; text-align: center; margin-left: 40%; display: block; margin-top: 10px; margin-bottom: -20px">
+                                            Đăng
                                             tải bài viết mới
                                         </a>
                                 </div>
