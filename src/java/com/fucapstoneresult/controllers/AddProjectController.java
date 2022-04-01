@@ -35,7 +35,7 @@ import javax.servlet.http.HttpSession;
 public class AddProjectController extends HttpServlet {
 
     private static final String ERROR = "login.html";
-    private static final String SUCCESS = "mod-add-project.jsp";
+    private static final String SUCCESS = "mod-project.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
