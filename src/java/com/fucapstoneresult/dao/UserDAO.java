@@ -5,6 +5,7 @@
  */
 package com.fucapstoneresult.dao;
 
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.UserDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
@@ -437,15 +438,58 @@ public class UserDAO {
         return list;
     }
 
+    public String checkUserIsAStudent(String userId) throws SQLException {
+        String postID = null;
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "SELECT PostID "
+                        + "  FROM Posts "
+                        + "  WHERE ProjectID =  "
+                        + "  ( "
+                        + "	SELECT ProjectID "
+                        + "	FROM Projects "
+                        + "	WHERE ProjectID =  "
+                        + "	( "
+                        + "		SELECT TeamID "
+                        + "		FROM Teams "
+                        + "		WHERE TeamID =  "
+                        + "		( "
+                        + "			SELECT TeamID "
+                        + "			FROM Students "
+                        + "			WHERE StudentID = ? "
+                        + "		) "
+                        + "	) "
+                        + "  )";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, userId);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                    postID = rs.getString("PostID");
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return postID;
+    }
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         UserDAO dao = new UserDAO();
-        String email = "1";
-        String password = "1";
-        UserDTO a = dao.searchUserByEmail(email);
-        System.out.println(a);
-        UserDTO anh = new UserDTO("22222", email, "2020-1-12", 2, email, email, password, "123", 1);
-        
-        boolean check = dao.addUser(anh);
-        System.out.println(check);
+        System.out.println(dao.checkUserIsAStudent("SE150111"));
     }
 }
