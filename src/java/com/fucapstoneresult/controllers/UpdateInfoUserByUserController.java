@@ -27,6 +27,7 @@ public class UpdateInfoUserByUserController extends HttpServlet {
 
     private static final String SUCCESS = "user-info-update.jsp";
     private static final String FAIL = "error.html";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -38,13 +39,20 @@ public class UpdateInfoUserByUserController extends HttpServlet {
             String subEmail = request.getParameter("sub-email");
 
 //(,   String subEmail, String password, String OTP, int roleID) {
-            UserDTO user = new UserDTO(id, name, "", 2, "", email, subEmail, "", "", 1);           
-
             UserDAO dao = new UserDAO();
-            if (!dao.updateUserByAdmin(user)) {
+            UserDTO user;
+            if (dao.searchUserByEmail(subEmail) != null) {
+                request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
+            } else if (dao.searchUserByEmail(email) != null) {
+                request.setAttribute("EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
+            } else {
+                user = new UserDTO(id, name, "", 2, "", email, subEmail, "", "", 1);
+                if (!dao.updateUserByAdmin(user)) {
 
-                url = FAIL;
+                    url = FAIL;
+                }
             }
+
             user = dao.searchUserByID(id);
             request.setAttribute("USER_DETAIL", user);
 

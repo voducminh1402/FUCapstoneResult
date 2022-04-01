@@ -296,9 +296,10 @@ public class UserDAO {
             if (con != null) {
                 String sql = "SELECT UserID, UserName, DateCreated, UserStatusID , UserImage, Email, Password , OTP , RoleID "
                         + " FROM Users "
-                        + " WHERE Email = ? ";
+                        + " WHERE Email = ? OR SubEmail = ? ";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, email);
+                stm.setString(2, email);
                 rs = stm.executeQuery();
                 if (rs.next()) {
                     String userID = rs.getString("UserID");
