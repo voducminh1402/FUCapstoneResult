@@ -74,8 +74,20 @@
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
                                         </c:if>
+                                        
                                         <li>
-                                            <a href="./contact.html">Liên hệ</a>
+                                            <a href="./contact.jsp">Liên hệ</a>
+                                        </li>
+                                        <li>
+                                            <c:if test="${sessionScope.USER ne null}">
+                                                <a style="color: var(--main-orange); text-transform: uppercase">
+                                                    <form action="MainController">
+                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
+                                                        <input type="hidden" name="page" value="index">
+                                                        <input type="hidden" name="id" value="${sessionScope.USER.userID}">
+                                                    </form>
+                                                </a>
+                                            </c:if>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">
@@ -195,7 +207,7 @@
                                 <span>Tính Năng</span>
                                 <div><a href="">Đăng Ký</a></div>
                                 <div><a href="">Đăng Nhập</a></div>
-                                <div><a href="./contact.html">Liên hệ</a></div>
+                                <div><a href="./contact.jsp">Liên hệ</a></div>
                             </div>
                             <div class="col-md-4">
                                 <span>Theo Dõi Trường Đại Học FPT Tại: </span>

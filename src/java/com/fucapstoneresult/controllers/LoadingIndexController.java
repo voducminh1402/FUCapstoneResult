@@ -5,10 +5,16 @@
  */
 package com.fucapstoneresult.controllers;
 
+import com.fucapstoneresult.dao.ContentDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.SlideDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +36,19 @@ public class LoadingIndexController extends HttpServlet {
             ProjectDAO projectDao = new ProjectDAO();
             List<ProjectDTO> projectList = projectDao.getTop10Project();
             request.setAttribute("PROJECT_LIST", projectList);
+            
+            List<SlideDTO> slideList = null;
+            ContentDAO dao = new ContentDAO();
+            String jsonFromTable = dao.getSlide();
+            
+            if (jsonFromTable.equals("[]")) {
+                slideList = new ArrayList<>();
+            }
+            else {
+                Type type = new TypeToken<List<SlideDTO>>(){}.getType();
+                slideList = new Gson().fromJson(jsonFromTable, type);
+            }
+            request.setAttribute("SLIDE", slideList);
             
         } 
         catch (Exception e) {

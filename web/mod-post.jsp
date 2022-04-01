@@ -79,14 +79,7 @@
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
                     </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
+                                   
                     
                 </ul>
 
@@ -108,24 +101,14 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
-                                        <div>
-                                            <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                        </div>
-                                        <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                            <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                <div class="more-choice__item" style="margin-top: -2px">
-                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                    <a href="mod-request.jsp">
-                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                            </c:forEach>
-                                        </div>
                                         <!-- Dropdown - Alerts -->
                                         <div class="info-login">
-                                            <img src="${requestScope.USER.userImage}" alt="">
+                                            <img src="${sessionScope.USER.userImage}" alt="">
+                                        </div>
+                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,35 +131,15 @@
                         <div class="content-filter">
                             <div class="row">
                                 <div class="col-md-8 col-sm-12">
-                                    <div class="filter">
-                                        <span>Hiển Thị</span> 
-                                        <select name="" id="">
-                                            <option value="Học Kì">Tất Cả Học Kì</option>
-                                            <option value="Spring 2019">Spring 2019</option>
-                                            <option value="Summer 2019">Summer 2019</option>
-                                            <option value="Fall 2019">Fall 2019</option>
-                                            <option value="Spring 2020">Spring 2020</option>
-                                            <option value="Summer 2020">Summer 2020</option>
-                                            <option value="Fall 2020">Fall 2020</option>
-                                        </select>
-                                        <select name="" id="">
-                                            <option value="">Tất Cả Trạng Thái</option>
-                                            <option value="">Đã Xuất Bản</option>
-                                            <option value="">Đang Chờ Xét Duyệt</option>
-                                            <option value="">Đã Xóa</option>
-                                        </select>
-                                        <button>Tìm Kiếm</button>
-                                    </div>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="manage-project">
-                                        <div class="menu-search menu-search-project">
-                                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            <input class="mod-menu-input" type="text" placeholder="Tìm Kiếm Bài Đăng...">
-                                        </div>
-                                        <!--                                    <a href="mod-add-post.jsp" class="link-add-project">
-                                                                                <i class="fas fa-plus"></i>
-                                                                            </a>-->
+                                        <form action="MainController">
+                                            <div class="menu-search menu-search-project">
+                                                <button name="action" value="SearchPostByName"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                <input name="name" class="mod-menu-input" type="text" placeholder="Tìm kiếm bài đăng...">
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

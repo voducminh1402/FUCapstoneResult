@@ -80,7 +80,7 @@
                                             </li>
                                         </c:if>
                                         <li>
-                                            <a href="./contact.html">Liên hệ</a>
+                                            <a href="./contact.jsp">Liên hệ</a>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">
@@ -131,22 +131,19 @@
         <section class="blog-single">
             <div class="container container-fluid">
                 <div class="route tip-row" style="padding-left: 80px; padding-top: 50px">
+                    
                     <span>
                         <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
                     </span> <i class="fas fa-angle-right"></i> <span>Bài đăng chi tiết</span>
                 </div>
-                <div class="tip-row col-12" style=" padding-top: 20px; padding-left: 80px">
-                    <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
-                    <h2 style="display: inline;">${requestScope.MAIN_POST.postTitle}</h2>
-                    <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
-                    <div class="prj-content" style=" height: 100px; text-overflow: ellipsis;   overflow: hidden; margin-bottom: 15px; margin-top: 10px">
-                        <p> ${requestScope.MAIN_POST.postContent}</p>
-                    </div>
-                    <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="padding: 5px 10px 5px 10px; background-color: #F26F21; text-decoration: none; color: white; font-weight: 600">Xem thêm</a>
-                    <div class="devider" style="width: 100%"></div>
-                </div>
                 <div class="row tip-row" style="margin-top: 50px !important">
                     <div class="left-column col-md-8 pr-md-4">
+                        <div>
+                            <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
+                            <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="display: inline; text-decoration: none; font-size: 2rem; font-weight: 700; color: black">${requestScope.MAIN_POST.postTitle}</a>
+                            <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
+                            <div class="devider" style="width: 100%"></div>
+                        </div>
                         <article class="tip-content">
                             <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
                                 <img src="${requestScope.POST.postImage}"
@@ -196,10 +193,11 @@
                                     ${requestScope.POST.postContent}
                                 </p>
                             </div>
-                              <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
+                            <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
                         </article>
                         <div class="main__content">
                             <div class="comment">
+                                <input id="user-name-login" type="hidden" value="${sessionScope.USER.userName}">
                                 <h5>${requestScope.COUNT_CMT} Bình luận</h5>
 
                                 <div id="comment-area" class="comment-area">
@@ -213,7 +211,9 @@
                                             </div>
                                             <div class="comment-info__content">
                                                 <div class="content-header">
-                                                    <h6 class="user-name">Vo Duc Minh</h6>
+                                                    <c:if test="${sessionScope.USER.userName ne null}">
+                                                         <h6 class="user-name">${sessionScope.USER.userName}</h6>
+                                                    </c:if>
                                                     <span> ${o.commentTime} </span>
                                                 </div>
                                                 <p>
@@ -236,7 +236,7 @@
                                         rows="3"
                                         ></textarea
                                     ><br />
-                                    <input id="submit" type="button" value="Gửi" name="action" />
+                                    <input id="submit" class="submit-post" type="button" value="Gửi" name="action" />
                                 </form>
                             </div>
                         </div>
@@ -318,7 +318,7 @@
                         <div><a href="">Đăng Ký</a></div>
                         <div><a href="">Đăng Nhập</a></div>
                         <div><a href="">Gửi Bài Viết</a></div>
-                        <div><a href="./contact.html">Liên hệ</a></div>
+                        <div><a href="./contact.jsp">Liên hệ</a></div>
                     </div>
                     <div class="col-md-4">
                         <span>Theo Dõi Trường Đại Học FPT Tại: </span>
@@ -384,32 +384,41 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
         ></script>
+
         <script src="./assets/js/post-project.js"></script>
         <script src="./assets/js/app.js"></script>
+        <script src="./assets/js/blog.js"></script>
         <script>
             const submit = document.getElementById("submit");
             const inputComment = document.getElementById("comment");
             const post = document.getElementById("post-id");
+            const username = document.getElementById("user-name-login");
 
             submit.addEventListener("click", () => {
+                if(username.value == "") {
+                    window.location.href = 'login.html'
+                }
                 let input = inputComment.value;
                 let postId = post.value;
-                console.log("A");
-                $.ajax({
-                    type: "POST",
-                    url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
-                    data: input,
-                    dataType: "text",
-                    success: function (response) {
-                        if (response.length > 1) {
-                            console.log(response);
-                        } else {
-                            console.log("fail");
-                        }
-                    },
-                });
+                if (username.value != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
+                        data: input,
+                        dataType: "text",
+                        success: function (response) {
+                            if (response.length > 1) {
+//                                console.log(response);
+                            } else {
+                                console.log("fail");
+                            }
+                        },
+                    });
+                    
+                }
             });
         </script>
+      
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip({

@@ -92,7 +92,7 @@
                                             </li>
                                         </c:if>
                                         <li>
-                                            <a href="./contact.html">Liên hệ</a>
+                                            <a href="./contact.jsp">Liên hệ</a>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">
@@ -188,7 +188,7 @@
                                 <a href="MainController?action=DetailProject&id=${o.projectID}">
                                     <div class="project-content project-content-major">
                                         <div class="project-content-overlay">
-                                            <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
+                                            <img class="project-content-img project-content-major-img" src="${o.projectImage}" alt="">
                                             <div class="project-content-text" style="margin-left: 30px;">
                                                 ${pageContext.setAttribute("majorID", o.majorID)}
                                                 <span></span>
@@ -224,7 +224,7 @@
                             <span>Tính Năng</span>
                             <div><a href="">Đăng Ký</a></div>
                             <div><a href="">Đăng Nhập</a></div>
-                            <div><a href="./contact.html">Liên hệ</a></div>
+                            <div><a href="./contact.jsp">Liên hệ</a></div>
                         </div>
                         <div class="col-md-4">
                             <span>Theo Dõi Trường Đại Học FPT Tại: </span>
