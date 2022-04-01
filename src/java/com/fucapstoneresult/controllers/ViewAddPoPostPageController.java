@@ -7,6 +7,7 @@ package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.StudentDAO;
+import com.fucapstoneresult.dao.UserDAO;
 import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.UserDTO;
@@ -35,15 +36,10 @@ public class ViewAddPoPostPageController extends HttpServlet {
             HttpSession session = request.getSession();
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
 
-            StudentDAO stuDao = new StudentDAO();
-            StudentDTO stu = stuDao.getStudentById(userLogin.getUserID());
+            UserDAO dao = new UserDAO();
 
-            PostsDAO postDao = new PostsDAO();
-            PostsDTO post = postDao.getModPostWithProjectId(stu.getTeamID());
-
-            String postID = request.getParameter("id");
-            request.setAttribute("POSTID", postID);
-            request.setAttribute("POST_ID", post.getPostID());
+            String postID = dao.checkUserIsAStudent(userLogin.getUserID());
+            request.setAttribute("POST_ID", postID);
             url = SUCCESS;
         } catch (Exception e) {
             System.out.println(e.toString());
