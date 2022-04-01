@@ -91,8 +91,20 @@
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
                                         </c:if>
+                                        
                                         <li>
                                             <a href="./contact.jsp">Liên hệ</a>
+                                        </li>
+                                        <li>
+                                            <c:if test="${sessionScope.USER ne null}">
+                                                <a style="color: var(--main-orange); text-transform: uppercase">
+                                                    <form action="MainController">
+                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
+                                                        <input type="hidden" name="page" value="index">
+                                                        <input type="hidden" name="id" value="${sessionScope.USER.userID}">
+                                                    </form>
+                                                </a>
+                                            </c:if>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">

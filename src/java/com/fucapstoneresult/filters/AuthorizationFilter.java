@@ -123,7 +123,7 @@ public class AuthorizationFilter implements Filter {
                 || resource.contains("mod-team.jsp") || resource.contains("mod-semester.jsp") || resource.contains("mod-post.jsp") || resource.contains("mod-request.jsp")
                 || pathAction.contains("ViewModIndexPage") || pathAction.contains("LoadComments") || pathAction.contains("SearchUser") 
                 || (pathAction.contains("showUserDetail") && pathAction.contains("page=user")) || (pathAction.contains("showUserDetail") && pathAction.contains("page=student")) || pathAction.contains("GetListProject") || pathAction.contains("LoadAllStudent")
-                || pathAction.contains("GetListPost") || pathAction.contains("ViewModRequestPage") || pathAction.contains("EditPost") || pathAction.contains("EditPoPost")
+                || pathAction.contains("GetListPost") || pathAction.contains("ViewModRequestPage") || pathAction.contains("EditPost") || pathAction.contains("EditPoPost") || pathAction.contains("LoadFileStudentController")
                     ) {
                 if (userLogin != null) {
                     if (AD == (userLogin.getRoleID()) || MOD == (userLogin.getRoleID())) {
@@ -197,21 +197,7 @@ public class AuthorizationFilter implements Filter {
                     }
                 }
             }
-//            else if (userLogin.getRoleID() == US) {
-//                if (!resource.contains("admin") || !pathAction.contains("GetActiveUser") || !pathAction.contains("GetAllProduct")) {
-//                    session.removeAttribute("LOGIN_USER");
-//                    res.sendRedirect(LOGIN);
-//                }
-//                else {
-//                    chain.doFilter(request, response);
-//                }
-//            }
             else {
-//                if (userLogin != null) {
-//                    if (AD == userLogin.getRoleID()) {
-//                        session.removeAttribute("LOGIN_USER");
-//                    }
-//                }
                 chain.doFilter(request, response);
             }
         } 
