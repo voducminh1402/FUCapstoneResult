@@ -55,7 +55,7 @@
                     </li>
                     <li>
                         <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
                         </a>
                     </li>
                     <li>
@@ -78,7 +78,16 @@
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
-                    </li>               
+                    </li>       
+                    <hr class="sidebar-divider">
+                    <li>
+                        <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file-alt"></i> Quản Lí Slide
+                        </a>
+                        <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                        </a>
+                    </li>     
 
                 </ul>
 

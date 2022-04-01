@@ -3,20 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/ProjectSemesterDTO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/GetPostController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/PostsDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-post.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/LazyLoadProjectController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-request.jsp</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/models/SemesterDTO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SearchPostByNameController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/dao/ProjectDAO.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/SearchPoPostByNameController.java</file>
-            <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewModRequestPageController.java</file>
-        </group>
-        <group>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/MainController.java</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/project.properties</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/web/mod-comment-request.jsp</file>
@@ -24,6 +10,12 @@
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/build-impl.xml</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/nbproject/private/private.properties</file>
             <file>file:/D:/Study/CN5/SWP291_10/FUCapstoneResult/src/java/com/fucapstoneresult/controllers/ViewBlogSingleController.java</file>
+        </group>
+        <group>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/index.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/user-info-update.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/web/po-update-post.jsp</file>
+            <file>file:/D:/FPT%20University/CN5/SWP391/Code/FUCapstoneResult/src/java/com/fucapstoneresult/filters/AuthorizationFilter.java</file>
         </group>
     </open-files>
 </project-private>
