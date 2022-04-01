@@ -185,7 +185,7 @@
                                     <div class="col-md-4 col-sm-12">
                                         <form action="MainController">
                                             <div class="manage-project">
-                                                <div class="menu-search menu-search-project">
+<!--                                                <div class="menu-search menu-search-project">
 
                                                     <button name="action" value="SearchInstructorByName">
                                                         <i class="fa fa-search" aria-hidden="true"></i>
@@ -196,14 +196,14 @@
                                                         placeholder="Tìm Kiếm Giảng Viên..."
                                                         name="name"
                                                         />
-                                                </div>
+                                                </div>-->
                                                 <button
                                                     type="button"
                                                     data-toggle="modal"
                                                     data-target="#addModal"
-                                                    class="add-project"
+                                                    class="add-project link-add-custom"
                                                     >
-                                                    <i class="fas fa-plus"></i>
+                                                    <i class="fas fa-plus"></i> Thêm giảng viên
                                                 </button>
                                             </div>
                                         </form>

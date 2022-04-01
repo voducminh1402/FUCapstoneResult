@@ -330,7 +330,7 @@ public class PostsDAO {
                 String sql = " SELECT * "
                         + "FROM (SELECT TOP 9 * "
                         + "FROM Posts "
-                        + "WHERE IsMainPost IS NULL "
+                        + "WHERE IsMainPost IS NULL AND PostStatusID = '1'"
                         + "ORDER BY PostDate DESC) p "
                         + "ORDER BY p.Upvote DESC ";
                 stm = conn.prepareStatement(sql);

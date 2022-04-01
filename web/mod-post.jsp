@@ -153,7 +153,7 @@
                                             <th>Tiêu Đề Bài Đăng</th>
                                             <th>Ngày Đăng</th>
                                             <th>Tác Giả</th>
-                                            <th>Trạng Thái</th>
+                                            <th>Số Lượt Vote</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -168,15 +168,7 @@
                                                 <td>${o.postDate}</td>
                                                 <td>${o.postAuthor}</td>
                                                 <td>
-                                                    <c:if test="${o.postStatusID eq 1}">
-                                                        Đã Xuất Bản
-                                                    </c:if>
-                                                    <c:if test="${o.postStatusID eq 2}">
-                                                        Đang Chờ Duyệt
-                                                    </c:if>
-                                                    <c:if test="${o.postStatusID eq 3}">
-                                                        Đã Xóa
-                                                    </c:if>
+                                                    ${o.upvote}
                                                 </td>
                                                 <td class="last-type__menu">
                                                     <i class="fas fa-ellipsis-h more-choice__dot"></i>

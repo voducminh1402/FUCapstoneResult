@@ -6,11 +6,9 @@
 package com.fucapstoneresult.controllers;
 
 import com.fucapstoneresult.dao.PostsDAO;
-import com.fucapstoneresult.dao.StudentDAO;
 import com.fucapstoneresult.dao.TagDetailsDAO;
 import com.fucapstoneresult.dao.TagsDAO;
 import com.fucapstoneresult.models.PostsDTO;
-import com.fucapstoneresult.models.StudentDTO;
 import com.fucapstoneresult.models.TagDetailsDTO;
 import com.fucapstoneresult.models.TagsDTO;
 import com.fucapstoneresult.models.UserDTO;
@@ -19,7 +17,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;

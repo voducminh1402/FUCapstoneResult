@@ -1592,6 +1592,10 @@ svg{
   display: flex;
 }
 
+.link-add-custom {
+    border-radius: 5px;
+}
+
 @keyframes arrow{
     0%,100%{
         top:105%

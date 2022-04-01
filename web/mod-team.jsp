@@ -148,10 +148,10 @@
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <div class="manage-project">
-                                        <div class="menu-search menu-search-project">
+<!--                                        <div class="menu-search menu-search-project">
                                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                                             <input class="mod-menu-input" type="text" placeholder="Thêm Nhóm Thực Hiện" readonly>
-                                        </div>
+                                        </div>-->
 <!--                                        <a href="mod-add-team.jsp" class="link-add-project">
                                             <i class="fas fa-plus"></i>
                                         </a>-->

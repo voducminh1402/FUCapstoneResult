@@ -82,9 +82,9 @@
                                             <c:if test="${sessionScope.USER ne null}">
                                                 <a style="color: var(--main-orange); text-transform: uppercase">
                                                     <form action="MainController">
-                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
                                                         <input type="hidden" name="page" value="index">
                                                         <input type="hidden" name="id" value="${sessionScope.USER.userID}">
+                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
                                                     </form>
                                                 </a>
                                             </c:if>

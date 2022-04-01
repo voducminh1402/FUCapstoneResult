@@ -39,8 +39,6 @@ public class LoginController extends HttpServlet {
             UserDAO dao = new UserDAO();
             UserDTO user = dao.checkLoginUser(email, password);
 
-            
-
             if (user != null) {
                 
                 StudentDAO stuDao = new StudentDAO();

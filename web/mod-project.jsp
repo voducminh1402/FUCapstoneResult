@@ -149,14 +149,14 @@
                                 <div class="col-md-4 col-sm-12">
 
                                     <div class="manage-project">
-                                        <div class="menu-search menu-search-project">
+<!--                                        <div class="menu-search menu-search-project">
                                             <button name="action" value="SearchProjectByName">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </button>
                                             <input class="mod-menu-input" type="text" placeholder="Thêm Đồ Án" name="name" readonly>
-                                        </div>
-                                        <a href="mod-add-project.jsp" class="link-add-project">
-                                            <i class="fas fa-plus"></i>
+                                        </div>-->
+                                        <a href="mod-add-project.jsp" class="link-add-project link-add-custom">
+                                            <i class="fas fa-plus"></i> Thêm đồ án
                                         </a>
                                     </div>
 
