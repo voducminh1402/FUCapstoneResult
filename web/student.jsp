@@ -102,6 +102,21 @@
 
                         <hr class="sidebar-divider">
 
+<<<<<<< HEAD
+                    <li>
+                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file"></i> Bài Đăng Chính
+                        </a>
+                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
+                        </a>
+                    </li>
+                    
+                    <hr class="sidebar-divider">
+                                  
+                    
+                </ul>
+=======
                         <li>
                             <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
                                 <i class="fas fa-file"></i> Bài Đăng Chính
@@ -110,6 +125,7 @@
                                 <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                             </a>
                         </li>
+>>>>>>> 2290ea9d17c3d92440f826bd363c08e6cf1da558
 
                         <hr class="sidebar-divider">
 
@@ -140,30 +156,20 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                        <div class="right-side-info">
-                                            <div>
-                                                <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                            </div>
-                                            <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                                <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                    <div class="more-choice__item" style="margin-top: -2px">
-                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                        <a href="mod-request.jsp">
-                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                                </c:forEach>
-                                            </div>
-                                            <!-- Dropdown - Alerts -->
-                                            <div class="info-login">
-                                                <img src="${requestScope.USER.userImage}" alt="">
-                                            </div>
+                                    <div class="right-side-info">
+                                        <!-- Dropdown - Alerts -->
+                                        <div class="info-login">
+                                            <img src="${sessionScope.USER.userImage}" alt="">
+                                        </div>
+                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>

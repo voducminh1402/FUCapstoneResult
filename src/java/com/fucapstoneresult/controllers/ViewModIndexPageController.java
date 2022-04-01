@@ -49,33 +49,32 @@ public class ViewModIndexPageController extends HttpServlet {
             UserDTO userLogin = (UserDTO) session.getAttribute("USER");
 
             PostsDAO postDao = new PostsDAO();
-            List<PostsDTO> postList = postDao.getAllPost();
+            List<PostsDTO> postList = postDao.getPost();
             List<PostsDTO> top5Post = PostsDAO.getTop5Post();
             List<PostCommentDTO> postWithComment = new ArrayList<>();
-            
+
             List<PostsDTO> top3RequestPost = postDao.getTop3RequestPost();
-            
-            
+
             ProjectDAO projectDao = new ProjectDAO();
             List<ProjectDTO> projectList = projectDao.getAllProject();
-           
+
             CommentDAO cmtDao = new CommentDAO();
             List<UserCommentDTO> cmtList = cmtDao.getTop3RequestComment();
-            
+
             for (PostsDTO postsDTO : postList) {
                 if (postsDTO.getIsMainPost() == null) {
-                    numOfPost = numOfPost + 1;
-                } else {
                     if (postsDTO.getPostStatusID() == 2) {
                         numOfPoPost = numOfPoPost + 1;
                     }
+                } else {
+                    numOfPost = numOfPost + 1;
                 }
             }
-            
+
             for (ProjectDTO projectDTO : projectList) {
                 numOfProject = numOfProject + 1;
             }
-            
+
             for (PostsDTO post1 : top5Post) {
                 int num = cmtDao.getNumComment(post1.getPostID());
                 postWithComment.add(new PostCommentDTO(post1.getPostID(), post1.getPostTitle(), post1.getPostImage(), post1.getUpvote(), num));

@@ -135,18 +135,14 @@
                         <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
                     </span> <i class="fas fa-angle-right"></i> <span>Bài đăng chi tiết</span>
                 </div>
-                <div class="tip-row col-12" style=" padding-top: 20px; padding-left: 80px">
-                    <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
-                    <h2 style="display: inline;">${requestScope.MAIN_POST.postTitle}</h2>
-                    <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
-                    <div class="prj-content" style=" height: 100px; text-overflow: ellipsis;   overflow: hidden; margin-bottom: 15px; margin-top: 10px">
-                        <p> ${requestScope.MAIN_POST.postContent}</p>
-                    </div>
-                    <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="padding: 5px 10px 5px 10px; background-color: #F26F21; text-decoration: none; color: white; font-weight: 600">Xem thêm</a>
-                    <div class="devider" style="width: 100%"></div>
-                </div>
                 <div class="row tip-row" style="margin-top: 50px !important">
                     <div class="left-column col-md-8 pr-md-4">
+                        <div>
+                            <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
+                            <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="display: inline; text-decoration: none; font-size: 2rem; font-weight: 700; color: black">${requestScope.MAIN_POST.postTitle}</a>
+                            <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
+                            <div class="devider" style="width: 100%"></div>
+                        </div>
                         <article class="tip-content">
                             <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
                                 <img src="${requestScope.POST.postImage}"
@@ -196,7 +192,7 @@
                                     ${requestScope.POST.postContent}
                                 </p>
                             </div>
-                              <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
+                            <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
                         </article>
                         <div class="main__content">
                             <div class="comment">

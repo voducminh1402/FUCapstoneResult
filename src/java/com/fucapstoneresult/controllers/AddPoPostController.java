@@ -70,7 +70,7 @@ public class AddPoPostController extends HttpServlet {
                 TagDetailsDAO tagDetailDao = new TagDetailsDAO();
                 TagsDAO tagDao = new TagsDAO();
 
-                PostsDTO post = new PostsDTO(popostID, popostTitle, currentDate, authorInfo, popostContent, popostImage, userID, 0, 2, postID, projectID);
+                PostsDTO post = new PostsDTO(popostID, popostTitle, currentDate, authorInfo, popostContent, popostImage, userID, 0, 2, null, projectID);
                 boolean check = postDao.insert(post);
                 boolean checkTagDetail = false, checkTag = false, checkTagNotAdd = false;
 

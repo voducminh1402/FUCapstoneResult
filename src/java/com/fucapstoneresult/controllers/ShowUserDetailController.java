@@ -32,6 +32,10 @@ public class ShowUserDetailController extends HttpServlet {
             String userID = request.getParameter("id");
             String page = request.getParameter("page");
             
+            if("index".equals(page)){
+                url = "user-info-update.jsp";
+            }
+            
             UserDAO dao = new UserDAO();
             UserDTO user = dao.searchUserByID(userID);
             request.setAttribute("PAGE", page);

@@ -6,6 +6,7 @@
 package com.fucapstoneresult.dao;
 
 import com.fucapstoneresult.models.ProjectDTO;
+import com.fucapstoneresult.models.ProjectSemesterDTO;
 import com.fucapstoneresult.utils.DBUtils;
 import java.sql.Connection;
 import java.sql.Date;
@@ -709,6 +710,47 @@ public class ProjectDAO {
         }
 
         return check;
+    }
+
+    public List<ProjectSemesterDTO> joinProjectSemesteronSemesterName(String name) throws SQLException, ClassNotFoundException {
+        List<ProjectSemesterDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Select Projects.ProjectName, Projects.ProjectID, Semesters.SemesterID, Semesters.SemesterName "
+                        + " from Projects "
+                        + " join Semesters "
+                        + " on Projects.SemesterID = Semesters.SemesterID "
+                        + " Where Semesters.SemesterName = ?";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, name);
+                rs = stm.executeQuery();
+                while (rs.next()){
+                    String prjName = rs.getString("ProjectName");
+                    String prjId = rs.getString("ProjectID");
+                    String semesterId = rs.getString("SemesterID");
+                    String SemesterName = rs.getString("SemesterName");
+                    
+                    list.add (new ProjectSemesterDTO(prjId, prjName, semesterId, SemesterName));
+            }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
     }
 
     public static void main(String[] args) throws SQLException {

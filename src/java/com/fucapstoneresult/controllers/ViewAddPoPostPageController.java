@@ -39,7 +39,7 @@ public class ViewAddPoPostPageController extends HttpServlet {
             StudentDTO stu = stuDao.getStudentById(userLogin.getUserID());
 
             PostsDAO postDao = new PostsDAO();
-            PostsDTO post = postDao.getMainPostWithProjectId(stu.getTeamID());
+            PostsDTO post = postDao.getModPostWithProjectId(stu.getTeamID());
 
             String postID = request.getParameter("id");
             request.setAttribute("POSTID", postID);
