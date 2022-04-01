@@ -5,15 +5,14 @@
  */
 package com.fucapstoneresult.controllers;
 
-import com.fucapstoneresult.dao.ContentDAO;
+import com.fucapstoneresult.dao.PostsDAO;
 import com.fucapstoneresult.dao.ProjectDAO;
+import com.fucapstoneresult.models.PostsDTO;
 import com.fucapstoneresult.models.ProjectDTO;
-import com.fucapstoneresult.models.SlideDTO;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.fucapstoneresult.models.ProjectSemesterDTO;
+import com.fucapstoneresult.models.UserPostDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -23,38 +22,41 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author VODUCMINH
+ * @author ADMIN
  */
-public class LoadingIndexController extends HttpServlet {
-    private static final String TARGET = "index.jsp";
-    
+public class SearchPostByNameController extends HttpServlet {
+
+    private static final String ERROR = "mod-post.jsp";
+    private static final String SUCCESS = "mod-post.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = TARGET;
+        String url = ERROR;
         try {
-            ProjectDAO projectDao = new ProjectDAO();
-            List<ProjectDTO> projectList = projectDao.getTop10Project();
-            request.setAttribute("PROJECT_LIST", projectList);
-            
-            List<SlideDTO> slideList = null;
-            ContentDAO dao = new ContentDAO();
-            String jsonFromTable = dao.getSlide();
-            
-            if (jsonFromTable.equals("[]")) {
-                slideList = new ArrayList<>();
+            /* TODO output your page here. You may use following sample code. */
+            String name = request.getParameter("name");
+            PostsDAO postDao = new PostsDAO();
+            List<PostsDTO> postList1 = new ArrayList<>();
+            List<PostsDTO> postList = postDao.searchModPostByName(name);
+
+            ProjectDAO prjDTO = new ProjectDAO();
+            List<ProjectSemesterDTO> prjList = prjDTO.joinProjectSemesteronSemesterName(name);
+            for (ProjectSemesterDTO projectSemesterDTO : prjList) {
+                PostsDTO post = postDao.getPostWithProjectId(projectSemesterDTO.getPrjID());
+                postList1.add(post);
             }
-            else {
-                Type type = new TypeToken<List<SlideDTO>>(){}.getType();
-                slideList = new Gson().fromJson(jsonFromTable, type);
+
+            if (postList != null) {
+                request.setAttribute("POST_LIST", postList);
+
+            } else {
+                request.setAttribute("POST_LIST", postList1);
             }
-            request.setAttribute("SLIDE", slideList);
-            
-        } 
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
-        finally {
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

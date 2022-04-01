@@ -49,7 +49,7 @@
                                         <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                     </li>
                                     <li>
-                                        <a href="./contact.html">Liên hệ</a>
+                                        <a href="./contact.jsp">Liên hệ</a>
                                     </li>
                                     <li>
                                         <c:if test="${sessionScope.USER eq null}">

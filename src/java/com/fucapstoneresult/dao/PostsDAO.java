@@ -37,7 +37,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID "
                         + " FROM Posts "
-                        + " WHERE IsMainPost IS NULL ";
+                        + " WHERE IsMainPost IS NOT NULL ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -181,7 +181,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost"
                         + " FROM Posts "
-                        + " WHERE ProjectID=? AND IsMainPost IS NOT NULL";
+                        + " WHERE ProjectID =? AND IsMainPost IS NOT NULL";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
 
@@ -685,7 +685,7 @@ public class PostsDAO {
 
             if (conn != null) {
                 String sql = " SELECT TOP 5 * FROM Posts "
-                        + " WHERE IsMainPost IS NOT NULL "
+                        + " WHERE IsMainPost IS NULL "
                         + " ORDER BY -Upvote";
 
                 stm = conn.prepareStatement(sql);
@@ -795,7 +795,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID "
                         + " FROM Posts "
-                        + " WHERE IsMainPost IS NOT NULL ";
+                        + " WHERE IsMainPost IS NULL ";
                 stm = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -893,7 +893,7 @@ public class PostsDAO {
                         + " from Posts "
                         + " join Users "
                         + " on Posts.LastEditedUser = Users.UserID and PostTitle LIKE ? "
-                        + " Where IsMainPost IS NOT NULL ";
+                        + " Where IsMainPost IS NULL ";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, "%" + name + "%");
                 rs = stm.executeQuery();
@@ -924,6 +924,52 @@ public class PostsDAO {
         }
         return postList;
     }
+    
+        public List<PostsDTO> searchModPostByName(String name) throws SQLException {
+        List<PostsDTO> postList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " Select PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID "
+                        + " from Posts "
+                        + " Where PostTitle LIKE ? and IsMainPost IS NOT NULL  ";
+                stm = conn.prepareStatement(sql);
+                stm.setString(1, "%" + name + "%");
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+                    String isMainPost = rs.getString("IsMainPost");
+                    String projectID = rs.getString("ProjectID");
+
+                    postList.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return postList;
+    }
 
     public List<UserPostDTO> filterPostByStatus(int status) throws SQLException {
         List<UserPostDTO> postList = new ArrayList<>();
@@ -937,7 +983,7 @@ public class PostsDAO {
                         + " from Posts "
                         + " join Users "
                         + " on Posts.LastEditedUser = Users.UserID and Posts.PostStatusID = ? "
-                        + " Where IsMainPost IS NOT NULL ";
+                        + " Where IsMainPost IS NULL ";
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, status);
                 rs = stm.executeQuery();
@@ -984,7 +1030,7 @@ public class PostsDAO {
                         + " from Posts "
                         + " join Users "
                         + "  on Posts.LastEditedUser = Users.UserID "
-                        + " Where IsMainPost IS NOT NULL";
+                        + " Where IsMainPost IS NULL";
                 stm  = conn.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()){
@@ -1050,7 +1096,7 @@ public class PostsDAO {
 
             if (conn != null) {
                 String sql = " SELECT TOP 3 * FROM Posts "
-                        + " WHERE IsMainPost IS NOT NULL AND PostStatusID = ?";
+                        + " WHERE IsMainPost IS NULL AND PostStatusID = ?";
 
                 stm = conn.prepareStatement(sql);
                 stm.setInt(1, 2);
@@ -1101,7 +1147,7 @@ public class PostsDAO {
             if (conn != null) {
                 String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost"
                         + " FROM Posts "
-                        + " WHERE ProjectID= ? AND IsMainPost IS NULL";
+                        + " WHERE ProjectID= ? AND IsMainPost IS NOT NULL";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, id);
 
@@ -1138,5 +1184,50 @@ public class PostsDAO {
 
         return post;
     }
-        
+    
+    public List<PostsDTO> getPost() throws SQLException {
+        List<PostsDTO> listPost = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = com.fucapstoneresult.utils.DBUtils.getConnection();
+            if (conn != null) {
+                String sql = " SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, IsMainPost, ProjectID "
+                        + " FROM Posts ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String PostID = rs.getString("PostID");
+                    String PostTitle = rs.getString("PostTitle");
+                    String PostDate = rs.getString("PostDate");
+                    String PostAuthor = rs.getString("PostAuthor");
+                    String PostContent = rs.getString("PostContent");
+                    String PostImage = rs.getString("PostImage");
+                    String LastEditedUser = rs.getString("LastEditedUser");
+                    int Upvote = Integer.parseInt(rs.getString("Upvote"));
+                    int PostStatusID = Integer.parseInt(rs.getString("PostStatusID"));
+                    String isMainPost = rs.getString("IsMainPost");
+                    String projectID = rs.getString("ProjectID");
+
+                    listPost.add(new PostsDTO(PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, Upvote, PostStatusID, isMainPost, projectID));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return listPost;
+    }
 }

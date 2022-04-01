@@ -85,13 +85,11 @@
                                     <li>
                                         <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
                                     </li>
-                                    <c:if test="${sessionScope.IS_STUDENT == 1}">
-                                        <li>
-                                            <a href="./po-view-post.jsp">Nội dung của bạn</a>
-                                        </li>
-                                    </c:if>
                                     <li>
-                                        <a href="./contact.html">Liên hệ</a>
+                                        <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                    </li>
+                                    <li>
+                                        <a href="./contact.jsp">Liên hệ</a>
                                     </li>
                                     <li>
                                         <c:if test="${sessionScope.USER eq null}">
@@ -147,12 +145,12 @@
                         </div>
                         <div class="content-detail content-post add-post" style="border-radius: 15px; margin-bottom: 30px">
                             <form action="MainController" method="POST">     
-                                <input type="hidden" name="po-post-id" value="${requestScope.POST_ID}">
+                                <input type="hidden" name="po-post-id" value="${requestScope.POSTID}">
                                 <label for="">Tiêu Đề Bài Đăng</label><br>
                                 <input type="text" name="po-post-title"  style="margin-bottom: 5px" required>
                                 <label for="">Thêm Tag Của Bài Viết</label><br>
-                                <input id="post-tag" data-role="tagsinput" type="text" required>
-                                <input id="post-tag-hidden" type="hidden" name="post-tag">
+                                <input id="post-tag" data-role="tagsinput" type="text" style="margin-bottom: 5px" required> 
+                                <input id="post-tag-hidden" type="hidden" name="po-post-tag">
                                 <label for="">Ảnh Bìa Bài Đăng</label>
                                 <div class="project-add-upload__image post-upload__image" >
                                     <label style="margin: 0; background-color: #F26F21" for="file"><i class="fas fa-cloud-upload-alt"></i>Tải Ảnh Lên</label>
@@ -193,7 +191,7 @@
                                 <span>Tính Năng</span>
                                 <div><a href="">Đăng Ký</a></div>
                                 <div><a href="">Đăng Nhập</a></div>
-                                <div><a href="./contact.html">Liên hệ</a></div>
+                                <div><a href="./contact.jsp">Liên hệ</a></div>
                             </div>
                             <div class="col-md-4">
                                 <span style="margin-bottom: 20px">Theo Dõi Trường Đại Học FPT Tại: </span>

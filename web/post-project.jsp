@@ -92,7 +92,7 @@
                                             </li>
                                         </c:if>
                                         <li>
-                                            <a href="./contact.html">Liên hệ</a>
+                                            <a href="./contact.jsp">Liên hệ</a>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">
@@ -194,7 +194,7 @@
                             </div>
                             <div class="comment">
                                 <h5>${requestScope.COUNT_CMT} Bình luận</h5>
-
+                                <input id="user-name-login" type="hidden" value="${sessionScope.USER.userName}">
                                 <div id="comment-area" class="comment-area">
                                     <c:forEach items="${requestScope.COMMENTS}" var="o">
                                         <div class="comment-info">
@@ -204,9 +204,13 @@
                                                     alt="user picture"
                                                     />
                                             </div>
+                                           
                                             <div class="comment-info__content">
                                                 <div class="content-header">
-                                                    <h6 class="user-name">Vo Duc Minh</h6>
+                                                     <c:if test="${sessionScope.USER.userName ne null}">
+                                                         <h6 class="user-name">${sessionScope.USER.userName}</h6>
+                                                    </c:if>
+                                                    
                                                     <span> ${o.commentTime} </span>
                                                 </div>
                                                 <p>
@@ -339,7 +343,7 @@
                             <span>Tính Năng</span>
                             <div><a href="">Đăng Ký</a></div>
                             <div><a href="">Đăng Nhập</a></div>
-                            <div><a href="./contact.html">Liên hệ</a></div>
+                            <div><a href="./contact.jsp">Liên hệ</a></div>
                         </div>
                         <div class="col-md-4">
                             <span>Theo Dõi Trường Đại Học FPT Tại: </span>
@@ -409,11 +413,17 @@
             const submit = document.getElementById("submit");
             const inputComment = document.getElementById("comment");
             const post = document.getElementById("post-id");
+            const username = document.getElementById("user-name-login");
 
             submit.addEventListener("click", () => {
+                if(username.value == "") {
+                    window.location.href = 'login.html'
+                }
                 let input = inputComment.value;
                 let postId = post.value;
                 console.log("A");
+                
+                
 
                 $.ajax({
                     type: "POST",
