@@ -18,8 +18,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="./assets/css/mod-project.css">    
-        <link rel="stylesheet" href="./assets/css/mod-post.css">    
+        <link rel="stylesheet" href="./assets/css/user-add-post.css">       
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/responsive.css">
         <style>
@@ -145,7 +144,7 @@
                         </div>
                         <div class="content-detail content-post add-post" style="border-radius: 15px; margin-bottom: 30px">
                             <form action="MainController" method="POST">     
-                                <input type="hidden" name="po-post-id" value="${requestScope.POSTID}">
+                                <input type="hidden" name="po-post-id" value="${requestScope.POST_ID}">
                                 <label for="">Tiêu Đề Bài Đăng</label><br>
                                 <input type="text" name="po-post-title"  style="margin-bottom: 5px" required>
                                 <label for="">Thêm Tag Của Bài Viết</label><br>
