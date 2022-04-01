@@ -61,7 +61,7 @@
                     </li>
                     <li>
                         <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
+                            <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
                         </a>
                     </li>
                     <li>
@@ -84,22 +84,17 @@
                         <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                         </a>
-                    </li>
-<<<<<<< HEAD
-                    
-                    <hr class="sidebar-divider">              
-                    
-=======
-
+                    </li>       
                     <hr class="sidebar-divider">
-
                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
+                        <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file-alt"></i> Quản Lí Slide
                         </a>
-                    </li>                
+                        <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                        </a>
+                    </li>     
 
->>>>>>> 2290ea9d17c3d92440f826bd363c08e6cf1da558
                 </ul>
 
             </nav>
