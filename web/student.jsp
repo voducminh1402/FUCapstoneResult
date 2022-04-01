@@ -101,8 +101,6 @@
                         </li>
 
                         <hr class="sidebar-divider">
-
-<<<<<<< HEAD
                     <li>
                         <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-file"></i> Bài Đăng Chính
@@ -116,8 +114,7 @@
                                   
                     
                 </ul>
-=======
-                        <li>
+               <li>
                             <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
                                 <i class="fas fa-file"></i> Bài Đăng Chính
                             </a>
@@ -125,7 +122,6 @@
                                 <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
                             </a>
                         </li>
->>>>>>> 2290ea9d17c3d92440f826bd363c08e6cf1da558
 
                         <hr class="sidebar-divider">
 
@@ -192,7 +188,7 @@
                                         <div class="filter">
 
 
-                                            <form id="load-file" method="post" action="LoadFileStudentController" enctype="multipart/form-data">
+                                            <form id="load-file" method="post" action="LoadFileExcelController" enctype="multipart/form-data">
                                                 <label id="label" for="image-file"
                                                        ><i id="icon" class="fas fa-file-import"></i>Import</label
                                                 >

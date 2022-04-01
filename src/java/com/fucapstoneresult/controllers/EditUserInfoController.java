@@ -43,19 +43,26 @@ public class EditUserInfoController extends HttpServlet {
             int role = Integer.parseInt(request.getParameter("role"));
             int status = Integer.parseInt(request.getParameter("status"));
 //(,   String subEmail, String password, String OTP, int roleID) {
-            UserDTO user = new UserDTO(id, name, "", status, "", email, subEmail, "", "", role);
-            if (page.equals("student")) {
-                StudentDAO studentDao = new StudentDAO();
-                StudentDTO student = studentDao.getStudent(id);
-                student.setStudentName(name);
-                studentDao.updateStudent(student);
-            }
-
             UserDAO dao = new UserDAO();
-            if (!dao.updateUserByAdmin(user)) {
+            UserDTO user;
 
-                url = FAIL;
+            if (dao.searchUserByEmail(subEmail) != null) {
+                request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
+            } else {
+                user = new UserDTO(id, name, "", status, "", email, subEmail, "", "", role);
+                if (page.equals("student")) {
+                    StudentDAO studentDao = new StudentDAO();
+                    StudentDTO student = studentDao.getStudent(id);
+                    student.setStudentName(name);
+                    studentDao.updateStudent(student);
+                }
+
+                if (!dao.updateUserByAdmin(user)) {
+
+                    url = FAIL;
+                }
             }
+
             user = dao.searchUserByID(id);
             request.setAttribute("USER_DETAIL", user);
             request.setAttribute("PAGE", page);

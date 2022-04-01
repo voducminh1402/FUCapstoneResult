@@ -26,6 +26,12 @@
             <link rel="stylesheet" href="./assets/css/mod-post.css" />
             <link rel="stylesheet" href="./assets/css/styles.css" />
             <link rel="stylesheet" href="./assets/css/responsive.css" />
+            <style>
+                p{
+                    font-size: 15px !important;
+                    color: red;
+                }
+            </style>
         </head>
         <body>
             <div class="wrapper">
@@ -310,7 +316,7 @@
 
                     <label for="password">Mật Khẩu</label><br />
                     <p class="password-message"></p>
-                    <input name="password" type="text" id="password" />
+                    <input name="password" type="password" id="password" />
 
                     <label for="email">Email</label><br />
                     <p class="email-message"></p>

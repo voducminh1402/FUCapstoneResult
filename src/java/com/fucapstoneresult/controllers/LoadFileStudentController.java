@@ -64,6 +64,7 @@ public class LoadFileStudentController extends HttpServlet {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             request.setAttribute("message", "Upload File Success!");
             getServletContext().getRequestDispatcher("/student.jsp").forward(request, response);
