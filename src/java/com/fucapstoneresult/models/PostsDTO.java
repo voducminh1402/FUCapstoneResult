@@ -27,6 +27,10 @@ public class PostsDTO {
     public PostsDTO() {
     }
 
+    public PostsDTO(String postID) {
+        this.postID = postID;
+    }
+
     public PostsDTO(String postID, String postTitle, String postDate, String postAuthor, String postContent, String postImage, String lastEditedUser, int upvote, int postStatusID, String isMainPost, String projectID) {
         this.postID = postID;
         this.postTitle = postTitle;

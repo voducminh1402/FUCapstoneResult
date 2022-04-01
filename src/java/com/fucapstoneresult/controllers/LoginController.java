@@ -43,10 +43,8 @@ public class LoginController extends HttpServlet {
 
             if (user != null) {
                 
-                StudentDAO stuDao = new StudentDAO();
-                StudentDTO stu = stuDao.getStudentById(user.getUserID());
 
-                if (stu != null) {
+                if (!dao.checkUserIsAStudent(user.getUserID()).isEmpty()) {
                     int check = 1;
                     HttpSession session = request.getSession();
                     session.setAttribute("IS_STUDENT", check);
