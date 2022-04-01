@@ -71,8 +71,8 @@ $(document).ready(function () {
   $(".add-project").click(function () {
     $(".overlay-page-mod").removeClass("display-none");
     $(".overlay-page-mod").addClass("display-block");
-    $(".add-project-menu").removeClass("display-none");
-    $(".add-project-menu").addClass("display-block");
+    $("#add-project-menu").removeClass("display-none");
+    $("#add-project-menu").addClass("display-block");
     $(".overlay-page-mod").addClass("display-block");
     $("#mod-post__preview-input").val("");
     $("#mod-post__preview-link").attr("href", "");
@@ -87,8 +87,8 @@ $(document).ready(function () {
   $(".overlay-page-mod").click(function () {
     $(".overlay-page-mod").removeClass("display-block");
     $(".overlay-page-mod").addClass("display-none");
-    $(".add-project-menu").removeClass("display-block");
-    $(".add-project-menu").addClass("display-none");
+    $("#add-project-menu").removeClass("display-block");
+    $("#add-project-menu").addClass("display-none");
   });
 });
 
@@ -96,8 +96,8 @@ $(document).ready(function () {
   $(".cancel-add-btn").click(function () {
     $(".overlay-page-mod").removeClass("display-block");
     $(".overlay-page-mod").addClass("display-none");
-    $(".add-project-menu").removeClass("display-block");
-    $(".add-project-menu").addClass("display-none");
+    $("#add-project-menu").removeClass("display-block");
+    $("#add-project-menu").addClass("display-none");
   });
 });
 

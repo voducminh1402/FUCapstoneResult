@@ -28,7 +28,7 @@ public class LoginGoogleController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String USER = "index.jsp";
-    private static final String ADMIN = "admin.jsp";
+    private static final String ADMIN = "mod-index.jsp";
     private static final String ERROR = "login-not-allowed.html";
 
     public LoginGoogleController() {

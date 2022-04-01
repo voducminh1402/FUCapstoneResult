@@ -41,13 +41,16 @@ public class UpdateInfoUserByUserController extends HttpServlet {
 //(,   String subEmail, String password, String OTP, int roleID) {
             UserDAO dao = new UserDAO();
             UserDTO user;
-            if (dao.searchUserByEmail(subEmail) != null) {
-                request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
-            } else {
-                user = new UserDTO(id, name, "", 2, "", email, subEmail, "", "", 1);
-                if (!dao.updateUserByAdmin(user)) {
+            subEmail = subEmail.trim();
+            if (!subEmail.isEmpty()) {
+                if (dao.searchUserByEmail(subEmail) != null) {
+                    request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
+                } else {
+                    user = new UserDTO(id, name, "", 2, "", email, subEmail, "", "", 1);
+                    if (!dao.updateUserByAdmin(user)) {
 
-                    url = FAIL;
+                        url = FAIL;
+                    }
                 }
             }
 
