@@ -106,10 +106,13 @@ getCommentTime = () => {
 };
 
 document.getElementById("submit").addEventListener("click", () => {
+    console.log("a")
     let comment = document.getElementById("comment");
     let commentArea = document.getElementById("comment-area");
+    let username = document.getElementById("user-name-login");
+    
 
-    if (comment !== "") {
+    if (comment !== "" && username != "") {
         checkEmpty = false;
 
         let commentContent = `<div class="comment-info">
@@ -121,7 +124,7 @@ document.getElementById("submit").addEventListener("click", () => {
                                 </div>
                                 <div class="comment-info__content">
                                 <div class="content-header">
-                                    <h6 class="user-name">Vo Duc Minh</h6>
+                                    <h6 class="user-name">${username.value}</h6>
                                     <span> ${getCommentTime()} </span>
                                     <span class="comment-request">Bình luận đang chờ kiểm duyệt!</span>
                                 </div>
@@ -134,3 +137,5 @@ document.getElementById("submit").addEventListener("click", () => {
         commentArea.insertAdjacentHTML("beforeend", commentContent);
     }
 });
+
+

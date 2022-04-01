@@ -12,6 +12,9 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
               integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <head>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="./assets/css/mod-project.css">    
         <link rel="stylesheet" href="./assets/css/mod-post.css">    
         <link rel="stylesheet" href="./assets/css/styles.css">
@@ -20,75 +23,78 @@
     <body>
         <div class="wrapper">
             <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <c:if test="${sessionScope.USER.roleID eq 3}">
+                            <li class="dropdown">
+                                <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                    <i class="fas fa-home"></i> Quản Lí Người Dùng
+                                </a>
+                            </li>
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
 
-                    <hr class="sidebar-divider">
+                            <hr class="sidebar-divider">
+                        </c:if>
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
-                    
-                </ul>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>       
+                        <hr class="sidebar-divider">
+                        <li>
+                            <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Slide
+                            </a>
+                            <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                            </a>
+                        </li>     
 
-            </nav>
+                    </ul>
+
+                </nav>
 
             <!-- Page Content  -->
             <div id="content">
@@ -106,24 +112,14 @@
                                 <div class="col-md-6">
 
                                     <div class="right-side-info">
-                                        <div>
-                                            <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                        </div>
-                                        <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                            <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                <div class="more-choice__item" style="margin-top: -2px">
-                                                    <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                    <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                    <a href="mod-request.jsp">
-                                                        <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                            </c:forEach>
-                                        </div>
                                         <!-- Dropdown - Alerts -->
                                         <div class="info-login">
-                                            <img src="${requestScope.USER.userImage}" alt="">
+                                            <img src="${sessionScope.USER.userImage}" alt="">
+                                        </div>
+                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +137,7 @@
                             <c:redirect url="MainController?action=GetListProject&page=add-project"></c:redirect>
                         </c:if>
                         <label for="">Nhóm Thực Hiện</label><br>
-                        <select name="team-id" id="" required>
+                        <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="team-id" id="" required>
                             <option disabled selected>Lựa Chọn Nhóm Thực Hiện Đồ Án</option>
                             <c:forEach items="${requestScope.TEAM_EDIT}" var="o">
                                 <c:if test="${requestScope.VIEW_PROJECT.projectID eq o.teamID}">
@@ -154,7 +150,7 @@
                         </select>
                         <br>
                         <label for="">Giảng Viên Hướng Dẫn</label><br>
-                        <select name="instructor-id" id="" required>
+                        <select class="selectpicker" data-show-subtext="true" data-live-search="true" name="instructor-id" id="" required>
                             <option disabled selected>Lựa Chọn Giảng Viên Hướng Dẫn Cho Đồ Án</option>
                             <c:forEach items="${requestScope.INSTRUCTOR_LIST}" var="o">
                                 <option value="${o.instructorID}">${o.instructorName}</option>
@@ -162,7 +158,7 @@
                         </select>
                         <br>
                         <label for="">Học Kì</label><br>
-                        <select name="semester-id" id="" required>
+                        <select name="semester-id" id="" class="selectpicker" data-show-subtext="true" data-live-search="true" required>
                             <option disabled selected>Lựa Chọn Kì Cho Đồ Án</option>
                             <c:forEach items="${requestScope.SEMESTER_LIST}" var="o">
                                 <c:if test="${requestScope.VIEW_PROJECT.semesterID eq o.semesterID}">
@@ -209,11 +205,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>   
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js" integrity="sha512-9UR1ynHntZdqHnwXKTaOm1s6V9fExqejKvg5XMawEMToW4sSw+3jtLrYfZPijvnwnnE8Uol1O9BcAskoxgec+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="./assets/js/app.js"></script>
-
+        <script>
+            $(function () {
+    $('select').selectpicker();
+});
+        </script>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#sidebarCollapse').on('click', function () {

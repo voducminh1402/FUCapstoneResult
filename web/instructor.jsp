@@ -44,75 +44,78 @@
         <body>
             <div class="wrapper">
                 <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <c:if test="${sessionScope.USER.roleID eq 3}">
+                            <li class="dropdown">
+                                <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                    <i class="fas fa-home"></i> Quản Lí Người Dùng
+                                </a>
+                            </li>
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
 
-                    <hr class="sidebar-divider">
+                            <hr class="sidebar-divider">
+                        </c:if>
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-                    
-                    <hr class="sidebar-divider">
-                    
-                     <li>
-                        <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-arrow-left"></i> Đăng xuất
-                        </a>
-                    </li>                
-                    
-                </ul>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>       
+                        <hr class="sidebar-divider">
+                        <li>
+                            <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Slide
+                            </a>
+                            <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                            </a>
+                        </li>     
 
-            </nav>
+                    </ul>
+
+                </nav>
 
                 <!-- Page Content  -->
                 <div id="content">
@@ -131,30 +134,20 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                        <div class="right-side-info">
-                                            <div>
-                                                <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
-                                            </div>
-                                            <div class="more-choice__menu" style="margin-top: 12%; margin-right: 3%">
-                                                <c:forEach items="${requestScope.TOP3_REQUEST_POST}" var="o">
-                                                    <div class="more-choice__item" style="margin-top: -2px">
-                                                        <h4 style="display: inline; font-size: 0.75rem; font-weight: 700;">${o.postAuthor}</h4>
-                                                        <span style="font-size: 0.5rem; color: grey">đã yêu cầu bài viết</span>
-                                                        <a href="mod-request.jsp">
-                                                            <span style=" margin-top: -10px; display: block; font-size: 0.6rem; color: black">${o.postTitle}</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="devider" style="width: 100%; color: black; margin: -10px 0 10px 0"></div>
-                                                </c:forEach>
-                                            </div>
-                                            <!-- Dropdown - Alerts -->
-                                            <div class="info-login">
-                                                <img src="${requestScope.USER.userImage}" alt="">
-                                            </div>
+                                    <div class="right-side-info">
+                                        <!-- Dropdown - Alerts -->
+                                        <div class="info-login">
+                                            <img src="${sessionScope.USER.userImage}" alt="">
+                                        </div>
+                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -218,52 +211,63 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:if test="${requestScope.LIST_INSTRUCTOR_ALL==null}">
-                                                <c:redirect
-                                                    url="MainController?action=LoadListInstructors"
-                                                    ></c:redirect>
-                                            </c:if>
+                                            <c:if test="${requestScope.REMOVE_FAIL ne null}">
+                                            <input type="hidden" id="remove-fail" value="${requestScope.REMOVE_FAIL}">
 
-                                            <c:forEach
-                                                items="${requestScope.LIST_INSTRUCTOR_ALL}"
-                                                var="o"
-                                                varStatus="counter"
-                                                >
-                                                <tr>
-                                                    <td>${counter.count}</td>
-                                                    <td>${o.instructorName}</td>
-                                                    <td>${o.number}</td>
 
-                                                    <td class="last-type__menu">
-                                                        <i class="fas fa-ellipsis-h more-choice__dot"></i>
-                                                        <div class="more-choice__menu">
-                                                            <div class="more-choice__item">
-                                                                <a href="MainController?action=showInstructorDetail&id=${o.instructorID}">
-                                                                    <span>Chỉnh Sửa</span>
-                                                                    <i
-                                                                        class="fa fa-pencil"
-                                                                        aria-hidden="true"
-                                                                        ></i>
-                                                                </a>
-                                                            </div>
-                                                            <div class="more-choice__item">
-                                                                <a
-                                                                    href="MainController?action=DeleteAInstructor&id=${o.instructorID}"
-                                                                    >
-                                                                    <span>Xóa</span>
-                                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                                </a>
-                                                            </div>
+                                        </c:if>
+                                        <c:if test="${requestScope.LIST_INSTRUCTOR_ALL==null}">
+                                            <c:redirect
+                                                url="MainController?action=LoadListInstructors"
+                                                ></c:redirect>
+                                        </c:if>
+
+
+                                        <c:forEach
+                                            items="${requestScope.LIST_INSTRUCTOR_ALL}"
+                                            var="o"
+                                            varStatus="counter"
+                                            >
+                                            <tr>
+                                                <td>${counter.count}</td>
+                                                <td>${o.instructorName}</td>
+                                                <td>${o.number}</td>
+
+                                                <td class="last-type__menu">
+                                                    <i class="fas fa-ellipsis-h more-choice__dot"></i>
+                                                    <div class="more-choice__menu">
+                                                        <div class="more-choice__item">
+                                                            <a href="MainController?action=showInstructorDetail&id=${o.instructorID}">
+                                                                <span>Chỉnh Sửa</span>
+                                                                <i
+                                                                    class="fa fa-pencil"
+                                                                    aria-hidden="true"
+                                                                    ></i>
+                                                            </a>
                                                         </div>
-                                                    </td>
-                                                </tr>
+                                                        <div class="more-choice__item">
+                                                            <form action="MainController" method="POST">
+                                                                <button style="    border-radius: 0;
+                                                                        border: none;
+                                                                        background: white;
+                                                                        float: left;" type="submit" name="action" value="DeleteAInstructor">
+                                                                    <span>Xóa</span>
+                                                                </button>
+                                                                <input type="hidden" name="id" value="${o.instructorID}">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-                                            </c:forEach>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="content-project-pagination">
+<!--                            <div class="content-project-pagination">
                                 <div class="pagination">
                                     <span><i class="fas fa-chevron-left"></i></span>
                                     <span class="active-pagination">1</span>
@@ -273,13 +277,13 @@
                                     <span>10</span>
                                     <span><i class="fas fa-chevron-right"></i></span>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="add-project-menu">
+            <div class="add-project-menu" id="add-project-menu">
                 <h2 id="title">Thêm Giảng Viên</h2>
                 <form action="MainController" id="form">
                     <label for="name">Họ Và Tên</label><br />
@@ -317,6 +321,7 @@
             </div>
 
 
+
             <div class="overlay-page-mod" id="overlay-page overlay-page-mod"></div>
             <script src="./ckeditor/ckeditor.js"></script>
             <script
@@ -349,6 +354,14 @@
             <script src="./assets/js/app.js"></script>
 
             <script type="text/javascript">
+                window.addEventListener('load', (event) => {
+                    let remove = document.getElementById("remove-fail").value;
+
+                    if (remove === "fail") {
+                        alert("Can't delete the instructor who is instructing the project!");
+                    }
+                    console.log(remove);
+                });
                 $(document).ready(function () {
                     $("#sidebarCollapse").on("click", function () {
                         $("#sidebar").toggleClass("active");
@@ -497,6 +510,6 @@
                     content_css: "./assets/css/mod-project.css",
                 });
             </script>
-            <script src="./assets/js/admin.js"></script>
+
         </body>
     </html>

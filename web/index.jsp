@@ -3,6 +3,16 @@
     Created on : Feb 7, 2022, 12:34:09 AM
     Author     : VODUCMINH
 --%>
+<%@page import="com.fucapstoneresult.models.TimelineDTO"%>
+<%@page import="com.fucapstoneresult.models.TimelineDTO"%>
+<%@page import="com.google.gson.Gson"%>
+<%@page import="java.lang.reflect.Type"%>
+<%@page import="com.google.gson.reflect.TypeToken"%>
+<%@page import="com.google.gson.reflect.TypeToken"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.fucapstoneresult.dao.ContentDAO"%>
+<%@page import="com.fucapstoneresult.models.SlideDTO"%>
+<%@page import="com.fucapstoneresult.models.SlideDTO"%>
 <%@page import="com.fucapstoneresult.dao.PostsDAO"%>
 <%@page import="com.fucapstoneresult.models.PostsDTO"%>
 <%@page import="com.fucapstoneresult.models.InstructorDTO"%>
@@ -74,16 +84,25 @@
                                         <li>
                                             <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
                                         </li>
-                                        <li>
-                                            <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
-                                        </li>
                                         <c:if test="${sessionScope.IS_STUDENT == 1}">
                                             <li>
                                                 <a href="./po-view-post.jsp">Nội dung của bạn</a>
                                             </li>
                                         </c:if>
+                                        
                                         <li>
-                                            <a href="./contact.html">Liên hệ</a>
+                                            <a href="./contact.jsp">Liên hệ</a>
+                                        </li>
+                                        <li>
+                                            <c:if test="${sessionScope.USER ne null}">
+                                                <a style="color: var(--main-orange); text-transform: uppercase">
+                                                    <form action="MainController">
+                                                        <button class="button-logout" type="submit" name="action" value="showUserDetail" style="text-transform: uppercase">Chỉnh sửa thông tin</button>
+                                                        <input type="hidden" name="page" value="index">
+                                                        <input type="hidden" name="id" value="${sessionScope.USER.userID}">
+                                                    </form>
+                                                </a>
+                                            </c:if>
                                         </li>
                                         <li>
                                             <c:if test="${sessionScope.USER eq null}">
@@ -133,33 +152,49 @@
                     <div class="background-part">
                         <div id="wrapper">
                             <section class="slideshow" id="js-header">
-                                <div class="slideshow__slide js-slider-home-slide is-current" data-slide="1">
-                                    <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
-                                        <div class="slideshow__slide-background-load-wrap background-absolute">
-                                            <div class="slideshow__slide-background-load background-absolute">
-                                                <div class="slideshow__slide-background-wrap background-absolute">
-                                                    <div class="slideshow__slide-background background-absolute">
-                                                        <div class="slideshow__slide-image-wrap background-absolute">
-                                                            <div class="slideshow__slide-image background-absolute" style="background-image: url('https://vcdn-vnexpress.vnecdn.net/2021/01/13/anh-3-bai-10-do-an-9-2020-1600-2156-6284-1610510043.jpg')"></div>
+                                <%
+                                    List<SlideDTO> slideList = null;
+                                    ContentDAO dao = new ContentDAO();
+                                    String jsonFromTable = dao.getSlide();
+
+                                    if (jsonFromTable.equals("[]")) {
+                                        slideList = new ArrayList<>();
+                                    }
+                                    else {
+                                        Type type = new TypeToken<List<SlideDTO>>(){}.getType();
+                                        slideList = new Gson().fromJson(jsonFromTable, type);
+                                    }
+                                    request.setAttribute("SLIDE", slideList);
+                                %>
+                                <c:forEach items="${requestScope.SLIDE}" var="o">
+                                    <div class="slideshow__slide js-slider-home-slide is-current" data-slide="1">
+                                        <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
+                                            <div class="slideshow__slide-background-load-wrap background-absolute">
+                                                <div class="slideshow__slide-background-load background-absolute">
+                                                    <div class="slideshow__slide-background-wrap background-absolute">
+                                                        <div class="slideshow__slide-background background-absolute">
+                                                            <div class="slideshow__slide-image-wrap background-absolute">
+                                                                <div class="slideshow__slide-image background-absolute" style="background-image: url(${o.image})"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="slideshow__slide-caption">
-                                        <div class="slideshow__slide-caption-text">
-                                            <div class="container js-parallax" data-speed="2" data-position="top" data-target="#js-header">
-                                                <h1 class="slideshow__slide-caption-title">Sinh Viên Đại Học FPT Phát Triển Ví Điện Tử</h1>
-                                                <a class="slideshow__slide-caption-subtitle -load o-hsub -link" href="#">
-                                                    <span class="slideshow__slide-caption-subtitle-label">Team 1</span>
-                                                </a>
+                                        <div class="slideshow__slide-caption">
+                                            <div class="slideshow__slide-caption-text">
+                                                <div class="container js-parallax" data-speed="2" data-position="top" data-target="#js-header">
+                                                    <h1 class="slideshow__slide-caption-title">${o.title}</h1>
+                                                    <a class="slideshow__slide-caption-subtitle -load o-hsub -link" href="${o.url}">
+                                                        <span class="slideshow__slide-caption-subtitle-label">Tìm hiểu thêm</span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </c:forEach>
 
-                                <div class="slideshow__slide js-slider-home-slide is-next" data-slide="2">
+<!--                                <div class="slideshow__slide js-slider-home-slide is-next" data-slide="2">
                                     <div class="slideshow__slide-background-parallax background-absolute js-parallax" data-speed="-1" data-position="top" data-target="#js-header">
                                         <div class="slideshow__slide-background-load-wrap background-absolute">
                                             <div class="slideshow__slide-background-load background-absolute">
@@ -209,7 +244,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="c-header-home_footer">
                                     <div class="o-container">
@@ -341,7 +376,7 @@
                                             <a href="MainController?action=DetailProject&id=${o.projectID}">
                                                 <div class="project-content project-content-major">
                                                     <div class="project-content-overlay">
-                                                        <img class="project-content-img project-content-major-img" src="https://www.fpt-software.com/wp-content/uploads/sites/2/2019/09/RPA-for-logistics.jpg" alt="">
+                                                        <img class="project-content-img project-content-major-img" src="${o.projectImage}" alt="">
                                                         <div class="project-content-text" style="margin-left: 30px;">
                                                             ${pageContext.setAttribute("majorID", o.majorID)}
                                                             <span><%= majorDao.getMajor(pageContext.getAttribute("majorID").toString()).getMajorName()%></span>
@@ -389,49 +424,20 @@
                     </div>
                     <div id="timeline" class="content-timeline">
                         <div class="container">
-                            <h2>Dự Kiến Timeline Đồ Án Học Kì Summer 2022</h2>
+                            <%
+                                List<TimelineDTO> listTimeline = ContentDAO.getCurrentTimeline();
+                                request.setAttribute("TIME_LINE", listTimeline);
+                            %>
+                            <h2>Dự Kiến Thời Gian Bảo Vệ Đồ Án Tốt Nghiệp</h2>
                             <div class="row">
                                 <div class="timeline-background col-md-12">
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
-                                    <div class="timeline">
-                                        <span class="time">13/01/2022</span>
-                                        <span class="title">Đồ Án Xây Dựng Website Thành Quả Capstone Project</span>
-                                        <span class="team">Nhóm 1</span>
-                                    </div>
+                                    <c:forEach items="${requestScope.TIME_LINE}" var="o">
+                                        <div class="timeline">
+                                            <span class="time">${o.time}</span>
+                                            <span class="title">${o.title}</span>
+                                            <span class="team">${o.group}</span>
+                                        </div>
+                                    </c:forEach>
                                     <div class="timeline-background-overlay">
                                     </div>
                                 </div>
@@ -494,7 +500,7 @@
                                 <div><a href="">Đăng Ký</a></div>
                                 <div><a href="">Đăng Nhập</a></div>
                                 <div><a href="">Gửi Bài Viết</a></div>
-                                <div><a href="./contact.html">Liên hệ</a></div>
+                                <div><a href="./contact.jsp">Liên hệ</a></div>
                             </div>
                             <div class="col-md-4">
                                 <span>Theo Dõi Trường Đại Học FPT Tại: </span>
@@ -570,71 +576,35 @@
             </div>
         </div>
         <div onselectstart="return false;" oncopy="return false" oncut="return false" onpaste="return false" id="event-btn" class="event-btn">
-             Đóng
+            Đóng
         </div>
 
         <div class="event-content-wrap">
             <div id="event-content" class="event-content">
-            <div class="event-content-overlay">
-                <div class="box event-content-list">
-                    <ul id="first-list">
-                        <li>
-                            <span></span>
-                            <div class="title">comment #01</div>
-                            <div class="info">the best animation , the best toturials you would ever see .</div>
-                            <div class="name">- dr. mohamed -</div>
-                            <div class="time">
-                                <span>JUN, 17<sup>th</sup></span>
-                                <span>12:00 AM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">summery #01</div>
-                            <div class="info">the best animation , the best toturials you would ever see here only . you can learn how to animate and how to use SVG . even else you can add your own animations .</div>
-                            <div class="name">- eng. amr -</div>
-                            <div class="time">
-                                <span>JUN, 29<sup>th</sup></span>
-                                <span>11:36 AM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                        <li>
-                            <span></span>
-                            <div class="title">comment #02</div>
-                            <div class="info">the best animation , the best toturials you would ever see . what about canvas ?? do you like it ..</div>
-                            <div class="name">- dr. ahmed -</div>
-                            <div class="time">
-                                <span>FEB, 2<sup>nd</sup></span>
-                                <span>02:00 PM</span>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="event-content-overlay">
+                    <div class="box event-content-list">
+                        <ul id="first-list">
+                            <c:forEach items="${requestScope.TIME_LINE}" var="o">
+                                <li>
+                                    <span></span>
+                                    <div class="title">${o.title}</div>
+                                    <div class="info">${o.description}</div>
+                                    <div class="name">${o.place}</div>
+                                    <div class="time">
+                                        <span>${o.time}</span>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                            
+                           
+                          
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-content-text">
+                    <h2>THỜI GIAN DỰ KIẾN BẢO VỆ ĐỒ ÁN TỐT NGHIỆP</h2>
                 </div>
             </div>
-            <div class="event-content-text">
-                <h2>THỜI GIAN DỰ KIẾN BẢO VỆ ĐỒ ÁN TỐT NGHIỆP KỲ SPRING 2022</h2>
-            </div>
-        </div>
         </div>
         <div id="loader" class="loader">
             <div class="loading">

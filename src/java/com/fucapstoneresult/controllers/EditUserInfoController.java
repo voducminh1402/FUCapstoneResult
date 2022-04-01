@@ -37,23 +37,34 @@ public class EditUserInfoController extends HttpServlet {
             String id = request.getParameter("id");
             String name = request.getParameter("name");
             String email = request.getParameter("email");
+            String subEmail = request.getParameter("sub-email");
             String page = request.getParameter("page");
+            String img = request.getParameter("img");
             int role = Integer.parseInt(request.getParameter("role"));
             int status = Integer.parseInt(request.getParameter("status"));
-
-            UserDTO user = new UserDTO(id, name, "", status, "", email, "", "", role);
-            if (page.equals("student")) {
-                StudentDAO studentDao = new StudentDAO();
-                StudentDTO student = studentDao.getStudent(id);
-                student.setStudentName(name);
-                studentDao.updateStudent(student);
-            }
-
+//(,   String subEmail, String password, String OTP, int roleID) {
             UserDAO dao = new UserDAO();
-            if (!dao.updateUserByAdmin(user)) {
+            UserDTO user;
+            subEmail = subEmail.trim();
+            if (!subEmail.isEmpty()) {
+                if (dao.searchUserByEmail(subEmail) != null && !subEmail.trim().isEmpty()) {
+                    request.setAttribute("SUB_EMAIL_DUPLICATED", "Email này đã bị trùng! Xin thử lại với email khác.");
+                } else {
+                    user = new UserDTO(id, name, "", status, "", email, subEmail, "", "", role);
+                    if (page.equals("student")) {
+                        StudentDAO studentDao = new StudentDAO();
+                        StudentDTO student = studentDao.getStudent(id);
+                        student.setStudentName(name);
+                        studentDao.updateStudent(student);
+                    }
 
-                url = FAIL;
+                    if (!dao.updateUserByAdmin(user)) {
+
+                        url = FAIL;
+                    }
+                }
             }
+
             user = dao.searchUserByID(id);
             request.setAttribute("USER_DETAIL", user);
             request.setAttribute("PAGE", page);

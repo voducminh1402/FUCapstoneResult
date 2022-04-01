@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>com.fucapstoneresult.filters.CharacterEncodingFilter</filter-class>
     </filter>
+    <servlet>
+        <servlet-name>LoadFileExcelController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.LoadFileExcelController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoadFileExcelController</servlet-name>
+        <url-pattern>/LoadFileExcelController</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>AuthorizationFilter</filter-name>
+        <filter-class>com.fucapstoneresult.filters.AuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthorizationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -258,6 +275,11 @@
         <servlet-name>RemoveTimelineController</servlet-name>
         <servlet-class>com.fucapstoneresult.controllers.RemoveTimelineController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchPostByNameController</servlet-name>
+        <servlet-class>com.fucapstoneresult.controllers.SearchPostByNameController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -506,6 +528,11 @@
         <servlet-name>RemoveTimelineController</servlet-name>
         <url-pattern>/RemoveTimelineController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPostByNameController</servlet-name>
+        <url-pattern>/SearchPostByNameController</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30

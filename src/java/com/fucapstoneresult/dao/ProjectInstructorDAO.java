@@ -203,6 +203,48 @@ public class ProjectInstructorDAO {
 
         return projectList;
     }
+    
+    public List<InstructorDetailDTO> getNumberOfProject() throws SQLException {
+        List<InstructorDetailDTO> projectList = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DBUtils.getConnection();
+
+            if (conn != null) {
+                String sql = "select i.InstructorID, i.InstructorName, COunt(i.InstructorID) as Number " +
+                            " from ProjectInstructor p, Instructors i " +
+                            " where p.InstructorID = i.InstructorID " +
+                            " group by i.InstructorID, i.InstructorName ";
+                stm = conn.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    String instructorID = rs.getString("InstructorID");
+                    String instructorName = rs.getString("InstructorName");
+                    int number = Integer.parseInt(rs.getString("Number"));
+
+                    projectList.add(new InstructorDetailDTO(instructorID, instructorName, "", number));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return projectList;
+    }
 
     public int getNumberProjectOfInstructor(String id) throws SQLException {
         int count = 0;

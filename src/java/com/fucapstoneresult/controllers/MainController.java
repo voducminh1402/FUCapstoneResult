@@ -112,7 +112,13 @@ public class MainController extends HttpServlet {
     private static final String GET_TIMELINE = "GetTimelineController";
     private static final String EDIT_TIMELINE = "EditTimelineController";
     private static final String REMOVE_TIMELINE = "RemoveTimelineController";
+
+    private static final String SEARCH_POST_BY_NAME = "SearchPostByNameController";
+
+    private static final String UPDATE_INFO_USER_BY_USER = "UpdateInfoUserByUserController";
+    private static final String GET_TIME_LINE_CONTENT = "GetTimeLineContentController";
     
+
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -322,8 +328,14 @@ public class MainController extends HttpServlet {
             }
             else if ("RemoveTimeline".equals(action)) {
                 url = REMOVE_TIMELINE;
+            }else if ("UpdateInfoUserByUser".equals(action)){
+                url = UPDATE_INFO_USER_BY_USER;
             }
-            
+            else if ("SearchPostByName".equals(action)){
+                url = SEARCH_POST_BY_NAME;
+            } else if ("GetTimeLineContent".equals(action)){
+                url = GET_TIME_LINE_CONTENT;
+            }           
 
         } catch (Exception e) {
             e.printStackTrace();

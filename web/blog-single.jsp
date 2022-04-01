@@ -38,116 +38,112 @@
     <body>
         <div class="header-all">
             <div class="header-part">
-                <header class="home-page-header">
-                    <a href="./index.jsp" class="home-page-header__logo">
-                        <img src="./assets/images/logo.png" alt="">
-                        <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
-                    </a>
-                </header>
-                <div class="menu-right">
-                    <div class="menu-icon">
-                        <div class="menu-icon-line1"></div>
-                        <div class="menu-icon-line2"></div>
-                        <div class="menu-icon-line3"></div>
-                    </div>
-                </div>
-                <div class="menu-detail">
-                    <div class="menu-wrap">
-                        <div class="menu-close-button">
+                        <header class="home-page-header">
+                            <a href="./index.jsp" class="home-page-header__logo">
+                                <img src="./assets/images/logo.png" alt="">
+                                <span class="school-intro">Trường Đại học FPT - Phân hiệu Thành phố Hồ Chí Minh</span>
+                            </a>
+                        </header>
+                        <div class="menu-right">
+                            <div class="menu-icon">
+                                <div class="menu-icon-line1"></div>
+                                <div class="menu-icon-line2"></div>
+                                <div class="menu-icon-line3"></div>
+                            </div>
+                        </div>
+                        <div class="menu-detail">
+                            <div class="menu-wrap">
+                                <div class="menu-close-button">
 
-                        </div>
-                        <div class="menu-search">
-                            <form action="MainController">
-                                <div class="menu-search-wrap">
-                                    <input name="searchValue" type="text" placeholder="Tìm kiếm">
-                                    <button name="action" value="Search" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="menu-items">
-                            <ul>
-                                <li>
-                                    <a href="./index.jsp">Trang chủ</a>
-                                </li>
-                                <li>
-                                    <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
-                                </li>
-                                <li>
-                                    <a href="./project-major.html">Sự Kiện Diễn Ra Sắp Tới</a>
-                                </li>
-                                <li>
-                                    <a href="./po-view-post.jsp">Nội dung của bạn</a>
-                                </li>
-                                <li>
-                                    <a href="./contact.html">Liên hệ</a>
-                                </li>
-                                <li>
-                                    <c:if test="${sessionScope.USER eq null}">
-                                        <a href="./login.html">Đăng nhập</a>
-                                    </c:if>
-                                    <c:if test="${sessionScope.USER ne null}">
-                                        <a style="color: var(--main-orange); text-transform: uppercase">
-                                            <form action="MainController">
-                                                <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
-                                            </form>
-                                        </a>
-                                    </c:if>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--                            <div class="menu-login">
-                                                        <a href="login.html">LOGIN</a>
-                                                        <div>
-                                                            <form>
-                                                                <span>Xin chào ${sessionScope.USER.userName}</span>
-                                                                <button style="vertical-align: initial" type="submit">LOG OUT</button>
-                                                            </form>
-                                                        </div>
-                                                    </div>-->
-                        <div class="menu-contact">
-                            <div>
-                                <a href="tel:02873005588">(028) 73005588</a>
+                                <div class="menu-search">
+                                    <form action="MainController">
+                                        <div class="menu-search-wrap">
+                                            <input name="searchValue" type="text" placeholder="Tìm kiếm">
+                                            <button name="action" value="Search" type="submit">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="menu-items">
+                                    <ul>
+                                        <li>
+                                            <a href="./index.jsp">Trang chủ</a>
+                                        </li>
+                                        <li>
+                                            <a href="project.jsp">Top Các Đồ Án Xuất Sắc</a>
+                                        </li>
+                                        <c:if test="${sessionScope.IS_STUDENT == 1}">
+                                            <li>
+                                                <a href="./po-view-post.jsp">Nội dung của bạn</a>
+                                            </li>
+                                        </c:if>
+                                        <li>
+                                            <a href="./contact.jsp">Liên hệ</a>
+                                        </li>
+                                        <li>
+                                            <c:if test="${sessionScope.USER eq null}">
+                                                <a href="./login.html">Đăng nhập</a>
+                                            </c:if>
+                                            <c:if test="${sessionScope.USER ne null}">
+                                                <a style="color: var(--main-orange); text-transform: uppercase">
+                                                    <form action="MainController">
+                                                        <button class="button-logout" type="submit" name="action" value="Logout" style="text-transform: uppercase">Đăng xuất</button>
+                                                    </form>
+                                                </a>
+                                            </c:if>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--                            <div class="menu-login">
+                                                                <a href="login.html">LOGIN</a>
+                                                                <div>
+                                                                    <form>
+                                                                        <span>Xin chào ${sessionScope.USER.userName}</span>
+                                                                        <button style="vertical-align: initial" type="submit">LOG OUT</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>-->
+                                <div class="menu-contact">
+                                    <div>
+                                        <a href="tel:02873005588">(028) 73005588</a>
+                                    </div>
+                                    <div>
+                                        <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
+                                    </div>
+                                    <div>
+                                        <a href="">Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</a>
+                                    </div>
+                                </div>
+                                <div class="menu-footer">
+                                    <span>Theo dõi ngay:</span> 
+                                    <span class="menu-footer-link">
+                                        <span><i class="fab fa-facebook-f"></i></span>
+                                        <span><i class="fas fa-globe"></i></span>
+                                        <span><i class="fab fa-twitter"></i></span>
+                                    </span>
+                                </div>
                             </div>
-                            <div>
-                                <a href="mailto:daihoc.hcm@fpt.edu.vn">daihoc.hcm@fpt.edu.vn</a>
-                            </div>
-                            <div>
-                                <a href="">Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</a>
-                            </div>
-                        </div>
-                        <div class="menu-footer">
-                            <span>Theo dõi ngay:</span> 
-                            <span class="menu-footer-link">
-                                <span><i class="fab fa-facebook-f"></i></span>
-                                <span><i class="fas fa-globe"></i></span>
-                                <span><i class="fab fa-twitter"></i></span>
-                            </span>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
         <section class="blog-single">
             <div class="container container-fluid">
                 <div class="route tip-row" style="padding-left: 80px; padding-top: 50px">
+                    
                     <span>
                         <a href="index.jsp"><i class="fas fa-home"></i> Trang chủ</a>
                     </span> <i class="fas fa-angle-right"></i> <span>Bài đăng chi tiết</span>
                 </div>
-                <div class="tip-row col-12" style=" padding-top: 20px; padding-left: 80px">
-                    <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
-                    <h2 style="display: inline;">${requestScope.MAIN_POST.postTitle}</h2>
-                    <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
-                    <div class="prj-content" style=" height: 100px; text-overflow: ellipsis;   overflow: hidden; margin-bottom: 15px; margin-top: 10px">
-                        <p> ${requestScope.MAIN_POST.postContent}</p>
-                    </div>
-                    <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="padding: 5px 10px 5px 10px; background-color: #F26F21; text-decoration: none; color: white; font-weight: 600">Xem thêm</a>
-                    <div class="devider" style="width: 100%"></div>
-                </div>
                 <div class="row tip-row" style="margin-top: 50px !important">
                     <div class="left-column col-md-8 pr-md-4">
+                        <div>
+                            <div class="devider" style="width: 100%; margin-bottom: 10px"></div>
+                            <a href="MainController?action=DetailProject&id=${requestScope.MAIN_POST.postID}" style="display: inline; text-decoration: none; font-size: 2rem; font-weight: 700; color: black">${requestScope.MAIN_POST.postTitle}</a>
+                            <h3 style="display: inline; float: right; padding: 5px 10px 5px 10px; background-color: #F26F21; color: white; font-size: 1.25rem; margin-top: -10px; font-weight: 700">ĐỀ TÀI GỐC</h3>
+                            <div class="devider" style="width: 100%"></div>
+                        </div>
                         <article class="tip-content">
                             <div class="tip-content_thumbnail" style="padding-bottom: 15px;">
                                 <img src="${requestScope.POST.postImage}"
@@ -197,10 +193,11 @@
                                     ${requestScope.POST.postContent}
                                 </p>
                             </div>
-                              <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
+                            <input id="post-id" type="hidden" value="${requestScope.POST.postID}"/>
                         </article>
                         <div class="main__content">
                             <div class="comment">
+                                <input id="user-name-login" type="hidden" value="${sessionScope.USER.userName}">
                                 <h5>${requestScope.COUNT_CMT} Bình luận</h5>
 
                                 <div id="comment-area" class="comment-area">
@@ -214,7 +211,9 @@
                                             </div>
                                             <div class="comment-info__content">
                                                 <div class="content-header">
-                                                    <h6 class="user-name">Vo Duc Minh</h6>
+                                                    <c:if test="${sessionScope.USER.userName ne null}">
+                                                         <h6 class="user-name">${sessionScope.USER.userName}</h6>
+                                                    </c:if>
                                                     <span> ${o.commentTime} </span>
                                                 </div>
                                                 <p>
@@ -237,7 +236,7 @@
                                         rows="3"
                                         ></textarea
                                     ><br />
-                                    <input id="submit" type="button" value="Gửi" name="action" />
+                                    <input id="submit" class="submit-post" type="button" value="Gửi" name="action" />
                                 </form>
                             </div>
                         </div>
@@ -319,7 +318,7 @@
                         <div><a href="">Đăng Ký</a></div>
                         <div><a href="">Đăng Nhập</a></div>
                         <div><a href="">Gửi Bài Viết</a></div>
-                        <div><a href="./contact.html">Liên hệ</a></div>
+                        <div><a href="./contact.jsp">Liên hệ</a></div>
                     </div>
                     <div class="col-md-4">
                         <span>Theo Dõi Trường Đại Học FPT Tại: </span>
@@ -385,32 +384,41 @@
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
             crossorigin="anonymous"
         ></script>
+
         <script src="./assets/js/post-project.js"></script>
         <script src="./assets/js/app.js"></script>
+        <script src="./assets/js/blog.js"></script>
         <script>
             const submit = document.getElementById("submit");
             const inputComment = document.getElementById("comment");
             const post = document.getElementById("post-id");
+            const username = document.getElementById("user-name-login");
 
             submit.addEventListener("click", () => {
+                if(username.value == "") {
+                    window.location.href = 'login.html'
+                }
                 let input = inputComment.value;
                 let postId = post.value;
-                console.log("A");
-                $.ajax({
-                    type: "POST",
-                    url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
-                    data: input,
-                    dataType: "text",
-                    success: function (response) {
-                        if (response.length > 1) {
-                            console.log(response);
-                        } else {
-                            console.log("fail");
-                        }
-                    },
-                });
+                if (username.value != "") {
+                    $.ajax({
+                        type: "POST",
+                        url: "MainController?action=CommentPost&input-comment=" + input + "&id=" + postId,
+                        data: input,
+                        dataType: "text",
+                        success: function (response) {
+                            if (response.length > 1) {
+//                                console.log(response);
+                            } else {
+                                console.log("fail");
+                            }
+                        },
+                    });
+                    
+                }
             });
         </script>
+      
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip({

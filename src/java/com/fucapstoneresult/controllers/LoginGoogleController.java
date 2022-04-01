@@ -28,8 +28,8 @@ public class LoginGoogleController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String USER = "index.jsp";
-    private static final String ADMIN = "admin.jsp";
-    private static final String FAIL = "error.html";
+    private static final String ADMIN = "mod-index.jsp";
+    private static final String ERROR = "login-not-allowed.html";
 
     public LoginGoogleController() {
         super();
@@ -38,7 +38,7 @@ public class LoginGoogleController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String url = FAIL;
+        String url = ERROR;
         try {
             String code = request.getParameter("code");
             if (code == null || code.isEmpty()) {
@@ -49,7 +49,7 @@ public class LoginGoogleController extends HttpServlet {
                 GooglePojo user = GoogleUtils.getUserInfo(accessToken);
                 UserDAO dao = new UserDAO();
                 UserDTO userDTO = dao.searchUserByEmail(user.getEmail());
-                if (userDTO==null) {
+                if (userDTO == null) {
                     UUID id = UUID.randomUUID();
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                     LocalDateTime now = LocalDateTime.now();
@@ -57,18 +57,26 @@ public class LoginGoogleController extends HttpServlet {
                     userDTO = new UserDTO(id.toString(), user.getName(), createDate, 2, "", user.getEmail(), "", "", 1);
                     dao.addUser(userDTO);
                 }
-                if (userDTO.getUserStatus() != 3)
-                    if (userDTO.getRoleID() == 1)
-                        url = USER;
-                    else
-                        url = ADMIN;
+
                 HttpSession session = request.getSession();
-                session.setAttribute("USER", userDTO);
-                
+
+                if (userDTO.getUserStatus() != 3) {
+                    if (userDTO.getRoleID() == 1) {
+                        url = USER;
+                    } else {
+                        url = ADMIN;
+                    }
+
+                    session.setAttribute("USER", userDTO);
+                }
+                else{
+                    request.setAttribute("LOGIN_FAIL", "You can not allowed to access!");
+                }
+
                 UserDTO userLogin = (UserDTO) session.getAttribute("USER");
                 System.out.println(userLogin.getUserName());
                 System.out.println(userLogin.getEmail());
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();

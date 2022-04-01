@@ -95,11 +95,12 @@ public class InstructorDAO {
             conn = DBUtils.getConnection();
             if (conn != null) {
                 String sql = "UPDATE ProjectInstructor "
-                        + " SET ProjectID=?, InstructorID=? ";
+                        + " SET InstructorID=? "
+                        + " WHERE ProjectID=?";
                 stm = conn.prepareStatement(sql);
 
-                stm.setString(1, projectID);
-                stm.setString(2, instructorID);
+                stm.setString(1, instructorID);
+                stm.setString(2, projectID);
 
                 check = stm.executeUpdate() > 0;
 
