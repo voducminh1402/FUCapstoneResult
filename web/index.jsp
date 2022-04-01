@@ -353,6 +353,46 @@
                         </div>
                     </div>
                     
+                    <%
+                        SemesterDAO semesterDao = new SemesterDAO();
+                        MajorDAO majorDao = new MajorDAO();
+                        List<ProjectDTO> nearestList = projectDao.getNearestProject();
+                        String semesterName = semesterDao.getSemester(projectDao.getNearestProjectElement().getSemesterID()).getSemesterName();
+                        request.setAttribute("NEAREST_LIST", nearestList);
+                        request.setAttribute("NEAREST_LIST_SIZE", nearestList.size());
+                    %>
+                    <c:if test="${requestScope.NEAREST_LIST_SIZE == 4}">
+                        <div id="do-an-hoc-ky" class="content-near-project">
+                            <div class="container-fluid">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h2>Đồ Án Học Kỳ <%= semesterName%></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" row content-near-project__wrapper">
+                                    <c:forEach items="${requestScope.NEAREST_LIST}" var="o">
+                                        <div class="project-detail no-pd col-md-3" >
+                                            <a href="MainController?action=DetailProject&id=${o.projectID}">
+                                                <div class="project-content project-content-major">
+                                                    <div class="project-content-overlay">
+                                                        <img class="project-content-img project-content-major-img" src="${o.projectImage}" alt="">
+                                                        <div class="project-content-text" style="margin-left: 30px;">
+                                                            ${pageContext.setAttribute("majorID", o.majorID)}
+                                                            <span><%= majorDao.getMajor(pageContext.getAttribute("majorID").toString()).getMajorName()%></span>
+                                                            <h3>${o.projectName}</h3>
+                                                            <span>View Project</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
 
                     <div id="giang-vien-huong-dan" class="content-lecturer content-good">
                         <div class="container">

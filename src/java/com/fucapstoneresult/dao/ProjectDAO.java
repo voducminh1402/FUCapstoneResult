@@ -755,7 +755,11 @@ public class ProjectDAO {
 
     public static void main(String[] args) throws SQLException {
         ProjectDAO dao = new ProjectDAO();
-
-        System.out.println(dao.getNearestProjectElement().getSemesterID());
+        
+        List<ProjectDTO> project = dao.getNearestProject();
+        
+        for (ProjectDTO projectDTO : project) {
+            System.out.println(projectDTO.getProjectName());
+        }
     }
 }

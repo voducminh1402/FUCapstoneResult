@@ -439,7 +439,7 @@ public class UserDAO {
     }
 
     public String checkUserIsAStudent(String userId) throws SQLException {
-        String postID = null;
+        String postID = "";
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
