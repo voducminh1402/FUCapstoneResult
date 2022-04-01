@@ -500,7 +500,7 @@ public class PostsDAO {
                         + "  FROM TagDetails "
                         + "  WHERE TagDetailName LIKE ? "
                         + "  ) "
-                        + "  ) ";
+                        + "  ) AND IsMainPost IS NOT NULL";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, "%" + tag + "%");
                 rs = stm.executeQuery();
