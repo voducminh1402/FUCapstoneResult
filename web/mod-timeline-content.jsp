@@ -310,8 +310,8 @@
                     <label for="name">Địa Điểm</label><br />
                     <input name="place" type="text" id="name" />
 
-                    <label for="">Học Kì</label><br>
-                    <input name="semester-id" type="text" id="name" value="${requestScope.SEMESTER_NAME}" readonly=""/>
+
+                    <input name="semester-id" type="hidden" id="name" value="${requestScope.SEMESTER_NAME}" readonly=""/>
 
 
 
@@ -346,8 +346,8 @@
                     <label for="name">Địa Điểm</label><br />
                     <input name="place" type="text" id="name" />
                     
-                    <label for="name">Học Kì</label><br>
-                    <input name="semester-id" type="text" id="name" value="${requestScope.SEMESTER_NAME}" readonly=""/>
+
+                    <input name="semester-id" type="hidden" id="name" value="${requestScope.SEMESTER_NAME}" readonly=""/>
 
                     <div class="add-project-submit">
                         <button type="submit" name="action" value="EditTimeline">
