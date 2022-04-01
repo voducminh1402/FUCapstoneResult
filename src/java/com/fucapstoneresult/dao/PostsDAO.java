@@ -550,7 +550,7 @@ public class PostsDAO {
                 String sql = "SELECT PostID, PostTitle, PostDate, PostAuthor, PostContent, PostImage, LastEditedUser, "
                         + "Upvote, PostStatusId, IsMainPost, ProjectID "
                         + " FROM Posts "
-                        + " WHERE PostID = ?";
+                        + " WHERE PostID = ? AND IsMainPost IS NOT NULL ";
                 for (String id : listID) {
                     stm = con.prepareStatement(sql);
                     stm.setString(1, id);

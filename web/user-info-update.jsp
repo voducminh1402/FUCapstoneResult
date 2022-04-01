@@ -202,8 +202,9 @@
                         </div>
                         <div class="row py-2">
                             <div class="col-md-12">
+                                <p style="color: red">${requestScope.EMAIL_DUPLICATED}</p>
                                 <label for="email">Địa chỉ email</label>
-                                <input class="bg-light form-control" value="${requestScope.USER_DETAIL.email}" name="email">
+                                <input class="bg-light form-control" value="${requestScope.USER_DETAIL.email}" name="email" readonly="">
 
 
                             </div>
@@ -212,6 +213,7 @@
 
                         <div class="row py-2">
                             <div class="col-md-12">
+                                <p style="color: red">${requestScope.SUB_EMAIL_DUPLICATED}</p>
                                 <label for="sub-email">Địa chỉ email khác</label>
                                 <input class="bg-light form-control" value="${requestScope.USER_DETAIL.subEmail}" name="sub-email">
 

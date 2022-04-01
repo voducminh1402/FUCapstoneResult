@@ -45,12 +45,13 @@ public class ImportExcel {
     public static final int COLUMN_INDEX_TEAM = 4;
     public static final int COLUMN_INDEX_SEMESTER = 5;
 
-    public static void main(String[] args) throws IOException, SQLException {
-        //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
+    public static void main(String[] args) throws IOException, SQLException, ClassNotFoundException {
+       //addToDatabase("C:/Users/HP/Desktop/student.xlsx");
     }
 
     public static void addToDatabase(String path) throws IOException, SQLException, ClassNotFoundException {
-        final String excelFilePath = path;
+        final String excelFilePath = path.replace('\\', '/');
+        
 
         //final String excelFilePath = "D:/FPT University/CN5/SWP391/student.xlsx";
         //final String excelFilePath = "C:/Users/HP/Desktop/student.xlsx";
@@ -85,7 +86,11 @@ public class ImportExcel {
                 }
 
             }
-            System.out.println(object);
+            List<StudentDTO> studentlist = student.getListStudent();
+            for (StudentDTO studentDTO : studentlist) {
+                System.out.println(studentDTO);
+            }
+            //System.out.println(object);
         }
     }
 
