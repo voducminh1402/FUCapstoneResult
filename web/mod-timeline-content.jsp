@@ -130,17 +130,12 @@
                                     </div>
                                 <div class="col-md-6">
 
-<<<<<<< HEAD
                                     <div class="right-side-info">
                                         <!-- Dropdown - Alerts -->
                                         <div class="info-login">
                                             <img src="${sessionScope.USER.userImage}" alt="">
                                         </div>
-                                        <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
-                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
-                                                Đăng xuất
-                                            </a>
-=======
+                                        
                                         <div class="right-side-info">
                                             <div>
                                                 <i class="fas fa-bell fa-fw more-choice__dot" style="margin-right: 5px; color: blue"></i>
@@ -159,7 +154,11 @@
                                             <div class="info-login">
                                                 <img src="" alt="">
                                             </div>
->>>>>>> 2290ea9d17c3d92440f826bd363c08e6cf1da558
+                                            <div style="background: red; padding: 5px 10px 5px 10px; border-radius: 50px">
+                                            <a href="MainController?action=Logout" data-toggle="collapse" aria-expanded="false" style="color: white; font-weight: 700">
+                                                Đăng xuất
+                                            </a>
+                                            </div>    
                                         </div>
                                     </div>
                                 </div>

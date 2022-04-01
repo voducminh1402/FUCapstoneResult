@@ -34,7 +34,6 @@ public class GetTimelineController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            
             String semesterID = request.getParameter("id");
             request.setAttribute("SEMESTER_ID", semesterID);
             
