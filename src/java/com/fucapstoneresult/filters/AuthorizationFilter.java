@@ -121,9 +121,9 @@ public class AuthorizationFilter implements Filter {
             
             if (resource.contains("mod") || resource.contains("student.jsp") || resource.contains("mod-project.jsp") || resource.contains("mod-index.jsp") || resource.contains("mod-comment-request.jsp")
                 || resource.contains("mod-team.jsp") || resource.contains("mod-semester.jsp") || resource.contains("mod-post.jsp") || resource.contains("mod-request.jsp")
-                || pathAction.equals("ViewModIndexPage") || pathAction.equals("LoadComments") || pathAction.equals("SearchUser") 
-                || pathAction.equals("showUserDetail") || pathAction.equals("GetListProject") || pathAction.equals("LoadAllStudent")
-                || pathAction.equals("GetListPost") || pathAction.contains("ViewModRequestPage") || pathAction.contains("EditPost") || pathAction.contains("EditPoPost")
+                || pathAction.contains("ViewModIndexPage") || pathAction.contains("LoadComments") || pathAction.contains("SearchUser") 
+                || (pathAction.contains("showUserDetail") && pathAction.contains("page=user")) || (pathAction.contains("showUserDetail") && pathAction.contains("page=student")) || pathAction.contains("GetListProject") || pathAction.contains("LoadAllStudent")
+                || pathAction.contains("GetListPost") || pathAction.contains("ViewModRequestPage") || pathAction.contains("EditPost") || pathAction.contains("EditPoPost")
                     ) {
                 if (userLogin != null) {
                     if (AD == (userLogin.getRoleID()) || MOD == (userLogin.getRoleID())) {
@@ -138,7 +138,7 @@ public class AuthorizationFilter implements Filter {
                     res.sendRedirect(LOGIN);
                 }
             }
-            else if (resource.contains("admin.jsp") || pathAction.equals("Load%20All%20User")) {
+            else if (resource.contains("admin.jsp") || pathAction.contains("Load%20All%20User")) {
                 if (userLogin != null) {
                     if (AD == (userLogin.getRoleID())) {
                         chain.doFilter(request, response);
@@ -152,8 +152,8 @@ public class AuthorizationFilter implements Filter {
                     res.sendRedirect(LOGIN);
                 }
             }
-            else if (resource.isEmpty() || resource.contains("index.jsp")
-                    || pathAction.equals("InstructorDetail") || pathAction.equals("viewPoPost") || pathAction.equals("LazyLoadProject")) {
+            else if (resource.isEmpty() || resource.contains("index.jsp") 
+                    || pathAction.contains("InstructorDetail") || pathAction.contains("viewPoPost") || pathAction.contains("LazyLoadProject")) {
                 if (userLogin != null) {
                     if (US == (userLogin.getRoleID())) {
                         chain.doFilter(request, response);
@@ -166,6 +166,22 @@ public class AuthorizationFilter implements Filter {
                 }
                 else {
                     chain.doFilter(request, response);
+                }
+            }
+            else if (resource.contains("user-info-update.jsp")
+                    || pathAction.contains("showUserDetail&page=index")) {
+                if (userLogin != null) {
+                    if (US == (userLogin.getRoleID())) {
+                        chain.doFilter(request, response);
+                        
+                    }
+                    else if (!(US == userLogin.getRoleID())) {
+                        res.sendRedirect(LOGIN);
+
+                    }
+                }
+                else {
+                    res.sendRedirect(LOGIN);
                 }
             }
             else if (resource.contains(LOGIN)) {
