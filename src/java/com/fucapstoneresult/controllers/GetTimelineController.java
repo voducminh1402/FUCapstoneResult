@@ -38,13 +38,14 @@ public class GetTimelineController extends HttpServlet {
             request.setAttribute("SEMESTER_ID", semesterID);
             
             List<TimelineDTO> timelineList = null;
-            List<TimelineDTO> timelineListInSem = null;
-            List<SemesterDTO> listSem = null;
+
             ContentDAO dao = new ContentDAO();
             SemesterDAO daoSem = new SemesterDAO();
+            
             String jsonFromTable = dao.getTimeline();
-            listSem = daoSem.getAllSemester();
-            timelineListInSem = new ArrayList<>();
+
+            String semName = daoSem.getSemester(semesterID).getSemesterName();
+            List<TimelineDTO> timelineListInSem = new ArrayList<>();
             
             if (jsonFromTable.equals("[]")) {
                 timelineList = new ArrayList<>();
@@ -60,7 +61,7 @@ public class GetTimelineController extends HttpServlet {
             }
             
             request.setAttribute("TIMELINE", timelineListInSem);
-            request.setAttribute("LIST_SEMESTER", listSem);
+            request.setAttribute("SEMESTER_NAME", semName);
         } 
         catch (Exception e) {
             System.out.println(e.toString());

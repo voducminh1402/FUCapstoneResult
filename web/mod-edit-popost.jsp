@@ -20,68 +20,78 @@
     <body>
         <div class="wrapper">
             <!-- Sidebar  -->
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>FPT University</h3>
-                    <strong>FU</strong>
-                </div>
-                <ul class="list-unstyled components">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="mod-index.jsp">
-                            <i class="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Trang chủ</span></a>
-                    </li>
-                    <hr class="sidebar-divider">
+                <nav id="sidebar">
+                    <div class="sidebar-header">
+                        <h3>FPT University</h3>
+                        <strong>FU</strong>
+                    </div>
+                    <ul class="list-unstyled components">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="mod-index.jsp">
+                                <i class="fas fa-fw fa-tachometer-alt"></i>
+                                <span>Trang chủ</span></a>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <c:if test="${sessionScope.USER.roleID eq 3}">
+                            <li class="dropdown">
+                                <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
+                                    <i class="fas fa-home"></i> Quản Lí Người Dùng
+                                </a>
+                            </li>
 
-                    <li class="dropdown">
-                        <a href="admin.jsp" data-toggle="dropdown" aria-expanded="false" data-target="#homeSubmenu">
-                            <i class="fas fa-home"></i> Quản Lí Người Dùng
-                        </a>
-                    </li>
 
-                    <hr class="sidebar-divider">
+                            <hr class="sidebar-divider">
+                        </c:if>
 
-                    <li>
-                        <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
-                        </a>
-                    </li>
-                    <li>
-                        <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản lí Sinh Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
-                        </a>
-                    </li>
-                    <li>
-                        <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
-                        </a>
-                    </li>
+                        <li>
+                            <a href="mod-project.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-team.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Nhóm Đồ Án
+                            </a>
+                        </li>
+                        <li>
+                            <a href="student.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Sinh Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="instructor.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Giảng Viên
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mod-semester.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-briefcase"></i> Quản Lí Học Kỳ
+                            </a>
+                        </li>
 
-                    <hr class="sidebar-divider">
+                        <hr class="sidebar-divider">
 
-                    <li>
-                        <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Đăng Chính
-                        </a>
-                        <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
-                        </a>
-                    </li>
-              
-                    
-                </ul>
+                        <li>
+                            <a href="mod-post.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Đăng Chính
+                            </a>
+                            <a href="mod-request.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file"></i> Bài Viết Của Sinh Viên
+                            </a>
+                        </li>       
+                        <hr class="sidebar-divider">
+                        <li>
+                            <a href="mod-slide-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Slide
+                            </a>
+                            <a href="mod-timeline-semester-content.jsp" data-toggle="collapse" aria-expanded="false">
+                                <i class="fas fa-file-alt"></i> Quản Lí Timeline
+                            </a>
+                        </li>     
 
-            </nav>
+                    </ul>
+
+                </nav>
 
             <!-- Page Content  -->
             <div id="content">

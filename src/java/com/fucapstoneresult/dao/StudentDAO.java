@@ -53,6 +53,8 @@ public class StudentDAO {
 
         return check;
     }
+    
+    
 
     public StudentDTO getStudent(String studentID) throws SQLException {
         StudentDTO student = null;
@@ -110,6 +112,35 @@ public class StudentDAO {
                 stm.setString(3, student.getStudentImage());
                 stm.setString(4, student.getTeamID());
                 stm.setString(5, student.getStudentID());
+
+                check = stm.executeUpdate() > 0;
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return check;
+    }
+    
+    public boolean deleteAll() throws SQLException {
+        boolean check = false;
+        Connection conn = null;
+        PreparedStatement stm = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "DELETE FROM Students ";
+                stm = conn.prepareStatement(sql);
+
 
                 check = stm.executeUpdate() > 0;
 
@@ -348,9 +379,6 @@ public class StudentDAO {
 
     public static void main(String[] args) throws SQLException {
         StudentDAO dao = new StudentDAO();
-        List<StudentDTO> list = dao.getStudentbyName("n");
-        for (StudentDTO studentDTO : list) {
-            System.out.println(studentDTO);
-        }
+        dao.deleteAll();
     }
 }
